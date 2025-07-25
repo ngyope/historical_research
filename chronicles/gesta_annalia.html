@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『ゲスタ・アナリア』(Gesta Annalia)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif JP', serif;
+        }
+        .original-text {
+            font-family: 'EB Garamond', serif;
+        }
+        /* スクロールバーのスタイル */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4b59d;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a89574;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div id="app" class="flex flex-col h-screen">
+
+        <!-- Header -->
+        <header class="bg-white shadow-md z-10">
+            <div class="container mx-auto px-6 py-4">
+                <h1 class="text-2xl font-bold text-gray-700">『ゲスタ・アナリア』</h1>
+                <p class="text-sm text-gray-500"><i>Gesta Annalia</i> (最終更新日：2025-07-26)</p>
+            </div>
+        </header>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-gray-100 p-6 overflow-y-auto flex-shrink-0 hidden md:block">
+                <h2 class="text-lg font-bold mb-4">目次</h2>
+                <nav id="toc">
+                    <ul>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="intro">はしがき</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap1">第一章：王子ヘンリの御子にして、「乙女王」と呼ばれた若きマルコム王の戴冠</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap2">第二章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap3">第三章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap4">第四章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap5">第五章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap6">第六章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap7">第七章：ウィリアム王の戴冠</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap8">第八章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap9">第九章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap10">第十章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap11">第十一章：ウィリアム王の捕縛について</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap12">第十二章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap13">第十三章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap14">第十四章</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap131">第一三一章：バノックバーンの戦いについて</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap152">第一五二章：イングランド王がエドワード・ベイリオルと共にパースへ到来したことについて</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap156">第一五六章：アンドリュー・マリーについて</a></li>
+                        <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap160">第一六〇章</a></li>
+
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 id="main-title" class="text-3xl font-bold mb-6 border-b pb-4 text-gray-700"></h2>
+                    
+                    <div id="chapter-content">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-700 text-white text-center p-4 text-sm">
+            <p>&copy; 2025- Yuki Nakagawa. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const content = {
+            intro: {
+                title: "はしがき",
+                japanese: `本書は、14世紀の後半にスコットランドで編まれた『ゲスタ・アナリア (Gesta Annalia)』という年代記の日本語訳である。本訳の底本としては W. F. Skene (ed.), John of Fordun’s Chronicle of the Scottish Nation, 2 vols (Edinburgh, 1871-2) を用いた。\n本書は『ゲスタ・アナリア』を章ごとに分け、日本語訳と原文と対比させる形で可視化している。原書注は上述の底本に記載されている注をそのまま記載し、訳注は翻訳にあたって有益と思われる注を訳者自身が追加した。ただし、底本の注はページごとに番号が振られているものの、本書では章ごとに番号を振っている。そのため、底本の注番号と本書の原書注の番号は必ずしも一致しない場合がある点はご容赦願いたい。\n中世スコットランドは英語、フランス語、ゲール語、ピクト語、ノルド語といった多様な言語環境にあったが、原書に登場する人名や地名について、スコットランドに関連するものは分かりやすさを重視し、現代英語読みで統一した。`,
+            },
+            chap1: {
+                title: "第一章：王子ヘンリの御子にして、「乙女王」と呼ばれた若きマルコム王の戴冠 (Coronatio regis Malcolmi minoris filii Henrici Principis, qui vicebatur virgo.)",
+                japanese: `そして民衆は皆、デイヴィッド王自身の息子であったノーサンブリア伯兼ハンティンドン伯ヘンリーの息子、13歳の少年マルコムを擁し、祖父デイヴィッドに代わる王としてスクーンにて即位させた[1]。このマルコムについて、真にこう言うことができるであろう。「彼らの子孫とともに、聖なる遺産という善が彼らの孫たちに永続する」と。さて、ノーサンブリア伯領は彼の弟ウィリアムが領有し、ハンティンドン伯領は下の弟デイヴィッドに与えられた。このことは以下で明らかになるであろう。マルコムが孫たちの中で最年長者としてスコット人の王デイヴィッドの後を継いだのは、不当なことではなかった。彼は多くの善行においてかの王に倣い、いくつかの点ではさらに輝かしく彼を凌駕し、自らの民のただ中で天の星のごとく光り輝いた。彼の治世の最初の年に、アーガイルの小王サマーレッドと、その甥たち、すなわちマルコム・マクヘスの息子たちが、多くの者たちを味方につけて、彼らの王マルコムに対して反乱を起こし、スコティアの大部分を騒乱に陥れ、国をかき乱した[2]。というのも、かのマルコムはマクヘスの子であったが、偽って、自分はマリ伯アンガスの子であると言っていた。このアンガスは、幸いなる記憶のデイヴィッド王の時代に、ストラスカースロにて国土を略奪しようとしていたところを、スコット人によって一族もろとも殺害された人物である。アンガスの死後、このマルコム・マクヘスはあたかも息子として父の死の復讐をせんとするかのごとくデイヴィッド王に蜂起し、スコティアの周辺地域を略奪と破壊によって苦しめたが、ついに捕らえられ、かのデイヴィッド王によってマーチモント城の塔にて厳重な監視のもと殺害された。かくしてサマーレッドが内乱を続ける中、その甥でありマルカム・マクヘスの息子の一人であるドナルドという名の者が、ウィットホーンにてマルコム王の忠実な家臣の一部によって捕縛され、マーチモントの同じ塔に父と共に投獄された。彼が捕らえられた後、翌年、その父マルコムは王と和解したが、一方でサマーレッドはなおも邪悪に民衆に対してその悪事を働いていた。`,
+                original: `TOLLENS quoque omnis populus Malcolmum puerum tredecim annorum filium Henrici comitis Northumbriae et Huntingdoniae,[1] filii ipsius regis David, et apud Sconam constituerunt regem pro David avo suo, de quo veraciter potest dici “Cum semine eorum permanent bona hereditas sancta nepotes eorum.”[2] Northumbriae vero comitatum possidebat frater ejus Willelmus, et David fratri juniori comitatus Huntidoniae[3] subjectus fuit, ut infra patebit. Non immerito regi Scotorum David successit Malcolmus, major natu nepotum ejus. Qui eundem regem in multis bonis exequens, in quibusdam etiam gloriose superans, in medio gentis suae[4] tanquam sidus coeleste refulsit. Primo quoque anno sui regni, regulus Argadiae Sumerledus,[5] et sui nepotes, filii, scilicet,[6] Malcolmi Macheth,[7] associatis sibi plurimis, insurrexerunt in regem suum Malcolmum, et Scociam magna parte perturbantes inquietaverunt. Erat enim ille Malcolmus filius Macheth, sed mentiendo dicebat, se esse filium Angusii, comitis Moraviae, qui, tempore felicis memoriae regis David, patriam depraedando[8] apud Strucathrawych[9] a Scotis cum tota gente sua interfectus est. Quo mortuo, idem Malcolmus Macheth contra regem David, quasi filius mortem patris vindicaturus, assurgit, et regiones Scociae[10] circumjacentes[11] rapinis et praedis afficiens, tandem capitur, et ab eodem rege David in turre castri de Marchemond arta custodia trucidatur. Continuante itaque civilia bella Sumerledo, nepos ejus, unus filiorum Malcolmi Macheth, Dovenaldus nomine, per quosdam regis Malcolmi fideles apud Withterne[12] comprehenditur, et in eadem turre de Marchmond cum patre suo incarceratur. Post cujus captionem, anno sequenti Malcolmus, pater ejus, cum rege pacificatus est, Sumerledo nequiter adhuc suam nequitiam in populo exercente.`,
+                originalNotes: `[1] B. Huntyndon. \n[2] B. omits sancta nepotes eorum, D. nepotes eorem, and both add etc. \n[3] D. et fratri ejus seniori David comitatus de Huntyngton. \n[4] D. in gente sua. \n[5] D. inserts nomine. \n[6] D. filii filiae. \n[7] The name in D. is Macbeth throughout. \n[8] D. praedando. \n[9] B. Structhrawych. \n[10] B. D. omits Scociae. \n[11] B. C. D. circumadjacentes. \n[12] D. Qwhythyre.`,
+                translatorNotes: `[1] スコットランド王マルコム四世 (在位：1153-1165年)。\n[2] Scotia は直訳すると「スコットランド」となるが、中世中期では現在のフォース湾以北の地域を指していた。この年代記が編纂されたのが14世紀であるため、この語がフォース湾以南地域も含めて使われている可能性があるが、文脈によって「スコティア」と「スコットランド」を訳し分けることにする。`
+            },
+            chap2: {
+                title: "第二章",
+                japanese: `さて、イングランド人の王スティーブンが亡くなると、皇后の息子であるノルマンディー公ヘンリが、スコットランド王マルカムの治世第2年に、王として聖別された [1]。彼は王国の高みに上げられるや、自身の約束と、かつて彼の母の叔父であるデイヴィッド王に聖なる誓いをもって確約した誓いを忘れ、長年にわたりスコットランド王に従属していたノーサンブリアとカンブリアの領有権を主張し、侵攻しようと画策した。のみならず、ハンティンドン伯領をも自身の所有物であると認めたのである。しかし、両王の間で一時的に和平が結ばれたが、それは偽りのものであった。その和平の期間中に、誰の扇動によるものか私は知らないが、マルコム王はチェスターにてヘンリ王に謁見し、彼に臣従の礼をとった。それはすなわち、彼の祖父デイヴィッド王が老ヘンリ王[2]の臣下であったのと全く同じやり方においてであった。これによって、自身のすべての尊厳は保持されたまま、自らの所領を平和裏に所有できることを期待してのことである、と一部の者は言う。ところがその場で、彼の顧問官の一部が、伝えられるところではイングランド人の金銭に釣られ、忌まわしき強欲によって道を誤った。そして間もなく、彼らの偽りの策略によって王は惑わされ、同年、ごく少数の者を除いて貴族たちに諮ることなく、ノーサンブリアとカンブリアをイングランド王に返還してしまった。これに対し、かのイングランド王はハンティンドン伯領を彼に返還した。この一件を理由として、スコットランドの共同体全体が、彼らの主君たる王とその顧問官たちに対し、満場一致の憎しみをもって、静かな不満の声を上げたのである。その間、両王は翌年カーライルにて互いの懸案のために会見したが、多くの者には明らかであったように、うまく合意することなく、互いに別れた。しかしその後数年、すなわちスコットランド王の治世第7年に、ヘンリ王はトゥールーズに向けて大軍を動かしたが、フランク人の王ルイ[3]がその都市を防衛したため、主たる目的を達成できずに撤退した。そして、この上ない和平からこの上ない不和が生じた。この遠征には、自国の有力貴族の多くが反対する中、マルコム王も彼と共に参加した。そして、その帰路において、彼はトゥールの都市でヘンリ王から騎士の剣を授けられたのである。`,
+                original: `MORTUO autem Anglorum rege Stephano, Henricus, dux Normanniae, filius imperatricis, in regem consecratus est, anno, videlicet, regis Scociae Malcolmi secundo. Qui ut cum sublimatus esset in regnum, suae sponsionis immemor et juramenti, quod prius regi David, avunculo suae matris, sacramento[1] et firmaverat, Northumbriam calumpnians et Cumbriam, cum annis vernosis[2] jam regi Scociae obedirent, satagebat invadere; necnon comitatum Huntingdoniae[3] in possessione propria recognovit. Inita tamen inter eos reges ad tempus pace, sed ficta, intra quam, quorum instinctu nescio, rex Malcolmus regem adiens Henricum apud Cestriam, ei hominium[4] fecit, eo videlicet modo, quo avus suus rex David fuerat homo veteris Henrici regis: sperans ob hoc suas possessiones, ut quidam autumant, possidere pacifice, dignitatibus suis tamen omnibus sibi salvis. Quo tamen in loco suos quosdam consiliarios, Anglorum, ut fertur, pecuniis illectos, execranda conflexit cupiditas: quorum mox ingenio rex seductus fallaci, sic quoque quod in eodem anno Northumbriam regi Angliae,[5] suis praeter paucis inconsultis proceribus, et Cumbriam reddidit. Cui et idem rex Angliae comitatum Huntingdoniae restituit. Ob quam causam totius Scociae communitas, contra dominum suum regem, et suos consiliarios[6] in odium unanimis murmure tacito concitatur. Idem interea reges, anno sequenti apud Carleolum pro suis convenientes negotiis, sed non bene concordes, ut pluribus patuit, ab invicem discesserunt. Paucistamen postea[7] elapsis annis, videlicet, anno regni regis Scociae VII°,[8] rex Henricus, versus Tolosam[9] copiosum movens exercitum, frustratis principalis intentionis nisibus, Lodovico Francorum rege urbem tuente, regressus[10] est, et de summa pace summa suborta est discordia; cui expeditioni interfuit cum eo, magnatum suorum invitis pluribus, rex Malcolmus, et in eorum inde reditu gladio militiae ab eo cinctus est in civitate Turonensi.`,
+                originalNotes: `[1] D. inserts fideli.\n[2] D. multis.\n[3] D. de Huntyngton.\n[4] D. homagium.\n[5] C. Anglorum.\n[6] B. D. omits Anglorum ut fertur -- consiliarios.\n[7] B. D. omit postea.\n[8] C. D. septimo.\n[9] B. D. inserts venit.\n[10] C. ingressus.`,
+                translatorNotes: `[1] イングランド王ヘンリ二世 (在位：1154-1189年)。\n[2] イングランド王ヘンリ一世 (在位：1100-1135年)。\n[3] フランス王ルイ七世 (在位：1137-1180年)。`
+            },
+            chap3: {
+                title: "第三章",
+                japanese: `ついにスコット人の貴族たちは、自分たちの王がイングランド人の王ヘンリと過度に親密であり、友情を交わしているのを見て、非常に動揺し、スコティア全土が彼らと共に動揺した。というのも、その親密さが彼らに不名誉と軽蔑をもたらすのではないかと恐れたからであり、彼らはあらゆる努力をもってそれを避けようと努めていた。彼らは確かに彼の後を追って使者を送り、こう言った。いや、むしろ心の中で考え、こう言ったのである。「我々はこの男が我々を統治することを望まない」と。さて、王はトゥールーズ遠征から帰還し、スコティアに到着すると、様々な用件のため、王の権威をもって高位聖職者と貴族にパースの町に集まるよう命じた。その間に、王国の有力者であった六名の伯たち、すなわちストラサーン伯フェルテスと他の五人の伯たちが扇動され、王に対して蜂起した。それは個人の利益や裏切りのためではなく、むしろ公益[1]を防衛するために動かされたものであり、彼らは王を捕らえようと努め、その都市の塔の中に彼を包囲した。しかし、神の思し召しによって彼らの企てはその時は失敗に終わり、その後いく日も経たないうちに、聖職者たちの助言により、王は貴族たちと和解した。その後、同年、王は軍を率いて反逆者に対するべくギャロウェイへ三度進軍した。ついに彼らを打ち負かし、同盟を結ばせ、服従させると、自軍に損害なく平和裏に帰還した。そしてその後、彼らを完全に服従させ、ファーガスと呼ばれた彼らの小王は武器を置き、息子のウートレッドを跡継ぎとして人質に王へ差し出し、自身はエディンバラのホリルードで律修司祭の祭服をまとった[2]。その間、王は家臣たちの援助と助言により、姉妹たち、すなわちマーガレットをブルターニュ公コナン[3]に、そしてエイダをホラント伯フロリス[4]に嫁がせた。フランク人の王とイングランド人の王の間には和平が結ばれ、イングランド人の王ヘンリの息子ヘンリ (まだ六歳にもなっていなかった) が、フランス王ルイの娘 (まだ二歳にもなっていなかった) を妻に迎えた。`,
+                original: `VIDENTES denique Scotorum proceres[1] nimiam sui regis familiaritatem cum Anglorum rege Henrico, et amicitiam, turbati sunt valde, et omnis Scocia cum illis. Timuerunt enim, ne sua familiaritas obprobrium illis pararet et contemptum, quod omni studio praecavere conantur. Miserunt utique[2] legationem post illum dicentes, ymmo intra se cogitantes dixerunt, nolumus hunc regnare super nos. Praeterea reversus de[3] exercitu de Tolosa, Scociam adveniens, propter diversas causarum exigentias, autoritate regia praelatos jubet[4] et proceres apud burgum suum[5] de Perth convenire. Concitatis interim regni majoribus, sex comites, scilicet, Ferchad comes de Stratherne, et alii quinque comites, adversus regem, nec pro singulari commodo seu proditione, ymmo rei publicae tuitione, commoti,[6] ipsum capere nisi sunt, et infra turrem ejusdem urbis obsederunt. Cassato tamen pro tunc eorum, Deo disponente, conatu, non multis postea[7] diebus evolutis, clero consulente, cum suis optimatibus ad concordiam revocatus est. Deinde ter eodem anno conflicto[8] exercitu in Galwalliam[9] contra rebelles perrexit. Tandem [ipsis] devictis, foederatis ac subjectis, cum pace sine dampno suorum remeavit: quos postmodum ita subjectos compulit, ut eorum regulus, qui Fergusius dicebatur, armis declinans, Vithredum[10] filium suum heredem obsidem regi dimiserit, et apud Sanctam Crucem[11] de Edinburgh habitum canonicalem susceperit.[12] Interim rex,[13] subsidio suorum et consilio, suas sorores, Margaretam scilicet, Conano duci Britanniae, atque Florencio comiti Hollandiae Adam tradidit matrimonio copulatas. Reformata est pax inter reges Francorum et Anglorum, et Henricus, filius Henrici regis Anglorum, nondum sexennis,[14] filiam regis Franciae Lodovici nondum biennem[15] duxit in uxorem.`,
+                originalNotes: `[1] C. principes.\n[2] B. quod.\n[3] D. ab.\n[4] C. ubique.\n[5] D. omits suum.\n[6] C. convocati.\n[7] B. C. D. postmodum.\n[8] C. conflato. D. congregato.\n[9] D. Galwidiam.\n[10] B. Wthredum. D. Huthredum.\n[11] D. in monasterio Sanctae Crucis.\n[12] D. suscepit.\n[13] B. omits rex.\n[14] D. sex annos habens.\n[15] D. duos annos habens.`,
+                translatorNotes: `[1] res publica の訳。\n[2] 修道院に入ったという意味。\n[3] ブルターニュ公コナン四世。\n[4] ホラント伯フロリス三世。`
+            },
+            chap4: {
+                title: "第四章",
+                japanese: `その頃、マリの反乱的な民は、かつてその地の領主であったアンガス伯がスコットランド人によって殺害されて以来、いかなる懇願、報酬、盟約、誓言によっても、その不実な行い、すなわち地域内の略奪行為をやめようとしなかった。そこで王は、大軍を集め、かつてバビロンの王ネブカドネザルがユダヤ人を追放したように、彼らを故郷の地から、スコットランドの山々の向こう側とこちら側の双方にわたる他の諸地域へ、一人残らず完全に分離して移住させた。そしてその地には、王自身の忠実で平和的な民を住まわせた。さて、先に述べたアーガイルの王サマーレッドは、実に十二年もの間、その主君であるマルコム王に対して不敬にも反抗を続けていたが、アイルランドや他の様々な場所から集めた大軍と大艦隊を率いて、略奪を目的としてレンフルーに上陸した。しかし、ついに神の裁きにより、彼とその息子ギルクリスト、そして数えきれない裏切り者たちは、その地の少数の住民によって殺害された。同じくマルコム王は、青年の年に達した時、王国の顧問官や全ての民から様々な懇願を受け、王の尊厳に対する敬意から許される限り忠告されたにもかかわらず、結婚を拒み、神に貞潔を誓い、その生涯を通じて純粋な処女性のうちに留まった。彼は王の権威によってしばしば (誓いを) 破ることもできたであろうが、決してそうすることはなかった。誰に対しても害を与えることなく親切で、万人を喜ばせ、誰の不興も買わず、神に対して非常に敬虔であった。というのも、彼はその精神の全ての意志と、心の奥底からの全ての願いをもって、キリストと共に永遠に統治することを切望していたからである。しかしながら、彼は自らの臣下たちから多くの非難と叱責を受けた。それはソロモンの言葉にある通りである。「子よ、神に仕えようとするならば、正義と畏れのうちに立ち、汝の魂を試練に備えよ。」実に彼は、神への愛の熱情を抱き、その心を天に置いていたため、地上の全ての事柄を軽んじ、王国の配慮と統治をほとんど放棄してしまった。このため、彼は全ての民から大いに憎まれ、その結果、彼の年上の弟ウィリアムが[1]、王の意に反して、民によって王国全体の守護者に任じられた。このウィリアムは常にイングランド人にとって厄介な存在であり、彼の父祖伝来の財産、すなわちノーサンブリア伯領を奪われて以来、絶え間ない敵であった。その間、弟のハンティンドン伯デイヴィッドはイングランドに滞在していた。しかし汝、主よ。`,
+                original: `EO tempore rebellem Moraviensium gentem, cujus dudum dominus, scilicet, comes Angusius,[1] a Scotis peremptus est, a sua perfidia seu comprovinciali depopulatione nulla prece, nec precio, foedere nec juramento, desistere volentem, a nativo solo, rex, grandi collecto exercitu, velut quondam Nabugodonosor, rex Babilonis, Judaeos, ita per ceteras, tam extramontanas Scociae, quam cismontanas, regiones, eam totam segregando, transtulit, ut nec unus quidem illius terrae nativus permaneret ibidem, populum in ea peculiarem et pacificum collocando. Sumerledus itaque, rex Ergadiae, de quo superius dictum est, jam per annos duodecim contra regem Malcolmum, dominum suum, impie repugnans, cum copioso exercitu, et maxima classe,[2] de Hibernia et aliis diversis locis[3] contracto, apud Reinfrieu praedaturus applicuit, sed tandem ultione divina ille cum filio suo Gellicolano et innumerabile proditorum[4] multitudine[5] paucis provincialibus[6] ibidem est occisus. Idem itaque rex Malcolmus, cum ad juveniles pubescens annos attigisset, quamvis a suis regni consulibus omnique populo imprecationibus multimodis exoratus, et, quantum ex regiae dignitatis reverentia permittitur, admonitus, nubere renuit, suam advovens Deo castitatem, in pura virginitatis toto tempore pudicitia permanebat. Qui licet saepe, regiae dignitatis auctoritate, transgredi potuit, nunquam tamen transgressus est. Nulli molestus sed benevolus, omnibus placens, nulli displicens, et Deo valde devotus fuit. Nam tota mentis intentione, totoque cordis intimi desiderio, cum Christo regnare perenniter affectabat. Verumtamen multas ex suis pertulit regnicolis exprobationes et obprobria, juxta verbum illud Salomonicum:[7] Fili, accedens ad servitutem Dei sta [in] justitia et timore, et praepara animam tuam ad temptationem.” Equidem in coelestibus suum animum, amoris divini fervore concepto,[8] locaverat, quod, terrena quaeque despiciens, curam pene regni sui simul et regimen praetermisit. Quamobrem ab omni plebe tanto habitus est in odio, quod Willelmus, frater ejus major,[9] qui semper Anglis molestus, et, ex quo suum abstulerant patrimonium, comitatum scilicet, Northumbrorum, inimicus fuerat continuus, totius regni custos ab eis, invito rege, constitutus est, fratre suo minori,[10] comite David, comite[11] de Huntingdoune, in Angliae partibus existente.[12] <i>Tu autem Domine.</i>`,
+                originalNotes: `[1] C. Angusiae.\n[2] B. D. omit classe.\n[3] B. D. omit locis.\n[4] D. populorum.\n[5] C. omits ille cum filio - multitudine.\n[6] B. C. D. comprovincialibus.\n[7] D. verbum Salmonis.\n[8] D. amore divino accepto.\n[9] D. et omnium fratrum junior.\n[10] D. seniori digniorique.\n[11] D. omits comite.\n[12] D. in partibus transmarinis cum grandi exercitu contra inimicos Christi versus Sarassenos pugnante, ut historia de ipso compilata ad longum oppulenter approbat.`,
+                translatorNotes: `[1] 原文を直訳すると「彼の兄」となるが、ウィリアムはマルコムの弟であるから、ここは年下の弟デイヴィッドと対比させて「年上の弟」の意に介した。`
+            },
+            chap5: {
+                title: "第五章",
+                japanese: `主の年一一六五年、ならびにマルコム王の治世第十三年の八月の終わりに、二つの彗星が目撃された。一つは南に、もう一つは北に現れたが、幾人かの者によれば、それらは王の死を予兆するものであった。彗星とは星であり、常時現れるのではなく、とりわけ王の逝去や、あるいは国の破滅に際して現れるものである。それが髪のような宝冠を戴いて輝かしく現れたならば、王の死を告げる。しかし、もし髪をなびかせ、赤く燃えながらそれを撒き散らすならば、祖国の破滅を予兆する。そして時には、嵐や戦争を意味することもある。かのごとく。
+	&emsp; さる星あり、嵐の来たらんとする時、 
+	&emsp; あるいは戦の兆しあり、その新しき星の生まれし時、 
+	&emsp; もし汝その名を問うならば、牛飼い座と呼ばるる。
+ 実に、マルコム王は、神の甘美なる祝福によって先立たれ、天上の愛の道筋からその熱情を渇望するに至った。彼はその全生涯において、純潔の輝き、謙遜と無垢という誉れ、清廉な良心、そして敬虔にして厳粛なる品行において、かくも卓越していたため、俗人たちの間では―その服装においてのみ彼らと同じであったが―修道士のように見え、彼が統治した人々の間では、まことに地上の天使であるかのように見えた。彼は神の栄光を讃えるため、クーパーの修道院を創建した。そして、王位にあって十二年と七ヶ月と三日を過ごした後、十二月のイドゥスの五日前[1]、第五曜日に[2]、キリストの召しにより、人に与えられるべき天使の仲間となるべく俗世の肉体を脱ぎ捨て、王国を失ったのではなく、それを変えたのである。天使のごとき聖性を備え、人々の中にありながら、あたかも地上の天使のようであったその人を―世界は彼を持つに値しなかったが―若さの百合の花が咲き誇る二六歳の年に、天の天使たちがこの世から連れ去ったのであった。`,
+                original: `ANNO quoque Domini MCLXV et regni regis Malcolmi XIII, in fine mensis Augusti, duae visae sunt cometae, una ad austrum, altera ad aquilonem, quae, secundum quosdam, regis mortem praefigurabant. Cometa est stella, non omni tempore, sed maxime contra obitum regis, [aut] contra[1] excidium apparens regionis. Cum ea cum[2] crinito diademate fulgens apparuerit, regale nunciat letum. Si autem ferens comas, et rutilans sparserit illas,[3] patriae praefigurat excidium. Et quandoque significat tempestates vel bella, ut ibi:
+	&emsp; Est quaedam stella, dum sit ventura procella,  
+	&emsp; Siguat vel bella, dum nascitur illa, novella,  
+	&emsp; Quem si forte petes, est nomine dicta Boëtes.
+ Praeventus enim a Deo rex Malcolmus in benedictionibus dulcedinis, ut a tenore superni amoris fervorem concuperet, in tota vita sua candore pudicitiae, titulo humilitatis et innocentiae, puritate conscientiae, morum sanctitate pariter et gravitate, ita excellebat, ut, inter seculares, quibus solo habitu congruebat, monachus, et inter homines, quibus imperabat, terrenus quidem angelus videbatur. Monasterium de Cupro ad laudem Dei fundavit. Cum autem in regno duodecim annos, septem menses fecisset et tres dies, vº idus Decembris, feria vª, Christo vocante, hominem exuens angelis sociandus, regnum non perdidit sed mutavit. Hominem angelicae sanctitatis inter homines, et tanquam terrenum quendam angelum, quo dignus non erat mundus, in suo juventutis lilio florentem aetatis anno XXVI, caelestes angeli rapuerunt e mundo.`,
+                originalNotes: `[1] D. omits contra.\n[2] D. omits cum.\n[3] D. rutilas sparserit illius.`,
+                translatorNotes: `[1] 1165年12月9日。\n[2] 木曜日。`
+            },
+            chap6: {
+                title: "第六章",
+                japanese: `かつて王と親しかった、ある神に献身的な聖職者が見た、聖なる記憶のマルコム王の栄光についての幻視。すなわち、その聖職者が王の墓前にて敬虔に寝ずの番をしていたところ、詩篇を唱えている間に眠りが忍び寄ると、王が真っ白な衣をまとい、彼の傍らに立つのが見えた。その表情は楽しげであったが物静かで、悲しんではいなかった。そして詩のリズムに乗り、聖職者が王の状態について様々なことを詩節の半ばまで問いかけると、王は一つ一つの問いに対し、それに続く形で詩節の終わりまで、同じく詩のリズムに乗って以下のような意味で答えたのであった。
+
+聖職者：かつての王よ、今は何を？ 
+王の霊：かつては僕、今は王として治める。
+聖職者：なぜ肉体は最下の地に？
+王の霊：霊は高みを求める。
+聖職者：苦しんでいるのか、否か？
+王の霊：苦しまず、むしろ安らぐ。
+聖職者：いかなる罰が？
+王の霊：死の前は過酷な運命であった。
+聖職者：愛しき方よ、あなたの場所は？ 
+王の霊：罪を知らぬ楽園に。
+聖職者：なぜ衣は白いのか？ 
+王の霊：童貞として死を迎えたゆえ。
+
+聖職者：愛しき方よ、なぜそう黙している？
+王の霊：我が生涯が我に代わって語る。
+聖職者：かつては病であったのに！
+王の霊：今はすっかり癒えた。
+聖職者：なぜ我らはあなたを失ったのか？
+王の霊：聖者らが私を見出したからだ。
+聖職者：何があなたの御心に背いたのか？
+王の霊：この世にはかくも多くの欺瞞がある。
+聖職者：いつ戻られるのか？
+王の霊：いずれは至高の審判者と共に。
+聖職者：スコティアはあなたを悼むのか？
+王の霊：今はなく、されど新たに。
+聖職者：なぜ逃れたのか、何を恐れたのか？
+王の霊：かつての時代に戻らぬように。
+聖職者：あなたの民に何を命じるのか？ 
+王の霊：彼らが永遠に健やかであれ。
+
+この最も敬虔なるマルコム王はジェドワースにて主にあって眠りにつかれ、その御遺体は王国のほとんどすべての高貴な身分の人々によって最大限の敬意をもって、スコットランド王家の埋葬地として名高いダンファームリンへと運ばれた。そこには偉大なるマルコムとその妻、福者マーガレット[1]、すなわち彼の曽祖父と曽祖母が、その聖なる子孫と共に葬られている。そして王は、祖父デイヴィッド王の右手の、主祭壇の前の床の中央に葬られ、安らかに眠っている。`,
+                original: `VISIO cujusdam Deo devoti clerici,[1] dudum regi familiaris, de gloria sanctae memoriae regis ejusdem Malcolmi; cui videlicet clerico, ad ejus sepulchrum devote excubanti, dum inter psallendum obreperet somno, visus est rex vestibus candidissimis amictus eidem assistere, laeto vultu sed tacito, non moestus, et tamen metrice, usque medium cujuslibet versus, sciscitanti illi nonnulla de statu suo, ad singula interrogata consequenter in hunc sensum, etiam a medio versus usque ad finem metrice respondit.
+
+Clericus: Rex olim quid agis? 
+Spiritus regis: Servus quondam modo regno.
+Clericus: Cur tenet yma caro? 
+Spiritus regis: Spiritus alta petit. 
+Clericus: Torqueris nec ve?[2] 
+Spiritus regis: Non torqueor, ymmo quiesco. 
+Clericus: Quae tibi poena fuit? 
+Spiritus regis: Sors gravis ante necem. 
+Clericus: Quis tibi, care, locus? 
+Spiritus regis: Paradisus nescia poena.[3] 
+Clericus: Cur candet vestis?
+Spiritus regis:  Virgo necem subii.
+
+Clericus: Cur sic, care, taces? 
+Spiritus regis: Pro me loquitur mea vita. 
+Clericus: Aeger eras quondam! 
+Spiritus regis: Jam bene convalui. 
+Clericus: Cur te perdidimus? 
+Spiritus regis: Ut sancti me reperirent. 
+Clericus: Quid tibi displicuit? 
+Spiritus regis: Tantus in orbe dolus. 
+Clericus: Quando reverteris? 
+Spiritus regis: Demum cum judice summo. 
+Clericus: Scocia te planget? 
+Spiritus regis: Non modo, sed noviter. 
+Clericus: Quid fuga, quidve times? 
+Spiritus regis: Ne pristina secula revisam. 
+Clericus: Quidque tuis mandas?
+Spiritus regis: Perpetuo valeant.
+
+OBDORMIVIT in Domino piissimus iste rex Malcolmus apud Jedworth, et ejus summo cum honore corpus ab omnibus honestis fere regni personis advectus est apud Dunfermlyn, regum Scociae locum sepulturis insignem, ubi magnus Malcolmus, et sua conjunx beata Margareta, suus proavus et[4] proavia, cum eorum sancta sobole, tumulantur; et in medio pavimenti a dextris[5] avi sui regis David ante majus altare humatum[6] requiescit.`,
+                originalNotes: `[1] B. D. omit clerici.\n[2] D. vel ne.\n[3] D. poenae.\n[4] D. omits proavus et.\n[5] C. omits a dextris.\n[6] B. D. omits humatum.`,
+                translatorNotes: `[1] スコットランド王マルコム三世 (在位：1058-1093年) とその妻、聖女マーガレットのこと。`
+            },
+            chap7: {
+                title: "第七章：ウィリアム王の戴冠 (De coronatione regis Willelmi)",
+                original: `PORRO, post Malcolmi regis obitum, convenerunt apud Sconam praelati Scociae, cunctique proceres, ejusdem germani Willelmi mandante praecepto, tunc regni custodes, quem ibidem unanimes in regem erigunt.[1] Igitur in vigilia natalis Domini, die videlicet xv post regis mortem, idem Willelmus, amicus Dei, leo justiciae, princeps pacis, a Ricardo episcopo Sancti Andreae, et aliis episcopis[2] coadjuvantibus, in regem benedicitur, atque regali cathedra sublimatur. In autumpno quoque, regis mortem praecedenti, rex Henricus magnum in Gwalliam sibi rebellem exercitum duxit, nihil proficiens, ubi filios regis Ricardi,[3] obsides sibi prius oblatos, exoculavit, filiasque naribus mutilavit et auribus. Cujus patriae dudum, ut putabatur, octo jam annis elapsis dominium optinuit, quia, cum multa suorum caede hominum, et regis et baronum obsides tunc suscepit. Inde vero reversus, ibidem ac undequaque sibi bella prominere severa conspiciens, securam sibi Scotorum et firmam afficere gentein excogitans;[4] ideoque suis marchiarum mandat custodibus, pacem potius a Scotis quam bellum prudenter allicere, atque de pacis eos concordia pertemptare. Ea denique tempestate Matheus, conjunx Boloniae filiae regis Stephani, comes,[5] navigium undique colligens, sexcentas, ut fama fuit, naves praeparabat, ut eas Flandrensibus armatas anno futuro Angliam invasurus induceret: unde magnus per Angliam motus factus est, et amicorum ubique procuratio diligens perquisita.[6] <i>Tu autem Domine.</i>`,
+                japanese: `さて、マルコム王の崩御の後、スコットランドの高位聖職者たちとすべての貴族たちは当時王国の守護者であったが、亡き王の弟ウィリアムの命令により、スクーンに集結した。そして彼を、その地で満場一致で王に推戴した。かくして主の降誕祭の前夜、すなわち王の崩御から十五日目に[1]、かのウィリアム―神の友、正義の獅子、平和の君―はセント・アンドルーズ司教リチャードと、それを補佐する他の司教たちによって王として祝福され、王座に高く上げられた。また、王の崩御に先立つ秋、イングランド王ヘンリは、彼に反抗するウェールズへと大軍を率いたが、何ら成果はなかった。その地で彼は、かつて人質として差し出されたリース王の息子たちの両眼をえぐり[2]、娘たちの鼻と耳を切り落とした。ヘンリは八年前に多くの自国民の犠牲を払い、かの王とバロンたちの人質を受け入れたことで、その地の支配権を得た、とかつては思われていた。しかし、そこから戻った彼は、かの地や至る所で厳しい戦いが迫っているのを目の当たりにし、スコット人を自らのために確固として確保しておくことを考え出した。それゆえ、彼は辺境の守護官たちに、スコット人に対しては戦いよりも平和を賢明に誘いかけ、和平協定について彼らの意を探るよう命じた。最後に、その頃、ブーローニュ伯マチュー（イングランドのスティーブン王の娘の夫）は、至る所から船団を集め、噂によれば六〇〇隻の船を準備していた。将来的にフランドル人で武装させたその船団を率いてイングランドに侵攻するためであった。これにより、イングランド中で大騒動が起こり、味方を確保するための熱心な工作が至る所で行われた。<i>御身は、おお主よ。</i>`,
+                originalNotes: `[1] D. ejusdem qui Willelmum juniorem fratrem dicti regis Malcolmi unanimiter in regem erigunt, fratre suo David seniori comite de Huntyngton adhuc in partibus transmariuis agente.\n[2] C. officio.\n[3] B. D. omit Ricardi.\n[4] D. afficere excogitavit.\n[5] C. conjux filiae regis Stephani Boloniae comes. D. Boloniae comes conjunx filiae regis Stephani.\n[6] D. conquesita.`,
+                translatorNotes: `[1] 1165年12月24日。\n[2] ウェールズ南部デハイバースの君主、リース・アプ・グリフィズ (在位：1155-1197年)。`
+            },
+            chap8: {
+                title: "第八章",
+                original: `HIIS etenim temporibus etiam a tempore quo redita fuerat Henrico regi Northumbria, pax inter regna nec firma vigebat, ymmo quaedam fragilis treuga, saepius rupta, saepiusque reconciliata, per quam attigentes [ad invicem], regnorum fines misere premebantur. Quapropter hiis et aliis ex causis, [per] utriusque regni deputatos contractum fuit, et uniuscujusque regis ac omnium munimine procerum firmatum, quod, pro receptione[1] Northumbriae, sempiternaeque pacis indissolubili nexu firmando, rex Scociae Willelmus [regem adiret] Henricum, suum consanguineum, tunc apud Windisor ejus ibidem aditum expectantem. Quod et factum est. Adveniens igitur illuc, magno susceptus est applausu. Sed dum[2] statim de suis reges colloquium agerent negotiis, de transmarinis partibus adversi subito rumores Henrici regis auribus intonant. Quorum comperta serie, praetermissis negotiis omnibus, ingenti stipatus exercitu transfretavit. Rex vero Scociae Willelmus non suorum, qui secum aderant ibidem, nobilium, nec ullius[3] praepediri potuit quovis[4] ingenio, quin invitis omnibus, ut bellatorum cerneret congressus fortium, cum eo profectus est: sed et in illis partibus praeclaris militiae titulis illustratus, universus spem probitatis egregiae dedit.[5] Sicque, corroborata prius treuga, regnum cum honore rediit ad proprium, componendo tamen pacis foedere praefixum ad opportunae vacationis tempus prolongato. Deinde bellum[6] inter reges Francorum Anglorumque, propter Tolosam civitatem, et varias hinc inde causas, iteratum est. Adeo quod, praeter alia multa mala, comitatus Angensis et pagus Vilcasinus rapinis et incendiis maxime vastati sunt, rege Francorum in Vilcasino quatriduo cum exercitu demorante. Inter quos tamen anno secundo post haec reformata est pax, utroque rege multa passo discrimina. In cujus pacis obsidatum,[7] data est Ricardo, filio regis Angliae, altera filia regis Francorum ex filia regis Hispanorum. Suscepit, autem idem Ricardus a rege Francorum ducatum Aquitanorum[8] faciens ei hominium[9] et fidelitatem [liianciae,[10]] jurans super honore ducatus. Henricus item, primogenitus regis Angliae, suscepit a rege Francorum dominium Britanniae, cum pago Andegavensi et Cenomannico, de hiis faciens hominium,[11] cum pro ducatu Normanniae jam fecisset. <i>Tu autem.</i>`,
+                japanese: `実のところ、これらの時代、すなわちノーサンブリアがイングランド王ヘンリに返還された時より、両王国の間に確固たる平和は存在せず、むしろ脆弱な休戦があるのみであった。その休戦はしばしば破られては再び結ばれるという有様で、そのために両王国の境界地帯は互いに惨めに圧迫されていた。それゆえ、これらの、また他の理由により、両王国の代表者たちによって、ノーサンブリアの受領と、永遠の平和を不可分の絆で固めるため、スコットランド王ウィリアムが、当時ウィンザーで彼を待っていた血縁者のヘンリ王のもとを訪れるという合意がなされ、各々の王とすべての貴族たちの承認によって固められた。そして、それは実行された。かの地に到着したウィリアム王は、大いなる喝采をもって迎えられた。しかし、両王が直ちに自らの案件について協議を始めようとした矢先、突如として海の彼方からの悪い知らせがヘンリー王の耳に鳴り響いた。その詳細を把握するや、ヘンリ王は他のすべての案件を差し置いて、大軍に囲まれて海を渡った。一方、スコットランド王ウィリアムは、屈強な戦士たちの激突をその目で見ようと、同行していた自らの貴族たちや他の誰のいかなる策によっても妨げられることなく、皆の反対を押し切って彼と共に出発した。そしてかの地において、彼は輝かしい騎士としての武勲によって名を上げ、その傑出した武勇への期待を万人に抱かせた。かくして、まず休戦を再確認した上で、平和条約の締結期限を都合の良い時期まで延期し、彼は名誉とともに自らの王国へと帰還した。その後、トゥールーズ市を巡る問題や、その他の様々な理由により、フランク人の王とイングランド人の王の間で再び戦争が起こった。その結果、他の多くの災禍に加えて、アンジュー伯領とヴェクサン地方は略奪と放火によって甚だしく荒廃し、フランク人の王は軍と共にヴェクサンに四日間留まった。しかしながら、その二年後、両王が多くの危機を経験した末に、彼らの間で和平が結ばれた。この和平の証として、イングランド王の息子リチャードに、フランク人の王がヒスパニア人の王の娘との間にもうけた娘が与えられた。さらに、そのリチャードはフランク人の王からアキテーヌ公領を受け、その公領の栄誉にかけて、彼に対し臣従の誓いと（一身専属の）忠誠を誓った。同様に、イングランド王の長子ヘンリも、フランク人の王からブルターニュの支配権をアンジュー伯領およびメーヌ伯領と共に受け、これらの地について臣従の誓いを立てた。彼は既にノルマンディー公領について臣従の誓いを立てていた。<i>汝、然らば。</i>`,
+                originalNotes: `[1] C. receperatione.\n[2] C. omits dum.\n[3] D. nullius.\n[4] B. D. omit quovis.\n[5] D. omits dedit.\n[6] B. D. omit bellum.\n[7] D. recordationem.\n[8] D. Aquitaniae.\n[9] D. homagium.\n[10] A. left black in MS. C. liianciae. B. D. omit.\n[11] D. homagium.`,
+                translatorNotes: ``
+            },
+            chap9: {
+                title: "第九章",
+                japanese: `翌年、海のかなたの地でなすべきことをなし終え、かの王はノルマンディーから帰還した[1]。その帰路において多くの者が難破で命を落とし、王自身もかろうじて難を逃れた。さて、ウィリアム王は以前と同じ用件、すなわち和平協定を結ぶため、復活祭の前夜祭に、彼らによって定められた日に、ウィンザーにいる彼のもとを訪れ、彼から十分に名誉ある歓迎を受けた。祝祭の後、協議が始まり会談に至ったとき、イングランド王が事前の交渉である意味約束していたのと同じ条件で、ノーサンブリアを返還するよう求めた。しかし、先に述べたように、差し迫った戦争に脅かされて認めたことを、それらが収まり平和になると、より安全になった彼は返還を拒否した。それゆえ、ウィリアム王はすべての交渉が未解決のまま、和解することなく立ち去り、急いで旅程を続け、無事にスコットランドへ帰着した。同年、すなわち主の受肉より一一七〇年、かの王は、二十歳になる息子ヘンリをウェストミンスターで戴冠させ、王として聖別させた。これはソロモンの「汝の名誉を他人に、汝の年月を残酷な者に与えるな。さもないと、見知らぬ者が汝の力で満たされ、汝の最期にうめくことになろう」という助言を無視してのことであった。この戴冠が原因で、後に多くの者が現世の命を失った。それから三年後、彼らの間に忌まわしき不和が生じた。というのも、かの新王ヘンリが王の冠で飾られたとき、父はすでに自ら王の座から降りたものであるにもかかわらず、その父が王国の統治権と支配権を自分の上に持ち続けることを不当に思い、またある者たちが言うには、息子が戴冠したことで父の王権は法的に失効し、彼一人が統治すべきであったという理由、その他もろもろの理由から、父に対して憤慨し反抗的になったからである。そして、二人の兄弟ジョフロワとリチャードを伴い、同様に義父であるガリア人の王ルイのもとへ行き[2]、父に災いを仕掛けようとした。そしてすぐに彼の助言に従い、さながら第二のアブサロムのように[3]、父に対する災いを四方から画策し、スコット人の王ウィリアム、フランドル伯フィリップ、そしてイングランドや海のかなたの地の多くの有力者たちを、極めて空虚な約束でそそのかし、彼らが父から息子へと徐々に離反し、あらゆる方法で戦争の準備をするように仕向けた。イングランド人とノルマン人双方の貴族たちが彼らに従い、手を取り合って、戦うことを決意した。`,
+                original: `ANNO sequente, peractis in transmarinis partibus peragendis,[1] idem rex de Normannia rediit, in quo reditu multi naufragio perierunt, ipse[2] vix evasit. Rex vero Willelmus eodem, quo prius, negotio, pro componendae videlicet concordia pacis, in vigilia Paschae, per eorum assignatos die constituto, venit ad eum apud Windisor, a quo satis honorifice susceptus est. Inito quoque post festum consilio, cum ventum fuisset ad colloquium,[3] Northumbriam eisdem conditionibus, quibus rex Angliae tractatu praehabito sibi quodammodo [promiserat], restitui petiit. Sed quod, ut praemittitur,[4] ingruentibus bellis territus concesserat, hiis sopitis et pacificatis, tutius[5] effectus reddere denegavit. Quapropter infectis rex Willelmus cunctis negotiis, impacatus abcessit, et ad propria dietis festinanter continuatis Scociam incolumis advenit. Eodem anno rex idem, scilicet, ab incarnatione dominica MCLXX, filium suum Henricum, [aetatis] annorum xx coronari, et in regem apud Westmonasterium consecrari, fecit, omisso Salomonis consilio, dicentis: "Ne des alienis honorem tuum, et annos tuos crudeli, ne forte impleantur extranei viribus tuis, et gemmas in novissimis."[6] Cujus occasione coronationis multi postea vitam praesentem amiserunt. Interjectis deinde tribus annis, execrabilis est inter eos orta dissensio. Nam cum idem Henricus rex novus regio fuisset dyademate insignitus sui patris, a regali sublimitate jam sponte depositi, regni regimen et dominium super se indigne ferens, cum ille solus, ut a quibusdam dicebatur, regnare deberet, ex jure quasi filio[7] coronato regnum expirasset paternum, hiis et aliis de causis indignans contra patrem intumuit. Sed et comitantibus eum duobus fratribus suis, Gaufrido et Ricardo, pariter Lodovico Galliarum[8] regi socero suo, patri taedium moliturus, adiit. Et ejus mox consilio malum patri, quasi alter Absolon, undique[9] moliens, regem Scotorum Willelmum, et Philippum comitem Flandrensem, ac alios multos potentes, tam de hiis quam de partibus transmarinis, vanissimis solicitat pollicitationibus, quod, a patre ad filium paulatim deficientes, ad motus bellicos se modis omnibus praepararent. Secuti sunt eos viri tam Angli[10] quam Normanni[11] nobiles, dexterasque jungunt, dimicandum.[12]`,
+                originalNotes: `[1] C. peragendum.\n[2] B. D. insert vero rex.\n[3] C. inserts ipse.\n[4] B. D. praedicitur.\n[5] B. C. D. tutior.\n[6] B. D. omit et annos tuos - novissimis, and add etc.\n[7] B. D. omit filio.\n[8] D. Francorum.\n[9] C. videlicet.\n[10] D. Angliae.\n[11] D. Normanniae.\n[12] B. dimicandas. C. dimicaturis fideliter adhaeserunt. D. dexteria jungunt dimicandas.`,
+                translatorNotes: `[1] イングランド王ヘンリ二世。\n[2] フランス王ルイ七世。\n[3] 旧約聖書に登場する「アブサロム」は父であるダビデ王に反旗を翻した息子として、中世において親不孝と反逆の象徴だった。`
+            },
+            chap10: {
+                title: "第十章",
+                japanese: `若王ヘンリは、前述の通り、フランク人の助言を頼みとし、その援助に支えられ、またフランドル伯フィリップを同盟者として味方に加え、父に対する軍を率いてノルマンディーへ進軍した。そしてオマールと呼ばれる城を攻略し、オマール伯自身と、老王ヘンリが援軍として彼のもとへ送ったシモン伯を捕らえ、投獄した。さらに他の数多くの町をも陥落させた。この遠征において、ブーローニュ伯マチューは致命傷を負い、死去した。また、ウィリアム王は、かの若王がカンブリアと共にノーサンブリアを彼に与えるという約束を信用し、戦闘のための軍を集め、ワーク城をしばらくの間包囲したが、何の成果も得られなかった。そこから出発した彼は、人々が野蛮人と呼ぶ高地のスコット人や、場所も人も見境なく、獣のようなやり方で猛威を振るいながら襲うことを常とするギャロウェイ人を用いて、ノーサンブリアを荒廃させた。ハンバー川のこちら側の土地の一部を破壊し、多くの場所で人々を虐殺した後、カーライルへと進路を転じ、全力を挙げてその都市を攻撃した。ところで、その頃、レスター伯ロバートが、彼の妻（彼女もまた鎧をまとっていた）と共に、非常に多くの騎士と少なくない数のフランドル人歩兵を率いて、若王ヘンリによってイングランドへ派遣されるという出来事があった。彼はイングランド人の軍勢と遭遇して交戦したが、イングランド軍は彼を迎撃すべく急行しており、彼の歩兵の少なからぬ数が殺害され、残りは敗走し、彼自身は十一月のカレンダエの十七日前に捕縛され[1]、ポーチェスターにて鎖につながれた。スコットランド王はかの地で包囲戦に固執していたが、この知らせを聞くと、包囲を解いて自軍を王国へと帰還させた。この年の初め、非常に赤いしるしが、雲の影一つない澄み切った空に驚くべき輝きで閃くのが見られた。それを見た者たちは度肝を抜かれ、一部の者たちは、これが流血を予示するものであったと考えた。`,
+                original: `HENRICUS, ut supra, rex junior, Francorum[1] consilio fretus, et fultus auxilio, Philippo comite Flandrensi[2] sibi foederato et associato, in Normanniam contra patrem exercitum duxit, et castrum, quod dicitur Albemare, ac ipsum comitem Albemarensem, comitemque Symonem, quem in auxilium sibi rex senior Henricus miserat, cepit, et incarceratos tenuit, at oppida alia quamplurima[3] expugnavit. In quo exercitu Matheus, comes Boloniae, accepto letali vulnere, interiit. Rex etiam[4] Willelmus, illius novi regis promissis, Northumbriam sibi cum Cumbria pollicentis, fidem adhibens, exercitu pugnandi collecto, castrum Werk aliquamdiu obsidens, nihil profecit. Inde profectus Northumbriam per montanos Scotos, quos brutos vocant, et Galwalenses, qui nec locis nec personis parcere norunt, sed bestiali more saeviendo devastans, et terra cis Humbri flumen[5] in parte depopulata, sed et [in] pleris locis hominum strage facta, versus Carleolum iter[6] recurvans, totis civitatem nisibus oppugnavit.[7] Contigit autem, ut eo tempore Robertus comes Leicestriae, cum sua conjuge [etiam loricata],[8] adhibitis sibi quamplurimis militibus, et non minima multitudine peditum Flandrensium, ab Henrico rege juniore in Angliam mitteretur. Qui cum exercitu Anglorum, in occursum ejus properante, congressum faciens, non paucis ejus peditum occisis, ceterisque fugatis, XVII kalendas Novembris capitur, et apud Porcestriam vinculis mancipatur. Quod dum[9] rex Scotiae, ad obsidionem fixus, audiret, obsidione soluta regnum ad proprium reduxit suas turmas. [Visum est] in principio hujus anni permaximi ruboris signum, mirabili splendore coruscans in coelo puro, et ab omni nubium obumbratione vacante, ita ut videntes obstupescerent, quod a quibusdam effusionem sanguinis aestimabatur praefigurasse.[10]`,
+                originalNotes: `[1] D. inserts rege.\n[2] C. Flandriae usus.\n[3] B. D. plurima.\n[4] C. inserts Scotorum.\n[5] D. et omnis terra intra flumine Humbriae.\n[6] B. D. omit iter.\n[7] D. expugnavit.\n[8] A. left blank in MS.\n[9] C. cum.\n[10] B. D. omit visum est - praefigurasse.`,
+                translatorNotes: `[1] 一一七三年十月十六日。`
+            },
+            chap11: {
+                title: "第十一章：ウィリアム王の捕縛について (De captione reges Willelmi)",
+                japanese: `次の年、すなわち主の一一七四年、ウィリアム王は軍を率いてイングランドへ進軍し、アップルビーとワーク・オン・タイン[？] を包囲してこれを陥落させた。ノーサンブリアの民は聖霊降臨祭の第八日目まで金銭をもって和平を買い、かくして遠征は成功裏に終わり、王は損害なく帰還した。その間、アップルビーからスコティアへ戻った王は、休むことなく軍を再招集してイングランドへ進み、バラ・アンダー・ステインモアを陥落させた。カンブリアを荒廃させ、ノーサンブリアを通ってそこを略奪・破壊しながら帰還する途上、アニックの前にやって来た。そしてその地で、少数の騎士のみを自らの許に留めて野営していた。彼の全軍がその地方の略奪のために分散していたところ、見よ、敵がスコット人を装って、突如として、そして不意に襲来し、王は捕らえられ、彼の兵のほとんどが知らぬ間に連れ去られたのである。このことは、神の思し召しなくしては起こらなかったであろう。神は彼の獰猛さに対して慈悲深く配慮し、また先を見越して采配されたのであり、それは彼自身がこれほどの悪行を重ねることから救い出されるためであった。そして、マーリンが予言した通り、彼の両顎にくつわがはめられ、ブリテンの諸王国に平和が回復されるためであった。それはただ彼の不安が鎮められるだけでなく、ガリアと全ての海外の土地の平和が再建されるためでもあった。かくして7月のイドゥスの三日前に捕らえられた王は[1]、いやむしろ、神の慈悲深い計らいによってキリスト教徒の流血から救い出されたのであり、イングランド王、すなわちマティルダの子である老ヘンリのもとへ引かれていった。ヘンリ王は彼を直ちにノルマンディーへ移送し、ファレーズの塔に収監するよう命じた。これらのことを知ると、ウィリアム王の弟であるデイヴィッドは、戦っていたレスターを急ぎ離れ、可及的速やかにスコティアへと戻った。しかしその頃、自らの王が捕らえられたことで、スコット人はギャロウェイ人と共に、同盟者たるフランク人の朋友やイングランド人を、不敬にも無慈悲に、相互の殺戮を伴う度重なる襲撃によって殺害した。そしてその時、イングランド人に対する最も悲惨かつ最大級の迫害がスコティアとギャロウェイの双方で行われ、いかなる身分や性別の者も容赦されず、多くの場所で、また見つけ出せる限りどこででも、身代金の申し出は一切顧みられることなく、惨殺されたのである。_さて、汝は。_`,
+                original: `ANNO[1] deinde secundo,[2] hoc est, Domini MCLXIIII,[3] rex Willelmus exercitum in Angliam ducens, et Appilbiam obsidens cepit, et Waynilandiam. Northumbri quousque[4] ad octavum[5] Penticostes pacem[6] nummis impetrant, et sic, expeditione prospere facta, rediit sine damno. Reversus interim in. Scotiam ab Appilbi, non quievit, sed, exercitu recollecto[7] et in Angliam ducto, cepit Burgum sub[8] Mora: Sicque vastata Cumbria, cum per Northumbriam, eam depopulando et depraedando,[9] rediens, coram Alnewik veniret, et ibidem, paucis militibus secum retentis, excubaret, omni exercitu suo in depraedationem[10] patriae disperso, ecce ab hostibus, Scotos fore simulantibus, subito et inopinate supervenientibus, capitur, et, fere suis omnibus ignorantibus, abducitur. Nec fit absque divini nutu consilii, suae feritati clementer consulentis, et provide dispensantis, ut et ipse a tantorum eriperetur perpetratione malorum: et dato, secundum quod praecinebat Merlinus, maxillis ejus freno, paci regna restituerentur[11] Britannica; Et non ut[12] tantum illius sedaretur inquietudo, sed et Galliarum omniumque transmarinarum partium pax reformaretur. Igitur III[13] idus Julii captus, ymmo, divina disponente clementia, ab effusione Christiani sanguinis raptus, ad regem Anglorum,[14] seniorem Henricum, Matildis filium, ducebatur,[15] qui mandavit eum[16] statim transponi in Normanniam, et in turri de Falesio custodiri. Cognitis hiis, David, frater regis Willelmi, Leicestriam, de qua[17] pugnavit, velociter relinquens, sese quamcitius[18] potuit in Scociam transtulit. Sed et eo tempore Scoti cum Galwalensibus, rege suo capto, Francos[19] affines et Anglos[20] impie et immisericorditer, mutua caede facta, crebris invasionibus occiderunt: persecutio quoque tunc Anglorum miserrima maximaque, tam in Scocia quam Galwallia, facta est,[21] ita quod nullius generis parceretur sexui, quin pleris in locis, ac ubicunque percipi[22] poterant, omni spreta redemptione, crudeliter interirent. *Tu autem.*`,
+                originalNotes: `[1] D. inserts sequenti.\n[2] B. sequenti.\n[3] D. MCLXXIIII.\n[4] B. C. D. quoque usque.\n[5] D. inserts diem.\n[6] D. omits pacem.\n[7] B. D. collecto.\n[8] D. sine.\n[9] B. inserts et. D. omits depraedando.\n[10] D. praedationem.\n[11] B. D. constituerentur.\n[12] D. omnino.\n[13] C. D. tertio.\n[14] D. omits Anglorum.\n[15] D. ducitur.\n[16] D. omits eum.\n[17] D. quam.\n[18] C. quamtocius.\n[19] D. Francorum.\n[20] D. Anglorum.\n[21] B. D. omit crebris - fact est.\n[22] B. omits percepi.`,
+                translatorNotes: `[1] 1174年7月13日。`
+            },
+            chap12: {
+                title: "第十二章",
+                japanese: `その間、ルーアンはヘンリの息子である若ヘンリ王とガリア人の王ルイ、そしてフランドル伯フィリップによって包囲されていた。老ヘンリ王がこれを伝え聞くや、イングランド全王国は彼の望み通りに平定され、その支配下で再び極めて堅固な平和条約によって強化されていたため、海へと急ぎ、強力な軍勢をもって味方を救うべく海を渡ることをためらわなかった。そして、自らの臣下の忠誠をより確かなものとし、敵の間に一層の恐怖と混乱を引き起こすため、スコットランド王をファレーズの塔から自らのもとに引き出し、カーンの監視下に置いた。先に述べたように、スコット人の王が敵の手に渡されると、父王の敵は皆、すなわち不和の主要な扇動者であった者たちでさえも、恐れ、うちひしがれて和平交渉を始めた。そして、善き人々の尽力により、父と子は和解し、海峡のこちら側でも向こう側でも平和は完全かつ全面的に回復された。フランス王の仲介により、父王ヘンリはスコット人の王を除く全ての捕虜を無条件で解放し、解放された者たちにはその名誉と財産を返還した。見よ、彼らがどれほど彼を「愛していた」ことか。預言者と共に「我が友は皆われを見捨てり」と歌うことができるのではないか。すなわち、真の友情を装っていた同盟者たち、将来の戦いの成り行きの分かち合い手、つまり不滅の、そして和平の仲間となることを誓った者たちではなかったか。一人の戦争は他の者の戦争となり、一人の平和は他の者の平和となるということを。彼らは皆、矛盾した意図ではあったが約束し、そして極めて強固な同盟で結ばれてはいたが、彼の捕縛の報は、友人たちの心をことごとく打ち砕いたのである。ゴリアテが殺されるや、ペリシテ人は皆逃げ去ったように。しかし、彼がこのような目に遭ったのは当然であった。彼は、正義への熱意からではなく見せかけのために父に対する不正な戦いを続ける不敬な息子に、支援を与えたからである。イングランド全土の支配権と王冠が、明白な権利によって彼に属するべきものであるかのように振る舞い、彼は極めて正当な戦いの大義を放棄してしまった。実のところ、もし彼自身の目的のために、慎重に敵を弱体化させようとしてこれを行ったのであれば、彼は不正に正当な戦いを行うことによって、その狡猾な仲間を巧みに欺いたことになる。なぜなら、行為や原因だけでなく、しばしば不正な意図によって、戦う者は不正に正当な戦いを遂行する中で、敗北したり殺されたりすることが起こるからである。`,
+                original: `ROTOMAGUS[1] interea a rege juniore Henrico Henrici filio, et rege Galliarum Lodovico, comiteque Flandriae Philippo, obsidetur. Quod cum comperisset rex Henricus senior, jam universo Anglorum regno ad votum pacato, atque sub ejus ditione denuo firmissimae pacis foedere roborato, ad mare properat et[2] manu forti, suis subventurus non distulit transfretare: et quo suorum tutiori[3] fulciretur obsequio, inimicisque suis major formidinis incuteretur confusio, regem Scociae de turri de Falesio extrahens secum duxit, Cadoniaque custodiae deputatum inclusit. Rege vero Scotorum, ut supradictum est, in manus hostium tradito, senioris regis omnes hostes,[4] hii etiam qui fuerant intentores[5] praecipui discordiae, territi et humiliati de pace tractare coeperunt, atque, bonorum virorum instantia, pater cum filio concordatus est, tam in transmarinis quam cismarinis partibus pace reintegrata et integre reformata: omnesque captivos, praeter regem Scotorum, interventu regis Franciae, idem rex Henricus pater absolute relaxavit, et relaxatis honores et bona restituit. Ecce quomodo amabant eum. Nunquid cum propheta canere possit, "omnes amici mei dereliquerunt me," amicitiam utique veram sui simulantes confoederati, futurorum participes eventuum bellorum, videlicet, indissolubiles et pacis se fieri consortes? Ita quod bellum unius et pax alterius consisteret, et omnium incongrua quamvis intentione promiserant, et licet[6] firmissimo fuerant astricti foedere, consonus tamen suae rumor captivitatis, illorum corda dejecit omnium amicorum. Omnes quoque Philistaei, occiso Golia, confugerunt. Sed et haec merito passus est, impio filio,[7] contra patrem bellum injustum colore non zelo justiciae prosequenti, subsidium praebens. Justissimam belli dereliquit causam, cum sibi de jure notorio totius[8] Angliae principatus cum corona debeatur. Equidem si causa propria, suos caute debilitans hostes, id egerat, adnexum callide suum illusit[9] consortem, injuste justum gerendo bellum. Quia non solum facto vel causa, sed ex intentione saepius[10] injusta, belliger injuste justum[11] prosequendo bellum vinci contigit vel occidi.`,
+                originalNotes: `[1] D. Rothomago.\n[2] B. D. omit ejus ditione - properat et.\n[3] C. fortiori.\n[4] D. omits Rege vero - hostes.\n[5] C. D. incentores.\n[6] B. D. omit licet.\n[7] D. consilio.\n[8] B. citius.\n[9] D. illusum.\n[10] B. omits saepius.\n[11] C. injustum. B. D. justitiae.`,
+                translatorNotes: ``
+            },
+            chap13: {
+                title: "第十三章",
+                japanese: `オクタウィアヌスでもあったカエサル・アウグストゥスとは似ても似つかぬ君主たちがいる。彼らは容易に戦闘へと駆り立てられる者たちである。この幸運な戦士についてエウトロピウスが伝えるところによれば、彼は騒乱、戦争、そして紛争を心から憎悪したため、正当な理由なくしてはいかなる民族にも決して宣戦を布告しなかった。そして、凱旋式の熱狂や、月桂冠、すなわち実を結ばぬ葉のために、不確実な闘争の結果によって市民の安全を危険に晒すことは、自慢好きで極めて軽薄な精神の表れであると語ったという。また、良き君主にとって無謀さほど不釣り合いなものはない、とも。好都合に達成される事柄は、十分に迅速になされたのであり、より大きな利益の見込みがない限り、決して武器を取るべきではない。僅かな利得のために甚大な損失を被って得た勝利は、金の釣り針で魚を釣るようなものであり、もしそれが切れて失われれば、その損失はいかなる釣果の利益によっても埋め合わせることはできない。以上、エウトロピウスの言である。さてその後、先に解放された他の貴族たちと同様に、セント・アンドルーズ司教リチャードとダンケルド司教リチャード、そしてスコットランド王国の多くの高位聖職者、伯、バロンたちが、自らの王の解放のため、海を渡りノルマンディーのヘンリ王のもとへ赴いた。かの王は捕囚の身となった後、聖母マリアのお潔めの祝日の頃に解放され[1]、自領への帰還を許され、王国の統治へと復帰した。ただし、彼の城であるロクスバラ、ベリック、そして乙女の城は[2]、イングランド人の王の権威のもとで指名された城守たちに引き渡された。また、平和を維持し、両王間で結ばれた協定が揺るぎなく続くよう、スコット人の王ウィリアム自身からイングランド王へ人質が差し出された。しかる後、九月のカレンダエより一八日前[3]、スコットランドのすべての司教と高位聖職者は、彼らの主君たる王の布告によりヨークに参集し、聖餐の義務と信仰の誓約のもと、イングランド王ヘンリに厳しく服属した。そして彼に対し、王国のすべての伯とバロンもまた、彼らの主君たる王が、その時の状況に応じて命じた通りに、臣従儀礼の法によって臣従し、忠誠の誓約によって縛られたのである。`,
+                original: `AUGUSTO Caesari dissimiles Octaviano sunt principes, qui faciliter excitantur ad praelia: de quo felici belligero refert Eutropius, quod adeo turbas, bella, simultates execratus est, ut, nisi justis de causis, nunquam genti cuiquam bellum indixerit, jactantisque esse ingenii et levissimi dicebat, ardore triumphandi, et ob lauream coronam, id est, folia infructuosa, in discrimen, per incertos eventus certaminum, securitatem civium praecipitare. Neque principi bono quicquam minus, quam temeritatem congruere. Satis celeriter fieri quicquid commode generetur armaque, nisi majoris emolumenti spe, nequaquam esse movenda. Recompendio tenui jactura gravi potita victoria similis sit hamo aureo piscantibus, cujus abrupti amissique detrimentum nullo capturaae lucro pensari potest. Haec Eutropius.[1] Praeterea vero relaxatis, ut prius, ceteris magnatibus, Ricardus Sancti Andreae et Ricardus Dunkeldensis episcopi, plerique praelatorum, comitum et baronum regni Scociae,[2] ad regem Henricum in Normannia pro sui regis deliberatione mare transierunt. Qui circa beatae virginis purificationem post suam captionem liberatus, et ad propria redire permissus, regni sui[3] reformatur regimini, traditis castellis suis Roxburgo, Berwico et Castro Puellarum[4] custodibus sub ditione regis Anglorum[5] eis deputatis, et datis ipsi Willelmo regi Scotorum regis Angliae[6] obsidibus de pace conservanda, et conventione inter eos[7] facta inconcusses[8] duratura. Deinde, XVIII[9] kalendas Septembris, omnes episcopi et praelati Scociae, ad edictum domini sui regis, apud Eboracum convenientes, sub obligatione sacramenti fideique sponsione Henrico regi Angliae districti[10] sunt. Cui et omnes ejusdem regni comites et barones, rege domino suo, prout tunc[11] opportuit, jubente, hominii jure subduntur et fidelitatis tenore obligantur.`,
+                originalNotes: `[1] D. omits Augsto - Haec Eutropius.\n[2] B. Scotorum.\n[3] B. D. omit sui.\n[4] B. inserts Styrlyn.\n[5] D. Angliae.\n[6] D. omits eis deputatis - Angliae.\n[7] B. D. ipsos.\n[8] B. omits inconcusse.\n[9] C. decimo octavo.\n[10] B. C. D. astricti.\n[11] B. D. omit tunc.`,
+                translatorNotes: `[1] 1175年2月2日頃。\n[2] エディバラ城のこと。\n[3] 1175年8月15日。`
+            },
+            chap14: {
+                title: "第十四章",
+                japanese: `さて、これらの出来事が起こっている間に、ギャロウェイの人々は、ファーガスの息子ギルバートを指導者として、裏切りをもって行動した。彼らは自らの王が捕虜となった直後に共謀し、同年、スコットランド王国から分離して、隣接する土地を騒がせた。そこで、ファーガスの息子ユートレッドは、真のスコット人であり、なびかせることができなかったため、十月のカレンダエの十日前に兄弟のギルバートによって捕らえられ[1]、鎖につながれた。そしてついに、舌を切り取られ、両目をえぐり出されて、惨殺された。王は解放されると、彼らに対するこの件を知り、ギャロウェイに軍を進めた。ギャロウェイの人々は王に相対したが、スコティアの司教や伯たちの仲介と介入によって賠償金を協定し、人質を差し出して和解した。その後、冬を越して、イングランド王は二月のカレンダエの三日前にノーサンプトンで総評議会を開いた[1]。そこにはスコットランド王も出席し、スコット人の王国のすべての司教と高位聖職者たちが、両王の布告によってその場に集められた。彼らに対し、一方では追放の脅しをもって命じられ、他方では会議という口実のもとに歪んだ説得をもって、首都大司教に従属するよう示唆された[3]。しかし、彼らはこの差し迫った危険を全力で回避しようと、休戦という救済策のもとであったものの、より優れた協議によって満場一致でこれを拒否した。その結果、彼らの尽力により、その教会の古来の尊厳は使徒的権威によって確認され、その自由は教皇アレクサンデルによって特権という保護をもって強化された。また、モンテ・チェリオの聖ステファノ教会の司祭枢機卿であり、教皇特使であるヴィヴィアヌスが、絶大な権威という後ろ盾を得て、前述の会議の前にスコティアに来た。彼は行く手に立ちはだかるものをことごとく踏みにじり、ためらわず奪い、略奪を阻むことはなかった。そしてそこから特使としての任務を遂行するためにアイルランドへ渡った。かの地で会議を執り行った後、スコットランド王国に戻り、乙女の城のホリールード修道院にて、使徒の権威のもと、多くの古来の法令を更新し、いくつか新たな規則を制定して、八月のカレンダエにその地で荘厳な公会議を執り行った[4]。`,
+                original: "DUM haec utique agerentur, Galwalenses proditorie, duce Gilberto, filio Fergusii, statim[1] post sui captivitatem regis conjuratione facta, se a regno Scotiae eodem anno dividentes, contiguas sibi terras inquietaverunt. Ochtredus itaque, filius Fergusii, quia verus extiterat Scotus, nec flecti potuit, x kalendas Octobris a fratre suo Gilberto captus est, et vinculis traditur,[2] et tandem, lingua praecisa oculisque evulsis, crudeliter interemptus est. Quo rex solutus [comperto adversus eos[3]] exercitum duxit in Galwalliam, cui occurrentes, mediantibus episcopis et comitibus Scotiae et intervenientibus, pacta pecunia et datis obsidibus, consiliati[4] sunt. Ex hinc post hyemem rex Angliae generale tenuit consilium apud Northamtoune III kalendas Februarii: cui interfuit rex Scotiae, et omnes episcopi et praelati regni Scotorum,[5] ad utriusque regis edictum, ibidem convenerant. Quibus hinc sub interminatione exilii praecipitur, illinc suasione perversa sub praetextu consilii innuitur, metropolitano subici episcopo. Quod vero periculum imminens totis nisibus declinantes, ab eis unanimiter, sub[6] tamen induciarum remedio, praestantiori consilio refutatum est. Quorum subinde industria ecclesiae suae[7] pristina dignitas[8] auctoritate apostolica confirmatur, et libertas ab Alexandro papa privilegiorum munimine roboratur. Vinianus quoque, sancti Stephani in Celio Monte presbyter cardinalis, legatus, et magnae auctoritatis munimine fultus, ante praedictum consilium[9] venit in Scocia, conculcans et comminuens obvia[10] quaeque, expeditus capere nec impeditus rapere, et inde in Hyberniam legationem functurus transmeavit, atque,[11] celebrato ibidem consilio, in regnum revenit Scotorum,[12] et apud monasterium Sanctae Crucis de Castello[13] Puellarum sub auctoritate apostolica plurima renovans antiquorum decreta, et nova quaedam statuens praecepta, consilium ibidem[14] kalendas Augusti solemne celebravit.",
+                originalNotes: `[1] B. C. inserts here eodem anno. B. omits statim. D. inserts statim eodem anno after regia.\n[2] B. D. traditus.\n[3] A. left blank in MS.\n[4] B. C. D. reconsiliati.\n[5] D. Scociae.\n[6] D. omits sub.\n[7] C. Scoticanae.\n[8] D. dignitatis.\n[9] D. omits consilium.\n[10] D. omnia.\n[11] B. omits atque.\n[12] B. in Scocia. D. Scociae.\n[13] D. juxta Castellum.\n[14] D. omits ibidem.`,
+                translatorNotes: `[1] 9月22日。\n[2] 1月29日。\n[3] ヨーク大司教のこと。\n[4] 8月1日。`
+            },
+            chap131: {
+                title: "第一三一章：バノックバーンの戦いについて (De conflictu de Bannokburne)",
+                original: `REX Angliae Edwardus secundus audiens es illus actus regis Roberti, vidensque innumera damna, et mala infinita, sibi et suis per eundem regem illata, in vindictam praemissorum congregavit exercitum copiosum valde tam equitum bene armatorum quam peditum, balistariorum et sagittariorum, in[2] arte pugnandi satis peritorum; quorum caterva circumvallatus, et gloria humanae potentiae confisus, Scociam hostiliter intravit, et ipsam circumquaque devastans usque Banokbourne pervenit. Cui rex Robertus cum paucis occurrens, non in multitudine populi sed in Domino Deo[3] spem ponens, cum antedicto rege Angliae bellum commisit, et ipsum cum suis, auxiliante ipso cujus est victoriam dare, in fugam convertit, in die natalis beati[4] Johannis Baptistae, anno Domini MCCCXIIII[5], ubi comes Gloverniae[6] ac alii nobiles quamplures sunt interfecti, quamplures aquis dimersi et foveis trucidati, quamplures diversi status sub diverso mortis genere extincti, multi etiam et[7] quamplures nobiles capti, quorum redemptione non solum regina et alii captivi de Scocia a carceribus sunt liberati, sed etiam ipsi Scoti omnes et singuli vehementer ditati. Inter quos etiam captus fuit Johannes de Britannia,[8] pro quo reddita est regina, et Robertus episcopus Glasguensis. Ab illo enim die</date> et deinceps tota terra Scociae semper de Anglis[9] non solum ubique gaudebat victoria, sed etiam infinitis abundabat divirtiis.`,
+                japanese: `イングランド王エドワード二世は、ロバート王のそれらの行いについて聞き、また同王によって自らと自国民にもたらされた数え切れぬほどの損害と無限の災禍を目の当たりにし、前述の事柄への復讐として、重武装した騎兵、さらには歩兵、弩兵、弓兵からなる、戦闘術に極めて習熟した非常に大規模な軍勢を召集した。彼はその大軍に囲まれ、人間的な権勢の栄光を信じて、敵意をもってスコットランドに侵入し、周辺一帯を荒廃させながらバノックバーンまで到達した。これに対しロバート王は、多数の民にではなく主なる神に望みを置き、少数の兵を率いて対峙し、前述のイングランド王と戦端を開いた。そして勝利を授ける御方の助けにより、主の年一三一四年、聖ヨハネ誕生祭の日に[1]、彼とその軍勢を敗走させた。その戦いにおいて、グロスター伯をはじめとする非常に多くの貴族が討ち取られ、多数が水に溺れ、あるいは落とし穴で殺され、様々な身分の多くの者が様々な死に方で命を落とした。また、多くの、実に非常に多くの貴族が捕虜となり、その身代金によって、王妃をはじめとするスコットランドの捕虜たちが牢獄から解放されただけでなく、スコット人一人ひとりが大いに富むこととなった。捕虜の中にはジョン・オブ・ブリタニーも含まれており、彼との交換で王妃とグラスゴー司教ロバートが返還された。実に、その日以降、スコットランド全土はイングランド人に対して常に至る所で勝利を享受しただけでなく、無限の富にも恵まれたのである。`,
+                originalNotes: `[1] B. adds anno Domini MCCCXII.\n[2] B. D. omit in.\n[3] B. D. omit Deo.\n[4] B. nativitatis beati. D. nativitatis sancti.\n[5] B. D. omit date.\n[6] B. adds et Lancastriae.\n[7] B. D. omit et.\n[8] B. D. captus fuit comes de Herforde.\n[9] B. D. Anglia.`,
+                translatorNotes: `[1] 1314年6月24日。`
+            },
+            chap152: {
+                title: "第一五二章：イングランド王がエドワード・ベイリオルと共にパースへ到来したことについて (De adventu regis Angliae usque Perth cum Edwardo de Balliolo)",
+                original: `MENSE[1] Aprili, anno Domini MCCCXXXV[2], Robertus Senescallus,[3] et comes Moraviae, tunc custos Scociae, apud Dervesy[4] suum tenuerunt parliamentum, comparentibus ibidem comite Marchiae, Andrea de Moravia, Alexandro de Mubray et Willelmo de Douglas ex una parte, et prudenter ac quiete se habentibus, et David comite Atholiae cum magna potentia ex parte altera, ubi, propter ejus tyrannidem, nihil aliud[5] actum est nisi derisione dignum. Hic[6] Senescallo adhaerens, qui tunc non magna regebatur sapientia, et comitem Moraviae despectui habens, omnibus ibidem existentibus factus est infestus, sed circumspecta praenominatorum prudentia immanem ipsius saevitiam callide declinavit. Eodem anno rex,[7] ex praecepto custodum omnibus incolis in planis habitantibus ad montana et loca tuta, cum bonis mobilibus et cunctis animalibus, confugentibus, pridie nonas Julii navigium regis Angliae in aquam de Forth applicuit. Et rex Angliae, cum Edwardo de Balliol, habens secum XCM[8] equitum, et novies XX naves, apud Perth tentoria defixit, et ibidem usque adventum comitis Atholiae moram faciens,[9] circumquaque depraedavit.`,
+                japanese: `主の年一三三五年四月、ロバート・ステュアートと当時スコットランドの摂政であったマリ伯は、デアジーで議会を開いた。そこには一方の側にマーチ伯、アンドルー・マリー、アレグザンダー・モーブレイ、そしてウィリアム・ダグラスが出席し、彼らは賢明かつ穏やかに振る舞った。もう一方の側には大軍を共連れたアソル伯デイヴィッドがいたが、彼の横暴のせいで、嘲笑に値すること以外は何も行われなかった。この男は、当時あまり賢明とは言えなかったステュアートに付き従い、マリ伯を軽蔑して、その場にいた全員に対して敵対的になった。しかし、前述の者たちの周到な賢明さによって、彼の甚だしい凶暴さは巧みに回避された。同年、摂政たちの命令により、平野部の全住民が動産とすべての家畜を連れて山地や安全な場所へと避難する中、七月のノナエの前日[1]、イングランド王の船団がフォース湾に到着した。そしてイングランド王はエドワード・ベイリオルと共に、九万騎の騎兵と一八〇隻の船を率いてパースに陣を張り、その地でアソル伯の到着まで滞在し、周辺一帯を略奪した。`,
+                originalNotes: `[1] D. Prima dies mensis.\n[2] B. D. omit date here and add it to title.\n[3] B. D. inserts Scociae.\n[4] D.  Perth.\n[5] D. omits aliud.\n[6] D. inserts Roberto.\n[7] B. C. D. omit rex.\n[8] B. XC milia. D. LX millia.\n[9] B. D. inserts terram.`,
+                translatorNotes: `[1] 1335年7月6日。`
+            },
+            chap156: {
+                title: "第一五六章：アンドリュー・マリーについて (De Andrea de Moravia)",
+                japanese: `同年十月[1]、当時スコットランドの摂政であったアンドリュー・マリーは軍を召集し、ダノッター、キンネフ、そしてローリストンの要塞を包囲、陥落させ、破壊した。そして冬の間ずっと、プラタンの森やアンガス地方の他の極めて安全な場所で過ごした。彼はイングランド勢からの数多くの待ち伏せや危険な襲撃に耐え抜いた。こうして、双方による絶え間ない略奪によって、ガウリー、アンガス、そしてマーンズの全土は、その大部分がほとんど回復不可能な荒廃と極度の貧困に陥れられた。同年二月[2]、キンクレヴィン要塞が完全に破壊された少し前、かの摂政はマーチ伯とファイフ伯、ウィリアム・ダグラス、そしてスコットランドの他の多くの貴族たちを伴い、ファイフ地方に侵攻した。フォークランドの塔を破壊し、周辺の土地を至る所で略奪し、住民を捕らえて身代金を要求した。そしてセント・アンドルーズの町に進軍し、その城を攻城兵器を用いて三週間にわたり力強く包囲した。城は二月の最終日に彼に降伏したが[3]、その中の住民の生命、身体、そして全ての財産は保証された。これに先立ち、ルーカーズの城も全ての点において同様に処理されていた。そこから三月六日の後に陣営を移し、続く四旬節の期間にボスウェルの塔へ進軍した[4]。そして短時間の強襲の後にこれを陥落させ、破壊したが、味方の損害がなかったわけではない。実に、スティーブン・ワイズマンがその場で戦死したのである。`,
+                original: `EODEM anno mense Octobris, Andreas de Moravia, tunc custos Scociae, congregato exercitu, fortalicia de Dunotyr, et Kynneff et de Laurestoune obsessit, cepit, et ad terram prostravit, atque per totam hyemem in foresta de Platen, et aliis locis tutissimis de Angus moratus est; quamplures insidias ab Anglicis et periculosos sustinuit insultus, ac sic per utrorumque continuas depraedationes tota terra de Goury, de Angus, et de Mernys pro majore parte fere ad irrecuperabilem redacta est vastiatem, et in extremam egestatem. Eodem anno, mense Februarii, paulo ante fortalicio de Kinclevyn funditus destructo, idem custos, adjunctis sibi comitibus Marchiae et de Fyff, Willelmo de Douglas, et multis aliis nobilibus Scociae, ingressus partes de Fyf, turre de Falklande humi prostrata, terra in circuitu undique praedata, captis habitatoribus et redemptioni expositis, ad villam Sancti Andreae accessit, et castrum ejusdem in tribus septimanis cum machinis potenter obsessit, quod redditum fuit eidem ultimo die Februarii, salvis habitatoribus in eo vita et membris ac bonis universis. Simili modo per omnia ante actum est de castro de Luchris, et inde post VI die Martii movens tentoria, ad turrim de Bothvile in Quadragesima proxima sequente accessit, et eam expugnans post modicum tempus accepit, et ad terram prostravit, tamen non sine damno suorum. Nam Stephanus Wisman ibidem occubuit.`,
+                originalNotes: `[1] D. pridie nonas mensis.\n[2] B. D. omit in.\n[3] B. Kynclevyn. D. Kynclewyn.\n[4] B. D. omit in.\n[5] D. inserts mensis.\n[6] B. D. habitantibus.\n[7] B. D. omit per omnia.\n[8] B. inde primo die. D. inde post die.\n[9] B. D. oppugnans.`,
+                translatorNotes: `[1] 1336年10月。\n[2] 1337年2月。\n[3] 1337年2月28日。\n[4] 1337年3月8日から4月20日にかけての期間。`
+            },
+            chap160: {
+                title: "第一六〇章",
+                japanese: `主の年一三四一年四月十七日、エディンバラ城が、城の守備隊全員を制圧した上で、ウィリアム・ダグラス卿、ウィリアム・フレイザー卿、そしてウィリアム・バロック卿とその協力者らによって、力強く、そして幸運にも巧妙な手口で奪取された。同年、すなわち主の一三四一年六月二日に、神の恩寵によるスコット人の輝かしき王デイヴィッドが、フランスよりスコットランドへ帰還した。かくして彼はインヴァーバーヴィーにて王妃と共に船で導かれ、健やかにして恙なく、その地に到着した。[1]`,
+                original: `SEPTIMODECIMO die mensis Aprilis, anno Domini MCCCXLI, captum est castrum de Edinburgh in manu forte, non minus feliciter quam subtiliter, per dominos Willelmum de Douglas, Willelmum Fraser et Willelmum Bulloc, cum suis complicibus, subactis cunctis ipsius castri custodibus. Eodem anno, scilicet Domini MCCCXLI, IIII nonas Junii, David, Dei gratia, rex Scotorum illustris, de Francia ad Scociam rediit. Ita apud Innerberwy cum regina navigio perductus, sanus et incolumis idem ad terram pervenit.`,
+                originalNotes: `[1] Not a separate chapter in D.\n[2] B. D. prefix date to chapter.\n[3] B. D. commence a new chapter with the title De adventu regis David de Francia.\n[4] B. D. omit scilicet Domini MCCCXLI.\n[5] B. D. omit Dei Gratia.\n[6] B. D. atque.\n[7] B. D. inserts est.\n[8] B. D. add Eodem anno XII kal. Marcii Willelmus promotus est ad episcopatum Sancti Andreae.`,
+                translatorNotes: `[1] 一部の写本では、この後に「同年二月十八日、ウィリアムがセント・アンドルーズ司教に昇進した」と記載。このウィリアムはウィリアム・デ・ランダリスという人物である。`
+            }
+        };
+
+        const mainTitle = document.getElementById('main-title');
+        // 追加: chapter-contentの参照
+        const chapterContent = document.getElementById('chapter-content');
+        // 既存: 各区分の参照
+        // const japaneseText = document.getElementById('japanese-text');
+        // const originalText = document.getElementById('original-text');
+        // const originalNotes = document.getElementById('original-notes');
+        // const translatorNotes = document.getElementById('translator-notes');
+        const chapterLinks = document.querySelectorAll('.chapter-link');
+
+        function loadChapter(chapterId) {
+            const chapter = content[chapterId];
+            if (!chapter) return;
+
+            mainTitle.textContent = chapter.title;
+
+            if (chapterId === 'intro') {
+                // 序章のみ1カラムで本文のみ表示
+                chapterContent.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg shadow-sm leading-relaxed max-w-none mx-auto">
+                        <p>${chapter.japanese.replace(/\n/g, '</p><p>')}</p>
+                    </div>
+                `;
+            } else {
+                // 既存の2カラム＋注のレイアウト
+                chapterContent.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-center">日本語訳</h3>
+                            <div class="bg-white p-6 rounded-lg shadow-sm h-[56rem] overflow-y-auto leading-relaxed">
+                                <p>${chapter.japanese.replace(/\n/g, '</p><p>')}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-center original-text">Original</h3>
+                            <div class="bg-white p-6 rounded-lg shadow-sm h-[56rem] overflow-y-auto original-text leading-relaxed text-gray-900">
+                                <p>${chapter.original.replace(/\n/g, '</p><p>')}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-lg font-bold mb-3">訳注</h3>
+                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-[32rem] overflow-y-auto">
+                                    <p>${chapter.translatorNotes.replace(/\n/g, '</p><p>')}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-3">原著注</h3>
+                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-[32rem] overflow-y-auto">
+                                    <p>${chapter.originalNotes.replace(/\n/g, '</p><p>')}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Update active link
+            chapterLinks.forEach(link => {
+                link.classList.remove('bg-gray-300', 'font-bold');
+                if (link.dataset.chapter === chapterId) {
+                    link.classList.add('bg-gray-300', 'font-bold');
+                }
+            });
+        }
+
+        document.getElementById('toc').addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = e.target.closest('.chapter-link');
+            if (target) {
+                const chapterId = target.dataset.chapter;
+                loadChapter(chapterId);
+            }
+        });
+
+        // Load the first chapter by default
+        window.onload = () => {
+            loadChapter('intro');
+        };
+    </script>
+</body>
+</html>
