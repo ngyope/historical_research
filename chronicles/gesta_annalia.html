@@ -37,16 +37,24 @@
     <div id="app" class="flex flex-col h-screen">
 
         <!-- Header -->
-        <header class="bg-white shadow-md z-10">
-            <div class="container mx-auto px-6 py-4">
-                <h1 class="text-2xl font-bold text-gray-700">『ゲスタ・アナリア』</h1>
-                <p class="text-sm text-gray-500"><i>Gesta Annalia</i> (最終更新日：2025-07-26)</p>
+        <header class="bg-white shadow-md z-20">
+            <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-700">『ゲスタ・アナリア』</h1>
+                    <p class="text-xs sm:text-sm text-gray-500"><i>Gesta Annalia</i> (最終更新日：2025-07-27)</p>
+                </div>
+                <!-- Hamburger Button -->
+                <button id="menu-btn" class="md:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-700" aria-label="メニューを開く">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </header>
 
         <div class="flex flex-1 overflow-hidden">
             <!-- Sidebar -->
-            <aside class="w-64 bg-gray-100 p-6 overflow-y-auto flex-shrink-0 hidden md:block">
+            <aside id="sidebar" class="w-64 bg-gray-100 p-6 overflow-y-auto fixed inset-y-0 left-0 z-30 transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex-shrink-0">
                 <h2 class="text-lg font-bold mb-4">目次</h2>
                 <nav id="toc">
                     <ul>
@@ -69,15 +77,17 @@
                         <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap152">第一五二章：イングランド王がエドワード・ベイリオルと共にパースへ到来したことについて</a></li>
                         <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap156">第一五六章：アンドリュー・マリーについて</a></li>
                         <li><a href="#" class="chapter-link block py-2 px-3 rounded hover:bg-gray-200" data-chapter="chap160">第一六〇章</a></li>
-
                     </ul>
                 </nav>
             </aside>
+            
+            <!-- Overlay for mobile menu -->
+            <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
 
             <!-- Main Content -->
             <main class="flex-1 overflow-y-auto p-4 md:p-8">
                 <div class="max-w-7xl mx-auto">
-                    <h2 id="main-title" class="text-3xl font-bold mb-6 border-b pb-4 text-gray-700"></h2>
+                    <h2 id="main-title" class="text-2xl md:text-3xl font-bold mb-6 border-b pb-4 text-gray-700"></h2>
                     
                     <div id="chapter-content">
                         <!-- Content will be loaded here -->
@@ -93,6 +103,31 @@
     </div>
 
     <script>
+        // --- Mobile Menu Script ---
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const toc = document.getElementById('toc');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close sidebar when a chapter link is clicked on mobile
+        toc.addEventListener('click', function(e) {
+            // Check if the screen is mobile-sized (matches Tailwind's 'md' breakpoint)
+            if (window.innerWidth < 768) {
+                const target = e.target.closest('.chapter-link');
+                if (target) {
+                    toggleMenu();
+                }
+            }
+        });
+	    
         const content = {
             intro: {
                 title: "はしがき",
@@ -299,13 +334,7 @@ OBDORMIVIT in Domino piissimus iste rex Malcolmus apud Jedworth, et ejus summo c
         };
 
         const mainTitle = document.getElementById('main-title');
-        // 追加: chapter-contentの参照
         const chapterContent = document.getElementById('chapter-content');
-        // 既存: 各区分の参照
-        // const japaneseText = document.getElementById('japanese-text');
-        // const originalText = document.getElementById('original-text');
-        // const originalNotes = document.getElementById('original-notes');
-        // const translatorNotes = document.getElementById('translator-notes');
         const chapterLinks = document.querySelectorAll('.chapter-link');
 
         function loadChapter(chapterId) {
@@ -327,13 +356,13 @@ OBDORMIVIT in Domino piissimus iste rex Malcolmus apud Jedworth, et ejus summo c
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
                             <h3 class="text-xl font-bold mb-4 text-center">日本語訳</h3>
-                            <div class="bg-white p-6 rounded-lg shadow-sm h-[56rem] overflow-y-auto leading-relaxed">
+                            <div class="bg-white p-6 rounded-lg shadow-sm h-auto lg:h-[56rem] overflow-y-auto leading-relaxed">
                                 <p>${chapter.japanese.replace(/\n/g, '</p><p>')}</p>
                             </div>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-4 text-center original-text">Original</h3>
-                            <div class="bg-white p-6 rounded-lg shadow-sm h-[56rem] overflow-y-auto original-text leading-relaxed text-gray-900">
+                            <div class="bg-white p-6 rounded-lg shadow-sm h-auto lg:h-[56rem] overflow-y-auto original-text leading-relaxed text-gray-900">
                                 <p>${chapter.original.replace(/\n/g, '</p><p>')}</p>
                             </div>
                         </div>
@@ -342,13 +371,13 @@ OBDORMIVIT in Domino piissimus iste rex Malcolmus apud Jedworth, et ejus summo c
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
                                 <h3 class="text-lg font-bold mb-3">訳注</h3>
-                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-[32rem] overflow-y-auto">
+                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-auto md:h-[32rem] overflow-y-auto">
                                     <p>${chapter.translatorNotes.replace(/\n/g, '</p><p>')}</p>
                                 </div>
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold mb-3">原著注</h3>
-                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-[32rem] overflow-y-auto">
+                                <div class="bg-gray-100 p-4 rounded-lg text-sm h-auto md:h-[32rem] overflow-y-auto">
                                     <p>${chapter.originalNotes.replace(/\n/g, '</p><p>')}</p>
                                 </div>
                             </div>
@@ -377,8 +406,12 @@ OBDORMIVIT in Domino piissimus iste rex Malcolmus apud Jedworth, et ejus summo c
 
         // Load the first chapter by default
         window.onload = () => {
+            // 他の章のデータを読み込むために、contentオブジェクトの残りの部分をここに追加します。
+            // For brevity, the full 'content' object is not repeated here.
+            // Assume the full 'content' object from your original file is present.
             loadChapter('intro');
         };
     </script>
 </body>
 </html>
+
