@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>British Saints' Day Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-top: 1px solid #e2e8f0; /* Tailwind gray-200 */
+            border-left: 1px solid #e2e8f0;
+        }
+        .calendar-grid > div {
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .calendar-day {
+            min-height: 120px;
+        }
+        .modal-bg {
+            transition: opacity 0.3s ease;
+        }
+        #modalContent {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">British Saints' Day Calendar</h1>
+            <p class="text-gray-600 mt-2">Explore the fixed and movable feast days of Britain</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="mb-6 max-w-2xl mx-auto">
+            <div class="relative">
+                <input type="text" id="searchInput" class="w-full p-3 pl-10 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Search by name (EN, LA, JA) or date (e.g., 4-23)...">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            <div class="flex justify-center mt-2">
+                <button id="searchButton" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75">Search</button>
+                <button id="clearButton" class="ml-4 px-6 py-2 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 hidden">Clear</button>
+            </div>
+        </div>
+
+        <!-- Search Results -->
+        <div id="searchResults" class="hidden bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Search Results</h2>
+            <div id="resultsList" class="space-y-4"></div>
+        </div>
+
+        <!-- Calendar -->
+        <div id="calendarContainer" class="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+            <div class="flex items-center justify-between mb-4">
+                <button id="prevYear" title="Previous Year" class="p-2 rounded-full hover:bg-gray-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="prevMonth" title="Previous Month" class="p-2 rounded-full hover:bg-gray-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <h2 id="currentMonthYear" class="text-xl sm:text-2xl font-bold text-center w-48"></h2>
+                <button id="nextMonth" title="Next Month" class="p-2 rounded-full hover:bg-gray-200">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <button id="nextYear" title="Next Year" class="p-2 rounded-full hover:bg-gray-200">
+                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Go to Date section -->
+            <div class="flex items-center justify-center mb-4 gap-2 p-2 bg-gray-50 rounded-lg">
+                <label for="yearInput" class="text-sm font-medium">Go to:</label>
+                <input type="number" id="yearInput" class="p-2 border border-gray-300 rounded-lg w-24 text-center" placeholder="Year">
+                <select id="monthSelect" class="p-2 border border-gray-300 rounded-lg"></select>
+                <button id="goToDateBtn" class="px-4 py-2 bg-indigo-500 text-white font-semibold rounded-lg shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400">Go</button>
+            </div>
+            <div id="calendarGrid" class="calendar-grid"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="text-center text-sm text-gray-500 py-4 mt-8 space-y-2">
+        <p>Source: C. R. Cheney (ed.) and M. Jones (revised), A <i>Handbook of Dates: For Students of British History</i>, New Edition (2000, Cambridge).</p>
+        <p>Note: Easter and movable feasts are calculated using the Julian calendar for years before 1752 and the Gregorian calendar from 1752 onwards.</p>
+        <p>Version: 0.1.0.</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 modal-bg flex items-center justify-center p-4 hidden opacity-0">
+        <div id="modalContent" class="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full transform scale-95 transition-transform duration-300">
+            <div id="modalHeader" class="flex justify-between items-center mb-4">
+                 <p id="modalDate" class="text-lg font-semibold text-gray-700"></p>
+                 <button id="closeModal" class="text-gray-400 hover:text-gray-600">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- Data: Fixed Saints' Days (Multilingual) ---
+        const saintsDays = [
+            { month: 1, day: 1, name_en: "Circumcision of Christ", name_la: "Circumcisio Domini", name_ja: "主の割礼" },
+            { month: 1, day: 6, name_en: "Epiphany", name_la: "Epiphania Domini", name_ja: "公現祭" },
+            { month: 1, day: 25, name_en: "Conversion of St. Paul", name_la: "Conversio Sancti Pauli Apostoli", name_ja: "聖パウロの回心" },
+            { month: 2, day: 2, name_en: "Purification of the B.V.M. (Candlemas)", name_la: "Purificatio Beatae Mariae Virginis", name_ja: "聖母マリアのお潔め" },
+            { month: 2, day: 14, name_en: "St. Valentine", name_la: "Sanctus Valentinus", name_ja: "聖ウァレンティヌス" },
+            { month: 3, day: 1, name_en: "St. David", name_la: "Sanctus David", name_ja: "聖デイヴィッド" },
+            { month: 3, day: 17, name_en: "St. Patrick", name_la: "Sanctus Patricius", name_ja: "聖パトリック" },
+            { month: 3, day: 25, name_en: "Annunciation of the B.V.M.", name_la: "Annuntiatio Beatae Mariae Virginis", name_ja: "受胎告知" },
+            { month: 4, day: 23, name_en: "St. George", name_la: "Sanctus Georgius", name_ja: "聖ゲオルギウス" },
+            { month: 4, day: 25, name_en: "St. Mark the Evangelist", name_la: "Sanctus Marcus Evangelista", name_ja: "福音記者聖マルコ" },
+            { month: 5, day: 1, name_en: "St. Philip and St. James", name_la: "Sancti Philippi et Iacobi", name_ja: "聖フィリポと聖ヤコブ" },
+            { month: 5, day: 3, name_en: "Invention of the Holy Cross", name_la: "Inventio Sanctae Crucis", name_ja: "聖十字架発見" },
+            { month: 6, day: 11, name_en: "St. Barnabas", name_la: "Sanctus Barnabas", name_ja: "聖バルナバ" },
+            { month: 6, day: 24, name_en: "Nativity of St. John the Baptist", name_la: "Nativitas S. Ioannis Baptistae", name_ja: "洗礼者聖ヨハネの誕生" },
+            { month: 6, day: 29, name_en: "St. Peter and St. Paul", name_la: "Sancti Petri et Pauli", name_ja: "聖ペトロと聖パウロ" },
+            { month: 7, day: 22, name_en: "St. Mary Magdalene", name_la: "Sancta Maria Magdalena", name_ja: "聖マリア・マグダレナ" },
+            { month: 7, day: 25, name_en: "St. James the Great", name_la: "Sanctus Iacobus Apostolus", name_ja: "聖ヤコブ (大)" },
+            { month: 8, day: 1, name_en: "Lammas Day", name_la: "Vincula Sancti Petri", name_ja: "ラマスデイ" },
+            { month: 8, day: 10, name_en: "St. Lawrence", name_la: "Sanctus Laurentius", name_ja: "聖ラウレンティウス" },
+            { month: 8, day: 15, name_en: "Assumption of the B.V.M.", name_la: "Assumptio Beatae Mariae Virginis", name_ja: "聖母の被昇天" },
+            { month: 8, day: 24, name_en: "St. Bartholomew", name_la: "Sanctus Bartholomaeus", name_ja: "聖バルトロマイ" },
+            { month: 9, day: 8, name_en: "Nativity of the B.V.M.", name_la: "Nativitas Beatae Mariae Virginis", name_ja: "聖母マリア誕生" },
+            { month: 9, day: 21, name_en: "St. Matthew", name_la: "Sanctus Matthaeus", name_ja: "聖マタイ" },
+            { month: 9, day: 22, name_en: "St. Maurice", name_la: "Sanctus Mauricius", name_ja: "聖マウリティウス" },
+            { month: 9, day: 29, name_en: "St. Michael and All Angels (Michaelmas)", name_la: "Dedicatio S. Michaelis Archangeli", name_ja: "大天使聖ミカエル" },
+            { month: 10, day: 18, name_en: "St. Luke", name_la: "Sanctus Lucas", name_ja: "聖ルカ" },
+            { month: 10, day: 28, name_en: "St. Simon and St. Jude", name_la: "Sancti Simonis et Iudae", name_ja: "聖シモンと聖ユダ" },
+            { month: 11, day: 1, name_en: "All Saints' Day", name_la: "Sollemnitas Omnium Sanctorum", name_ja: "諸聖人の日" },
+            { month: 11, day: 2, name_en: "All Souls' Day", name_la: "Commemoratio Omnium Fidelium Defunctorum", name_ja: "死者の日" },
+            { month: 11, day: 11, name_en: "St. Martin of Tours (Martinmas)", name_la: "Sanctus Martinus Turonensis", name_ja: "聖マルティヌス" },
+            { month: 11, day: 30, name_en: "St. Andrew", name_la: "Sanctus Andreas", name_ja: "聖アンデレ" },
+            { month: 12, day: 21, name_en: "St. Thomas", name_la: "Sanctus Thomas", name_ja: "聖トマス" },
+            { month: 12, day: 25, name_en: "Christmas Day", name_la: "Nativitas Domini", name_ja: "降誕祭" },
+            { month: 12, day: 26, name_en: "St. Stephen", name_la: "Sanctus Stephanus", name_ja: "聖ステファノ" },
+            { month: 12, day: 27, name_en: "St. John the Evangelist", name_la: "Sanctus Ioannes Evangelista", name_ja: "福音記者聖ヨハネ" },
+            { month: 12, day: 28, name_en: "Holy Innocents' Day", name_la: "Sancti Innocentes Martyres", name_ja: "幼児虐殺の祝日" }
+        ];
+
+        // --- Roman Date Calculation ---
+        const romanNumerals = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI', 7: 'VII', 8: 'VIII', 9: 'IX', 10: 'X', 11: 'XI', 12: 'XII', 13: 'XIII', 14: 'XIV', 15: 'XV', 16: 'XVI', 17: 'XVII', 18: 'XVIII', 19: 'XIX' };
+        const monthAbbr = ['Ian.', 'Feb.', 'Mar.', 'Apr.', 'Mai.', 'Iun.', 'Iul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
+
+        function getRomanDate(year, month, day) {
+            const nonesDay = [2, 4, 6, 9].includes(month) ? 7 : 5;
+            const idesDay = [2, 4, 6, 9].includes(month) ? 15 : 13;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            if (day === 1) return `Kal. ${monthAbbr[month]}`;
+            if (day === nonesDay) return `Non. ${monthAbbr[month]}`;
+            if (day === idesDay) return `Id. ${monthAbbr[month]}`;
+
+            if (day < nonesDay) {
+                const count = nonesDay - day + 1;
+                return count === 2 ? `Prid. Non. ${monthAbbr[month]}` : `a.d. ${romanNumerals[count]} Non. ${monthAbbr[month]}`;
+            }
+
+            if (day < idesDay) {
+                const count = idesDay - day + 1;
+                return count === 2 ? `Prid. Id. ${monthAbbr[month]}` : `a.d. ${romanNumerals[count]} Id. ${monthAbbr[month]}`;
+            }
+
+            // Counting down to the Kalends of the next month
+            const nextMonth = (month + 1) % 12;
+            const count = daysInMonth - day + 2;
+            return count === 2 ? `Prid. Kal. ${monthAbbr[nextMonth]}` : `a.d. ${romanNumerals[count]} Kal. ${monthAbbr[nextMonth]}`;
+        }
+
+
+        // --- Movable Feast Calculation ---
+        function calculateJulianEaster(year) {
+            const a = year % 4;
+            const b = year % 7;
+            const c = year % 19;
+            const d = (19 * c + 15) % 30;
+            const e = (2 * a + 4 * b - d + 34) % 7;
+            const month = Math.floor((d + e + 114) / 31);
+            const day = ((d + e + 114) % 31) + 1;
+            return new Date(year, month - 1, day);
+        }
+
+        function calculateGregorianEaster(year) {
+            const a = year % 19;
+            const b = Math.floor(year / 100);
+            const c = year % 100;
+            const d = Math.floor(b / 4);
+            const e = b % 4;
+            const f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3);
+            const h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4);
+            const k = c % 4;
+            const l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const month = Math.floor((h + l - 7 * m + 114) / 31);
+            const day = ((h + l - 7 * m + 114) % 31) + 1;
+            return new Date(year, month - 1, day);
+        }
+
+        function calculateEaster(year) {
+            if (year < 1752) {
+                return calculateJulianEaster(year);
+            } else {
+                return calculateGregorianEaster(year);
+            }
+        }
+
+        function getMovableFeasts(year) {
+            const easterDate = calculateEaster(year);
+            const feasts = [];
+            const dayInMillis = 24 * 60 * 60 * 1000;
+
+            const addFeast = (name_en, name_la, name_ja, offset) => {
+                const date = new Date(easterDate.getTime() + offset * dayInMillis);
+                feasts.push({
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    name_en, name_la, name_ja
+                });
+            };
+
+            addFeast("Easter Sunday", "Dominica Resurrectionis", "復活祭", 0);
+            addFeast("Septuagesima", "Dominica in Septuagesima", "七旬節", -63);
+            addFeast("Sexagesima", "Dominica in Sexagesima", "六旬節", -56);
+            addFeast("Quinquagesima", "Dominica in Quinquagesima", "五旬節", -49);
+            addFeast("Ash Wednesday", "Feria IV Cinerum", "灰の水曜日", -46);
+            addFeast("Palm Sunday", "Dominica in Palmis", "枝の主日", -7);
+            addFeast("Good Friday", "Feria VI in Parasceve", "聖金曜日", -2);
+            addFeast("Ascension Day", "Ascensio Domini", "昇天日", 39);
+            addFeast("Pentecost (Whitsun)", "Pentecostes", "聖霊降臨祭", 49);
+            addFeast("Trinity Sunday", "Festum Trinitatis", "三位一体の主日", 56);
+            addFeast("Corpus Christi", "Corpus Christi", "聖体の祝日", 60);
+
+            return feasts;
+        }
+
+        // --- App State ---
+        let currentDate = new Date();
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        // --- DOM Elements ---
+        const calendarGrid = document.getElementById('calendarGrid');
+        const currentMonthYear = document.getElementById('currentMonthYear');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const prevYearBtn = document.getElementById('prevYear');
+        const nextYearBtn = document.getElementById('nextYear');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const clearButton = document.getElementById('clearButton');
+        const searchResultsContainer = document.getElementById('searchResults');
+        const resultsList = document.getElementById('resultsList');
+        const calendarContainer = document.getElementById('calendarContainer');
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModalBtn = document.getElementById('closeModal');
+        const yearInput = document.getElementById('yearInput');
+        const monthSelect = document.getElementById('monthSelect');
+        const goToDateBtn = document.getElementById('goToDateBtn');
+
+        // --- Functions ---
+
+        function populateMonthSelect() {
+            monthNames.forEach((name, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = name;
+                monthSelect.appendChild(option);
+            });
+        }
+
+        function generateCalendar(year, month) {
+            calendarGrid.innerHTML = ''; // Clear the grid
+            const movableFeasts = getMovableFeasts(year);
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startDayOfWeek = firstDay.getDay(); 
+
+            currentMonthYear.textContent = `${monthNames[month]} ${year}`;
+            yearInput.value = year;
+            monthSelect.value = month;
+
+            // Add day of the week headers to the grid
+            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            daysOfWeek.forEach((day, index) => {
+                const headerCell = document.createElement('div');
+                headerCell.className = 'text-center font-semibold py-2';
+                if (index === 0) headerCell.classList.add('text-red-600');
+                if (index === 6) headerCell.classList.add('text-blue-600');
+                headerCell.textContent = day;
+                calendarGrid.appendChild(headerCell);
+            });
+
+            // Add empty cells for days before the 1st of the month
+            for (let i = 0; i < startDayOfWeek; i++) {
+                calendarGrid.appendChild(document.createElement('div'));
+            }
+
+            // Add cells for each day of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'calendar-day p-2 flex flex-col items-start relative';
+                
+                const dayNumber = document.createElement('span');
+                dayNumber.textContent = day;
+                dayNumber.className = 'text-sm font-medium';
+                dayCell.appendChild(dayNumber);
+
+                // Add Roman Date
+                const romanDateEl = document.createElement('div');
+                romanDateEl.textContent = getRomanDate(year, month, day);
+                romanDateEl.className = 'text-xs text-gray-400 mt-1';
+                dayCell.appendChild(romanDateEl);
+
+                const saintsOnDay = saintsDays.filter(s => s.month === month + 1 && s.day === day);
+                const movableFeastsOnDay = movableFeasts.filter(f => f.month === month + 1 && f.day === day);
+                const allFeastsOnDay = [...saintsOnDay, ...movableFeastsOnDay];
+
+                if (allFeastsOnDay.length > 0) {
+                    dayCell.classList.add('bg-indigo-50', 'cursor-pointer', 'hover:bg-indigo-100', 'transition-colors');
+                    dayCell.addEventListener('click', () => showModal(allFeastsOnDay));
+
+                    saintsOnDay.forEach(saint => {
+                        const saintName = document.createElement('div');
+                        saintName.textContent = saint.name_en;
+                        saintName.className = 'text-xs bg-indigo-200 text-indigo-800 rounded px-1 py-0.5 mt-1 w-full text-left truncate';
+                        dayCell.appendChild(saintName);
+                    });
+
+                    movableFeastsOnDay.forEach(feast => {
+                        const feastName = document.createElement('div');
+                        feastName.textContent = feast.name_en;
+                        feastName.className = 'text-xs bg-green-200 text-green-800 rounded px-1 py-0.5 mt-1 w-full text-left truncate';
+                        dayCell.appendChild(feastName);
+                    });
+                }
+                
+                const today = new Date();
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dayNumber.classList.add('bg-red-500', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center');
+                }
+
+                calendarGrid.appendChild(dayCell);
+            }
+        }
+        
+        function showModal(feasts) {
+            if (feasts.length === 0) return;
+            
+            const firstFeast = feasts[0];
+            document.getElementById('modalDate').textContent = `${monthNames[firstFeast.month - 1]} ${firstFeast.day}`;
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = '';
+
+            feasts.forEach((feast, index) => {
+                const feastHtml = `
+                    <div class="${index > 0 ? 'mt-4 pt-4 border-t border-gray-200' : ''}">
+                        <p class="font-bold text-xl text-gray-800">${feast.name_en}</p>
+                        <p class="text-md text-gray-600">${feast.name_la}</p>
+                        <p class="text-md text-gray-600">${feast.name_ja}</p>
+                    </div>
+                `;
+                modalBody.innerHTML += feastHtml;
+            });
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function hideModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            if (!query) return;
+
+            const year = currentDate.getFullYear();
+            const movableFeasts = getMovableFeasts(year);
+            const allFeasts = [...saintsDays, ...movableFeasts];
+
+            const results = allFeasts.filter(feast => {
+                const dateString = `${feast.month}-${feast.day}`;
+                return feast.name_en.toLowerCase().includes(query) ||
+                       feast.name_la.toLowerCase().includes(query) ||
+                       feast.name_ja.toLowerCase().includes(query) ||
+                       dateString.includes(query);
+            });
+
+            displaySearchResults(results);
+        }
+
+        function displaySearchResults(results) {
+            resultsList.innerHTML = '';
+            if (results.length === 0) {
+                resultsList.innerHTML = '<p class="text-gray-500">No matching feast days found.</p>';
+            } else {
+                results.forEach(feast => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'p-4 border rounded-lg hover:bg-gray-50 cursor-pointer';
+                    resultItem.innerHTML = `
+                        <h3 class="font-bold text-indigo-700">${feast.name_en}</h3>
+                        <p class="text-sm text-gray-600">${feast.name_ja} / ${feast.name_la}</p>
+                        <p class="text-sm text-gray-600 mt-1">${monthNames[feast.month - 1]} ${feast.day}</p>
+                    `;
+                    resultItem.addEventListener('click', () => showModal([feast]));
+                    resultsList.appendChild(resultItem);
+                });
+            }
+            calendarContainer.classList.add('hidden');
+            searchResultsContainer.classList.remove('hidden');
+            clearButton.classList.remove('hidden');
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            searchResultsContainer.classList.add('hidden');
+            calendarContainer.classList.remove('hidden');
+            clearButton.classList.add('hidden');
+        }
+
+        // --- Event Listeners ---
+        prevYearBtn.addEventListener('click', () => {
+            currentDate.setFullYear(currentDate.getFullYear() - 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        nextYearBtn.addEventListener('click', () => {
+            currentDate.setFullYear(currentDate.getFullYear() + 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        goToDateBtn.addEventListener('click', () => {
+            const year = parseInt(yearInput.value, 10);
+            const month = parseInt(monthSelect.value, 10);
+
+            if (!isNaN(year) && year > 0 && year < 9999) {
+                currentDate = new Date(year, month, 1);
+                generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+            } else {
+                yearInput.value = currentDate.getFullYear();
+            }
+        });
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        clearButton.addEventListener('click', clearSearch);
+
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                hideModal();
+            }
+        });
+
+        // --- Initial Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateMonthSelect();
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+    </script>
+</body>
+</html>
