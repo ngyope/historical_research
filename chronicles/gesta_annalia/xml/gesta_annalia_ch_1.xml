@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia chapter 1</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Coronatio regis Malcolmi minoris filii Henrici Principis, qui vicebatur virgo.</head>
+                <p>TOLLENS quoque omnis populus Malcolmum puerum tredecim annorum filium Henrici
+                    comitis Northumbriae et <app>
+                        <lem>Huntingdoniae</lem>
+                        <rdg wit="#ms-b">Huntyndon</rdg>
+                    </app>, filii ipsius
+                    regis David, et apud Sconam constituerunt regem pro David avo suo, de quo
+                    veraciter potest dici “Cum semine eorum permanent bona hereditas <app>
+                        <lem>sancta nepotes eorum</lem>
+                        <rdg wit="#ms-b">etc.</rdg>
+                        <rdg wit="#ms-d">nepotes eorum etc.</rdg>
+                    </app>.”
+                    Northumbriae vero comitatum possidebat frater ejus Willelmus, <app>
+                        <lem>et David fratri juniori comitatus Huntidoniae</lem>
+                        <rdg wit="#ms-d">et fratri ejus seniori David comitatus de Huntyngton</rdg>
+                    </app>
+                    subjectus fuit, ut infra patebit. Non immerito regi Scotorum David successit
+                    Malcolmus, major natu nepotum ejus. Qui eundem regem in multis bonis exequens,
+                    in quibusdam etiam gloriose superans, <app>
+                        <lem>in medio gentis suae</lem>
+                        <rdg wit="#ms-d">in gente sua</rdg>
+                    </app> tanquam sidus
+                    coeleste refulsit. Primo quoque anno sui regni, regulus Argadiae Sumerledus <app>
+                        <lem></lem>
+                        <rdg wit="#ms-d">nomine</rdg>
+                    </app>, et sui nepotes, <app>
+                        <lem>filii</lem>
+                        <rdg wit="#ms-d">filii filiae</rdg>
+                    </app>, scilicet,
+                    Malcolmi <app>
+                        <lem>Maccheth</lem>
+                        <rdg wit="#ms-d">Macbeth</rdg>
+                    </app> associatis sibi
+                    plurimis, insurrexerunt in regem suum Malcolmum, et Scociam magna parte
+                    perturbantes inquietaverunt. Erat enim ille Malcolmus filius <app>
+                        <lem>Maccheth</lem>
+                        <rdg wit="#ms-d">Macbeth</rdg>
+                    </app>, sed mentiendo
+                    dicebat, se esse filium Angusii, comitis Moraviae, qui, tempore felicis memoriae
+                    regis David, patriam <app>
+                        <lem>depraedando</lem>
+                        <rdg wit="#ms-d">praedando</rdg>
+                    </app> apud <app>
+                        <lem>Strucathrawych</lem>
+                        <rdg wit="#ms-b">Structhrawych</rdg>
+                    </app> a Scotis cum
+                    tota gente sua interfectus est. Quo mortuo, idem Malcolmus <app>
+                        <lem>Maccheth</lem>
+                        <rdg wit="#ms-d">Macbeth</rdg>
+                    </app> contra regem David,
+                    quasi filius mortem patris vindicaturus, assurgit, et regiones <app>
+                        <lem>Scociae</lem>
+                        <rdg wit="#ms-b #ms-d"></rdg>
+                    </app> 
+                    <app>
+                        <lem>circumjacentes</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d">circumadjacentes</rdg>
+                    </app>
+                    rapinis et praedis afficiens, tandem capitur, et ab eodem rege David in turre
+                    castri de Marchemond arta custodia trucidatur. Continuante itaque civilia bella
+                    Sumerledo, nepos ejus, unus filiorum Malcolmi <app>
+                        <lem>Maccheth</lem>
+                        <rdg wit="#ms-d">Macbeth</rdg>
+                    </app>, Dovenaldus nomine,
+                    per quosdam regis Malcolmi fideles apud <app>
+                        <lem>Withterne</lem>
+                        <rdg wit="#ms-d">Qwhythyre</rdg>
+                    </app> comprehenditur,
+                    et in eadem turre de Marchmond cum patre suo incarceratur. Post cujus captionem,
+                    anno sequenti Malcolmus, pater ejus, cum rege pacificatus est, Sumerledo
+                    nequiter adhuc suam nequitiam in populo exercente.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>王子ヘンリの御子にして、「乙女王」と呼ばれた若きマルコム王の戴冠。</head>
+                <p>
+                    そして民衆は皆、デイヴィッド王自身の息子であったノーサンブリア伯兼ハンティンドン伯ヘンリーの息子、十三歳の少年マルコムを擁し、祖父デイヴィッドに代わる王としてスクーンにて即位させた[1]。このマルコムについて、真にこう言うことができるであろう。「彼らの子孫とともに、聖なる遺産という善が彼らの孫たちに永続する」と。さて、ノーサンブリア伯領は彼の弟ウィリアムが領有し、ハンティンドン伯領は下の弟デイヴィッドに与えられた。このことは以下で明らかになるであろう。マルコムが孫たちの中で最年長者としてスコット人の王デイヴィッドの後を継いだのは、不当なことではなかった。彼は多くの善行においてかの王に倣い、いくつかの点ではさらに輝かしく彼を凌駕し、自らの民のただ中で天の星のごとく光り輝いた。彼の治世の最初の年に、アーガイルの小王サマーレッドと、その甥たち、すなわちマルコム・マクヘスの息子たちが、多くの者たちを味方につけて、彼らの王マルコムに対して反乱を起こし、スコティアの大部分を騒乱に陥れ、国をかき乱した[2]。というのも、かのマルコムはマクヘスの子であったが、偽って、自分はマリ伯アンガスの子であると言っていた。このアンガスは、幸いなる記憶のデイヴィッド王の時代に、ストラスカースロにて国土を略奪しようとしていたところを、スコット人によって一族もろとも殺害された人物である。アンガスの死後、このマルコム・マクヘスはあたかも息子として父の死の復讐をせんとするかのごとくデイヴィッド王に蜂起し、スコティアの周辺地域を略奪と破壊によって苦しめたが、ついに捕らえられ、かのデイヴィッド王によってマーチモント城の塔にて厳重な監視のもと殺害された。かくしてサマーレッドが内乱を続ける中、その甥でありマルカム・マクヘスの息子の一人であるドナルドという名の者が、ウィットホーンにてマルコム王の忠実な家臣の一部によって捕縛され、マーチモントの同じ塔に父と共に投獄された。彼が捕らえられた後、翌年、その父マルコムは王と和解したが、一方でサマーレッドはなおも邪悪に民衆に対してその悪事を働いていた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
