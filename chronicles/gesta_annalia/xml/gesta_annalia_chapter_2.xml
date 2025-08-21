@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia chapter 2</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-a">Wolfenbüttel MS.</witness>
+                    <witness xml:id="ms-b">MS. Cotton, Vitellius E. XI.</witness>
+                    <witness xml:id="ms-c">The Trinity College, Cambridge (MS. Gale, O. ix, 9)</witness>
+                    <witness xml:id="ms-d">The Trinity College, Dublin, E. 2. 28</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>MORTUO autem Anglorum rege Stephano, Henricus, dux Normanniae, filius imperatricis, in regem consecratus est, anno, videlicet, regis Scociae Malcolmi secundo. Qui ut cum sublimatus esset in regnum, suae sponsionis immemor et juramenti, quod prius regi David, avunculo suae matris, sacramento <app>
+                    <lem></lem>
+                    <rdg wit="#ms-d">fideli</rdg>
+                </app> et firmaverat, Northumbriam calumpnians et Cumbriam, cum annis <app>
+                    <lem>vernosis</lem>
+                    <rdg wit="#ms-d">multis</rdg>
+                </app> jam regi Scociae obedirent, satagebat invadere; necnon comitatum <app>
+                    <lem>Huntingdoniae</lem>
+                    <rdg wit="#ms-d">de Huntyngton</rdg>
+                </app> in possessione propria recognovit. Inita tamen inter eos reges ad tempus pace, sed ficta, intra quam, quorum instinctu nescio, rex Malcolmus regem adiens Henricum apud Cestriam, ei <app>
+                    <lem>hominium</lem>
+                    <rdg wit="#ms-d">homagium</rdg>
+                </app> fecit, eo videlicet modo, quo avus suus rex David fuerat homo veteris Henrici regis: sperans ob hoc suas possessiones, ut quidam autumant, possidere pacifice, dignitatibus suis tamen omnibus sibi salvis. Quo tamen in loco suos quosdam consiliarios, <app>
+                    <lem>Anglorum, ut fertur, pecuniis illectos, execranda conflexit cupiditas: quorum mox ingenio rex seductus fallaci, sic quoque quod in eodem anno Northumbriam regi Angliae suis praeter paucis inconsultis proceribus, et Cumbriam reddidit. Cui et idem rex Angliae comitatum Huntingdoniae restituit. Ob quam causam totius Scociae communitas, contra dominum suum regem, et suos consiliarios</lem>
+                    <rdg wit="#ms-c">Anglorum, ut fertur, pecuniis illectos, execranda conflexit cupiditas: quorum mox ingenio rex seductus fallaci, sic quoque quod in eodem anno Northumbriam regi Anglorum suis praeter paucis inconsultis proceribus, et Cumbriam reddidit. Cui et idem rex Angliae comitatum Huntingdoniae restituit. Ob quam causam totius Scociae communitas, contra dominum suum regem, et suos consiliarios</rdg>
+                    <rdg wit="#ms-b #ms-d"></rdg>
+                </app> in odium unanimis murmure tacito concitatur. Idem interea reges, anno sequenti apud Carleolum pro suis convenientes negotiis, sed non bene concordes, ut pluribus patuit, ab invicem discesserunt. Paucistamen <app>
+                    <lem>postea</lem>
+                    <rdg wit="#ms-b #ms-d"></rdg>
+                </app> elapsis annis, videlicet, anno regni regis Scociae <app>
+                    <lem>VII°</lem>
+                    <rdg wit="#ms-c #ms-d">septimo</rdg>
+                </app>, rex Henricus, versus Tolosam <app>
+                    <lem></lem>
+                    <rdg wit="#ms-b #ms-d">venit</rdg>
+                </app> copiosum movens exercitum, frustratis principalis intentionis nisibus, Lodovico Francorum rege urbem tuente, <app>
+                    <lem>regressus</lem>
+                    <rdg wit="ms-c">ingressus</rdg>
+                </app> est, et de summa pace summa suborta est discordia; cui expeditioni interfuit cum eo, magnatum suorum invitis pluribus, rex Malcolmus, et in eorum inde reditu gladio militiae ab eo cinctus est in civitate Turonensi.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>
+                    さて、イングランド人の王スティーブンが亡くなると、皇后の息子であるノルマンディー公ヘンリ<note type="editorial" place="bottom">イングランド王ヘンリ二世（在位：一一五四～一一八九年）</note>が、スコットランド王マルカムの治世第二年に、王として聖別された。彼は王国の高みに上げられるや、自身の約束とかつて彼の母の叔父であるデイヴィッド王に聖なる誓いをもって確約した誓いを忘れ、長年にわたりスコットランド王に従属していたノーサンブリアとカンブリアの領有権を主張し、侵攻しようと画策した。のみならず、ハンティンドン伯領をも自身の所有物であると認めたのである。しかし、両王の間で一時的に和平が結ばれたが、それは偽りのものであった。その和平の期間中に、誰の扇動によるものか私は知らないが、マルコム王はチェスターにてヘンリ王に謁見し、彼に臣従の礼をとった。それはすなわち、彼の祖父デイヴィッド王が老ヘンリ王<note type="editorial" place="bottom">イングランド王ヘンリ一世（在位：一一〇〇～一一三五年）</note>の臣下であったのと全く同じやり方においてであった。これによって、自身のすべての尊厳は保持されたまま、自らの所領を平和裏に所有できることを期待してのことである、と一部の者は言う。ところがその場で、彼の顧問官の一部が、伝えられるところではイングランド人の金銭に釣られ、忌まわしき強欲によって道を誤った。そして間もなく、彼らの偽りの策略によって王は惑わされ、同年、ごく少数の者を除いて貴族たちに諮ることなく、ノーサンブリアとカンブリアをイングランド王に返還してしまった。これに対し、かのイングランド王はハンティンドン伯領を彼に返還した。この一件を理由として、スコットランドの共同体全体が、彼らの主君たる王とその顧問官たちに対し、満場一致の憎しみをもって、静かな不満の声を上げたのである。その間、両王は翌年カーライルにて互いの懸案のために会見したが、多くの者には明らかであったように、うまく合意することなく、互いに別れた。しかしその後数年、すなわちスコットランド王の治世第七年に、ヘンリ王はトゥールーズに向けて大軍を動かしたが、フランク人の王ルイ<note type="editorial" place="bottom">フランス王ルイ七世（在位：一一三七～一一八〇年）</note>がその都市を防衛したため、主たる目的を達成できずに撤退した。そして、この上ない和平からこの上ない不和が生じた。この遠征には、自国の有力貴族の多くが反対する中、マルコム王も彼と共に参加した。そして、その帰路において、彼はトゥールの都市でヘンリ王から騎士の剣を授けられたのである。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
