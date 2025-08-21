@@ -298,7 +298,8 @@
                         list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
                         footnotes.forEach((noteText, index) => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = `[${index + 1}] ${noteText}`;
+                            // FIX: Remove the redundant [index + 1] prefix
+                            listItem.textContent = noteText;
                             list.appendChild(listItem);
                         });
                         footnotesContainer.appendChild(list);
