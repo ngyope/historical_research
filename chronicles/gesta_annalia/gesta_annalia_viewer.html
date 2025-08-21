@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写本異読ビューア | Chron. Fordun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+        }
+        .variant {
+            color: #2563eb; /* blue-600 */
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd; /* blue-300 */
+            position: relative;
+            font-weight: 500;
+        }
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background-color: #1f2937; /* gray-800 */
+            color: #ffffff;
+            text-align: left;
+            padding: 8px 12px;
+            border-radius: 6px;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.2s, visibility 0.2s;
+            white-space: normal;
+            width: 250px;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1f2937 transparent transparent transparent;
+        }
+        .variant:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .footnote-ref {
+            color: #1d4ed8; /* blue-700 */
+            font-weight: 600;
+            vertical-align: super;
+            font-size: 0.75em;
+            line-height: 1;
+        }
+        .footnote-ref.variant {
+            border-bottom: none;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 2px;
+        }
+        /* Toolbar Styles */
+        #toc a.active {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #3730a3; /* indigo-800 */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col h-screen">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md p-4 z-10 flex-shrink-0">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 text-center">Chronica Gentis Scotorum (Fordun)</h1>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar / Toolbar -->
+        <nav class="w-64 bg-white shadow-md flex-shrink-0 overflow-y-auto">
+            <div class="p-4 border-b">
+                <h2 class="text-xl font-bold text-gray-800">目次</h2>
+            </div>
+            <div id="toc" class="p-2 space-y-1">
+                <!-- Table of Contents will be generated here by JavaScript -->
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
+            <div id="content-container" class="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+                <div class="p-6 sm:p-8">
+                    <h2 id="main-subtitle" class="text-xl md:text-2xl font-bold text-gray-700">章を選択してください</h2>
+                </div>
+
+                <div id="original-text-container" class="p-6 sm:p-8 border-t border-gray-200">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">原文 (Latinum)</h3>
+                    <div id="original-text" class="text-lg leading-relaxed space-y-4 text-justify">
+                        <!-- ラテン語のテキストがここに挿入されます -->
+                    </div>
+                </div>
+
+                <div id="translation-text-container" class="p-6 sm:p-8 bg-gray-50 border-t border-gray-200">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">日本語訳</h3>
+                    <div id="japanese-translation" class="text-base leading-loose space-y-4 text-justify">
+                         <!-- 日本語訳がここに挿入されます -->
+                    </div>
+                </div>
+            </div>
+             <footer class="text-center text-sm text-gray-500 mt-6 pb-4">
+                <p>XMLデータを解析し、写本間の異同をインタラクティブに表示しています。</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Configuration ---
+            const chapters = [
+                { title: "Gesta Annalia, Chapter 1", file: "gesta_annalia_chapter_1.xml" },
+                // { title: "Gesta Annalia, Chapter 2", file: "gesta_annalia_chapter_2.xml" },
+            ];
+            const xmlFolderPath = 'xml/';
+
+            const tocContainer = document.getElementById('toc');
+            const mainSubtitle = document.getElementById('main-subtitle');
+            const originalContainer = document.getElementById('original-text');
+            const translationContainer = document.getElementById('japanese-translation');
+
+            /**
+             * XMLファイルを読み込み、内容を画面に描画する
+             */
+            async function loadAndProcessXML(filePath, chapterTitle) {
+                originalContainer.innerHTML = '<p>読み込み中...</p>';
+                translationContainer.innerHTML = '';
+                mainSubtitle.textContent = chapterTitle;
+
+                try {
+                    const response = await fetch(filePath);
+                    if (!response.ok) {
+                        throw new Error(`ファイルが見つかりません: ${response.statusText}`);
+                    }
+                    const xmlString = await response.text();
+                    
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+                    
+                    const parserError = xmlDoc.querySelector("parsererror");
+                    if (parserError) {
+                        throw new Error("XMLの解析に失敗しました。");
+                    }
+
+                    renderContent(xmlDoc);
+
+                } catch (error) {
+                    console.error("Error loading or parsing XML:", error);
+                    const errorMessage = `<p class='text-red-600'>エラー: ${error.message}</p>`;
+                    originalContainer.innerHTML = errorMessage;
+                    translationContainer.innerHTML = '';
+                }
+            }
+            
+            /**
+             * パースされたXMLドキュメントから内容を抽出し、HTMLに変換して描画する
+             */
+            function renderContent(xmlDoc) {
+                originalContainer.innerHTML = '';
+                translationContainer.innerHTML = '';
+
+                const teiNS = "http://www.tei-c.org/ns/1.0";
+                let originalDiv = null;
+                let translationDiv = null;
+
+                const allDivs = xmlDoc.getElementsByTagNameNS(teiNS, 'div');
+                for (let i = 0; i < allDivs.length; i++) {
+                    const div = allDivs[i];
+                    const type = div.getAttribute('type');
+                    if (type === 'textpart') {
+                        originalDiv = div;
+                    } else if (type === 'translation') {
+                        translationDiv = div;
+                    }
+                }
+
+                if (originalDiv) {
+                    processTextPart(originalDiv, originalContainer, teiNS);
+                } else {
+                    originalContainer.innerHTML = "<p>[原文セクションが見つかりませんでした。]</p>";
+                }
+
+                if (translationDiv) {
+                    processTranslationPart(translationDiv, translationContainer, teiNS);
+                } else {
+                    translationContainer.innerHTML = "<p>[日本語訳セクションが見つかりませんでした。]</p>";
+                }
+            }
+
+            /**
+             * 原文パートを処理して描画する
+             */
+            function processTextPart(div, container, ns) {
+                const head = div.getElementsByTagNameNS(ns, 'head')[0];
+                const p = div.getElementsByTagNameNS(ns, 'p')[0];
+
+                if (head) {
+                    const headElement = document.createElement('h4');
+                    headElement.className = 'text-lg font-semibold italic text-gray-600 mb-4';
+                    headElement.textContent = head.textContent;
+                    container.appendChild(headElement);
+                }
+                
+                const pElement = document.createElement('p');
+                container.appendChild(pElement);
+
+                if (p) {
+                    p.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            pElement.appendChild(document.createTextNode(node.textContent));
+                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'app') {
+                            const lem = node.getElementsByTagNameNS(ns, 'lem')[0];
+                            const rdgs = node.getElementsByTagNameNS(ns, 'rdg');
+                            const span = document.createElement('span');
+                            span.className = 'variant';
+                            span.textContent = lem && lem.textContent ? lem.textContent : '[om.]';
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'tooltip';
+                            if (rdgs.length > 0) {
+                                let tooltipContent = '';
+                                for (let i = 0; i < rdgs.length; i++) {
+                                    const rdg = rdgs[i];
+                                    const wit = rdg.getAttribute('wit').replace(/#/g, '').replace(/\s/g, ', ');
+                                    const text = rdg.textContent || '[om.]';
+                                    tooltipContent += `<div class="mb-1 last:mb-0"><span class="font-bold text-blue-300">${wit}:</span> ${text}</div>`;
+                                }
+                                tooltip.innerHTML = tooltipContent;
+                            } else {
+                                tooltip.innerHTML = '<span>異読なし</span>';
+                            }
+                            span.appendChild(tooltip);
+                            pElement.appendChild(span);
+                        }
+                    });
+                }
+            }
+
+            /**
+             * 日本語訳パートを処理して描画する
+             */
+            function processTranslationPart(div, container, ns) {
+                const head = div.getElementsByTagNameNS(ns, 'head')[0];
+                const p = div.getElementsByTagNameNS(ns, 'p')[0];
+
+                if (head) {
+                    const headElement = document.createElement('h4');
+                    headElement.className = 'text-md font-semibold text-gray-700 mb-4';
+                    headElement.textContent = head.textContent;
+                    container.appendChild(headElement);
+                }
+                
+                if (p) {
+                    const pElement = document.createElement('p');
+                    const footnotes = [];
+                    
+                    p.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            pElement.appendChild(document.createTextNode(node.textContent));
+                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'note') {
+                            const noteText = node.textContent;
+                            footnotes.push(noteText);
+                            const footnoteIndex = footnotes.length;
+                            const noteRefSpan = document.createElement('span');
+                            noteRefSpan.className = 'variant footnote-ref';
+                            noteRefSpan.textContent = `[${footnoteIndex}]`;
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'tooltip';
+                            tooltip.textContent = noteText;
+                            noteRefSpan.appendChild(tooltip);
+                            pElement.appendChild(noteRefSpan);
+                        }
+                    });
+                    container.appendChild(pElement);
+
+                    if (footnotes.length > 0) {
+                        const footnotesContainer = document.createElement('div');
+                        footnotesContainer.className = 'mt-8 pt-4 border-t border-gray-300';
+                        const footnotesHeader = document.createElement('h4');
+                        footnotesHeader.className = 'font-semibold text-gray-700 mb-2';
+                        footnotesHeader.textContent = '編集者注';
+                        footnotesContainer.appendChild(footnotesHeader);
+                        const list = document.createElement('ol');
+                        list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
+                        footnotes.forEach((noteText, index) => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `[${index + 1}] ${noteText}`;
+                            list.appendChild(listItem);
+                        });
+                        footnotesContainer.appendChild(list);
+                        container.appendChild(footnotesContainer);
+                    }
+                }
+            }
+
+            // --- Initialization ---
+            chapters.forEach(chapter => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = chapter.title;
+                link.className = 'block p-2 rounded-md hover:bg-gray-100 transition-colors';
+                link.dataset.file = chapter.file;
+
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('#toc a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                    const filePath = xmlFolderPath + link.dataset.file;
+                    loadAndProcessXML(filePath, chapter.title);
+                });
+                tocContainer.appendChild(link);
+            });
+
+            if (chapters.length > 0) {
+                const firstLink = tocContainer.querySelector('a');
+                firstLink.click();
+            }
+        });
+    </script>
+</body>
+</html>
