@@ -11,8 +11,22 @@
     gtag('config', 'G-WPRWYN8RR6');
     </script>
     <meta charset="UTF-8">
+    <title>British Saints' Day Calendar: Fixed & Movable Feasts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>British Saints' Day Calendar</title>
+    <meta name="description" content="An interactive calendar of British saints' days, showing fixed and movable feasts. Search by name (English, Latin, Japanese) or date. Based on C.R. Cheney's 'A Handbook of Dates'.">
+    <meta name="keywords" content="British saints, saints days, liturgical calendar, feast days, movable feasts, fixed feasts, Easter calculation, medieval history, church history, Cheney, Handbook of Dates, Julian calendar, Gregorian calendar">
+    <meta name="author" content="History">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="British Saints' Day Calendar: Fixed & Movable Feasts">
+    <meta property="og:description" content="An interactive calendar of British saints' days, showing fixed and movable feasts. Search by name or date.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="British Saints' Day Calendar: Fixed & Movable Feasts">
+    <meta property="twitter:description" content="An interactive calendar of British saints' days, showing fixed and movable feasts. Search by name or date.">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -40,6 +54,40 @@
             overflow-y: auto;
         }
     </style>
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "British Saints' Day Calendar: Fixed & Movable Feasts",
+          "description": "An interactive calendar of British saints' days, showing fixed and movable feasts. Search by name (English, Latin, Japanese) or date. Based on C.R. Cheney's 'A Handbook of Dates'.",
+          "url": "https://www.example.com/british-saints-calendar.html",
+          "inLanguage": ["en-GB", "ja"],
+          "author": {
+            "@type": "Organization",
+            "name": "History"
+          },
+          "mainEntity": {
+            "@id": "#dataset"
+          }
+        },
+        {
+          "@type": "Dataset",
+          "@id": "#dataset",
+          "name": "British Saints' Days and Movable Feasts",
+          "description": "A dataset of fixed and movable feast days of British saints, including names in English, Latin, and Japanese. The data is based on C.R. Cheney's 'A Handbook of Dates' and includes calculation logic for Easter (Julian and Gregorian).",
+          "creator": {
+            "@type": "Organization",
+            "name": "History"
+          },
+          "license": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
