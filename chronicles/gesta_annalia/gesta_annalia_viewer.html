@@ -81,8 +81,7 @@
         <h1 class="text-2xl md:text-3xl font-bold text-gray-900 text-left">『ゲスタ・アナリア』(<i>Gesta Annalia</i>)</h1>
     </header>
 
-    <!-- FIX: Removed 'overflow-hidden' from this container to prevent tooltips from being clipped at the edges of the main content area. -->
-    <div class="flex flex-1">
+    <div class="flex flex-1 overflow-hidden">
         <!-- Sidebar / Toolbar -->
         <nav class="w-96 bg-white shadow-md flex-shrink-0 overflow-y-auto">
             <div class="p-4 border-b">
@@ -95,7 +94,8 @@
 
         <!-- Main Content Area -->
         <main class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-            <div id="content-container" class="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+            <!-- FIX: Removed 'overflow-hidden' from the content card to allow tooltips to display correctly without being clipped. -->
+            <div id="content-container" class="bg-white rounded-xl shadow-lg max-w-4xl mx-auto">
                 <div class="p-6 sm:p-8">
                     <h2 id="main-subtitle" class="text-xl md:text-2xl font-bold text-gray-700">章を選択してください</h2>
                 </div>
