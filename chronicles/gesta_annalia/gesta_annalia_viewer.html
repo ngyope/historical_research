@@ -38,6 +38,7 @@
             width: 250px;
             font-size: 0.875rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none; /* Prevent tooltip from interfering with mouse events */
         }
         .tooltip::after {
             content: "";
@@ -49,10 +50,9 @@
             border-style: solid;
             border-color: #1f2937 transparent transparent transparent;
         }
-        .variant:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
+        /* This rule is removed from JS control to allow dynamic positioning */
+        /* .variant:hover .tooltip { ... } */
+
         .footnote-ref {
             color: #1d4ed8; /* blue-700 */
             font-weight: 600;
@@ -202,6 +202,52 @@
                     translationContainer.innerHTML = "<p>[日本語訳セクションが見つかりませんでした。]</p>";
                 }
             }
+            
+            /**
+             * ツールチップの位置を画面内に収まるように調整する
+             */
+            function adjustTooltipPosition(tooltip) {
+                const rect = tooltip.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+
+                // Reset styles before calculation
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translateX(-50%)';
+                tooltip.style.right = 'auto';
+
+                const newRect = tooltip.getBoundingClientRect();
+
+                if (newRect.left < 10) { // 10px margin from left edge
+                    tooltip.style.left = '10px';
+                    tooltip.style.transform = 'translateX(0)';
+                } else if (newRect.right > viewportWidth - 10) { // 10px margin from right edge
+                    tooltip.style.left = 'auto';
+                    tooltip.style.right = '10px';
+                    tooltip.style.transform = 'translateX(0)';
+                }
+            }
+
+            /**
+             * ツールチップを持つ要素にイベントリスナーを追加する
+             */
+            function addTooltipEvents(element) {
+                element.addEventListener('mouseover', (event) => {
+                    const tooltip = event.currentTarget.querySelector('.tooltip');
+                    if (!tooltip) return;
+                    
+                    tooltip.style.visibility = 'visible';
+                    tooltip.style.opacity = '1';
+                    adjustTooltipPosition(tooltip);
+                });
+
+                element.addEventListener('mouseout', (event) => {
+                    const tooltip = event.currentTarget.querySelector('.tooltip');
+                    if (!tooltip) return;
+
+                    tooltip.style.visibility = 'hidden';
+                    tooltip.style.opacity = '0';
+                });
+            }
 
             /**
              * 原文パートを処理して描画する
@@ -246,6 +292,7 @@
                             }
                             span.appendChild(tooltip);
                             pElement.appendChild(span);
+                            addTooltipEvents(span); // Add event listeners
                         }
                     });
                 }
@@ -284,6 +331,7 @@
                             tooltip.textContent = noteText;
                             noteRefSpan.appendChild(tooltip);
                             pElement.appendChild(noteRefSpan);
+                            addTooltipEvents(noteRefSpan); // Add event listeners
                         }
                     });
                     container.appendChild(pElement);
@@ -299,7 +347,6 @@
                         list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
                         footnotes.forEach((noteText, index) => {
                             const listItem = document.createElement('li');
-                            // FIX: Remove the redundant [index + 1] prefix
                             listItem.textContent = noteText;
                             list.appendChild(listItem);
                         });
