@@ -15,8 +15,8 @@
                 <listWit>
                     <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
                     <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
-                    <witness xml:id="ms-c">The Trinity College, Cambridge (MS. Gale, O. ix, 9)</witness>
-                    <witness xml:id="ms-d">The Trinity College, Dublin, E. 2. 28</witness>
+                    <witness xml:id="ms-c">Cambridge, Trinity College, MS 0.9.9.</witness>
+                    <witness xml:id="ms-d">Dublin, Trinity College, MS 498.</witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
