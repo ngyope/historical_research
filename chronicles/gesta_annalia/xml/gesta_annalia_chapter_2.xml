@@ -13,10 +13,11 @@
             <sourceDesc>
                 <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
                 <listWit>
-                    <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
-                    <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
-                    <witness xml:id="ms-c">Cambridge, Trinity College, MS 0.9.9.</witness>
-                    <witness xml:id="ms-d">Dublin, Trinity College, MS 498.</witness>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
@@ -34,10 +35,10 @@
                 <head>Narratio genealogia Alfredi, filii Ethelwolf.</head>
                 <p>HUJUS filius fuit illud Anglorum decus, regum gemma, virtutum exemplar, Alferedus nomine, ceteris fratribus suis aetate minor, sed annosior virtute. Cum vero, post mortem fratrem suorum, cum quibus aliquo tempore regnabat, ad eum totum regnum devenisset, ut videretur omnium hominum moribus ac naturae congruere, omnibus utilis ac necessarius esse satagebat. Et, quod nunc raro invenitur in terris, illam maxime regis credidit dignitatem, <app>
                     <lem>nullam</lem>
-                    <rdg wit="#ms-c">ullam</rdg>
+                    <rdg wit="#ms-fc">ullam</rdg>
                 </app> in ecclesiis Christi habere potestatem. Cum vero regnasset annis <app>
                     <lem>XX et novem</lem>
-                    <rdg wit="#ms-c">XXIX</rdg>
+                    <rdg wit="#ms-fc">XXIX</rdg>
                 </app> et mensibus sex, de regno terreno ad regnum coeleste transcendit, Edwardum filium suum regni morumque suorum relinquens heredem. Erat enim iste Edwardus in scientia litterarum patre minor, sanctitate vero non multum inferior, sed regia potestate valde superior. Vixit autem in regno XXIIII annis. Et genuit filios et filias, scilicet, ex nobilissima femina Edwina filium suum primogenitum Ethelstanum; ex Editha vero regina Edwinum, Edmundum, Ethredum. Dormivit igitur rex Edwardus cum patribus suis, et regnavit primogenitus ejus Ethelstanus pro eo, ambulans in viis patrum suorum omni virtute repletus. Cum eum vero reliquiae Dacorum more suo nefandum erigunt caput, sed contriti sunt sub pedibus ejus. Cum autem vixisset in regno suo XVI annis mortuus est. Et regnavit frater ejus Edmundus pro eo. Erat autem patris sui Edwardi iste Edmundus in omnibus imitator, homo simplex, et rectus, et timens Deum, et usque ad finem manens in innocentia sua. Qua impii abutentes pagani, quia religione Christianae, quam excolebat rex Deo dilectus, et illi se subdere contradicentes, mortis ejus qualicunque modo insidias moliuntur. Ille autem, quem illorum minime potuit latere abominabile propositum, nimis aegre ferens, eorum cultura ydolorum regni sui foedari decorem, quinque nobilissimas civitates, quas tunc incolebant, scilicet, Lindecolniam, Laicestriam, Stanfordiam, Snotingham, Dereby, de eorum manibus et incolatu potenter extorsit, omnique infidelitate abrasa Christianae fidei lumine illustravit. Cum igitur sub tanto patre magis quam rege tota Anglia pace magna floreret, immatura ejus morte, quam exactis in regno annis quinque et septem mensibus incurrens, subito dolore et passione inopinata emarcuit. <hi rend="italic">Tu autem Domine</hi>.</p>
             </div>
             <div type="translation" xml:lang="ja">
