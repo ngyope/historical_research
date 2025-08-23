@@ -20,6 +20,11 @@
             position: relative;
             font-weight: 500;
         }
+        /* [追加] 2色目のハイライト色を定義 */
+        .variant.variant-alt {
+            color: #0d9488; /* teal-600 */
+            border-bottom-color: #5eead4; /* teal-300 */
+        }
         .tooltip {
             visibility: hidden;
             opacity: 0;
@@ -82,7 +87,7 @@
                 <h2 class="text-xl font-bold text-gray-800">目次 (Table of Contents)</h2>
             </div>
             <div id="toc" class="p-2 space-y-1">
-                </div>
+            </div>
         </nav>
 
         <main class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
@@ -94,13 +99,13 @@
                 <div id="original-text-container" class="p-6 sm:p-8 border-t border-gray-200">
                     <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">原文 (Latin)</h3>
                     <div id="original-text" class="text-lg leading-relaxed space-y-4 text-justify">
-                        </div>
+                    </div>
                 </div>
 
                 <div id="translation-text-container" class="p-6 sm:p-8 bg-gray-50 border-t border-gray-200">
                     <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">日本語訳 (Modern Japanese Translation)</h3>
                     <div id="japanese-translation" class="text-base leading-loose space-y-4 text-justify">
-                         </div>
+                    </div>
                 </div>
             </div>
              <footer class="text-center text-sm text-gray-500 mt-6 pb-4">
@@ -200,17 +205,16 @@
                 const rect = tooltip.getBoundingClientRect();
                 const viewportWidth = window.innerWidth;
 
-                // Reset styles before calculation
                 tooltip.style.left = '50%';
                 tooltip.style.transform = 'translateX(-50%)';
                 tooltip.style.right = 'auto';
 
                 const newRect = tooltip.getBoundingClientRect();
 
-                if (newRect.left < 10) { // 10px margin from left edge
+                if (newRect.left < 10) {
                     tooltip.style.left = '10px';
                     tooltip.style.transform = 'translateX(0)';
-                } else if (newRect.right > viewportWidth - 10) { // 10px margin from right edge
+                } else if (newRect.right > viewportWidth - 10) {
                     tooltip.style.left = 'auto';
                     tooltip.style.right = '10px';
                     tooltip.style.transform = 'translateX(0)';
@@ -241,11 +245,11 @@
 
             /**
              * 原文パートを処理して描画する
-             * [変更点] 複数の <p> タグを処理できるように修正
+             * [変更点] <app> タグのハイライト色を交互に変更
              */
             function processTextPart(div, container, ns) {
                 const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p'); // [変更] すべてのpタグを取得
+                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
 
                 if (head) {
                     const headElement = document.createElement('h4');
@@ -254,7 +258,8 @@
                     container.appendChild(headElement);
                 }
                 
-                // [変更] 各段落をループ処理
+                let appIndex = 0; // [追加] <app>タグを数えるカウンター
+
                 for (const p of paragraphs) {
                     const pElement = document.createElement('p');
                     container.appendChild(pElement);
@@ -266,7 +271,13 @@
                             const lem = node.getElementsByTagNameNS(ns, 'lem')[0];
                             const rdgs = node.getElementsByTagNameNS(ns, 'rdg');
                             const span = document.createElement('span');
-                            span.className = 'variant';
+
+                            // [変更] appIndexの値に応じてクラスを付け分ける
+                            span.classList.add('variant');
+                            if (appIndex % 2 !== 0) { // 奇数番目(1, 3, 5...)の場合
+                                span.classList.add('variant-alt');
+                            }
+                            
                             span.textContent = lem && lem.textContent ? lem.textContent : '[om.]';
                             const tooltip = document.createElement('div');
                             tooltip.className = 'tooltip';
@@ -284,7 +295,9 @@
                             }
                             span.appendChild(tooltip);
                             pElement.appendChild(span);
-                            addTooltipEvents(span); // Add event listeners
+                            addTooltipEvents(span);
+                            
+                            appIndex++; // [追加] <app>を処理したのでカウンターを増やす
                         }
                     });
                 }
@@ -292,11 +305,10 @@
 
             /**
              * 日本語訳パートを処理して描画する
-             * [変更点] 複数の <p> タグを処理できるように修正
              */
             function processTranslationPart(div, container, ns) {
                 const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p'); // [変更] すべてのpタグを取得
+                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
                 const footnotes = [];
 
                 if (head) {
@@ -306,7 +318,6 @@
                     container.appendChild(headElement);
                 }
                 
-                // [変更] 各段落をループ処理
                 for (const p of paragraphs) {
                     const pElement = document.createElement('p');
                     
@@ -325,7 +336,7 @@
                             tooltip.textContent = noteText;
                             noteRefSpan.appendChild(tooltip);
                             pElement.appendChild(noteRefSpan);
-                            addTooltipEvents(noteRefSpan); // Add event listeners
+                            addTooltipEvents(noteRefSpan);
                         }
                     });
                     container.appendChild(pElement);
