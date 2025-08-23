@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Plorogus</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Incipit Prologus.</head>
+                <p>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            CUM ad seriem Cronicarum et gestorum laudabilium veritatis enucliacionis licet novitas favorabilis sit, et 
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">multorum</lem>
+                        <rdg wit="#ms-b">mulcentur</rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            aures audiencium, principes tamen et praelati et alii viri famosi in multis et arduis mundanae conversacionis negociis, ac eciam in evitabilibus vexacionibus plurimum et multiphariis occupati non poterunt sine gravi poena, quae multociens taedium inducit, et de cordibus audiencium appetitum audiendi extinguit, ad tantae prolixitatis volumen, prout in magnis Cronicis ad experienciam videmus, diuturnas aures accomodare. Intencio igitur auctoris est, cum correccione illorum quorum interest vel interesse poterit quomodolibet in futurum, unamquamque materiam utilem et fructuosam in magnis memoratam breviter et compendiose, gracia Spiritus Sancti cooperante, tangere. Et cum frustra 
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">sit per plura</lem>
+                        <rdg wit="#ms-b">fit per plurima</rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            quod fieri poterit per pauciora, effectum uniuscujusque materiae, tanquam musca mellis in floribus camporum, ea quae ad ostensionem effectualem veritatis rei gerendae sufficere videntur, absque longo processu et multiloquio, quae nonnuncquam confusionem et taedium </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">detulerunt</lem>
+                        <rdg wit="#ms-b">inducunt</rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">, flore inviolato permanente, enucliare, elicere et explicare; ac inde compendium Cronicarum, ad appetitum, ordinacionem et mandatum venerabilis in Christo patris ac Domini </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a">D []</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e"></rdg>
+                    </app>    
+                    <app>
+                        <lem wit="#ms-a #ms-b">permissione divina abbatis monasterii de Dunfermlyn nunc regentis et deinde monasterium gubernantis, conficere. Ultimate vero et in fine, acta in tempore nostro accidencia, meliori modo quo potero, exclusis inutilibus nugacionibus ac eciam frustratoriis vanitatibus ad rem non pertinentibus, inquirere, colligere et memorare et inferre, cum quibusdam aliis actibus mirificis quae ego qui scribo extra limites hujus regni scivi, vidi et audivi. Item postremo de quadam puella mirabili quae causa fuit recuperacionis regni Franciae de manibus Henrici tiranni regis Angliae, quam vidi, novi et cum ea fui in quaestis suis dictae recuperacionis; usque ad finem vitae suae praesens interfui, etc.</lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>                 
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>序章、ここに始まる</head>
+                <p>
+                    年代記や称賛すべき御業の連続に関する真理を新たに、そして好意的に解明することは多くの聴衆の耳に心地よいものではあろうが、君主、高位聖職者、その他の著名な人々は世俗の交わりの多くの困難な務めに、また避けがたい様々な心労にあまりにも多岐にわたり忙殺されているため、長大な年代記で我々が経験から知るようなかくも長大な書物に、深刻な苦痛なくしては長く耳を傾けることはできない。その苦痛はしばしば倦怠を誘い、聴衆の心から聴聞の意欲を消し去ってしまうからである。したがって、筆者の意図は現在および将来において何らかの形で関心を持つであろう人々の校閲のもと、聖霊の恩寵の助けを得て、長大な年代記に記された有益かつ実りある各々の事柄に簡潔かつ要約的に触れることにある。そして、より少ない言葉で成し遂げられることをより多くの言葉を費やして行うのは無駄であるから、野の花に集う蜜蜂のように各々の事柄の核心を――すなわち、物事の真理を効果的に示すのに十分と思われる事柄を、時には混乱と倦怠をもたらした長々しい手続きや多言を弄することなく、花そのものを損なわずに――解明し、引き出し、説明することである。そしてそこから、キリストにおける尊ぶべき父、神の許しによりダンファームリン修道院の院長であり、現在は摂政、次いで同修道院を統治するＤ師の要望<note type="editorial" place="bottom">十五世紀までの歴代ダンファームリン修道院長にイニシャルがＤで始まる人物は知られていないが、スキーンはこの年代記の編纂を要望した修道院長を一四四四年から一四六八年までその職を務めたリチャード・ボズウェルとしている。[Watt, 2001, 67-71]; [Skene, 1877, xvi]</note>、命令、そして負託に応え、年代記の綱要を編纂することである。最後に、結びとして、我々の時代に起こった出来事を無用なぜい言や事柄に関係のない無益な虚栄を排除し、私がなしうる最善の方法で調査し、収集し、記憶し、そして記録すること、さらには、筆者である私がこの王国の外で知り、見、そして聞いた他のいくつかの驚くべき御業と共に書き記すことである。最後に、イングランドの暴君王ヘンリの手からフランス王国の奪還の大義であった、ある驚くべき乙女について。私は彼女に会い、知り、かの奪還の探求において彼女と共にあり、その生涯の終焉まで立ち会った者である、等々。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
