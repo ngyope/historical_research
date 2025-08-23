@@ -13,8 +13,8 @@
             <sourceDesc>
                 <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
                 <listWit>
-                    <witness xml:id="ms-a">Wolfenbüttel MS.</witness>
-                    <witness xml:id="ms-b">MS. Cotton, Vitellius E. XI.</witness>
+                    <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
+                    <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
                     <witness xml:id="ms-c">The Trinity College, Cambridge (MS. Gale, O. ix, 9)</witness>
                     <witness xml:id="ms-d">The Trinity College, Dublin, E. 2. 28</witness>
                 </listWit>
@@ -31,82 +31,16 @@
     <text>
         <body>
             <div type="textpart" xml:lang="la">
-                <head>Coronatio regis Malcolmi minoris filii Henrici Principis, qui vicebatur virgo.</head>
-                <p>TOLLENS quoque omnis populus Malcolmum puerum tredecim annorum filium Henrici
-                    comitis Northumbriae et <app>
-                        <lem>Huntingdoniae</lem>
-                        <rdg wit="#ms-b">Huntyndon</rdg>
-                    </app>, filii ipsius
-                    regis David, et apud Sconam constituerunt regem pro David avo suo, de quo
-                    veraciter potest dici “Cum semine eorum permanent bona hereditas <app>
-                        <lem>sancta nepotes eorum</lem>
-                        <rdg wit="#ms-b">etc.</rdg>
-                        <rdg wit="#ms-d">nepotes eorum etc.</rdg>
-                    </app>.”
-                    Northumbriae vero comitatum possidebat frater ejus Willelmus, <app>
-                        <lem>et David fratri juniori comitatus Huntidoniae</lem>
-                        <rdg wit="#ms-d">et fratri ejus seniori David comitatus de Huntyngton</rdg>
-                    </app>
-                    subjectus fuit, ut infra patebit. Non immerito regi Scotorum David successit
-                    Malcolmus, major natu nepotum ejus. Qui eundem regem in multis bonis exequens,
-                    in quibusdam etiam gloriose superans, <app>
-                        <lem>in medio gentis suae</lem>
-                        <rdg wit="#ms-d">in gente sua</rdg>
-                    </app> tanquam sidus
-                    coeleste refulsit. Primo quoque anno sui regni, regulus Argadiae Sumerledus <app>
-                        <lem></lem>
-                        <rdg wit="#ms-d">nomine</rdg>
-                    </app>, et sui nepotes, <app>
-                        <lem>filii</lem>
-                        <rdg wit="#ms-d">filii filiae</rdg>
-                    </app>, scilicet,
-                    Malcolmi <app>
-                        <lem>Maccheth</lem>
-                        <rdg wit="#ms-d">Macbeth</rdg>
-                    </app> associatis sibi
-                    plurimis, insurrexerunt in regem suum Malcolmum, et Scociam magna parte
-                    perturbantes inquietaverunt. Erat enim ille Malcolmus filius <app>
-                        <lem>Maccheth</lem>
-                        <rdg wit="#ms-d">Macbeth</rdg>
-                    </app>, sed mentiendo
-                    dicebat, se esse filium Angusii, comitis Moraviae, qui, tempore felicis memoriae
-                    regis David, patriam <app>
-                        <lem>depraedando</lem>
-                        <rdg wit="#ms-d">praedando</rdg>
-                    </app> apud <app>
-                        <lem>Strucathrawych</lem>
-                        <rdg wit="#ms-b">Structhrawych</rdg>
-                    </app> a Scotis cum
-                    tota gente sua interfectus est. Quo mortuo, idem Malcolmus <app>
-                        <lem>Maccheth</lem>
-                        <rdg wit="#ms-d">Macbeth</rdg>
-                    </app> contra regem David,
-                    quasi filius mortem patris vindicaturus, assurgit, et regiones <app>
-                        <lem>Scociae</lem>
-                        <rdg wit="#ms-b #ms-d"></rdg>
-                    </app> 
-                    <app>
-                        <lem>circumjacentes</lem>
-                        <rdg wit="#ms-b #ms-c #ms-d">circumadjacentes</rdg>
-                    </app>
-                    rapinis et praedis afficiens, tandem capitur, et ab eodem rege David in turre
-                    castri de Marchemond arta custodia trucidatur. Continuante itaque civilia bella
-                    Sumerledo, nepos ejus, unus filiorum Malcolmi <app>
-                        <lem>Maccheth</lem>
-                        <rdg wit="#ms-d">Macbeth</rdg>
-                    </app>, Dovenaldus nomine,
-                    per quosdam regis Malcolmi fideles apud <app>
-                        <lem>Withterne</lem>
-                        <rdg wit="#ms-d">Qwhythyre</rdg>
-                    </app> comprehenditur,
-                    et in eadem turre de Marchmond cum patre suo incarceratur. Post cujus captionem,
-                    anno sequenti Malcolmus, pater ejus, cum rege pacificatus est, Sumerledo
-                    nequiter adhuc suam nequitiam in populo exercente.</p>
+                <head>Quod de nobili prosapia regum genealogiam duxit beata Margareta, nobilissima Scotorum regina.</head>
+                <p>SICUT in antiquissimis et veracissimis historiis vel chronicis reperitur, ab Adam, patre cunctorum mortalium, lineam hujus sanctae reginae descendisse ostendemus. Igitur a Seth, filio Adae, qui ei natus est pro Abel, ducitur genealogia hujus sanctae generationis usque ad Enoch, qui vivus a Deo translatus cum sancto Helya Antichristi praestolatur adventum. <app>
+                    <lem>Inde venitur ad Noyë, qui solus cum filiis et uxoribus meruit, mundo pere-unte, salvari: Cujus primogenitus Sem a patre meruit benedici.</lem>
+                    <rdg wit="#ms-i"></rdg>
+                </app> A Sem vero ducitur genealogia usque ad Woden, qui tantae fuit auctoritatis apud suos, ut feriam quartam, quam Romani gentiles diem Mercurii appellabant, ejus nomini consecrarent: quae consuetudo usque hodie servatur ab Anglis. Vocant enim eundem diem Wodenisday, id est, diem Woden. Porro a Woden tenditur linea usque ad Getam, quod ipse tantae sapientiae et virtutis habitus est, ut a paganis pro Deo coleretur. Inde proceditur ad Christianissimos reges Angliae, scilicet, Yngels et Yne: quorum Yne cum potentissimus regum Angliae esset, relicto regno, peregre profectus est Romam; ibique feliciter peregrinans, tandem ad coelestem mansionem felicius ascendit. Ab Yngels vero linea cognationis tenditur usque ad Egbrith, qui tantae fuit probitatis, ut universam Angliam ex australi parte Humbriae, quae pluribus regibus eatenus divisa subjacuerat, suo subjugaret imperio, et ita primus omnium monarcha Angliae diceretur. Hujus filius Ethelwolf, futuri generis sui splendidissimum caput, et de qua sanctissimi fructus orirentur radix preciosa. Hic in regno terreno semper meditabatur coeleste. Et ideo in senectute bona collectus est ad patres suos, regnum mutans non amittens, temporale deserens et aeternum adipiscens. <rend hi="italic">Tu autem Domine</rend>.</p>
             </div>
             <div type="translation" xml:lang="ja">
-                <head>王子ヘンリの御子にして、「乙女王」と呼ばれた若きマルコム王の戴冠。</head>
+                <head>福者マーガレット、最も高貴なるスコットランドの王妃が王家の高貴なる家系からその系譜を引くことについて。</head>
                 <p>
-                    そして民衆は皆、デイヴィッド王<note type="editorial" place="bottom">スコットランド王デイヴィッド一世（在位：一一二四～一一五三年）</note>自身の息子であったノーサンブリア伯兼ハンティンドン伯ヘンリーの息子、十三歳の少年マルコム<note type="editorial" place="bottom">スコットランド王マルコム四世（在位：一一五三～一一六五年）</note>を擁し、祖父デイヴィッドに代わる王としてスクーンにて即位させた。このマルコムについて、真にこう言うことができるであろう。「彼らの子孫とともに、聖なる遺産という善が彼らの孫たちに永続する」と。さて、ノーサンブリア伯領は彼の弟ウィリアム<note type="editorial" place="bottom">後のスコットランド王ウィリアム一世（在位：一一六五～一二一四年）</note>が領有し、ハンティンドン伯領は下の弟デイヴィッド<note type="editorial" place="bottom">デイヴィッド・オブ・ハンティンドン（一二一九年没）</note>に与えられた。このことは以下で明らかになるであろう。マルコムが孫たちの中で最年長者としてスコット人の王デイヴィッドの後を継いだのは、不当なことではなかった。彼は多くの善行においてかの王に倣い、いくつかの点ではさらに輝かしく彼を凌駕し、自らの民のただ中で天の星のごとく光り輝いた。彼の治世の最初の年に、アーガイルの小王サマーレッドと、その甥たち、すなわちマルコム・マクヘスの息子たちが、多くの者たちを味方につけて、彼らの王マルコムに対して反乱を起こし、スコティア<note type="editorial" place="bottom">Scotia は直訳すると「スコットランド」となるが、中世中期では現在のスコットランド全域ではなく、フォース湾以北の地域を指していた。ただし、スコット人の王権の拡大に伴い、この語も現在のスコットランド全域を意味するようになる。したがって、この語を訳す際にはこの年代記の作者、ならびにその人物が参照したより古い年代記においてこの語がどのような地理的範囲を指して用いられていたかは慎重に訳し分ける必要がある。したがって、本稿でもこの語は文脈によって「スコティア」と「スコットランド」を訳し分けることにする。</note>の大部分を騒乱に陥れ、国をかき乱した。というのも、かのマルコムはマクヘスの子であったが、偽って、自分はマリ伯アンガスの子であると言っていた。このアンガスは、幸いなる記憶のデイヴィッド王の時代に、ストラスカースロにて国土を略奪しようとしていたところを、スコット人によって一族もろとも殺害された人物である。アンガスの死後、このマルコム・マクヘスはあたかも息子として父の死の復讐をせんとするかのごとくデイヴィッド王に蜂起し、スコティアの周辺地域を略奪と破壊によって苦しめたが、ついに捕らえられ、かのデイヴィッド王によってマーチモント城の塔にて厳重な監視のもと殺害された。かくしてサマーレッドが内乱を続ける中、その甥でありマルカム・マクヘスの息子の一人であるドナルドという名の者が、ウィットホーンにてマルコム王の忠実な家臣の一部によって捕縛され、マーチモントの同じ塔に父と共に投獄された。彼が捕らえられた後、翌年、その父マルコムは王と和解したが、一方でサマーレッドはなおも邪悪に民衆に対してその悪事を働いていた。</p>
+                    最古にして最も真実なる歴史書、すなわち年代記に見られるように、この聖なる王妃の家系が全人類の父アダムから始まることを示そう。したがって、アベルの代わりにアダムに生まれた息子セツから、この聖なる世代の系譜は神によって生きたまま天に移され、聖エリヤと共に反キリストの到来を待つエノクにまで遡る。そこから、世界が滅びる際に息子たちとその妻たちと共にただ一人救われるに値したノアに至る。その長子セムは父から祝福されるに値した。そしてセムからウォーデンへと系譜は続く。彼は自らの民の間で非常に大きな権威を持っていたため、異教徒のローマ人がメルクリウスの日と呼んでいた週の第四日を彼の名に捧げた。この習慣は今日に至るまでイングランド人によって守られており、彼らはその日を「ウェンズデイ」すなわちウォーデンの日と呼んでいる。さらに、ウォーデンからゲタへと家系は伸びる。彼は非常に賢明で有徳であると見なされたため、異教徒たちから神として崇められた。そこからイングランドの最もキリスト教的な王たち、すなわちインギルドとイネへと進む。そのうちイネはイングランド王の中で最も強力であったにもかかわらず、王国を捨ててローマへ巡礼に出た。そしてそこで幸いなる巡礼を終え、ついには天上の館へとより幸いに昇った。インギルドからは、親族の系譜はエグバートへと続く。彼は非常に高潔であったため、ハンバー川以南のイングランド全土をその支配下に置いた。それまで多くの王たちによって分割統治されていたその地を統一し、イングランド最初の君主と呼ばれるようになった。彼の子がエゼルウルフであり、未来の種族の最も輝かしい頭であり、そこから最も聖なる実が生まれるであろう貴重な根であった。彼は地上の王国にあって、常に天上の王国を思索していた。そしてそれゆえ、よき老齢のうちに父祖たちのもとに集められた。王国を失うのではなく変え、現世のものを捨てて永遠のものを得たのである。しかし主よ、あなたは。</p>
             </div>
         </body>
     </text>
