@@ -13,10 +13,10 @@
             <sourceDesc>
                 <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
                 <listWit>
-                    <witness xml:id="ms-a">Wolfenbüttel MS.</witness>
-                    <witness xml:id="ms-b">MS. Cotton, Vitellius E. XI.</witness>
-                    <witness xml:id="ms-c">The Trinity College, Cambridge (MS. Gale, O. ix, 9)</witness>
-                    <witness xml:id="ms-d">The Trinity College, Dublin, E. 2. 28</witness>
+                    <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
+                    <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
+                    <witness xml:id="ms-c">Cambridge, Trinity College, MS 0.9.9.</witness>
+                    <witness xml:id="ms-d">Dublin, Trinity College, MS 498.</witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
@@ -31,58 +31,27 @@
     <text>
         <body>
             <div type="textpart" xml:lang="la">
-                <p>VIDENTES denique Scotorum <app>
-                    <lem>proceres</lem>
-                    <rdg wit="#ms-c">principes</rdg>
-                </app> nimiam sui regis familiaritatem cum Anglorum rege Henrico, et amicitiam, turbati sunt valde, et omnis Scocia cum illis. Timuerunt enim, ne sua familiaritas obprobrium illis pararet et contemptum, quod omni studio praecavere conantur. Miserunt <app>
-                    <lem>utique</lem>
-                    <rdg wit="#ms-b">quod</rdg>
-                </app> legationem post illum dicentes, ymmo intra se cogitantes dixerunt, nolumus hunc regnare super nos. Praeterea reversus <app>
-                    <lem>de</lem>
-                    <rdg wit="#ms-d">ab</rdg>
-                </app> exercitu de Tolosa, Scociam adveniens, propter diversas causarum exigentias, autoritate regia praelatos <app>
-                    <lem>jubet</lem>
-                    <rdg wit="#ms-c">ubique</rdg>
-                </app> et proceres apud burgum <app>
-                    <lem>suum</lem>
-                    <rdg wit="#ms-d"></rdg>
-                </app> de Perth convenire. Concitatis interim regni majoribus, sex comites, scilicet, Ferchad comes de Stratherne, et alii quinque comites, adversus regem, nec pro singulari commodo seu proditione, ymmo rei publicae tuitione, <app>
-                    <lem>commoti</lem>
-                    <rdg wit="#ms-c">convocati</rdg>
-                </app>, ipsum capere nisi sunt, et infra turrem ejusdem urbis obsederunt. Cassato tamen pro tunc eorum, Deo disponente, conatu, non multis <app>
-                    <lem>postea</lem>
-                    <rdg wit="#ms-b #ms-c #ms-d">postmodum</rdg>
-                </app> diebus evolutis, clero consulente, cum suis optimatibus ad concordiam revocatus est. Deinde ter eodem anno <app>
-                    <lem>conflicto</lem>
-                    <rdg wit="#ms-c">conflato</rdg>
-                    <rdg wit="#ms-d">congregato</rdg>
-                </app> exercitu in <app>
-                    <lem>Galwalliam</lem>
-                    <rdg wit="#ms-d">Galwidiam</rdg>
-                </app> contra rebelles perrexit. Tandem [ipsis] devictis, foederatis ac subjectis, cum pace sine dampno suorum remeavit: quos postmodum ita subjectos compulit, ut eorum regulus, qui Fergusius dicebatur, armis declinans, <app>
-                    <lem>Vithredum</lem>
-                    <rdg wit="#ms-b">Wthredum</rdg>
-                    <rdg wit="#ms-d">Huthredum</rdg>
-                </app> filium suum heredem obsidem regi dimiserit, et <app>
-                    <lem>apud Sanctam Crucem</lem>
-                    <rdg wit="#ms-d">in monasterio Sanctae Crucis</rdg>
-                </app> de Edinburgh habitum canonicalem <app>
-                    <lem>susceperit</lem>
-                    <rdg wit="#ms-d">suscepit</rdg>
-                </app>. Interim <app>
-                    <lem>rex</lem>
-                    <rdg wit="#ms-b"></rdg>
-                </app>, subsidio suorum et consilio, suas sorores, Margaretam scilicet, Conano duci Britanniae, atque Florencio comiti Hollandiae Adam tradidit matrimonio copulatas. Reformata est pax inter reges Francorum et Anglorum, et Henricus, filius Henrici regis Anglorum, nondum <app>
-                    <lem>sexennis</lem>
-                    <rdg wit="#ms-d">sex annos habens</rdg>
-                </app>, filiam regis Franciae Lodovici nondum <app>
-                    <lem>biennem</lem>
-                    <rdg wit="#ms-d">duos annos habens</rdg>
-                </app> duxit in uxorem.</p>
+                <p>SUCCESSIT illi in regnum frater <app>
+                    <lem>ejus</lem>
+                    <rdg wit="#ms-c">suus</rdg>
+                </app> Ethredus, et ambulavit in viis patris sui Edwardi, et fratrum suorum, in omnibus beati Dunstani consiliis acquiescens atque mandatis. Hujus vero laudabilem vitam mors preciosa patrum suorum, sed in tota illa sancta progenie novus quidem Herodes emersit, atque cum Sancto Dunstano regnasset in fata <app>
+                    <lem>incendio</lem>
+                    <rdg wit="#ms-c">cedendo</rdg>
+                </app> mortuus est. Quo defuncto, frater ejus Edgarus successit in regnum. Iste Edgarus <app>
+                    <lem>erat</lem>
+                    <rdg wit="#ms-c">fuit</rdg>
+                </app> primus filius Edmundi nobilissimi regis, qui fuit Edwardi senioris Christianissimi principis, qui fuit Alfredi victoriosissimi ducis. Erat etiam Anglis non minus memorabilis, quam Cirus Persis, Carolus Francis, Romulus Romanis. Iste Edgarus per Angliam quadraginta construxit monasteria. Praeparavit autem naves robustissimas numero tria milia trecentas, in quibus redeunte aestate omnem insulam ad terrorem extraneorum, et ad excercitationem suorum, cum maximo apparatu navigare consueverat. Quo non multo post ad coelestia regna translatus, successit in regnum filius ejus Edwardus, qui cum annis regnaverat, injuste <app>
+                    <lem>ab</lem>
+                    <rdg wit="#ms-c">cum</rdg>
+                </app> impiis interfectus est: tum ob vitae sanctitatem, tum ob necis acerbitatem, sancti nomen et meritum accepit. Cui frater <app>
+                    <lem>ejus</lem>
+                    <rdg wit="#ms-c">suus</rdg>
+                </app> Ethelredus successit, et a Sancto Dunstano archiepiscopo inungitur et consecratur: qui a beato Dunstano tale fertur oraculum accepisse: "Quoniam Angli in sanguine fratris tui conspiraverunt, non deficiet ab eis gladius, donec supervenient populus ignotae linguae, eos in exterminium, et in ultimam redigat servitutem. Novissime tamen visitabit eos Dominus."</p>
             </div>
             <div type="translation" xml:lang="ja">
                 <p>
-                    ついにスコット人の貴族たちは自分たちの王がイングランド人の王ヘンリと過度に親密であり、友情を交わしているのを見て非常に動揺し、スコティア全土が彼らと共に動揺した。というのも、その親密さが彼らに不名誉と軽蔑をもたらすのではないかと恐れたからであり、彼らはあらゆる努力をもってそれを避けようと努めていた。彼らは確かに彼の後を追って使者を送り、こう言った。いや、むしろ心の中で考え、こう言ったのである。「我々はこの男が我々を統治することを望まない」と。さて、王はトゥールーズ遠征から帰還し、スコティアに到着すると、様々な用件のため、王の権威をもって高位聖職者と貴族にパースの町に集まるよう命じた。その間に、王国の有力者であった六名の伯たち、すなわちストラサーン伯フェルテスと他の五人の伯たちが扇動され、王に対して蜂起した。それは個人の利益や裏切りのためではなく、むしろ公益を防衛するために動かされたものであり、彼らは王を捕らえようと努め、その都市の塔の中に彼を包囲した。しかし、神の思し召しによって彼らの企てはその時は失敗に終わり、その後いく日も経たないうちに、聖職者たちの助言により、王は貴族たちと和解した。その後、同年、王は軍を率いて反逆者に対するべくギャロウェイへ三度進軍した。ついに彼らを打ち負かし、同盟を結ばせ服従させると、自軍に損害なく平和裏に帰還した。そしてその後、彼らを完全に服従させ、ファーガスと呼ばれた彼らの小王は武器を置き、息子のウートレッドを跡継ぎとして人質に王へ差し出し、自身はエディンバラのホリルードで律修司祭の祭服をまとった<note type="editorial" place="bottom">つまり、ファーガスが修道院に入ったという意味である。</note>。その間、王は家臣たちの援助と助言により、姉妹たち、すなわちマーガレットをブルターニュ公コナン<note type="editorial" place="bottom">ブルターニュ公コナン四世</note>に、そしてエイダをホラント伯フロリス<note type="editorial" place="bottom">ホラント伯フロリス三世</note>に嫁がせた。フランク人の王とイングランド人の王の間には和平が結ばれ、イングランド人の王ヘンリの息子ヘンリ (まだ六歳にもなっていなかった) が、フランス王ルイの娘 (まだ二歳にもなっていなかった) を妻に迎えた。</p>
+                    彼の後、弟であるエゼルレッドが王位を継承し、父エドワードとその兄弟たちの道、すなわち聖ドゥンスタンのすべての助言と命令に従って歩んだ。しかし、彼の称賛すべき生涯は父祖たちの貴重な死とは異なり、その聖なる家系の中に新たなヘロデが現れ、聖ドゥンスタンと共に統治した後、火災によって運命的に亡くなった。彼の死後、弟であるエドガーが王位を継承した。このエドガーは最も高貴な王エドマンドの長男であり、エドマンドは最もキリスト教的な君主であるエドワード長兄王の子、そしてエドワードは最も勝利を収めた指導者アルフレッドの子であった。彼はまたキュロスがペルシャ人にとって、カールがフランク人にとって、ロムルスがローマ人にとってそうであったように、イングランド人にとっても忘れがたい存在であった。このエドガーはイングランド中に四十の修道院を建設した。また、彼は三三〇〇隻の非常に堅固な船を準備し、夏が来るたびに異邦人を威嚇し、自国民を訓練するために最大の装備で全島を航海するのが常であった。その直後、彼は天の王国へと移され、息子のエドワードが王位を継承した。エドワードは数年間統治したが、不敬虔な者たちによって不正に殺害された。その人生の神聖さとその死の悲痛さのゆえに、彼は聖人の名と功績を受けた。彼の後、兄弟であるエゼルレッドが継承し、大司教聖ドゥンスタンによって油を注がれ聖別された。彼は聖ドゥンスタンから次のような神託を受けたと伝えられている。「イングランド人たちがあなたの兄弟の血において共謀したゆえに、彼らから剣が絶えることはなく、ついには未知の言語を話す民が到来し、彼らを絶滅させ、最終的な隷属状態に陥れるであろう。しかし、最後に主は彼らを訪れるであろう。」
+                   </p>
             </div>
         </body>
     </text>
