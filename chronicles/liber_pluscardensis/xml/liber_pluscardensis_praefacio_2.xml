@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Praefacio</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Sequitur adhuc de eodem.</head>
+                <p>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            INSUPER ut demus gloriam Deo in excelsis, laudem post mortem victoriosissimis et invincibilibus Scotorum gentibus defunctis, magnificenciam et honorem venerabilibus vivis digne et laudabiliter possedentibus 
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">et</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a">diffidentibus </lem>
+                        <rdg wit="#ms-b">diffendentibus </rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            et occupantibus nobile regnum Scociae in tantis mundi mutacionibus, tantisque stragibus et persecucionibus, tantis cladibus, praeliis, et actibus bellicis, tantis itaque tirannorum inaestimabilibus insultibus, tantis proditorum decepcionibus et prodicionibus nequissimis; quibus omnibus non obstantibus domus regia Scociae a trescentis xxx annis et amplius ante incarnacionem Christi usque in hodiernum diem sine nacionis mutacione vel regiae majestatis subjeccione honorifice et libere occupavit. Quibus igitur hos laudibus referam nescio; sed pro eis graciarum acciones omnipotenti Deo indesinenter agere propono.
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>同じ主題についての続き</head>
+                <p>
+                    さらに、我らがいと高きところにおわします神に栄光を帰し、死してなお最も勝利に輝き、無敵であったスコットランドの民に賛美を捧げんがため。また、かくも多くの世の変転、かくも多くの虐殺と迫害、かくも多くの災厄、戦闘、戦争行為、かくも多くの筆舌に尽くしがたい暴君の攻撃、かくも多くの裏切り者の欺瞞と極悪非道な背信行為のただ中にあって、スコットランドの気高き王国を、威厳と賞賛をもって所有し、防衛し、そして占有する、尊敬すべき現存の民に壮麗さと名誉を捧げんがため。これらすべてのことにもかかわらず、スコットランド王家はキリストの受肉より三百三十年以上も前から今日に至るまで、民族の交代も王威の服従もなく、名誉と自由をもってこの王国を統治してきたのである。それゆえ、いかなる賛辞をもって彼らを称えればよいか、私にはわからない。しかし、彼らのために全能の神に絶え間ない感謝を捧げることを、ここに提案するものである。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
