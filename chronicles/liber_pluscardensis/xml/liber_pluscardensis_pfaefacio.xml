@@ -35,12 +35,24 @@
             <div type="textpart" xml:lang="la">
                 <head>Praefacio scriptoris.</head>
                 <p>
-                    MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum <app>
-                        <lem>affectibus</lem>
-                        <rdg wit="#ms-b">affectionibus</rdg>
-                    </app>, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.</p>
+                    <app>
+                        <lem wit="#ms-a">
+                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum affectibus, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus. 
+                        </lem>
+                        <rdg wit="#ms-b">
+                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum affectionibus, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.                             
+                        </rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                </p>
                 <p>
-                    Quaeramus igitur illam a patre luminum, a quo omne datum optimum et donum perfectum desursum est descendens quoniam ipse solus dat sapienciam et ex ore ejus sciencia et prudencia est, cum sancto Salomone petendo et dicendo, Da michi, Domine, sedium tuarum assistricem sapienciam quae mecum sit et mecum laboret, ut sciam quid acceptum sit coram te omni tempore; qui optavit et datus est ei sensus, invocavit et venit in eum spiritus sapienciae. Ad quam graciam impetrandam nos perducere dignetur qui sine fine vivit et regnat. Amen.</p>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            Quaeramus igitur illam a patre luminum, a quo omne datum optimum et donum perfectum desursum est descendens quoniam ipse solus dat sapienciam et ex ore ejus sciencia et prudencia est, cum sancto Salomone petendo et dicendo, Da michi, Domine, sedium tuarum assistricem sapienciam quae mecum sit et mecum laboret, ut sciam quid acceptum sit coram te omni tempore; qui optavit et datus est ei sensus, invocavit et venit in eum spiritus sapienciae. Ad quam graciam impetrandam nos perducere dignetur qui sine fine vivit et regnat. Amen.
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                </p>
             </div>
             <div type="translation" xml:lang="ja">
                 <head>筆者の序文</head>
