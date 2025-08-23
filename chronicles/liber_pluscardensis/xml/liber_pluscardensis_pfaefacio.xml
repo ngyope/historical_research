@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Praefacio</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Praefacio scriptoris.</head>
+                <p>
+                    MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum <app>
+                        <lem>affectibus</lem>
+                        <rdg wit="#ms-b">affectionibus</rdg>
+                    </app>, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.</p>
+                <p>
+                    Quaeramus igitur illam a patre luminum, a quo omne datum optimum et donum perfectum desursum est descendens quoniam ipse solus dat sapienciam et ex ore ejus sciencia et prudencia est, cum sancto Salomone petendo et dicendo, Da michi, Domine, sedium tuarum assistricem sapienciam quae mecum sit et mecum laboret, ut sciam quid acceptum sit coram te omni tempore; qui optavit et datus est ei sensus, invocavit et venit in eum spiritus sapienciae. Ad quam graciam impetrandam nos perducere dignetur qui sine fine vivit et regnat. Amen.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>筆者の序文</head>
+                <p>
+                    我らが敬愛すべき祖先たちの称賛に値する御業を記憶に呼び覚ますことは、過去の喜ばしい出来事を語り聞かせることで現代にいる我々に利益をもたらすだけではない。むしろ、我々は真理の灯火を掲げるかのように、先人の賢明なる模範を通して、徳の道を歩む者たちにその道筋を示すのである。そして、我らが彼らの功績を追想する時、未来の幸いな人々が敬愛すべき祖先たちの足跡に倣うための輝かしい機会を与えるのだ。というのも、神なる真理――それなくしては何事も健全でなく、何事も神聖ではありえない――は人間の一切の行動と働きにおいて何よりもまず探求され、あらゆる肉欲的な愛情に優先されねばならないからである。我々は、あらゆる配慮と消しがたい熱意をもって、全力を尽くしてたゆまず真理を追い求めなければならない。真理そのものが土台でないところに、善き御業の建物が建てられることはありえないからだ。この真理の明確な知識に至るには、超自然的に注がれる神の恩寵なくして人間の知性の自然の光では到達しえないのである。</p>
+                <p>
+                    それゆえ、我らは光の父にそれを求めよう。最高の賜物、完全な贈り物はすべて、上から、この父のもとから降ってくるからである。知恵を授けるのは主ひとりであり、その口からは知識と分別が生まれるからだ。聖ソロモンと共に願い、こう言おう。「主よ、あなたの玉座の傍らに侍る知恵を私に与え、私と共にいさせ、私と共に働かせてください。そうすれば、私はいつでも何が御心に適うのかを知ることができるでしょう。」彼は望み、そして分別が与えられた。彼は呼び求め、そして知恵の霊が彼に訪れた。この恩寵を得るに至るまで、我らを導きたまわんことを。とこしえに生き、しろしめす御方が。アーメン。
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
