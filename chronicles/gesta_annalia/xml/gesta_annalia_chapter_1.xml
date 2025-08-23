@@ -13,10 +13,11 @@
             <sourceDesc>
                 <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
                 <listWit>
-                    <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
-                    <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
-                    <witness xml:id="ms-c">Cambridge, Trinity College, MS 0.9.9.</witness>
-                    <witness xml:id="ms-d">Dublin, Trinity College, MS 498.</witness>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
@@ -34,7 +35,7 @@
                 <head>Quod de nobili prosapia regum genealogiam duxit beata Margareta, nobilissima Scotorum regina.</head>
                 <p>SICUT in antiquissimis et veracissimis historiis vel chronicis reperitur, ab Adam, patre cunctorum mortalium, lineam hujus sanctae reginae descendisse ostendemus. Igitur a Seth, filio Adae, qui ei natus est pro Abel, ducitur genealogia hujus sanctae generationis usque ad Enoch, qui vivus a Deo translatus cum sancto Helya Antichristi praestolatur adventum. <app>
                     <lem>Inde venitur ad Noyë, qui solus cum filiis et uxoribus meruit, mundo pere-unte, salvari: Cujus primogenitus Sem a patre meruit benedici.</lem>
-                    <rdg wit="#ms-i"></rdg>
+                    <rdg wit="#ms-fb"></rdg>
                 </app> A Sem vero ducitur genealogia usque ad Woden, qui tantae fuit auctoritatis apud suos, ut feriam quartam, quam Romani gentiles diem Mercurii appellabant, ejus nomini consecrarent: quae consuetudo usque hodie servatur ab Anglis. Vocant enim eundem diem Wodenisday, id est, diem Woden. Porro a Woden tenditur linea usque ad Getam, quod ipse tantae sapientiae et virtutis habitus est, ut a paganis pro Deo coleretur. Inde proceditur ad Christianissimos reges Angliae, scilicet, Yngels et Yne: quorum Yne cum potentissimus regum Angliae esset, relicto regno, peregre profectus est Romam; ibique feliciter peregrinans, tandem ad coelestem mansionem felicius ascendit. Ab Yngels vero linea cognationis tenditur usque ad Egbrith, qui tantae fuit probitatis, ut universam Angliam ex australi parte Humbriae, quae pluribus regibus eatenus divisa subjacuerat, suo subjugaret imperio, et ita primus omnium monarcha Angliae diceretur. Hujus filius Ethelwolf, futuri generis sui splendidissimum caput, et de qua sanctissimi fructus orirentur radix preciosa. Hic in regno terreno semper meditabatur coeleste. Et ideo in senectute bona collectus est ad patres suos, regnum mutans non amittens, temporale deserens et aeternum adipiscens. <hi rend="italic">Tu autem Domine</hi>.</p>
             </div>
             <div type="translation" xml:lang="ja">
