@@ -36,14 +36,22 @@
                 <head>Praefacio scriptoris.</head>
                 <p>
                     <app>
-                        <lem wit="#ms-a">
-                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum affectibus, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus. 
+                        <lem wit="#ms-a #ms-b">
+                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum 
                         </lem>
-                        <rdg wit="#ms-b">
-                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum affectionibus, debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.                             
-                        </rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">affectibus</lem>
+                        <rdg wit="#ms-b">affectionibus</rdg>
                         <rdg wit="#ms-c #ms-d #ms-e"></rdg>
                     </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            , debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.  
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
                 </p>
                 <p>
                     <app>
