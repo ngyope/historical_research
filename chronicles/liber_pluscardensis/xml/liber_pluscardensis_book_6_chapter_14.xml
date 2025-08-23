@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 14</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Libri quinque et capituli quatuordecim libri sexti Johannis de Fordun in hac editione praetermissi. Ad finem capituli quartodecimi libri sexti sequitur ut infra.</head>
+                <p>
+                    ITEM, notandum est quod ista omnia suprascripta gesta per <app>
+                        <lem wit="#ms-a #ms-b">nobilem</lem>
+                        <rdg wit="#ms-c #ms-d #ms-e">notabilem</rdg>
+                    </app> et discretum clericum, dominum Johannem de Fordoun, collecta sunt et compilata; cetera <app>
+                        <lem wit="#ms-a"></lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">vero</rdg>
+                    </app> sequencia per venerabilem patrem, <app>
+                        <lem wit="#ms-a #ms-b #ms-d">dominum</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> dominum abbatem de Insula Sancti Columbae, qui in tempore suo dictus est dompnus Walterus Bouwar, sicut reperimus in magnis Cronicis notatum, quorum animae in pace requiescant; et hoc signanter usque ad tempus regis Jacobi secundi hujus nominis. De residuo vero, quis ea compilabit scietur in fine hujus praesentis libri; <app>
+                        <lem wit="#ms-a #ms-b #ms-d">quia de futuris contingentibus non est determinata veritas.</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> Non mireris, o lector, si diversorum autorum et cronigraphorum in praesenti opusculo de eadem nobilissima regum prosapia opiniones <app>
+                        <lem wit="#ms-a"></lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">et</rdg>
+                    </app> scripturae inserendo duobus vel tribus vicibus recitentur: Nam secundum jura forcior est sentencia quae plurimorum <app>
+                        <lem wit="#ms-a #ms-d">autoribus</lem>
+                        <rdg wit="#ms-b #ms-c #ms-e">auctoritatibus</rdg>
+                    </app> approbatur, <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">sicut in evangelio Jhesu Christi una et eadem historia per quatuor evangelistas approbatur.</lem>
+                        <rdg wit="#ms-e"></rdg>
+                    </app>
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>ジョン・オブ・フォーダンによる第六書の五つの巻と十四章は、この版では省略されている。第六書の十四章の終わりに、以下のように続く。</head>
+                <p>
+                    付記、上記のすべての御業は高貴にして思慮深き聖職者ジョン・オブ・フォーダン師によって収集・編纂されたものであることを記しておく。それに続く残りの部分は尊ぶべき師父、聖コルンバ島の修道院長にして、その時代にはウォルター・バウワー師と呼ばれた御方によって編纂された。これは我々が長大な年代記に記されているのを見出す通りであり、彼らの魂が安らかに憩わんことを。そして、これは特にかの御名を持つ王ジェームズ二世の時代までのものである。残りの部分については、誰がそれを編纂するかはこの本書の終わりに知られるであろう。なぜなら、未来に起こりうることについては確定した真理は存在しないからである。おお、読者よ、このささやかな著作において、同じ最も高貴なる王家の系譜について様々な著者や年代記作家の意見が二度、三度と挿入され、詳述されているとしても驚くことなかれ。法によれば、最も多くの権威によって是認される意見がより強力であるからだ。それは、イエス・キリストの福音書において、一つの同じ物語が四人の福音書記者によって是認されているのと同じである。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
