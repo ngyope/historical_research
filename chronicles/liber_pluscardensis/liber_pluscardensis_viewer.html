@@ -1,377 +1,75 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liber Pluscardensis Viewer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Noto Serif JP', serif;
-        }
-        .variant {
-            color: #2563eb; /* blue-600 */
-            cursor: pointer;
-            border-bottom: 2px dotted #93c5fd; /* blue-300 */
-            position: relative;
-            font-weight: 500;
-        }
-        .tooltip {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            background-color: #1f2937; /* gray-800 */
-            color: #ffffff;
-            text-align: left;
-            padding: 8px 12px;
-            border-radius: 6px;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: opacity 0.2s, visibility 0.2s;
-            white-space: normal;
-            width: 250px;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            pointer-events: none; /* Prevent tooltip from interfering with mouse events */
-        }
-        .tooltip::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #1f2937 transparent transparent transparent;
-        }
-        .footnote-ref {
-            color: #1d4ed8; /* blue-700 */
-            font-weight: 600;
-            vertical-align: super;
-            font-size: 0.75em;
-            line-height: 1;
-        }
-        .footnote-ref.variant {
-            border-bottom: none;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-underline-offset: 2px;
-        }
-        #toc a.active {
-            background-color: #e0e7ff; /* indigo-100 */
-            color: #3730a3; /* indigo-800 */
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 text-gray-800 flex flex-col h-screen">
-
-    <header class="bg-white shadow-md p-4 z-10 flex-shrink-0">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 text-left">『プルスカーデンの書』(<i>Liber Pluscardensis</i>)</h1>
-    </header>
-
-    <div class="flex flex-1 overflow-hidden">
-        <nav class="w-96 bg-white shadow-md flex-shrink-0 overflow-y-auto">
-            <div class="p-4 border-b">
-                <h2 class="text-xl font-bold text-gray-800">目次 (Table of Contents)</h2>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Praefacio</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Praefacio scriptoris.</head>
+                <p>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            MONORABILIUM antecessorum gesta laudabilia ad memoriam reducentes, non solum praesentibus ea quae praeterita sunt placabilia recitando proficimus. Ymmo eciam virtutum viatoribus per providorum exempla praeteritorum, tamquam per lucernam veritatis, viiculum ostendimus. Et, dum eorum merita recolimus, futuris felicibus ad imitandum venerabilium vestigia antecessorum occasionem inclitam exhibemus. Cum enim in omnibus actibus et operacionibus humanis fundamentum veritatis, quod Deus est, sine quo nichil est validum, nichil sanctum, primitus et ante omnia sit investigandum, ac omnibus carnalibus praeponendum 
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                    <app>
+                        <lem wit="#ms-a">affectibus</lem>
+                        <rdg wit="#ms-b">affectionibus</rdg>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            , debemus omni cura ac inextinguibili diligencia infatigabiliter ad eandem totis viribus anhelare. Quia ubi ipsa veritas non est fundamentum, nullius boni operis super saedificari poterit aedificium. Ad cujus veritatis noticiam dilucide adipiscendam, sine gracia divina supernaturaliter infusa, non poterit pertingere lumine naturali intellectus humanus.  
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app> 
+                </p>
+                <p>
+                    <app>
+                        <lem wit="#ms-a #ms-b">
+                            Quaeramus igitur illam a patre luminum, a quo omne datum optimum et donum perfectum desursum est descendens quoniam ipse solus dat sapienciam et ex ore ejus sciencia et prudencia est, cum sancto Salomone petendo et dicendo, Da michi, Domine, sedium tuarum assistricem sapienciam quae mecum sit et mecum laboret, ut sciam quid acceptum sit coram te omni tempore; qui optavit et datus est ei sensus, invocavit et venit in eum spiritus sapienciae. Ad quam graciam impetrandam nos perducere dignetur qui sine fine vivit et regnat. Amen.
+                        </lem>
+                        <rdg wit="#ms-c #ms-d #ms-e"></rdg>
+                    </app>
+                </p>
             </div>
-            <div id="toc" class="p-2 space-y-1">
-                </div>
-        </nav>
-
-        <main class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-            <div id="content-container" class="bg-white rounded-xl shadow-lg max-w-4xl mx-auto">
-                <div class="p-6 sm:p-8">
-                    <h2 id="main-subtitle" class="text-xl md:text-2xl font-bold text-gray-700">章を選択してください</h2>
-                </div>
-
-                <div id="original-text-container" class="p-6 sm:p-8 border-t border-gray-200">
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">原文 (Latin)</h3>
-                    <div id="original-text" class="text-lg leading-relaxed space-y-4 text-justify">
-                        </div>
-                </div>
-
-                <div id="translation-text-container" class="p-6 sm:p-8 bg-gray-50 border-t border-gray-200">
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">日本語訳 (Modern Japanese Translation)</h3>
-                    <div id="japanese-translation" class="text-base leading-loose space-y-4 text-justify">
-                         </div>
-                </div>
+            <div type="translation" xml:lang="ja">
+                <head>筆者の序文</head>
+                <p>
+                    我らが敬愛すべき祖先たちの称賛に値する御業を記憶に呼び覚ますことは、過去の喜ばしい出来事を語り聞かせることで現代にいる我々に利益をもたらすだけではない。むしろ、我々は真理の灯火を掲げるかのように、先人の賢明なる模範を通して、徳の道を歩む者たちにその道筋を示すのである。そして、我らが彼らの功績を追想する時、未来の幸いな人々が敬愛すべき祖先たちの足跡に倣うための輝かしい機会を与えるのだ。というのも、神なる真理――それなくしては何事も健全でなく、何事も神聖ではありえない――は人間の一切の行動と働きにおいて何よりもまず探求され、あらゆる肉欲的な愛情に優先されねばならないからである。我々は、あらゆる配慮と消しがたい熱意をもって、全力を尽くしてたゆまず真理を追い求めなければならない。真理そのものが土台でないところに、善き御業の建物が建てられることはありえないからだ。この真理の明確な知識に至るには、超自然的に注がれる神の恩寵なくして人間の知性の自然の光では到達しえないのである。</p>
+                <p>
+                    それゆえ、我らは光の父にそれを求めよう。最高の賜物、完全な贈り物はすべて、上から、この父のもとから降ってくるからである。知恵を授けるのは主ひとりであり、その口からは知識と分別が生まれるからだ。聖ソロモンと共に願い、こう言おう。「主よ、あなたの玉座の傍らに侍る知恵を私に与え、私と共にいさせ、私と共に働かせてください。そうすれば、私はいつでも何が御心に適うのかを知ることができるでしょう。」彼は望み、そして分別が与えられた。彼は呼び求め、そして知恵の霊が彼に訪れた。この恩寵を得るに至るまで、我らを導きたまわんことを。とこしえに生き、しろしめす御方が。アーメン。
+                </p>
             </div>
-             <footer class="text-center text-sm text-gray-500 mt-6 pb-4">
-                   <p>&copy; 2025- Yuki Nakagawa. All Rights Reserved.</p>
-                   <p>&copy; Version 0.1.0. (Last Update: 24 August 2025).</p>
-             </footer>
-        </main>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Configuration ---
-            const chapters = [
-                { title: "Liber Pluscardensis, Praefacio 1", file: "liber_pluscardensis_pfaefacio.xml" },
-                { title: "Liber Pluscardensis, Praefacio 2", file: "liber_pluscardensis_pfaefacio_2.xml" },
-            ];
-            const xmlFolderPath = 'xml/';
-
-            const tocContainer = document.getElementById('toc');
-            const mainSubtitle = document.getElementById('main-subtitle');
-            const originalContainer = document.getElementById('original-text');
-            const translationContainer = document.getElementById('japanese-translation');
-
-            /**
-             * XMLファイルを読み込み、内容を画面に描画する
-             */
-            async function loadAndProcessXML(filePath, chapterTitle) {
-                originalContainer.innerHTML = '<p>読み込み中...</p>';
-                translationContainer.innerHTML = '';
-                mainSubtitle.textContent = chapterTitle;
-
-                try {
-                    const response = await fetch(filePath);
-                    if (!response.ok) {
-                        throw new Error(`ファイルが見つかりません: ${response.statusText}`);
-                    }
-                    const xmlString = await response.text();
-                    
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(xmlString, "application/xml");
-                    
-                    const parserError = xmlDoc.querySelector("parsererror");
-                    if (parserError) {
-                        throw new Error("XMLの解析に失敗しました。");
-                    }
-
-                    renderContent(xmlDoc);
-
-                } catch (error) {
-                    console.error("Error loading or parsing XML:", error);
-                    const errorMessage = `<p class='text-red-600'>エラー: ${error.message}</p>`;
-                    originalContainer.innerHTML = errorMessage;
-                    translationContainer.innerHTML = '';
-                }
-            }
-            
-            /**
-             * パースされたXMLドキュメントから内容を抽出し、HTMLに変換して描画する
-             */
-            function renderContent(xmlDoc) {
-                originalContainer.innerHTML = '';
-                translationContainer.innerHTML = '';
-
-                const teiNS = "http://www.tei-c.org/ns/1.0";
-                let originalDiv = null;
-                let translationDiv = null;
-
-                const allDivs = xmlDoc.getElementsByTagNameNS(teiNS, 'div');
-                for (let i = 0; i < allDivs.length; i++) {
-                    const div = allDivs[i];
-                    const type = div.getAttribute('type');
-                    if (type === 'textpart') {
-                        originalDiv = div;
-                    } else if (type === 'translation') {
-                        translationDiv = div;
-                    }
-                }
-
-                if (originalDiv) {
-                    processTextPart(originalDiv, originalContainer, teiNS);
-                } else {
-                    originalContainer.innerHTML = "<p>[原文セクションが見つかりませんでした。]</p>";
-                }
-
-                if (translationDiv) {
-                    processTranslationPart(translationDiv, translationContainer, teiNS);
-                } else {
-                    translationContainer.innerHTML = "<p>[日本語訳セクションが見つかりませんでした。]</p>";
-                }
-            }
-            
-            /**
-             * ツールチップの位置を画面内に収まるように調整する
-             */
-            function adjustTooltipPosition(tooltip) {
-                const rect = tooltip.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-
-                // Reset styles before calculation
-                tooltip.style.left = '50%';
-                tooltip.style.transform = 'translateX(-50%)';
-                tooltip.style.right = 'auto';
-
-                const newRect = tooltip.getBoundingClientRect();
-
-                if (newRect.left < 10) { // 10px margin from left edge
-                    tooltip.style.left = '10px';
-                    tooltip.style.transform = 'translateX(0)';
-                } else if (newRect.right > viewportWidth - 10) { // 10px margin from right edge
-                    tooltip.style.left = 'auto';
-                    tooltip.style.right = '10px';
-                    tooltip.style.transform = 'translateX(0)';
-                }
-            }
-
-            /**
-             * ツールチップを持つ要素にイベントリスナーを追加する
-             */
-            function addTooltipEvents(element) {
-                element.addEventListener('mouseover', (event) => {
-                    const tooltip = event.currentTarget.querySelector('.tooltip');
-                    if (!tooltip) return;
-                    
-                    tooltip.style.visibility = 'visible';
-                    tooltip.style.opacity = '1';
-                    adjustTooltipPosition(tooltip);
-                });
-
-                element.addEventListener('mouseout', (event) => {
-                    const tooltip = event.currentTarget.querySelector('.tooltip');
-                    if (!tooltip) return;
-
-                    tooltip.style.visibility = 'hidden';
-                    tooltip.style.opacity = '0';
-                });
-            }
-
-            /**
-             * 原文パートを処理して描画する
-             * [変更点] 複数の <p> タグを処理できるように修正
-             */
-            function processTextPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p'); // [変更] すべてのpタグを取得
-
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-lg font-semibold italic text-gray-600 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                // [変更] 各段落をループ処理
-                for (const p of paragraphs) {
-                    const pElement = document.createElement('p');
-                    container.appendChild(pElement);
-
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'app') {
-                            const lem = node.getElementsByTagNameNS(ns, 'lem')[0];
-                            const rdgs = node.getElementsByTagNameNS(ns, 'rdg');
-                            const span = document.createElement('span');
-                            span.className = 'variant';
-                            span.textContent = lem && lem.textContent ? lem.textContent : '[om.]';
-                            const tooltip = document.createElement('div');
-                            tooltip.className = 'tooltip';
-                            if (rdgs.length > 0) {
-                                let tooltipContent = '';
-                                for (let i = 0; i < rdgs.length; i++) {
-                                    const rdg = rdgs[i];
-                                    const wit = rdg.getAttribute('wit').replace(/#/g, '').replace(/\s/g, ', ');
-                                    const text = rdg.textContent || '[om.]';
-                                    tooltipContent += `<div class="mb-1 last:mb-0"><span class="font-bold text-blue-300">${wit}:</span> ${text}</div>`;
-                                }
-                                tooltip.innerHTML = tooltipContent;
-                            } else {
-                                tooltip.innerHTML = '<span>異読なし</span>';
-                            }
-                            span.appendChild(tooltip);
-                            pElement.appendChild(span);
-                            addTooltipEvents(span); // Add event listeners
-                        }
-                    });
-                }
-            }
-
-            /**
-             * 日本語訳パートを処理して描画する
-             * [変更点] 複数の <p> タグを処理できるように修正
-             */
-            function processTranslationPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p'); // [変更] すべてのpタグを取得
-                const footnotes = [];
-
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-md font-semibold text-gray-700 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                // [変更] 各段落をループ処理
-                for (const p of paragraphs) {
-                    const pElement = document.createElement('p');
-                    
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'note') {
-                            const noteText = node.textContent;
-                            footnotes.push(noteText);
-                            const footnoteIndex = footnotes.length;
-                            const noteRefSpan = document.createElement('span');
-                            noteRefSpan.className = 'variant footnote-ref';
-                            noteRefSpan.textContent = `[${footnoteIndex}]`;
-                            const tooltip = document.createElement('div');
-                            tooltip.className = 'tooltip';
-                            tooltip.textContent = noteText;
-                            noteRefSpan.appendChild(tooltip);
-                            pElement.appendChild(noteRefSpan);
-                            addTooltipEvents(noteRefSpan); // Add event listeners
-                        }
-                    });
-                    container.appendChild(pElement);
-                }
-
-                if (footnotes.length > 0) {
-                    const footnotesContainer = document.createElement('div');
-                    footnotesContainer.className = 'mt-8 pt-4 border-t border-gray-300';
-                    const footnotesHeader = document.createElement('h4');
-                    footnotesHeader.className = 'font-semibold text-gray-700 mb-2';
-                    footnotesHeader.textContent = '編集者注';
-                    footnotesContainer.appendChild(footnotesHeader);
-                    const list = document.createElement('ol');
-                    list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
-                    footnotes.forEach((noteText, index) => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = noteText;
-                        list.appendChild(listItem);
-                    });
-                    footnotesContainer.appendChild(list);
-                    container.appendChild(footnotesContainer);
-                }
-            }
-
-            // --- Initialization ---
-            chapters.forEach(chapter => {
-                const link = document.createElement('a');
-                link.href = '#';
-                link.textContent = chapter.title;
-                link.className = 'block p-2 rounded-md hover:bg-gray-100 transition-colors';
-                link.dataset.file = chapter.file;
-
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('#toc a').forEach(a => a.classList.remove('active'));
-                    link.classList.add('active');
-                    const filePath = xmlFolderPath + link.dataset.file;
-                    loadAndProcessXML(filePath, chapter.title);
-                });
-                tocContainer.appendChild(link);
-            });
-
-            if (chapters.length > 0) {
-                const firstLink = tocContainer.querySelector('a');
-                firstLink.click();
-            }
-        });
-    </script>
-</body>
-</html>
+        </body>
+    </text>
+</TEI>
