@@ -13,10 +13,10 @@
             <sourceDesc>
                 <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
                 <listWit>
-                    <witness xml:id="ms-a">Wolfenbüttel MS.</witness>
-                    <witness xml:id="ms-b">MS. Cotton, Vitellius E. XI.</witness>
-                    <witness xml:id="ms-c">The Trinity College, Cambridge (MS. Gale, O. ix, 9)</witness>
-                    <witness xml:id="ms-d">The Trinity College, Dublin, E. 2. 28</witness>
+                    <witness xml:id="ms-a">Wolfenbüttel, Hertzog August Bibliothek, Codex Helmstadiensis 538.</witness>
+                    <witness xml:id="ms-i">London, British Library, MS Cotton Vitellius E xi, fos 84-166.</witness>
+                    <witness xml:id="ms-c">Cambridge, Trinity College, MS 0.9.9.</witness>
+                    <witness xml:id="ms-d">Dublin, Trinity College, MS 498.</witness>
                 </listWit>
             </sourceDesc>
         </fileDesc>
@@ -31,39 +31,18 @@
     <text>
         <body>
             <div type="textpart" xml:lang="la">
-                <p>MORTUO autem Anglorum rege Stephano, Henricus, dux Normanniae, filius imperatricis, in regem consecratus est, anno, videlicet, regis Scociae Malcolmi secundo. Qui ut cum sublimatus esset in regnum, suae sponsionis immemor et juramenti, quod prius regi David, avunculo suae matris, sacramento <app>
-                    <lem></lem>
-                    <rdg wit="#ms-d">fideli</rdg>
-                </app> et firmaverat, Northumbriam calumpnians et Cumbriam, cum annis <app>
-                    <lem>vernosis</lem>
-                    <rdg wit="#ms-d">multis</rdg>
-                </app> jam regi Scociae obedirent, satagebat invadere; necnon comitatum <app>
-                    <lem>Huntingdoniae</lem>
-                    <rdg wit="#ms-d">de Huntyngton</rdg>
-                </app> in possessione propria recognovit. Inita tamen inter eos reges ad tempus pace, sed ficta, intra quam, quorum instinctu nescio, rex Malcolmus regem adiens Henricum apud Cestriam, ei <app>
-                    <lem>hominium</lem>
-                    <rdg wit="#ms-d">homagium</rdg>
-                </app> fecit, eo videlicet modo, quo avus suus rex David fuerat homo veteris Henrici regis: sperans ob hoc suas possessiones, ut quidam autumant, possidere pacifice, dignitatibus suis tamen omnibus sibi salvis. Quo tamen in loco suos quosdam consiliarios, <app>
-                    <lem>Anglorum, ut fertur, pecuniis illectos, execranda conflexit cupiditas: quorum mox ingenio rex seductus fallaci, sic quoque quod in eodem anno Northumbriam regi Angliae suis praeter paucis inconsultis proceribus, et Cumbriam reddidit. Cui et idem rex Angliae comitatum Huntingdoniae restituit. Ob quam causam totius Scociae communitas, contra dominum suum regem, et suos consiliarios</lem>
-                    <rdg wit="#ms-c">Anglorum, ut fertur, pecuniis illectos, execranda conflexit cupiditas: quorum mox ingenio rex seductus fallaci, sic quoque quod in eodem anno Northumbriam regi Anglorum suis praeter paucis inconsultis proceribus, et Cumbriam reddidit. Cui et idem rex Angliae comitatum Huntingdoniae restituit. Ob quam causam totius Scociae communitas, contra dominum suum regem, et suos consiliarios</rdg>
-                    <rdg wit="#ms-b #ms-d"></rdg>
-                </app> in odium unanimis murmure tacito concitatur. Idem interea reges, anno sequenti apud Carleolum pro suis convenientes negotiis, sed non bene concordes, ut pluribus patuit, ab invicem discesserunt. Paucistamen <app>
-                    <lem>postea</lem>
-                    <rdg wit="#ms-b #ms-d"></rdg>
-                </app> elapsis annis, videlicet, anno regni regis Scociae <app>
-                    <lem>VII°</lem>
-                    <rdg wit="#ms-c #ms-d">septimo</rdg>
-                </app>, rex Henricus, versus Tolosam <app>
-                    <lem></lem>
-                    <rdg wit="#ms-b #ms-d">venit</rdg>
-                </app> copiosum movens exercitum, frustratis principalis intentionis nisibus, Lodovico Francorum rege urbem tuente, <app>
-                    <lem>regressus</lem>
-                    <rdg wit="ms-c">ingressus</rdg>
-                </app> est, et de summa pace summa suborta est discordia; cui expeditioni interfuit cum eo, magnatum suorum invitis pluribus, rex Malcolmus, et in eorum inde reditu gladio militiae ab eo cinctus est in civitate Turonensi.</p>
+                <head>Narratio genealogia Alfredi, filii Ethelwolf.</head>
+                <p>HUJUS filius fuit illud Anglorum decus, regum gemma, virtutum exemplar, Alferedus nomine, ceteris fratribus suis aetate minor, sed annosior virtute. Cum vero, post mortem fratrem suorum, cum quibus aliquo tempore regnabat, ad eum totum regnum devenisset, ut videretur omnium hominum moribus ac naturae congruere, omnibus utilis ac necessarius esse satagebat. Et, quod nunc raro invenitur in terris, illam maxime regis credidit dignitatem, <app>
+                    <lem>nullam</lem>
+                    <rdg wit="#ms-c">ullam</rdg>
+                </app> in ecclesiis Christi habere potestatem. Cum vero regnasset annis <app>
+                    <lem>XX et novem</lem>
+                    <rdg wit="#ms-c">XXIX</rdg>
+                </app> et mensibus sex, de regno terreno ad regnum coeleste transcendit, Edwardum filium suum regni morumque suorum relinquens heredem. Erat enim iste Edwardus in scientia litterarum patre minor, sanctitate vero non multum inferior, sed regia potestate valde superior. Vixit autem in regno XXIIII annis. Et genuit filios et filias, scilicet, ex nobilissima femina Edwina filium suum primogenitum Ethelstanum; ex Editha vero regina Edwinum, Edmundum, Ethredum. Dormivit igitur rex Edwardus cum patribus suis, et regnavit primogenitus ejus Ethelstanus pro eo, ambulans in viis patrum suorum omni virtute repletus. Cum eum vero reliquiae Dacorum more suo nefandum erigunt caput, sed contriti sunt sub pedibus ejus. Cum autem vixisset in regno suo XVI annis mortuus est. Et regnavit frater ejus Edmundus pro eo. Erat autem patris sui Edwardi iste Edmundus in omnibus imitator, homo simplex, et rectus, et timens Deum, et usque ad finem manens in innocentia sua. Qua impii abutentes pagani, quia religione Christianae, quam excolebat rex Deo dilectus, et illi se subdere contradicentes, mortis ejus qualicunque modo insidias moliuntur. Ille autem, quem illorum minime potuit latere abominabile propositum, nimis aegre ferens, eorum cultura ydolorum regni sui foedari decorem, quinque nobilissimas civitates, quas tunc incolebant, scilicet, Lindecolniam, Laicestriam, Stanfordiam, Snotingham, Dereby, de eorum manibus et incolatu potenter extorsit, omnique infidelitate abrasa Christianae fidei lumine illustravit. Cum igitur sub tanto patre magis quam rege tota Anglia pace magna floreret, immatura ejus morte, quam exactis in regno annis quinque et septem mensibus incurrens, subito dolore et passione inopinata emarcuit. *Tu autem Domine.*</p>
             </div>
             <div type="translation" xml:lang="ja">
                 <p>
-                    さて、イングランド人の王スティーブンが亡くなると、皇后の息子であるノルマンディー公ヘンリ<note type="editorial" place="bottom">イングランド王ヘンリ二世（在位：一一五四～一一八九年）</note>が、スコットランド王マルカムの治世第二年に、王として聖別された。彼は王国の高みに上げられるや、自身の約束とかつて彼の母の叔父であるデイヴィッド王に聖なる誓いをもって確約した誓いを忘れ、長年にわたりスコットランド王に従属していたノーサンブリアとカンブリアの領有権を主張し、侵攻しようと画策した。のみならず、ハンティンドン伯領をも自身の所有物であると認めたのである。しかし、両王の間で一時的に和平が結ばれたが、それは偽りのものであった。その和平の期間中に、誰の扇動によるものか私は知らないが、マルコム王はチェスターにてヘンリ王に謁見し、彼に臣従の礼をとった。それはすなわち、彼の祖父デイヴィッド王が老ヘンリ王<note type="editorial" place="bottom">イングランド王ヘンリ一世（在位：一一〇〇～一一三五年）</note>の臣下であったのと全く同じやり方においてであった。これによって、自身のすべての尊厳は保持されたまま、自らの所領を平和裏に所有できることを期待してのことである、と一部の者は言う。ところがその場で、彼の顧問官の一部が、伝えられるところではイングランド人の金銭に釣られ、忌まわしき強欲によって道を誤った。そして間もなく、彼らの偽りの策略によって王は惑わされ、同年、ごく少数の者を除いて貴族たちに諮ることなく、ノーサンブリアとカンブリアをイングランド王に返還してしまった。これに対し、かのイングランド王はハンティンドン伯領を彼に返還した。この一件を理由として、スコットランドの共同体全体が、彼らの主君たる王とその顧問官たちに対し、満場一致の憎しみをもって、静かな不満の声を上げたのである。その間、両王は翌年カーライルにて互いの懸案のために会見したが、多くの者には明らかであったように、うまく合意することなく、互いに別れた。しかしその後数年、すなわちスコットランド王の治世第七年に、ヘンリ王はトゥールーズに向けて大軍を動かしたが、フランク人の王ルイ<note type="editorial" place="bottom">フランス王ルイ七世（在位：一一三七～一一八〇年）</note>がその都市を防衛したため、主たる目的を達成できずに撤退した。そして、この上ない和平からこの上ない不和が生じた。この遠征には、自国の有力貴族の多くが反対する中、マルコム王も彼と共に参加した。そして、その帰路において、彼はトゥールの都市でヘンリ王から騎士の剣を授けられたのである。</p>
+                    彼の子はイングランド人の栄光、王たちの宝石、美徳の模範であったアルフレッドという名で、他の兄弟たちよりも年齢は若かったが徳においては彼らより勝っていた。兄弟たちの死後、しばらくの間彼らと共に統治していた王国全体が彼のものとなったとき、彼はすべての人々の慣習と気風に調和しているように見えたので、万人にとって有用かつ必要であろうと努めた。そして、今日では地上ではめったに見られないことだが、彼は王の最大の尊厳とはキリストの諸教会において権力を持たないことであると信じていた。二九年と六ヶ月統治した後、彼は地上の王国から天上の王国へと移り、息子のエドワードを王国と彼の生き方の相続人として残した。このエドワードは父よりも学識は劣っていたが敬虔さにおいてはそれほど劣っておらず、王権においては大いに優っていた。彼は王国で二四年間生きた。そして、最も高貴な女性エドウィナによって長男アゼルスタンを、エディス王妃によってエドウィン、エドマンド、エスレッドという息子たちと娘たちをもうけた。こうしてエドワード王は父祖たちと共に眠りにつき、長男アゼルスタンが彼に代わって統治し、父祖たちの道を歩み、あらゆる美徳に満ちていた。デーン人の残党が彼らの邪悪な流儀で彼に対して反旗を翻したとき、彼らはその足元で打ち砕かれた。王国を十六年間治めた後、彼は亡くなった。そして、彼の弟エドマンドが彼に代わって統治した。このエドマンドはあらゆる点で父エドワードの模倣者であり、素朴で正直な人物で神を畏れ、最後までその潔白さを保っていた。邪悪な異教徒たちはこの王の敬虔さを利用し、神に愛された王が熱心に信仰するキリスト教の宗教に服することを拒み、何らかの方法で彼の死を画策した。しかし、彼らの忌まわしい計画を察知していた彼は自国の美しさが偶像崇拝によって汚されることを非常に遺憾に思い、当時彼らが住んでいた五つの最も高貴な都市、すなわちリンカーン、レスター、スタンフォード、ノッティンガム、ダービーを彼らの手から力ずくで奪い取り、あらゆる不信仰を根絶してキリスト教信仰の光で照らした。かくして王というよりは偉大な父と呼ぶべき彼の治世の下で全イングランドが大いなる平和に栄えていた時、彼の早すぎる死によってそれは突然の悲しみと予期せぬ苦悩のうちに萎んでしまった。彼は王として五年と七ヶ月を治めた後にその死を迎えたのである。しかるに主よ。</p>
             </div>
         </body>
     </text>
