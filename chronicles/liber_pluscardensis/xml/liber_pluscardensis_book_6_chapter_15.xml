@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 14</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head><app>
+                    <lem wit="#ms-a #ms-b #ms-e">Sequitur genealogia sancta Margaretae, secundum Baldredum abbatem, secundum Willelmum historicum, secundum Turgotum episcopum; horum trium et plurimorum historicorum autoritatibus, illa nobilis successio linialis ad legitimos heredes beata Margareta deducitur de regno Anglorum.</lem>
+                    <rdg wit="#ms-c #ms-d"></rdg>
+                </app><app>
+                    <lem wit="#ms-a #ms-c #ms-d #ms-e"></lem>
+                    <rdg wit="#ms-b">ut patet intuentibus.</rdg>
+                </app>
+            <app>
+                <lem wit="#ms-a #ms-b #ms-e"> C. xv.</lem>
+                <rdg wit="#ms-c #ms-d"></rdg>
+            </app></head>
+                <p>
+                    HIIS sic expeditis de quibusdam regibus Angliae incidenter ad materiam subjectam pertinentibus, consequenter ad genealogiam regum nobilissimorum de nobili prosapia beatissimae Margaretae, Scotorum reginae, secundum Turgotum Sanctiandreae episcopum, prout in veracissimis et antiquissimis historiis et cronicis reperitur, ab Adam, viz. patre omnium racionabilium mortalium linialiter discendencium, procedendum est. Igitur a Seth, filio Adae, qui <app>
+                        <lem wit="#ms-a #ms-b #ms-d">ei</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> pro Abel natus est, ducitur genealogia hujus sanctae generacionis usque ad Enoch, qui vivus a Deo translatus est, cum sancto Helia, qui ante Christi praestolatur adventum; et deinde devenitur ad Noe, qui solus cum filiis et uxoribus meruit mundo pereunte salvari, cujus primogenitus Sem a patre meruit benedici; a Sem vero <app>
+                        <lem wit="#ms-a #ms-b #ms-d">veniens</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">ducitur</lem>
+                        <rdg wit="#ms-e">deducitur</rdg>
+                    </app> genealogia usque ad Woden, qui tantae apud suos autoritatis fuit ut feriam <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">quartam</lem>
+                        <rdg wit="#ms-e">quartam quam</rdg>
+                    </app> gentiles Romani diem Mercurii appellabant, suo <app>
+                        <lem wit="#ms-a #ms-b #ms-d">nomine dedicavit</lem>
+                        <rdg wit="#ms-c #ms-e">nomini dedicant</rdg>
+                    </app>, et Wodennisday <app>
+                        <lem wit="#ms-a #ms-b #ms-d">in</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> Anglorum ydeomate usque in hodiernum diem appellant. A Woden vero proceditur <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-e"></lem>
+                        <rdg wit="#ms-d">linia</rdg>
+                    </app> usque ad Getam, <app>
+                        <lem wit="#ms-a #ms-b">qui</lem>
+                        <rdg wit="#ms-c #ms-d #ms-e">quique</rdg>
+                    </app> tantae sapienciae et autoritatis fuit, ut a paganis tanquam Deus recoleretur. Deinde proceditur ad christianissimos reges <app>
+                        <lem wit="#ms-a">Angels</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">Ingels</rdg>
+                    </app> et Yne, quorum Yne cum monarcha et potentissimus regum Angliae esset, relicto regno Romam peregre profectus est, ubi usque ad mortem remansit. [Ab] <app>
+                        <lem wit="#ms-a">Angels</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">Ingels</rdg>
+                    </app> <app>
+                        <lem>vero usque</lem>
+                        <rdg wit="#ms-c #ms-e">adusque</rdg>
+                    </app> ad Egbrich proceditur, qui tantae fuit probitatis et virtutibus <app>
+                        <lem wit="#ms-a #ms-b #ms-d">insignitus</lem>
+                        <rdg wit="#ms-c #ms-e">signitus</rdg>
+                    </app>, ut universam terram et Angliae regionem ex australi parte fluminis Humbrisae, quae pluribus regibus hiis temporibus subjecta jacuerat divisa, suo imperio totaliter subjugando univit, et <app>
+                        <lem wit="#ms-a #ms-b #ms-d"></lem>
+                        <rdg wit="#ms-c #ms-e">sic</rdg>
+                    </app> primus omnium regum Angliae monarcha dicebatur. Hujus autem filius fuit Ethelwlfus, futuri sui generis splendissimum caput et exordium, de qua preciosa radice fructus nobilissimi et sanctissimi exorti sunt. Hic vero in regno terreno de coelesti regno semper memor erat, qui post bonam vitam <app>
+                        <lem wit="#ms-a #ms-b #ms-e">adeptus</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app>, cum patribus suis collectus est, regnum non amittendo sed mutando, temporale deserens et aeternum adipiscens.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>聖マーガレットの系譜。ボールデッド修道院長、歴史家ウィリアム、ターゴット司教による。これら三人および多くの歴史家の権威に基づき、イングランド王国の祝福されしマーガレットから正当な相続人へと至る高貴な直系の継承がここに記される。第十五章。</head>
+                <p>
+                    さて、主題に関連するイングランドの幾人かの王についての付随的な事柄を片付けたので、次に最も高貴な王たちの系譜に進まなければならない。この系譜はスコットランドの王妃である最も祝福されたマーガレットの気高い血筋に由来するものであり、セント・アンドルーズの司教ターゴットに従い<note type="editorial" place="bottom">セント・アンドルーズ司教ターゴット（位：一一〇七年～一一一五年）。もとダラムの修道院長で、ダラムのターゴットとも呼ばれる。聖マーガレットの聖人伝の著者。</note>、最も真実を伝え、最も古い歴史書と年代記に見出される通りに記述する。この系譜は、すべての理性ある定命の者の父であるアダムから直系で辿られるべきものである<note type="editorial" place="bottom">以降の記述は <hi rend="italic">Gesta Annalia I</hi> の記述を踏襲している。[Skene, 1872, App. III, ch. 1]</note>。したがって、アベルの代わりにアダムに生まれた息子セトから、この聖なる家系の系譜はキリストの来臨を待つ聖エリヤと共に、神によって生きたまま天に移されたエノクにまで遡る。そしてそこから、世界が滅びる際に息子たちとその妻たちと共に救われるに値したノアに至る。その長男セムは父から祝福されるに値した。セムから系譜はウォーデンに至る。彼は彼自身の民の間で非常に権威があったので、異教徒のローマ人がメルクリウスの日と呼んでいた週の第四日を彼の名に捧げ、アングル人の言葉では今日までウェンズデーと呼ばれている。ウォーデンから、異教徒たちによって神として崇められるほどの知恵と権威を持っていたゲタに至る。そこから、最もキリスト教徒的な王であるインギルドとイネに進む。そのうちイネはイングランドの君主であり最も強力な王であったにもかかわらず、王国を捨ててローマへ巡礼し、死ぬまでそこにとどまった。インギルドからエグバートに進む。彼はその誠実さと美徳で非常に優れていたので、当時多くの王に分割され服属していたハンバー川の南側のイングランド全土と地方を完全に彼の支配下に置くことによって統一し、イングランドのすべての王の中で最初の君主と呼ばれた。彼の子がエゼルウルフであり、彼の未来の種族の最も輝かしい頭であり始まりであった。その貴重な根から、最も高貴で最も聖なる実が生じたのである。彼は、地上の王国にあって常に天の王国のことを心に留めており、善き生涯を送った後、父祖たちのもとに集められた。父祖たちのもとに集められた。王国を失うのではなく、それを変え、現世のものを捨てて永遠のものを得たのである。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
