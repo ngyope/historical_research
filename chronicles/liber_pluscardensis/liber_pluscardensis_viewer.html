@@ -20,7 +20,6 @@
             position: relative;
             font-weight: 500;
         }
-        /* [追加] 2色目のハイライト色を定義 */
         .variant.variant-alt {
             color: #0d9488; /* teal-600 */
             border-bottom-color: #5eead4; /* teal-300 */
@@ -43,7 +42,7 @@
             width: 250px;
             font-size: 0.875rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            pointer-events: none; /* Prevent tooltip from interfering with mouse events */
+            pointer-events: none;
         }
         .tooltip::after {
             content: "";
@@ -132,9 +131,6 @@
             const originalContainer = document.getElementById('original-text');
             const translationContainer = document.getElementById('japanese-translation');
 
-            /**
-             * XMLファイルを読み込み、内容を画面に描画する
-             */
             async function loadAndProcessXML(filePath, chapterTitle) {
                 originalContainer.innerHTML = '<p>読み込み中...</p>';
                 translationContainer.innerHTML = '';
@@ -146,7 +142,6 @@
                         throw new Error(`ファイルが見つかりません: ${response.statusText}`);
                     }
                     const xmlString = await response.text();
-                    
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(xmlString, "application/xml");
                     
@@ -154,9 +149,7 @@
                     if (parserError) {
                         throw new Error("XMLの解析に失敗しました。");
                     }
-
                     renderContent(xmlDoc);
-
                 } catch (error) {
                     console.error("Error loading or parsing XML:", error);
                     const errorMessage = `<p class='text-red-600'>エラー: ${error.message}</p>`;
@@ -165,9 +158,6 @@
                 }
             }
             
-            /**
-             * パースされたXMLドキュメントから内容を抽出し、HTMLに変換して描画する
-             */
             function renderContent(xmlDoc) {
                 originalContainer.innerHTML = '';
                 translationContainer.innerHTML = '';
@@ -187,22 +177,21 @@
                     }
                 }
 
+                const state = { appIndex: 0, footnotes: [] };
+
                 if (originalDiv) {
-                    processTextPart(originalDiv, originalContainer, teiNS);
+                    processTextPart(originalDiv, originalContainer, teiNS, state);
                 } else {
                     originalContainer.innerHTML = "<p>[原文セクションが見つかりませんでした。]</p>";
                 }
 
                 if (translationDiv) {
-                    processTranslationPart(translationDiv, translationContainer, teiNS);
+                    processTranslationPart(translationDiv, translationContainer, teiNS, state);
                 } else {
                     translationContainer.innerHTML = "<p>[日本語訳セクションが見つかりませんでした。]</p>";
                 }
             }
             
-            /**
-             * ツールチップの位置を画面内に収まるように調整する
-             */
             function adjustTooltipPosition(tooltip) {
                 const rect = tooltip.getBoundingClientRect();
                 const viewportWidth = window.innerWidth;
@@ -223,9 +212,6 @@
                 }
             }
 
-            /**
-             * ツールチップを持つ要素にイベントリスナーを追加する
-             */
             function addTooltipEvents(element) {
                 element.addEventListener('mouseover', (event) => {
                     const tooltip = event.currentTarget.querySelector('.tooltip');
@@ -246,37 +232,25 @@
             }
 
             /**
-             * 原文パートを処理して描画する
-             * [変更点] <app> タグのハイライト色を交互に変更
+             * [新規] XMLノードの子要素を再帰的に処理するヘルパー関数
+             * @param {Node} sourceNode - 処理対象のXMLノード (<head> or <p>)
+             * @param {HTMLElement} targetElement - 出力先のHTML要素 (<h4> or <p>)
+             * @param {string} ns - XML名前空間
+             * @param {object} state - appIndexとfootnotesを管理する状態オブジェクト
              */
-            function processTextPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
-
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-lg font-semibold italic text-gray-600 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                let appIndex = 0; // [追加] <app>タグを数えるカウンター
-
-                for (const p of paragraphs) {
-                    const pElement = document.createElement('p');
-                    container.appendChild(pElement);
-
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'app') {
+            function processNodeContents(sourceNode, targetElement, ns, state) {
+                sourceNode.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        targetElement.appendChild(document.createTextNode(node.textContent));
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        // <app> タグの処理 (原文用)
+                        if (node.localName === 'app') {
                             const lem = node.getElementsByTagNameNS(ns, 'lem')[0];
                             const rdgs = node.getElementsByTagNameNS(ns, 'rdg');
                             const span = document.createElement('span');
-
-                            // [変更] appIndexの値に応じてクラスを付け分ける
+                            
                             span.classList.add('variant');
-                            if (appIndex % 2 !== 0) { // 奇数番目(1, 3, 5...)の場合
+                            if (state.appIndex % 2 !== 0) {
                                 span.classList.add('variant-alt');
                             }
                             
@@ -296,40 +270,16 @@
                                 tooltip.innerHTML = '<span>異読なし</span>';
                             }
                             span.appendChild(tooltip);
-                            pElement.appendChild(span);
+                            targetElement.appendChild(span);
                             addTooltipEvents(span);
                             
-                            appIndex++; // [追加] <app>を処理したのでカウンターを増やす
+                            state.appIndex++;
                         }
-                    });
-                }
-            }
-
-            /**
-             * 日本語訳パートを処理して描画する
-             */
-            function processTranslationPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
-                const footnotes = [];
-
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-md font-semibold text-gray-700 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                for (const p of paragraphs) {
-                    const pElement = document.createElement('p');
-                    
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'note') {
+                        // <note> タグの処理 (翻訳用)
+                        else if (node.localName === 'note') {
                             const noteText = node.textContent;
-                            footnotes.push(noteText);
-                            const footnoteIndex = footnotes.length;
+                            state.footnotes.push(noteText);
+                            const footnoteIndex = state.footnotes.length;
                             const noteRefSpan = document.createElement('span');
                             noteRefSpan.className = 'variant footnote-ref';
                             noteRefSpan.textContent = `[${footnoteIndex}]`;
@@ -337,14 +287,55 @@
                             tooltip.className = 'tooltip';
                             tooltip.textContent = noteText;
                             noteRefSpan.appendChild(tooltip);
-                            pElement.appendChild(noteRefSpan);
+                            targetElement.appendChild(noteRefSpan);
                             addTooltipEvents(noteRefSpan);
                         }
-                    });
+                    }
+                });
+            }
+
+            /**
+             * [変更] 原文パートを処理して描画する
+             */
+            function processTextPart(div, container, ns, state) {
+                const head = div.getElementsByTagNameNS(ns, 'head')[0];
+                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
+
+                if (head) {
+                    const headElement = document.createElement('h4');
+                    headElement.className = 'text-lg font-semibold italic text-gray-600 mb-4';
+                    processNodeContents(head, headElement, ns, state); // ヘルパー関数で処理
+                    container.appendChild(headElement);
+                }
+                
+                for (const p of paragraphs) {
+                    const pElement = document.createElement('p');
+                    processNodeContents(p, pElement, ns, state); // ヘルパー関数で処理
+                    container.appendChild(pElement);
+                }
+            }
+
+            /**
+             * [変更] 日本語訳パートを処理して描画する
+             */
+            function processTranslationPart(div, container, ns, state) {
+                const head = div.getElementsByTagNameNS(ns, 'head')[0];
+                const paragraphs = div.getElementsByTagNameNS(ns, 'p');
+                
+                if (head) {
+                    const headElement = document.createElement('h4');
+                    headElement.className = 'text-md font-semibold text-gray-700 mb-4';
+                    processNodeContents(head, headElement, ns, state); // ヘルパー関数で処理
+                    container.appendChild(headElement);
+                }
+                
+                for (const p of paragraphs) {
+                    const pElement = document.createElement('p');
+                    processNodeContents(p, pElement, ns, state); // ヘルパー関数で処理
                     container.appendChild(pElement);
                 }
 
-                if (footnotes.length > 0) {
+                if (state.footnotes.length > 0) {
                     const footnotesContainer = document.createElement('div');
                     footnotesContainer.className = 'mt-8 pt-4 border-t border-gray-300';
                     const footnotesHeader = document.createElement('h4');
@@ -353,7 +344,7 @@
                     footnotesContainer.appendChild(footnotesHeader);
                     const list = document.createElement('ol');
                     list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
-                    footnotes.forEach((noteText, index) => {
+                    state.footnotes.forEach((noteText, index) => {
                         const listItem = document.createElement('li');
                         listItem.textContent = noteText;
                         list.appendChild(listItem);
