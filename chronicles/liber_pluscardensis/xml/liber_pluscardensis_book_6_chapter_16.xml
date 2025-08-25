@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 16</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Sequitur de Alberedo filio Ethelwlphi. - C. xvi.</head>
+                <p>
+                    HUJUS Ethelwlphi filius fuit illud Anglorum decus, regum gemma, virtutum exemplar, Alveredus nomine, caeteris fratribus suis aetate <app>
+                        <lem wit="#ms-a #ms-b #ms-d">minor</lem>
+                        <rdg wit="#ms-c #ms-e">junior</rdg>
+                    </app>, sed virtute major. <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Cum</lem>
+                        <rdg wit="#ms-c #ms-e">cujus</rdg>
+                    </app> vero post mortem fratrum suorum, cum quibus aliquo tempore regnabat, ad eum totum regnum devenisset, ut videretur omnium hominum moribus et naturae <app>
+                        <lem wit="#ms-a #ms-c #ms-d #ms-e">congruere</lem>
+                        <rdg wit="#ms-b">convenire</rdg>
+                    </app>, omnibus utilis ac necessarius esse, satagebat. Et, quod nunc raro invenitur in terra <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d"></lem>
+                        <rdg wit="#ms-e">quod</rdg>
+                    </app>, maxime regis convenit dignitati, nullam in ecclesia Christi habere potestatem. Cum vero regnasset annis xx et ix, et mensibus sex, de regno terreno ad regnum coeleste transcendit, Edwardum filium suum regni morum[que] suorum relinquens heredem. Erat enim iste Edwardus in sciencia literarum patre minor, sanctitate vero non multum inferior, regia tamen potestate valde superior. Vixit <app>
+                        <lem wit="#ms-a #ms-b #ms-d">quoque</lem>
+                        <rdg wit="#ms-c #ms-e">autem</rdg>
+                    </app> in regno xxiiii<hi rend="superscript">or</hi> annis, et genuit filios et filias, viz. primogenitum filium <app>
+                        <lem wit="#ms-a #ms-b #ms-d"></lem>
+                        <rdg wit="#ms-c #ms-e">suum</rdg>
+                    </app>Athelstanum, ex nobilissima femina, viz. Edwina; <app>
+                        <lem wit="#ms-a #ms-b #ms-d">et</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> ex Editha vero regina Edwinum, Edmundum, et Ethelredum. Dormivit <app>
+                        <lem wit="#ms-a">autem</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">ergo</rdg>
+                    </app> rex Edwardus cum patribus suis, et regnavit filius <app>
+                        <lem wit="#ms-a #ms-b #ms-d"></lem>
+                        <rdg wit="#ms-c #ms-e">ejus</rdg>
+                    </app> Athelstanus post eum, ambulans in viis patrum suorum, omni virtute repletus. Cum eum vero reliquisae Dacorum, more suo, nephandum exigunt caput, sed contriti sunt sub pedibus ejus. Cum autem vixisset in regno suo xvi annis <app>
+                        <lem wit="#ms-a #ms-b #ms-d">mortuus est</lem>
+                        <rdg wit="#ms-c">sepultus</rdg>
+                        <rdg wit="#ms-e">sepultus est</rdg>
+                    </app>, et regnavit frater ejus Edmundus pro eo. Erat autem patris sui Edwardi <app>
+                        <lem wit="#ms-a #ms-b #ms-d">iste Edmundus</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> in omnibus imitator, homo simplex et rectus<app>
+                        <lem wit="#ms-a #ms-b #ms-d"></lem>
+                        <rdg wit="#ms-c #ms-e">ac</rdg>
+                    </app>, timens Deum, et usque ad finem manens in innocencia sua, qua impii abutentes pagani, quia <app>
+                        <lem wit="#ms-a #ms-d">religione</lem>
+                        <rdg wit="#ms-b #ms-c #ms-e">religioni</rdg>
+                    </app> Christianae quam excolebat rex Deo dilectus et illi <app>
+                        <lem wit="#ms-a #ms-b #ms-d">se</lem>
+                        <rdg wit="#ms-c #ms-e">sese</rdg>
+                    </app> subdere contradicentes, mortis ejus qualicunque modo insidias moliuntur. Ille autem quem illorum minime potuit latere abhominabile propositum, nimis grave ferens <app>
+                        <lem wit="#ms-a #ms-b #ms-d">eorum</lem>
+                        <rdg wit="#ms-c #ms-e">illorum</rdg>
+                    </app> cultura ydolorum regni sui <app>
+                        <lem wit="#ms-a #ms-b #ms-d">foederi</lem>
+                        <rdg wit="#ms-c #ms-e">foedari</rdg>
+                    </app> decorem, quinque nobilissimas civitates quas tunc incolebant, s. Lindecolneam, Laycestriam, Stanfordiam, Snotingham, et Deriby, de eorum manibus et incolatu potenter extorsit, omnique infidelitate abrasa, Christianae fidei lumine illustravit. Cum igitur sub tanto patre magis quam rege <app>
+                        <lem wit="#ms-a #ms-b #ms-d">tanta</lem>
+                        <rdg wit="#ms-c #ms-e">tota</rdg>
+                    </app> Anglia pace magna hiis diebus floreret, immatura ejus morte quam, exactis in regno annis quinque et septem mensibus, incurrens, subito dolore et passione expiravit inopinata.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>続いて、エゼルウルフの子、アルフレッドについて。第十六章<note type="editorial" place="bottom">以降の記述は <hi rend="italic">Gesta Annalia I</hi> の記述を踏襲している。[Skene, 1872, App. III, ch. 2]</note>。</head>
+                <p>
+                    このエゼルウルフの子こそ、イングランド人の栄光、王たちの宝石、徳の模範たるアルフレッドであり、他の兄弟たちよりは年若かったが、徳においては勝っていた。兄弟たちの死後、しばらく彼らと共に統治していたが、全王国が彼のものとなると、万人の慣習と気風に合うようにすべての人々にとって有益かつ必要であろうと努めた。そして、今日では地上では稀に見られることであるが、キリストの教会において権力を持たないことは特に王の尊厳にふさわしいことである。二九年と六ヶ月統治した後、彼は地上の王国から天上の王国へと移り、息子エドワードを王国と慣習の相続人として残した。このエドワードは学識においては父に劣っていたが、敬虔さにおいてはさほど劣らず、王権においては大いに優れていた。彼もまた王国で二四年間生き、息子と娘たちをもうけた。すなわち、最も高貴な女性エドウィナから長男アゼルスタンを、そしてエディス王妃からエドウィン、エドマンド、エゼルレッドをもうけた。その後、エドワード王は父祖たちと共に眠りにつき、その子アゼルスタンが王位を継ぎ、父祖たちの道を歩みあらゆる徳に満ちていた。デーン人の残党がその慣習に従って彼の忌まわしき首を要求したとき<note type="editorial" place="bottom">"exigunt" (要求する) は Gesta Annalia I の記述では "erigunt" (もたげる)、つまり「反乱を起こす」となっている。</note>、彼らはその足元で打ち砕かれた。王国で十六年間生きた後彼は亡くなり、弟のエドマンドが代わって統治した。このエドマンドはあらゆる点において父エドワードの模倣者であり、素朴で正直な人物で、神を畏れ、最後までその無垢を保った。神に愛された王が育んだキリスト教の信仰に背き、それに服従することを拒んだ邪悪な異教徒たちはこれを悪用し、何とかして彼を死に至らしめようと陰謀を企てた。しかし、彼らの忌まべき計画を察知していた王は自らの王国の美しさが偶像崇拝によって汚されることを非常に重く受け止め<note type="editorial" place="bottom">底本をそのまま訳すと「自らの王国の協定に対する彼らの偶像崇拝の不名誉を非常に重く受け止め」となるが、意味が合わない。ここの "foederi" は写本ＣとＥにみられる"foedari" の誤字であると解釈し、このように訳した方が自然である。</note>、当時彼らが占拠していた五つの最も高貴な都市、すなわちリンカン、レスター、スタンフォード、ノッティンガム、ダービーを彼らの手と占領から力ずくで奪い返し、すべての不信仰を拭い去り、キリスト教の信仰の光で照らした。かくて、王というよりは父と呼ぶべき偉大な君主のもと、当時のイングランドが大いなる平和のうちに栄えていた折、彼は王国統治五年と七ヶ月にして早すぎる死を迎え、突然の悲しみと苦しみの中で思いがけず息を引き取ったのである。
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
