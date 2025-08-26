@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 17</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Sequitur de successione Ethelredi fratris sui. - C. xvii.</head>
+                <p>
+                    SUCCESSIT autem illi in regnum frater ejus Ethelredus, et ambulavit in viis patris sui Edwardi et fratrum suorum, in omnibus beati Dunstani consiliis acquiescens atque mandatis. Hujus vero laudabilem vitam mors preciosa conclusit. Post quem regnavit Edwinus filius Edmundi regis, qui non ambulavit in viis patrum suorum, sed in illa tota progenie tanquam novus <app>
+                        <lem wit="#ms-a #ms-b">heres</lem>
+                        <rdg wit="#ms-c #ms-e">Herodes</rdg>
+                        <rdg wit="#ms-d">heretes</rdg>
+                    </app> emersit. Sed quia de hac regum Anglorum genealogia regibus Scotorum consanguinitate ex parte <app>
+                        <lem wit="#ms-a #ms-b #ms-d">beatae</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> Margaretae conjuncta, per relaciones saepedictorum Baldredi Willelmi et Turgoti historicorum, saepius recapitulata legentibus, ad ostensionem veritatis sufficere potest, nunc ad sequencia, exclusis nugacionibus inutilibus, procedendum utile videtur.
+                </p>
+                <p>
+                    Postquam enim sanctus David, filius Malcolmi regis et beatae <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Margaretae</lem>
+                        <rdg wit="#ms-c #ms-e">Margaretae reginae</rdg>
+                    </app>, viam universae carnis apud Carleolum ingressus est, et apud Dunfermlyn honorifice sepultus, regnavit Malcolmus, nepos ejus <app>
+                        <lem>ex fratre</lem>
+                        <rdg wit="#ms-e">e filio</rdg>
+                    </app>, contra quem insurgens primo anno regni sui <app>
+                        <lem wit="#ms-a #ms-b">regulus</lem>
+                        <rdg wit="#ms-c"></rdg>
+                        <rdg wit="#ms-e">dominus</rdg>
+                    </app> Argadisae, nomine Sumerledus, et sui nepotes, filii Malcolmi Makheth, associatis sibi pluribus aliis, qui magnam Scociae partem inquietaverunt. Ille tamen Makheth dicebat filium se esse Angusii comitis Moraviae, licet in veritate non erat, qui tempore regis David demeritis suis apud Strucathioch a Scotis interfectus est; quo mortuo, idem Makheth insurgendo contra regem David, quasi filius mortem patris vindicando, regiones propinquas rapinis et caedibus afficiens, tandem capitur, et in <app>
+                        <lem wit="#ms-a #ms-b #ms-d">castrum</lem>
+                        <rdg wit="#ms-c #ms-e">castro</rdg>
+                    </app> de Marchemond in artis carceribus trucidatur. Eodem vero tempore regis David unus filiorum Makheth, Donevaldus nomine, per quosdam regis amicos apud Quhittharn capitur, et in eo castello de Marchemond, quod Roxburgh dicitur, incarceratur cum patre, qui cum rege Malcolmo anno sequenti pacificatus est, Sumerledo in sua nequicia perseveranti. Hiis temporibus Parisius floruit Petrus Lumbardi, magister sentenciarum, theologiae summus clericus, cui contemporaneus fuit Petrus Commestor, magister historiarum. Anno vero Domini M<sup>o</sup> liiii rex Francorum Ludovicus, Henricum ducem Normannisae, filium imperatricis, ad pacem recepit; qui Henricus in brevi postea Angliam, mortuo rege Stephano, intravit et, regni integritate potitus, pacem antiquam <app>
+                        <lem wit="#ms-a #ms-b #ms-d">reformat</lem>
+                        <rdg wit="#ms-c #ms-e">reformavit</rdg>
+                    </app>. Eodem vero anno Willelmus Cumyn Eboracensis archiepiscopus, post recepcionem eucharisticae in missa, prodicione suorum clericorum infra ablucionem <app>
+                        <lem wit="#ms-a #ms-b #ms-d">liquorum</lem>
+                        <rdg wit="#ms-c #ms-e">reliquiorum</rdg>
+                    </app> letali pocione <app>
+                        <lem wit="#ms-a #ms-b #ms-d">infectus</lem>
+                        <rdg wit="#ms-c #ms-e">interfectus</rdg>
+                    </app>, extinctus est.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>ここに彼の兄弟エゼルレッドの継承について続く。第十七章。</head>
+                <p>
+                    彼の兄弟エゼルレッドが王位を継承し、父エドワードと兄弟たちの道を歩み、聖ダンスタンのすべての助言と命令に従った。彼の称賛に値する生涯は貴重な死によって締めくくられた。彼の後、エドマンド王の息子エドウィンが統治したが彼は父祖の道を歩まず、その全家系において新しい相続人として現れた<note type="editorial" place="bottom">この記述は『ゲスタ・アナリアⅠ』の記述を踏襲している。しかし、<hi rend="italic">Gesta Annalia I</hi> ではエゼルレッド王の代に新たなヘロデが現れたとしているのに対して『プルスカーデンの書』の記述はエドゥイン王の治世とし、さらには写本間で「相続人 (heres)」と「ヘロデ (Herodes)」の混乱が見られる。[Skene, 1872, App. III, ch. 3]</note>。しかし、このイングランド人の王の系譜については聖マーガレットの側でスコット人の王と血縁関係にあり、しばしば言及される歴史家バルドレッド、ウィリアム、ターゴットの関係を通じて真実を示すために読者にしばしば要約されているので<note type="editorial" place="bottom">セント・アンドルーズ司教ターゴット（位：一一〇七年～一一一五年）。もとダラムの修道院長で、ダラムのターゴットとも呼ばれる。聖マーガレットの聖人伝の著者。</note>、今は無用な些事を排除して次に進むのが有益であると思われる<note type="editorial" place="bottom">ここにおいて『プルスカーデンの書』の著者は『ゲスタ・アナリアⅠ』の記述を大幅に省略し話を十二世紀中葉のスコットランドへと移している。</note>。
+                </p>
+                <p>
+                    聖デイヴィッド<note type="editorial" place="bottom">デイヴィッド一世を聖人とする記述は『ゲスタ・アナリアⅠ』には見られない。[Skene, 1872, ch. 1 (Gesta Annalia)]</note>、マルコム王と聖マーガレットの息子がカーライルですべての肉の道を行き、ダンファームリンで名誉をもって埋葬された後、彼の兄弟からの甥であるマルコムが統治した<note type="editorial" place="bottom">正しくは写本Ｅにある通り、デイヴィッド一世の息子ヘンリの息子である。そのため、彼の息子からの孫であるマルコムというのが正しい。</note>。彼の治世の最初の年<note type="editorial" place="bottom">以降のサマーレッドとマルコム・マクヘス、ドナルドの記述は『ゲスタ・アナリアⅠ』を踏襲している。[Skene, 1872, ch. 1 (Gesta Annalia)]</note>、アーガイルの小王サマーレッドという名の者、そして彼の甥、マルコム・マクヘスの息子たちが他の多くの者たちと結託して反乱を起こし、スコットランドの大部分を混乱させた。しかし、そのマクヘスは自分がマリ伯アンガスの息子であると言ったが、実際にはそうではなかったのだが、後者はデイヴィッド王の時代にストラスカースロでスコット人によってその悪行のために殺された。彼が死んだ後、同じマクヘスが父の死を復讐する息子であるかのようにデイヴィッド王に対して反乱を起こし、近隣の地域を略奪と殺戮で苦しめ、ついに捕らえられ、マーチモント城の厳重な監禁の中で処刑される。デイヴィッド王の同じ時代にマクヘスの息子の一人、ドナルドという名の者が王の友人たちによってウィットホーンで捕らえられ、ロクスバラと呼ばれるマーチモント城に父と共に投獄され<note type="editorial" place="bottom">マーチモント城をロクスバラ城と同一であると補足する文言は『ゲスタ・アナリアⅠ』には見られない。[Skene, 1872, ch. 1 (Gesta Annalia)]</note>、翌年マルコム王と和解したがサマーレッドは彼の邪悪さを続けた。この時代<note type="editorial" place="bottom">ペトルス・ロンバルドゥスとペトルス・コメストルに関する記述は『ゲスタ・アナリアⅠ』には見られない。</note>、パリでは神学の最高の聖職者である命題集の師、ペトルス・ロンバルドゥスが活躍し、彼の同時代人には歴史の師、ペトルス・コメストルがいた。主の年一〇五四年<note type="editorial" place="bottom">正しくは一一五四年。ヘンリ二世の即位は『ゲスタ・アナリアⅠ』にも見られる。[Skene, 1872, ch. 2 (Gesta Annalia)]</note>、フランス王ルイは皇后の息子であるノルマンディー公アンリを和平に受け入れた。そのアンリはスティーヴン王が亡くなった後間もなくイングランドに入り、王国の完全性を手に入れ、古代の和平を改革した。同じ年<note type="editorial" place="bottom">この記述は『ゲスタ・アナリアⅠ』には見られない。</note>、ヨーク大司教ウィリアム・カミンはミサで聖体拝領を受けた後、彼の聖職者たちの裏切りによって液体の洗浄中に致死のポーションに感染し<note type="editorial" place="bottom">「ポーションに感染し」は異本にあるように「ポーションで殺され」の方が自然である。</note>、亡くなった。
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
