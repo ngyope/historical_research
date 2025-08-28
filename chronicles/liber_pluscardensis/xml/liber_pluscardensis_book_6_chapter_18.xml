@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 18</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Sequitur de rege Malcolmo Scotorum et Henrico Angliae. - C. xviii.</head>
+                <p>
+                    MORTUO autem rege Anglorum Stephano, Henricus dux Normanniae, filius imperatricis, in regem assumptus est, anno regis Scociae <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Malcolmi</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> secundo; qui, cum sublimatus esset in regno, suae sponcionis et juramenti immemor, quod prius <app>
+                        <lem wit="#ms-a #ms-b #ms-d">David</lem>
+                        <rdg wit="#ms-c #ms-e">regi David</rdg>
+                    </app> avunculo matris suae dictae imperatricis sacramento firmaverat, Northumbriam calumnians et Cumbriam, <app>
+                        <lem wit="#ms-a #ms-d">citerum</lem>
+                        <rdg wit="#ms-b">caeteris</rdg>
+                        <rdg wit="#ms-c #ms-e">cum</rdg>
+                    </app> regibus Scotorum innumerosis annis per prius <app>
+                        <lem>reges</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> obedierat, invadere satagebat, necnon et comitatum de Huntyngton ad possessionem propriam recognovit. Hic vero Henricus propter suam feritatem Leo dictus est. Qui videns Johannem, episcopum Glasguensis, per Cummirlandiam officia episcopalia ut moris est exercere, qui nec sibi ut domino nec archiepiscopo Eboracensi ut praelato vellet inde obedire, Trustino archiepiscopo supradicto incitante, Edwaldum episcopum in Cummirlandiam contra eum per vim et violenciam constituit, cum non erat eo tunc qui contra eum resistere audebat. Quod cum <app>
+                        <lem>audiebat</lem>
+                        <rdg wit="#ms-c">audisset</rdg>
+                    </app> Johannes praesul, <app>
+                        <lem wit="#ms-a #ms-c #ms-d #ms-e">episcopatum</lem>
+                        <rdg wit="#ms-b">episcopatum Glasguensem</rdg>
+                    </app> ejus taliter <app>
+                        <lem wit="#ms-a #ms-b #ms-d">demembratum</lem>
+                        <rdg wit="#ms-c #ms-e">dismembratum</rdg>
+                    </app>, et nec erat qui qui <app>
+                        <lem wit="#ms-a #ms-c">vel ex</lem>
+                        <rdg wit="#ms-b">simul de</rdg>
+                        <rdg wit="#ms-d #ms-e">de</rdg>
+                    </app> jure vel de facto, neque per legem neque per regem, defendi poterat, transfretavit, et in monasterio Tironensi se monachum obtulit. Quem rex <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Scociae</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> Malcolmus auctoritate <app>
+                        <lem wit="#ms-a #ms-b #ms-d">papale</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> de monacho iterum ad episcopatum Glasguensem restituit, qui xxviii annis postea rexit, et apud Gedwort post mortem <app>
+                        <lem wit="#ms-a #ms-b #ms-d">inhumatus</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> requiescit. Et notandum est quod <app>
+                        <lem wit="#ms-a #ms-b #ms-d">ex</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> hujusmodi causis, <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">viz.</lem>
+                        <rdg wit="#ms-e">vel</rdg>
+                    </app>, confoederacionibus et emulacionibus, multa mala oriuntur inter principes. Inita tamen inter eos ad certum tempus pace, utriusque regni magnatum interventu, <app>
+                        <lem wit="#ms-a #ms-c #ms-d #ms-e">quae</lem>
+                        <rdg wit="#ms-b"></rdg>
+                    </app> quia ficta fuit pax illa <app>
+                        <lem wit="#ms-a #ms-b #ms-d">nec</lem>
+                        <rdg wit="#ms-c #ms-e">non</rdg>
+                    </app> multo tempore duravit. Infra quam tamen pacem nescitur quorum <app>
+                        <lem wit="#ms-a #ms-b #ms-d">instigacione</lem>
+                        <rdg wit="#ms-c #ms-e">investigatione</rdg>
+                    </app> vel consilio rex Malcolmus <app>
+                        <lem wit="#ms-a #ms-b #ms-d">quia</lem>
+                        <rdg wit="#ms-c #ms-e">qui</rdg>
+                    </app> juvenis erat et tocius doli mali <app>
+                        <lem>nescius</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">inscius</rdg>
+                    </app>, sed ad modum innocentis omni verbo credens, apud Cestriam regi Henrico homagium fecit, eo viz. modo quo rex David avunculus suus homo veteris Henrici regis Angliae fuerat, dicti viz. Beauclerk, mariti Matildis bonae reginae Angliae sororis dicti regis David; sperans ex hoc rex Malcolmus suas possessiones infra Angliam liberius et pacificentius possidere; dignitatibus tamen suis et juribus regalibus in omnibus sibi salvis. In quo tamen loco rex, fallaci seductus ingenio, <app>
+                        <lem wit="#ms-a #ms-b #ms-d">quorundam</lem>
+                        <rdg wit="#ms-c #ms-e">quorum</rdg>
+                    </app> pecunia corruptorum consilio, eodem anno Northumbriam regi Angliae, suis exceptis paucis inconsultis proceribus, reddidit et Cumbriam; cui <app>
+                        <lem wit="#ms-a #ms-b">postea</lem>
+                        <rdg wit="#ms-c #ms-d #ms-e">propterea</rdg>
+                    </app> idem rex comitatum de Huntyngton restituit. Ob quam causam tota communitas tocius regni Scociae contra regem suum et suos corruptos consiliarios graviter murmurabant, et in odium tacite concitantur. Interea vero, anno sequenti reges praedicti, apud Karleolum pro suis negociis reformandis convenientes, minime concordarunt. Postea vero dictus rex Henricus, anno regni dicti regis Scociae <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Malcolmi</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> septimo, versus Tholosam in Francia copiosum duxit exercitum; sed Ludovico Francorum rege urbem protegente, frustratis principalis intencionis nisibus reversus est: inter quos de summa pace summa discordia <app>
+                        <lem wit="#ms-a #ms-b #ms-d">suborta</lem>
+                        <rdg wit="#ms-c #ms-e">orta</rdg>
+                    </app> est. In cujus exercitu fuit eo tunc rex Malcolmus, invitis pluribus de majoribus regni, et in regressu idem rex Malcolmus ab eodem rege Henrico <app>
+                        <lem wit="#ms-a">singulo</lem>
+                        <rdg wit="#ms-b #ms-c #ms-d #ms-e">cingulo</rdg>
+                    </app>singulo militari praecinctus est <app>
+                        <lem>in civitate Turonensi</lem>
+                        <rdg wit="#ms-c #ms-e">apud civitatem Turonensem</rdg>
+                    </app> in Francia.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>スコット人の王マルコムとイングランド王ヘンリについて。第十八章。</head>
+                <p>
+                    さて、イングランド王スティーブンが亡くなると、皇后の息子であるノルマンディー公アンリがスコットランド王マルコムの治世第二年に王位に就いた。彼は王国において高位に昇るや、かつてかの皇后の母の叔父であるデイヴィッドに対して誓いを立てていた自身の約束と誓言を忘れ、ノーサンブリアとカンブリアの領有を主張し、これらを侵略しようと努めた。これらの地はそれ以前の数えきれない年月にわたり、スコット人の王たちに対して王たちが服従していた土地であった<note type="editorial" place="bottom">『ゲスタ・アナリア』ではノーサンブリアとカンブリアが長年にわたりスコットランド王に従属していたとされるものの、「王たちが服従していた土地」という記載は見られない。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>。彼は、さらにはハンティンドン伯領をも自身の所有地として認めたのである。実のところ、このヘンリはその獰猛さゆえに「獅子」と呼ばれた<note type="editorial" place="bottom">ヘンリ二世を「獅子」とする記述は『ゲスタ・アナリア』には見られない。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>。彼は<note type="editorial" place="bottom">グラスゴー司教位をめぐるエピソードは『ゲスタ・アナリア』には見られない。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>、グラスゴー司教ジョンが慣例に従いカンバーランドで司教の職務を執行しているのを見たが、ジョンが自身を主君として、さらにはヨーク大司教を上位者として服従しようとしなかったため、前述のヨーク大司教サースティンの扇動を受けて力と暴力によってエドワルドをカンバーランドの司教として彼に対抗させた。当時、彼に抵抗する勇気のある者は誰もいなかったからである。ジョン司教は自身の司教区がこのようにして分割されたことを聞き、また法によっても王によっても、法的にも事実上も、自分を守ってくれる者が誰もいなかったため、海を渡り、ティロンの修道院で修道士となることを申し出た。スコットランド王マルコムは教皇の権威をもって、彼を修道士から再びグラスゴー司教区に復帰させた。彼はその後二八年間司教区を治め、死後ジェドワースに埋葬され、安息している。そして、注目すべきはこのような原因、すなわち同盟や対抗心から、君主たちの間に多くの災いが生じるということである。しかし、両王国の有力者たちの仲介により彼らの間に一定期間の和平が結ばれたが、それは見せかけの和平であったため、長くは続かなかった。その和平の間に、誰の扇動か助言によるものかは不明であるが、マルコム王は若く、あらゆる悪意ある策略を知らず、無垢な者のようにあらゆる言葉を信じていたため<note type="editorial" place="bottom">マルコム四世が若く、無垢であったとする記述は『ゲスタ・アナリア』には見られない。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>、チェスターにおいてヘンリー王に臣従礼を行った。それは、彼の叔父であるデイヴィッド王が<note type="editorial" place="bottom">正しくは、デイヴィッド一世はマルコム四世の叔父ではなく祖父である。</note>、かのデイヴィッド王の姉妹であるイングランドの善良なマティルダ妃の夫であった旧イングランド王ヘンリ、すなわち「碩学王」の臣下であったのと全く同じ様式であった<note type="editorial" place="bottom">「碩学王」という異名も『ゲスタ・アナリア』には見られない。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>。マルコム王はこれによってイングランド内の自身の所領をより自由にかつ平和的に所有できると期待していたのである。ただし、彼の王としての尊厳と権利はすべて留保された<note type="editorial" place="bottom">『ゲスタ・アナリア』では「自身のすべての尊厳は保持されたまま」とする。『プルスカーデンの書』は明確に「王としての尊厳と権利」と言い換えている。[Chron. Fordun, i, ch. 2 (Gesta Annalia)]</note>。しかしながらその場所で、王は欺瞞に満ちた策略に惑わされ、金で買収された一部の者たちの助言により、同年、少数の有力者たちに諮ることなくノーサンブリアとカンブリアをイングランド王に返還した。その後、かの王は彼にハンティンドン伯爵領を返還した。この理由により、スコットランド王国全体の共同体は自らの王とその腐敗した助言者たちに対して激しく不平を述べ、静かに憎悪を募らせた。そうこうするうちに、翌年、前述の王たちはカーライルで自らの問題について再交渉するために会見したが、全く合意に至らなかった。その後、かのスコットランド王マルコムの治世第七年に、かのヘンリ王はフランスのトゥールーズに向けて大軍を率いた。しかし、フランク人の王ルイがその都市を防衛したため、主目的の達成は頓挫し、彼は帰還した。彼らの間には、完全なる和平から完全なる不和が生じたのである。その軍勢の中には当時マルコム王もいたが、これは王国の多くの有力者たちの意に反するものであった。そして帰還の途上、マルカム王はかのヘンリ王によってフランスのトゥール市において騎士に叙任された。
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
