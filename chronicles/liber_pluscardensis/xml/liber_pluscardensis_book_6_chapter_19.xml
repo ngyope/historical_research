@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Liber Pluscardensis, Book VI Chapter 19</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on F. J. H. Skene (ed.), <hi rend="italic">Liber Pluscardensis</hi>, 2 vols (Edinburgh, 1877).</p>
+                <listWit>
+                    <witness xml:id="#ms-a">MS. Marchmont, A. c. 15.</witness>
+                    <witness xml:id="#ms-b">MS. Bibliothèque Royale, Brussels, No. 7396.</witness>
+                    <witness xml:id="#ms-c">MS. Glasgow College, F. 6. 14.</witness>
+                    <witness xml:id="#ms-d">MS. Bodleian, Fairfax 8.</witness>
+                    <witness xml:id="#ms-e">MS. Advocates' Library, 35. 5. 2.</witness>
+                    <witness xml:id="#ms-cavers">MS. Cavers.</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head><app>
+                    <lem wit="#ms-a #ms-b #ms-d">Sequitur adhuc de eodem Rege Malcolmo, et incidentibus. - C. xix.</lem>
+                    <rdg wit="#ms-c #ms-e"></rdg>
+                </app></head>
+                <p>
+                    VIDENTES autem Scotorum principes eorum regem cum dicto Anglorum rege nimiam familiaritatem <app>
+                        <lem wit="#ms-a #ms-b">habentem</lem>
+                        <rdg wit="#ms-c #ms-e">habere</rdg>
+                        <rdg wit="#ms-d"></rdg>
+                    </app>, turbati sunt valde, et omnes regni Scociae proceres et alii <app>
+                        <lem wit="#ms-a #ms-b #ms-d">gentes</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> cum illis; timuerunt enim ne ejus familiaritas nimia, quae multociens parat contemptum, eis praejudicium generaret et opprobrium. Quodque omni diligenti studio praecavere conantes, post eum legacionem miserunt, dicentes, Nolumus hunc regnare super nos. Propterea reversus ab exercitu Tholosano Scociam veniens, propter diversas causarum exigencias, autoritate regia praelatos jubet et proceres apud Perth convenire. Concitatis interim regni majoribus sex viz. comites, Ferchardum s. <app>
+                        <lem wit="#ms-a">comite</lem>
+                        <rdg wit="#ms-c #ms-d #ms-e">comitem</rdg>
+                        <rdg wit="#ms-b">cum comite</rdg>
+                    </app> de Strathern et alii quinque, adversus regem, non utique pro commodo suo singulari vel prodiciosa conspiracione, sed pro utilitate rei publicae et privilegiorum regni tuicione, commoti, ipsum arrestare nituntur et capere, quem <app>
+                        <lem wit="#ms-a #ms-b #ms-d #ms-e">intra</lem>
+                        <rdg wit="#ms-c">infra</rdg>
+                    </app> turrim ejusdem villae obsederunt. Cassato tamen pro tunc eorum conatu, non multis postmodum diebus evolutis, intervenientibus clero cum aliis 
+                    <app>
+                        <lem wit="#ms-a #ms-b #ms-d">regni</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app> obtimatibus, ad concordiam revocatus, contra quosdam rebelles in Galwidiam perrexit ter eodem anno; tandem superatis ipsis, devictis, confoederatis et subjectis, in pace sine aliquo dispendio suorum remeavit; quos postmodum ita subjectos tenuit, et in chamo et freno maxillas eorum constrinxit, ut regulus eorum, Fergusius nomine, dato filio suo et herede regi ad gubernandum <app>
+                        <lem wit="#ms-a #ms-b #ms-d">et regendum</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app>, militaribus renuncians insigniis, apud monasterium Sanctae Crucis de Edinburgh canonicus effectus est. <app>
+                        <lem wit="#ms-a">Hiis itadem diebus</lem>
+                        <rdg wit="#ms-c #ms-e">Hiis item temporibus</rdg>
+                        <rdg wit="#ms-b #ms-d">Hiis itidem diebus</rdg>
+                    </app> rex, consilio majorum regni sui, suas sorores s. Margaretam <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">atque Adam</lem>
+                        <rdg wit="#ms-e"></rdg>
+                    </app>, duci Britaniae Conano <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Margaretam</lem>
+                        <rdg wit="#ms-c #ms-e"></rdg>
+                    </app>, et Adam comiti Holandiae Florencio, in matrimonio tradidit. Quibus eciam temporibus inter regem Francorum et regem Angliae pax reformata est; pro cujus securitate servanda rex Francorum Ludovicus filio regis Anglorum primogenito, nondum adhuc <app>
+                        <lem wit="#ms-a #ms-b #ms-d">sexennio</lem>
+                        <rdg wit="#ms-c #ms-e">septenno</rdg>
+                    </app>, filiam suam vix bienniam aniam tradidit uxorem. Eodem tempore in Burgundia talis terraemotus <app>
+                        <lem wit="#ms-a #ms-b #ms-c #ms-d">de nocte</lem>
+                        <rdg wit="#ms-e"></rdg>
+                    </app> accidit <app>
+                        <lem wit="#ms-a #ms-b #ms-d">ut</lem>
+                        <rdg wit="#ms-c #ms-e">quod</rdg>
+                    </app> multa saedificia in ruinam ceciderunt. <app>
+                        <lem wit="#ms-a #ms-b #ms-d">Hiis eciam temporibus</lem>
+                        <rdg wit="#ms-c #ms-e">Quo etiam tempore</rdg>
+                    </app> facta est discordia inter cardinales post mortem Adriani papae, per quod magnum in ecclesia Christi scisma <app>
+                        <lem wit="#ms-a #ms-b #ms-d">exortum</lem>
+                        <rdg wit="#ms-c #ms-e">ortum</rdg>
+                    </app> est; <app>
+                        <lem wit="#ms-a #ms-b #ms-d">et</lem>
+                        <rdg wit="#ms-c #ms-e">ut</rdg>
+                    </app> tres scismaticos, instigacione diabolicae fraudis electos, Alexander papa, tunc canonice electus, excommunicatos apostolica autoritate, ab ecclesia Dei omnino expulsit.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>引き続き同マルコム王と、関連する出来事について。第十九章。</head>
+                <p>
+                    しかし、スコットランドの諸侯は自らの王がかのイングランド王と過度に親密であるのを見て、大いに動揺した。スコットランド王国のすべての貴族やその他の民も同様であった<note type="editorial" place="bottom">『ゲスタ・アナリアⅠ』の「スコティア全土」を『プルスカーデンの書』では「スコットランド王国のすべての貴族やその他の民」と解釈している。[Chron. Fordun, i, ch. 3 (Gesta Annalia)]</note>。というのも、彼らは王の過度な親密さがしばしば侮蔑を生むものであるから、自分たちに偏見と不名誉をもたらすのではないかと恐れたからである。そして、あらゆる熱心な努力をもってこれを防ごうと彼らは王の後に使節を送り、「我々はこの者が我々を統治することを望まない」と言わせた。それゆえ、トゥールーズの軍から戻りスコットランドへ来た王は様々な事由の要求により、王の権威をもって高位聖職者と貴族にパースに集まるよう命じた。その間、王国の要人六人、すなわちファーカー、つまりストラサーン伯と他の五人の伯が王に対して扇動された。それは決して彼ら個人の利益や裏切りの陰謀のためではなく、国家の利益と王国の特権を守るために動かされたものであり<note type="editorial" place="bottom">『ゲスタ・アナリアⅠ』では「公益の防衛 rei publicae tuitione」だったのが『プルスカーデンの書』では「国家の利益と王国の特権を守るため pro utilitate rei publicae et privilegiorum regni tuicione」と言い換えられている。[Chron. Fordun, i, ch. 3 (Gesta Annalia)]</note>、彼を逮捕し捕らえようと試み、その町の塔の中に彼を包囲した。しかし、その時は彼らの試みは失敗に終わり、その後幾日も経たないうちに、聖職者と王国の他の有力者たちの仲介により彼は和解に呼び戻され、同年三度、ギャロウェイのいくつかの反乱者に対して進軍した。ついに彼らを制圧し、打ち破り、同盟を結ばせ、服従させた後、自軍に何の損害もなく平和裏に帰還した。その後、彼は彼らをかくも服従させ、その顎をくつわと手綱で締め付けたので、彼らの小王、すなわちファーガスは、息子であり相続人である者を王に統治・支配させるために引き渡し、騎士の証を放棄して、エディンバラのホリルード修道院で律修司祭となった。同じ日々に、王は王国の要人たちの助言により、姉妹のマーガレットとエイダを、マーガレットはブルターニュ公コナンに<note type="editorial" place="bottom">ブルターニュ公コナン四世。</note>、エイダはホラント伯フロリスに嫁がせた<note type="editorial" place="bottom">ホラント伯フロリス三世。</note>。またこの時代、フランク人の王とイングランド王の間に和平が回復された。その安全を確保するため、フランク人の王ルイはまだ六歳にもならないイングランド王の長男に、かろうじて二歳の娘を妻として与えた。同じ時期<note type="editorial" place="bottom">以下の地震と教会のシスマについては『ゲスタ・アナリアⅠ』には記載がない。[Chron. Fordun, i, ch. 3 (Gesta Annalia)]</note>、ブルゴーニュでは夜間にこのような地震が起こり、多くの建物が倒壊した。またこの時代、教皇ハドリアヌスの死後に枢機卿たちの間に不和が生じ、それによってキリストの教会に大きな分裂が生じた。そして、当時正統に選出された教皇アレクサンデルは悪魔的な欺瞞の扇動によって選ばれた三人の分裂派を教皇の権威をもって破門し、神の教会から完全に追放した。
+                </p>
+            </div>
+        </body>
+    </text>
+</TEI>
