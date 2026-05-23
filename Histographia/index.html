@@ -1,0 +1,3412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Histographia: Scottish Experience 1286-1294</title>
+<style>
+  :root {
+    --bg: #191b24;
+    --panel: rgba(34, 37, 50, 0.92);
+    --panel-elev: #2d3143;
+    --panel-glass: rgba(26, 29, 39, 0.82);
+    --border: rgba(143, 152, 184, 0.22);
+    --border-strong: rgba(167, 139, 250, 0.46);
+    --text: #e7eaf2;
+    --muted: #97a0b7;
+    --accent: #a78bfa;
+    --accent-soft: rgba(59, 47, 94, 0.78);
+    --accent-glow: #c4b5fd;
+    --edge: rgba(129, 136, 171, 0.52);
+    --edge-outer: rgba(129, 136, 171, 0.3);
+    --error: #f87171;
+    --accent-warm: #f59e0b;
+    --accent-warm-soft: #3a2c12;
+    --accent-warm-glow: #fcd34d;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
+    --codex-height: min(46vh, 380px);
+    --mode-background:
+      radial-gradient(circle at top, rgba(88, 64, 160, 0.22), transparent 42%),
+      radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08), transparent 28%),
+      linear-gradient(180deg, #1b1d27 0%, #151821 100%);
+    --fog-mask: radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 32%,
+      rgba(19, 21, 28, 0.16) 58%,
+      rgba(16, 18, 24, 0.6) 86%,
+      rgba(16, 18, 24, 0.78) 100%
+    );
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Hiragino Mincho Pro", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top, rgba(88, 64, 160, 0.22), transparent 42%),
+      radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08), transparent 28%),
+      linear-gradient(180deg, #1b1d27 0%, #151821 100%);
+  }
+  #app { position: relative; height: 100vh; overflow: hidden; }
+  #app.mode-chapter-graph {
+    --mode-background:
+      radial-gradient(circle at 22% 16%, rgba(120, 98, 222, 0.22), transparent 34%),
+      radial-gradient(circle at 78% 18%, rgba(245, 181, 67, 0.08), transparent 26%),
+      linear-gradient(180deg, rgba(20, 22, 31, 0.98) 0%, rgba(16, 19, 28, 0.98) 100%);
+  }
+  #app.mode-chapter-sources {
+    --mode-background:
+      radial-gradient(circle at 18% 18%, rgba(245, 158, 11, 0.18), transparent 30%),
+      radial-gradient(circle at 74% 14%, rgba(102, 126, 234, 0.16), transparent 30%),
+      linear-gradient(180deg, rgba(27, 25, 20, 0.98) 0%, rgba(20, 23, 31, 0.98) 100%);
+    --fog-mask: radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 34%,
+      rgba(28, 24, 17, 0.12) 58%,
+      rgba(22, 20, 16, 0.46) 86%,
+      rgba(18, 18, 16, 0.62) 100%
+    );
+  }
+  #app.mode-source-chapters {
+    --mode-background:
+      radial-gradient(circle at 18% 18%, rgba(63, 171, 181, 0.18), transparent 30%),
+      radial-gradient(circle at 76% 16%, rgba(236, 201, 75, 0.12), transparent 28%),
+      linear-gradient(180deg, rgba(16, 24, 28, 0.98) 0%, rgba(14, 18, 25, 0.98) 100%);
+    --fog-mask: radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 36%,
+      rgba(13, 34, 36, 0.12) 58%,
+      rgba(11, 23, 28, 0.42) 86%,
+      rgba(10, 18, 22, 0.58) 100%
+    );
+  }
+
+  header {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    right: 20px;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+    pointer-events: none;
+  }
+  header > * { pointer-events: auto; }
+  .brand-stack,
+  .header-progress,
+  .header-actions {
+    border: 1px solid var(--border);
+    background: var(--panel-glass);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+  }
+  .brand-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 14px 18px;
+    border-radius: 18px;
+  }
+  .brand-kicker {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  header h1 { font-size: 23px; margin: 0; font-weight: 600; line-height: 1.15; }
+  .header-progress {
+    display: none;
+  }
+  .header-progress-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .header-progress strong {
+    font-size: 14px;
+    color: var(--accent-glow);
+    font-weight: 600;
+  }
+  .header-actions {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 18px;
+  }
+  header button {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 14px;
+    background: rgba(19, 22, 31, 0.62);
+    color: var(--accent-glow);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  header button:hover { background: var(--accent-soft); }
+
+  /* Start screen */
+  #start-screen {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: minmax(320px, 1.1fr) minmax(320px, 0.95fr);
+    gap: 24px;
+    align-content: center;
+    padding: 120px 32px 32px;
+    overflow: auto;
+  }
+  .start-card {
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 32px;
+    background: linear-gradient(180deg, rgba(39, 42, 57, 0.95), rgba(28, 31, 42, 0.88));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+  }
+  .start-copy-card {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background:
+      linear-gradient(180deg, rgba(26, 29, 41, 0.58), rgba(26, 29, 41, 0.9)),
+      radial-gradient(circle at top, rgba(167, 139, 250, 0.16), transparent 38%);
+  }
+  .start-select-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .start-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .start-card h2 { font-size: 40px; margin: 0 0 18px; line-height: 1.1; }
+  .start-card p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin: 0;
+    white-space: pre-wrap;
+    max-width: 34em;
+  }
+  .start-card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .start-card-head h3 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .start-card-caption {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .start-card button {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--accent), #6d80ff);
+    color: #11131a;
+    font-weight: 600;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    align-self: flex-start;
+    box-shadow: 0 14px 30px rgba(109, 128, 255, 0.24);
+  }
+  .start-card button:hover { opacity: 0.88; }
+  .start-preview {
+    grid-column: 1 / -1;
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(30, 33, 44, 0.94), rgba(24, 27, 37, 0.88));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+  }
+  .preview-kicker {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .preview-title {
+    font-size: 24px;
+    line-height: 1.35;
+    margin: 0 0 14px;
+  }
+  .preview-summary {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
+  .preview-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .preview-fact {
+    padding: 12px 14px;
+    background: rgba(19, 22, 31, 0.56);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .preview-fact-label {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.08em;
+  }
+  .preview-fact-value {
+    font-size: 15px;
+    color: var(--text);
+  }
+  .preview-list-title {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .preview-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* Main view */
+  #main-view { position: absolute; inset: 0; overflow: hidden; min-height: 0; }
+  #map-pane {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--mode-background);
+    transition: background 220ms ease, filter 220ms ease;
+    cursor: grab;
+    user-select: none;
+    z-index: 1;
+    --scene-enter-scale: 0.9;
+    --scene-enter-x: 0px;
+    --scene-enter-y: 0px;
+    --scene-leave-scale: 1.04;
+    --scene-leave-x: 0px;
+    --scene-leave-y: 0px;
+  }
+  #map-pane.is-dragging { cursor: grabbing; }
+  #map-pane.mode-transitioning {
+    pointer-events: none;
+    filter: saturate(1.04);
+  }
+  #map-pane.transition-to-chapter-sources {
+    --scene-enter-scale: 0.88;
+    --scene-enter-y: 18px;
+    --scene-leave-scale: 1.05;
+  }
+  #map-pane.transition-to-source-chapters {
+    --scene-enter-scale: 0.86;
+    --scene-enter-y: -14px;
+    --scene-leave-scale: 1.03;
+  }
+  #map-pane.transition-to-chapter-graph {
+    --scene-enter-scale: 1.05;
+    --scene-leave-scale: 0.95;
+  }
+  #fog-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: var(--fog-mask);
+    transition: background 220ms ease, opacity 180ms ease, transform 220ms ease;
+    transform-origin: center;
+    z-index: 5;
+  }
+  #map-pane.mode-transitioning #fog-overlay {
+    opacity: 0.92;
+    transform: scale(1.04);
+  }
+  #map-container {
+    position: relative;
+    padding: 18px;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+  }
+  #map-container svg { display: block; overflow: visible; }
+  .map-scene {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transform-origin: center center;
+    transition: opacity 180ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1), filter 220ms ease;
+    will-change: opacity, transform, filter;
+  }
+  .map-scene.scene-enter {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translate3d(var(--scene-enter-x), var(--scene-enter-y), 0) scale(var(--scene-enter-scale));
+  }
+  .map-scene.scene-enter.scene-enter-active {
+    opacity: 1;
+    filter: none;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  .map-scene.scene-leave {
+    opacity: 1;
+    filter: none;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  .map-scene.scene-leave.scene-leave-active {
+    opacity: 0;
+    filter: blur(1.6px);
+    transform: translate3d(var(--scene-leave-x), var(--scene-leave-y), 0) scale(var(--scene-leave-scale));
+  }
+
+  .hud-panel {
+    position: absolute;
+    z-index: 14;
+    padding: 18px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: var(--panel-glass);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+    pointer-events: auto;
+  }
+  .hud-panel-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  #quest-panel {
+    top: 112px;
+    left: 24px;
+    width: min(420px, calc(100vw - 48px));
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+  }
+  #discovery-panel {
+    top: 112px;
+    right: 24px;
+    width: min(300px, calc(100vw - 48px));
+  }
+  #journey-rail {
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+  #main-view.codex-open #journey-rail {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+  .quest-title {
+    font-size: 24px;
+    line-height: 1.35;
+    margin: 0 0 10px;
+  }
+  .quest-summary {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+  .quest-stats,
+  .discovery-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .quest-stat {
+    padding: 12px 12px 10px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: rgba(18, 21, 29, 0.54);
+  }
+  .quest-stat-label {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .quest-stat-value {
+    font-size: 16px;
+    color: var(--accent-glow);
+  }
+  .hud-actions,
+  .choice-list,
+  .discovery-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hud-action,
+  .choice-btn,
+  .journey-node {
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    background: rgba(18, 21, 29, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+  .hud-action:hover,
+  .choice-btn:hover,
+  .journey-node:hover {
+    border-color: var(--border-strong);
+    background: rgba(59, 47, 94, 0.5);
+  }
+  .section-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .discovery-list {
+    flex-direction: column;
+  }
+  .discovery-item {
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(18, 21, 29, 0.58);
+  }
+  .discovery-item strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+  .discovery-item span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .journey-track {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+  .journey-node.current {
+    border-color: var(--border-strong);
+    color: var(--accent-glow);
+    background: rgba(59, 47, 94, 0.6);
+  }
+  .journey-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  #reading-pane {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    height: var(--codex-height);
+    transform: translateY(calc(100% + 24px));
+    transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1), top 220ms ease, border-radius 220ms ease;
+    z-index: 20;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+  }
+  #reading-pane.open { transform: translateY(0); }
+  #reading-pane.fullscreen {
+    top: 20px;
+    bottom: 20px;
+    height: auto;
+    z-index: 40;
+    border-radius: 20px;
+  }
+  #app.codex-fullscreen header,
+  #app.codex-fullscreen #status,
+  #app.codex-fullscreen #quest-panel,
+  #app.codex-fullscreen #discovery-panel,
+  #app.codex-fullscreen #journey-rail {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #reading-content {
+    height: calc(100% - 118px);
+    padding: 18px 300px 24px;
+    max-width: 100%;
+    overflow-y: auto;
+  }
+
+  .pane-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px 10px 300px;
+    background: linear-gradient(180deg, rgba(39, 42, 57, 0.95), rgba(39, 42, 57, 0.75));
+    border-bottom: 1px solid var(--border);
+  }
+  .pane-headline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .pane-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pane-kicker {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  #codex-title {
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .pane-close-btn {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 8px 12px;
+    line-height: 1;
+    background: rgba(18, 21, 29, 0.58);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pane-mode-btn {
+    font-family: inherit;
+    font-size: 12px;
+    padding: 8px 14px;
+    line-height: 1.2;
+    background: rgba(18, 21, 29, 0.58);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pane-mode-btn:hover,
+  .pane-close-btn:hover { color: var(--text); background: var(--accent-soft); }
+  .pane-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 12px 22px 12px 300px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pane-tab {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 14px;
+    color: var(--muted);
+    background: rgba(18, 21, 29, 0.44);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pane-tab.active {
+    color: var(--accent-glow);
+    border-color: var(--border-strong);
+    background: rgba(59, 47, 94, 0.54);
+  }
+
+  .breadcrumb { font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.9; }
+  .breadcrumb .crumb { cursor: pointer; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .breadcrumb .crumb.current { color: var(--text); text-decoration: none; cursor: default; font-weight: 600; }
+  .breadcrumb .sep { margin: 0 6px; color: var(--border); }
+
+  .meta-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .meta-chip {
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(18, 21, 29, 0.52);
+  }
+  .meta-chip-label {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .meta-chip-value {
+    font-size: 13px;
+    color: var(--text);
+  }
+  .empty-note {
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px dashed var(--border);
+    color: var(--muted);
+    background: rgba(18, 21, 29, 0.34);
+  }
+
+  .chapter-title { font-size: 20px; margin: 0 0 18px; line-height: 1.5; }
+  .section-label { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 4px; margin: 24px 0 12px; }
+  .summary-text, .desc-text, .source-text { white-space: pre-wrap; max-width: 80em; }
+  .summary-text, .desc-text {
+    font-size: 14.5px;
+    line-height: 2.0;
+  }
+  .desc-text { color: var(--text); }
+  .summary-text p, .desc-text p, .source-text p {
+    margin: 0 0 1.15em;
+  }
+  .summary-text p:last-child, .desc-text p:last-child, .source-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .detail-toggle {
+    font-family: inherit; font-size: 13px; margin-top: 16px;
+    padding: 6px 16px; background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 3px; cursor: pointer;
+  }
+  .detail-toggle:hover { background: var(--accent-soft); }
+
+  .source-list { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+  .source-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .source-item > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px 14px 10px 32px;
+    font-size: 14px;
+    color: var(--accent);
+    position: relative;
+    line-height: 1.5;
+  }
+  .source-item > summary::-webkit-details-marker { display: none; }
+  .source-item > summary::before {
+    content: '▶';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--accent);
+    transition: transform 0.15s ease;
+  }
+  .source-item[open] > summary::before { transform: translateY(-50%) rotate(90deg); }
+  .source-item > summary:hover { background: var(--accent-soft); }
+  .source-body {
+    padding: 12px 16px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .source-text {
+    font-size: 14px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    color: var(--text);
+  }
+  .source-ref {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .next-list { margin-top: 8px; display: flex; flex-direction: column; gap: 10px; }
+  .next-btn {
+    font-family: inherit; font-size: 14px; text-align: left;
+    padding: 12px 16px; background: rgba(59, 47, 94, 0.5); color: var(--text);
+    border: 1px solid var(--border); border-radius: 14px; cursor: pointer; line-height: 1.6;
+  }
+  .next-btn:hover { border-color: var(--accent); }
+  .next-btn .arrow { color: var(--accent); margin-right: 8px; }
+  .next-end { font-size: 13px; color: var(--muted); padding: 10px 0; }
+
+  #status {
+    position: absolute;
+    top: 98px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 16px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(21, 24, 32, 0.84);
+    backdrop-filter: blur(14px);
+    min-height: 28px;
+    max-width: min(760px, calc(100vw - 40px));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 26;
+    box-shadow: var(--shadow);
+  }
+  #status.error { color: var(--error); }
+  #status.ok { color: var(--muted); }
+
+  /* Chapter picker (start-screen) */
+  #theme-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 0 8px;
+    text-align: left;
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .theme-option {
+    font-family: inherit; font-size: 14px; line-height: 1.6;
+    padding: 14px 16px; background: rgba(18, 21, 29, 0.7); color: var(--text);
+    border: 1px solid var(--border); border-radius: 18px; cursor: pointer;
+    text-align: left;
+    transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+  }
+  .theme-option:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .theme-option.selected { border-color: var(--accent); background: rgba(59, 47, 94, 0.56); }
+  .theme-option .theme-option-title { font-weight: 600; display: block; margin-bottom: 4px; }
+  .theme-option .theme-option-intro { font-size: 12px; color: var(--muted); }
+
+  /* SVG map nodes */
+  .node-box { stroke: rgba(163, 173, 210, 0.36); stroke-width: 1.2; fill: rgba(46, 50, 67, 0.92); }
+  .node-box.current { stroke: var(--accent); stroke-width: 2.4; fill: rgba(55, 49, 80, 0.94); }
+  .node-g { cursor: pointer; }
+  .node-g.outer { opacity: 0.6; }
+  .node-g:hover .node-box { stroke: var(--accent); }
+  .node-text { font-size: 10px; fill: var(--text); }
+  .node-text.current { font-weight: 600; fill: var(--accent-glow); }
+  .edge-line { stroke: var(--edge); stroke-width: 1.3; fill: none; }
+  .edge-line.outer { stroke: var(--edge-outer); stroke-width: 1.0; }
+  .focus-edge-line {
+    stroke: rgba(177, 189, 220, 0.46);
+    stroke-width: 1.4;
+    fill: none;
+    stroke-dasharray: var(--focus-edge-len, 240);
+    stroke-dashoffset: var(--focus-edge-len, 240);
+    animation: focusEdgeDraw 420ms ease-out both;
+    animation-delay: var(--edge-delay, 0ms);
+  }
+  .focus-node {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: focusNodeBloom 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--node-delay, 0ms);
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+  .focus-node.interactive-node { cursor: pointer; }
+  .focus-node.interactive-node:hover { transform: translateY(-2px); }
+  .chapter-node-shape {
+    fill: rgba(46, 50, 67, 0.94);
+    stroke: rgba(163, 173, 210, 0.4);
+    stroke-width: 1.4;
+  }
+  .focus-node.center-node .chapter-node-shape {
+    fill: rgba(58, 50, 84, 0.96);
+    stroke: var(--accent);
+    stroke-width: 2.2;
+    filter: drop-shadow(0 0 12px rgba(196, 181, 253, 0.24));
+  }
+  .source-node-shape {
+    fill: rgba(41, 47, 57, 0.95);
+    stroke: rgba(120, 204, 210, 0.55);
+    stroke-width: 1.5;
+  }
+  .focus-node.center-node .source-node-shape {
+    fill: rgba(35, 56, 61, 0.98);
+    stroke: #7cd0d8;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 10px rgba(124, 208, 216, 0.24));
+  }
+  .focus-node.origin-node .chapter-node-shape {
+    stroke: var(--accent-warm);
+    fill: rgba(66, 53, 29, 0.88);
+  }
+  .focus-node.interactive-node:hover .chapter-node-shape,
+  .focus-node.interactive-node:hover .source-node-shape {
+    stroke: var(--accent-glow);
+  }
+  .focus-node-label {
+    font-size: 10px;
+    fill: var(--text);
+  }
+  .focus-node-label.center-label {
+    font-weight: 600;
+    fill: var(--accent-glow);
+  }
+
+  @keyframes focusNodeBloom {
+    from {
+      opacity: 0;
+      transform: translateY(var(--node-lift, 12px)) scale(0.78);
+    }
+    65% {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes focusEdgeDraw {
+    to {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  /* === アニメーション === */
+  @keyframes nodeAppear {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .node-g {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: nodeAppear 320ms cubic-bezier(0.34, 1.4, 0.64, 1) backwards;
+  }
+  .node-g.outer { animation-delay: 80ms; }
+
+  @keyframes nodeWiggle {
+    0%, 100% { transform: scale(1.08) rotate(0deg); }
+    25%      { transform: scale(1.08) rotate(-1.2deg); }
+    75%      { transform: scale(1.08) rotate(1.2deg); }
+  }
+  .node-g:hover { animation: nodeWiggle 0.6s ease-in-out infinite; }
+
+  @keyframes currentPulse {
+    0%, 100% { filter: drop-shadow(0 0 4px var(--accent-glow)); }
+    50%      { filter: drop-shadow(0 0 14px var(--accent-glow)); }
+  }
+  /* current-node のパルスは .node-box にだけ適用 (g 自体の出現アニメと干渉させない) */
+  .node-g.current-node .node-box {
+    animation: currentPulse 2.4s ease-in-out infinite;
+  }
+
+  .edge-line {
+    stroke-dasharray: var(--edge-len, 1000);
+    stroke-dashoffset: var(--edge-len, 1000);
+    animation: edgeDraw 500ms ease-out 120ms forwards;
+  }
+  @keyframes edgeDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* === カメラパン (world group のスライド) === */
+  .world {
+    transition: transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-origin: 0 0;
+    will-change: transform;
+  }
+  .node-box { transition: fill 200ms ease, stroke 200ms ease; }
+
+  /* === 可視性 tier (霧マスク + 既訪残光) === */
+  .node-g { transition: opacity 350ms ease; }
+  .node-g.tier-hidden { opacity: 0; pointer-events: none; }
+  .node-g.tier-far { opacity: 0.35; pointer-events: none; }
+  .node-g.tier-visited { opacity: 0.55; }
+  .node-g.tier-near { opacity: 1; }
+  .node-g.tier-current { opacity: 1; }
+
+  .node-g.tier-visited .node-box {
+    fill: var(--accent-warm-soft);
+    stroke: var(--accent-warm);
+    filter: drop-shadow(0 0 6px var(--accent-warm-glow));
+  }
+  .node-g.tier-visited .node-text { fill: var(--accent-warm-glow); }
+
+  .edge-line { transition: opacity 350ms ease; }
+  .edge-line.tier-hidden { opacity: 0; }
+  .edge-line.tier-dim    { opacity: 0.22; }
+  .edge-line.tier-active { opacity: 1; }
+
+  /* === ミュートボタン === */
+  #audioBtn { font-size: 16px; padding: 4px 10px; line-height: 1; }
+  #audioBtn.muted { opacity: 0.55; }
+
+  @media (max-width: 1100px) {
+    header {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "brand actions"
+        "progress progress";
+    }
+    .brand-stack { grid-area: brand; }
+    .header-actions { grid-area: actions; }
+    .header-progress { grid-area: progress; justify-self: stretch; }
+    #start-screen {
+      grid-template-columns: 1fr;
+      padding-top: 160px;
+    }
+    #quest-panel {
+      width: min(380px, calc(100vw - 48px));
+    }
+    #discovery-panel {
+      top: auto;
+      bottom: 112px;
+      width: min(320px, calc(100vw - 48px));
+    }
+    #journey-rail { right: 360px; }
+  }
+
+  @media (max-width: 780px) {
+    :root { --codex-height: min(58vh, 420px); }
+    header {
+      left: 12px;
+      right: 12px;
+      top: 12px;
+      gap: 12px;
+    }
+    .brand-stack,
+    .header-progress,
+    .header-actions {
+      border-radius: 16px;
+    }
+    header h1 { font-size: 19px; }
+    #status {
+      top: 130px;
+      max-width: calc(100vw - 24px);
+    }
+    #start-screen {
+      padding: 162px 12px 18px;
+      gap: 16px;
+    }
+    .start-card,
+    .start-preview {
+      border-radius: 22px;
+      padding: 22px;
+    }
+    .start-card h2 { font-size: 32px; }
+    #quest-panel,
+    #discovery-panel,
+    #journey-rail {
+      left: 12px;
+      right: 12px;
+      width: auto;
+    }
+    #quest-panel {
+      top: 148px;
+      max-height: 34vh;
+    }
+    #discovery-panel {
+      top: auto;
+      bottom: 98px;
+    }
+    #journey-rail {
+      bottom: 12px;
+    }
+    #reading-pane {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      height: min(58vh, 420px);
+    }
+    #reading-pane.fullscreen {
+      top: 12px;
+      bottom: 12px;
+    }
+    .quest-stats,
+    .discovery-stats,
+    .preview-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand-stack">
+      <div class="brand-kicker">Quest Atlas</div>
+      <h1 id="theme-title">Histographia: Scottish Experience 1286-1294</h1>
+    </div>
+    <div class="header-progress">
+      <span class="header-progress-label">現在地</span>
+      <strong id="hud-progress-text">探検準備中</strong>
+    </div>
+    <div class="header-actions">
+      <button class="secondary muted" id="audioBtn" title="音をオン/オフ" aria-label="音をオン/オフ">🔇</button>
+      <button class="secondary" id="homeBtn" hidden>探検準備へ</button>
+    </div>
+  </header>
+
+  <div id="start-screen">
+    <section class="start-card start-copy-card">
+      <div class="start-eyebrow">Interactive Chronicle</div>
+      <h2 id="start-title"></h2>
+      <p id="start-intro"></p>
+    </section>
+    <section class="start-card start-select-card">
+      <div class="start-card-head">
+        <h3>探検ルートを選ぶ</h3>
+        <span class="start-card-caption">最初に踏み出す章を定める</span>
+      </div>
+      <div id="theme-picker"></div>
+      <button id="startBtn">この旅路を始める</button>
+    </section>
+    <aside class="start-preview" id="start-preview"></aside>
+  </div>
+
+  <main id="main-view" hidden>
+    <div id="map-pane">
+      <div id="map-container"></div>
+      <div id="fog-overlay" aria-hidden="true"></div>
+    </div>
+    <section id="quest-panel" class="hud-panel">
+      <div class="hud-panel-label">Current Quest</div>
+      <div id="quest-panel-body"></div>
+    </section>
+    <section id="discovery-panel" class="hud-panel">
+      <div class="hud-panel-label">Discoveries</div>
+      <div id="discovery-panel-body"></div>
+    </section>
+    <section id="journey-rail" class="hud-panel">
+      <div class="hud-panel-label">Journey</div>
+      <div id="journey-rail-body"></div>
+    </section>
+    <div id="reading-pane">
+      <div class="pane-header">
+        <div class="pane-headline">
+          <div class="pane-kicker">Codex</div>
+          <h2 id="codex-title">記録</h2>
+        </div>
+        <div class="pane-actions">
+          <button class="pane-mode-btn" id="toggleDetailModeBtn" aria-label="全画面表示に切り替え" aria-pressed="false">全画面</button>
+          <button class="pane-close-btn" id="closeDetailBtn" aria-label="閉じる">✕</button>
+        </div>
+      </div>
+      <div class="pane-tabs" role="tablist" aria-label="Codex tabs">
+        <button class="pane-tab active" data-tab="chapter" role="tab" aria-selected="true">章</button>
+        <button class="pane-tab" data-tab="sources" role="tab" aria-selected="false">史料</button>
+        <button class="pane-tab" data-tab="trail" role="tab" aria-selected="false">旅路</button>
+      </div>
+      <div id="reading-content"></div>
+    </div>
+  </main>
+
+  <div id="status" class="ok">準備中…</div>
+</div>
+
+<script src="Assets/lib/howler.min.js"></script>
+<script src="Data/data_sample.js"></script>
+<script src="Data/sources.js"></script>
+<script>
+"use strict";
+
+/* ============================================================
+   1. Mini YAML Parser  (Tools/genealogy/index.html より流用)
+   この限定スキーマ専用。# は常にコメント、最初の半角 : をキー区切り
+   として扱うため、値に : や # を含める場合はクォートで囲むこと。
+   ============================================================ */
+
+function parseYAML(text) {
+  const rawLines = text.split('\n');
+  const lines = [];
+  for (let i = 0; i < rawLines.length; i++) {
+    const stripped = stripComment(rawLines[i]);
+    if (stripped.trim().length === 0) continue;
+    lines.push({ raw: stripped, lineNo: i + 1, indent: getIndent(stripped) });
+  }
+  let idx = 0;
+
+  function stripComment(line) {
+    let q = null;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (q) { if (c === q && line[i-1] !== '\\') q = null; }
+      else {
+        if (c === '"' || c === "'") q = c;
+        else if (c === '#') return line.substring(0, i).replace(/\s+$/, '');
+      }
+    }
+    return line.replace(/\s+$/, '');
+  }
+  function getIndent(line) { let i = 0; while (i < line.length && line[i] === ' ') i++; return i; }
+
+  function parseBlock(baseIndent) {
+    if (idx >= lines.length || lines[idx].indent < baseIndent) return null;
+    const first = lines[idx];
+    const content = first.raw.trim();
+    if (content.startsWith('-')) return parseList(baseIndent);
+    return parseMapping(baseIndent);
+  }
+
+  function parseList(baseIndent) {
+    const result = [];
+    while (idx < lines.length && lines[idx].indent === baseIndent && lines[idx].raw.trim().startsWith('-')) {
+      const line = lines[idx];
+      let content = line.raw.trim().substring(1);
+      content = content.replace(/^\s+/, '');
+      idx++;
+      if (content === '') {
+        const child = parseBlock(baseIndent + 2);
+        result.push(child);
+        continue;
+      }
+      if (looksLikeKeyValue(content)) {
+        const item = {};
+        const [k, v] = parseKeyValue(content);
+        if (v === '') {
+          item[k] = parseBlock(baseIndent + 4);
+        } else {
+          item[k] = v;
+        }
+        const itemIndent = baseIndent + 2;
+        while (idx < lines.length && lines[idx].indent === itemIndent && !lines[idx].raw.trim().startsWith('-')) {
+          const sub = lines[idx];
+          const subC = sub.raw.trim();
+          if (!looksLikeKeyValue(subC)) break;
+          const [sk, sv] = parseKeyValue(subC);
+          idx++;
+          if (sv === '') {
+            item[sk] = parseBlock(itemIndent + 2);
+          } else {
+            item[sk] = sv;
+          }
+        }
+        result.push(item);
+      } else {
+        result.push(parseScalar(content));
+      }
+    }
+    return result;
+  }
+
+  function parseMapping(baseIndent) {
+    const result = {};
+    while (idx < lines.length && lines[idx].indent === baseIndent) {
+      const line = lines[idx];
+      const content = line.raw.trim();
+      if (content.startsWith('-')) break;
+      if (!looksLikeKeyValue(content)) {
+        throw new Error(`L${line.lineNo}: 解釈不能な行: "${content}"`);
+      }
+      const [k, v] = parseKeyValue(content);
+      idx++;
+      if (v === '') {
+        result[k] = parseBlock(baseIndent + 2);
+      } else {
+        result[k] = v;
+      }
+    }
+    return result;
+  }
+
+  function looksLikeKeyValue(s) {
+    let q = null, depth = 0;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (q) { if (c === q) q = null; continue; }
+      if (c === '"' || c === "'") { q = c; continue; }
+      if (c === '[' || c === '{') depth++;
+      else if (c === ']' || c === '}') depth--;
+      else if (c === ':' && depth === 0) return true;
+    }
+    return false;
+  }
+
+  function parseKeyValue(content) {
+    let q = null, depth = 0, colonIdx = -1;
+    for (let i = 0; i < content.length; i++) {
+      const c = content[i];
+      if (q) { if (c === q) q = null; continue; }
+      if (c === '"' || c === "'") { q = c; continue; }
+      if (c === '[' || c === '{') depth++;
+      else if (c === ']' || c === '}') depth--;
+      else if (c === ':' && depth === 0) { colonIdx = i; break; }
+    }
+    if (colonIdx === -1) return [content, ''];
+    const key = content.substring(0, colonIdx).trim();
+    const valStr = content.substring(colonIdx + 1).trim();
+    return [unquote(key), valStr === '' ? '' : parseScalar(valStr)];
+  }
+
+  function unquote(s) {
+    if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+      return s.substring(1, s.length - 1);
+    }
+    return s;
+  }
+
+  function parseScalar(text) {
+    text = text.trim();
+    if (text.startsWith('[') && text.endsWith(']')) {
+      const inner = text.substring(1, text.length - 1);
+      return splitFlowArray(inner).map(parseScalar);
+    }
+    if (text.startsWith('"') && text.endsWith('"')) return text.substring(1, text.length - 1);
+    if (text.startsWith("'") && text.endsWith("'")) return text.substring(1, text.length - 1);
+    if (/^-?\d+$/.test(text)) return parseInt(text, 10);
+    if (/^-?\d+\.\d+$/.test(text)) return parseFloat(text);
+    return text;
+  }
+
+  function splitFlowArray(inner) {
+    const items = [];
+    let q = null, depth = 0, buf = '';
+    for (let i = 0; i < inner.length; i++) {
+      const c = inner[i];
+      if (q) { buf += c; if (c === q) q = null; continue; }
+      if (c === '"' || c === "'") { q = c; buf += c; continue; }
+      if (c === '[' || c === '{') { depth++; buf += c; continue; }
+      if (c === ']' || c === '}') { depth--; buf += c; continue; }
+      if (c === ',' && depth === 0) { if (buf.trim()) items.push(buf.trim()); buf = ''; continue; }
+      buf += c;
+    }
+    if (buf.trim()) items.push(buf.trim());
+    return items;
+  }
+
+  return parseBlock(0) || {};
+}
+
+/* ============================================================
+   1.5. オーディオマネージャ (Howler.js)
+   ============================================================ */
+
+const audio = (() => {
+  let bgm = null, sfxClick = null, sfxTrans = null, sfxBegin = null;
+  let muted = localStorage.getItem('ih.muted') !== '0';
+  const safeHowl = (src, opts) => {
+    if (typeof Howl !== 'function') return null;
+    try { return new Howl({ src: [src], ...opts, onloaderror: () => {}, onplayerror: () => {} }); }
+    catch { return null; }
+  };
+  function init() {
+    bgm      = safeHowl('Assets/audio/bgm_ambient.mp3',   { loop: true, volume: 0.18, html5: true });
+    // sfxClick = safeHowl('Assets/audio/sfx_click.mp3',  { volume: 0.5 });
+    sfxTrans = safeHowl('Assets/audio/sfx_transition.mp3', { volume: 0.4 });
+    sfxBegin = safeHowl('Assets/audio/sfx_begin.mp3',      { volume: 0.6 });
+    apply();
+  }
+  function apply() {
+    if (!bgm) return;
+    if (muted) { try { bgm.pause(); } catch {} }
+    else { try { if (!bgm.playing()) bgm.play(); } catch {} }
+  }
+  function toggle() {
+    muted = !muted;
+    localStorage.setItem('ih.muted', muted ? '1' : '0');
+    apply();
+    return muted;
+  }
+  function click()      { if (!muted && sfxClick) { try { sfxClick.play(); } catch {} } }
+  function transition() { if (!muted && sfxTrans) { try { sfxTrans.play(); } catch {} } }
+  function begin() { if (!muted && sfxBegin) { try { sfxBegin.play(); } catch {} } }
+  function isMuted()    { return muted; }
+  return { init, toggle, click, transition, begin, isMuted };
+})();
+
+/* ============================================================
+   2. SVG helper
+   ============================================================ */
+
+function svgEl(name, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  if (attrs) for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+/* ============================================================
+   3. State
+   ============================================================ */
+
+const NODE_R = 26;
+const NODE_W = NODE_R * 2;
+const NODE_H = NODE_R * 2;
+const COL_GAP = 36;
+const ROW_HEIGHT = 132;
+const PADDING = 24;
+const NODE_LABEL_GAP = 8;
+const LOCAL_CHAPTER_NODE_R = 24;
+const SOURCE_NODE_R = 18;
+
+const NETWORK_MODE = {
+  CHAPTER_GRAPH: 'chapterGraph',
+  CHAPTER_SOURCES: 'chapterSources',
+  SOURCE_CHAPTERS: 'sourceChapters'
+};
+
+const MAP_MODE_TRANSITION_MS = 170;
+const MAP_MODE_SETTLE_MS = 260;
+
+let allChapters = [];          // data_sample.js から読み込んだ全 chapter
+let allChaptersMap = new Map(); // id -> chapter
+let allSources = [];           // sources.js から読み込んだ全 source
+let allSourcesMap = new Map(); // id -> source
+let sourceChapterMap = new Map(); // source id -> Set<chapter id>
+
+let chapters = [];             // 表示対象 (= 全 chapter)
+let chapterMap = new Map();    // id -> chapter
+let adjacency = new Map();     // id -> Set<id> (双方向リンク集合)
+let validationErrors = [];
+
+let globalPos = new Map();     // id -> {x, y} (起動時に確定、以降不変)
+let worldGroup = null;          // 内部の <g class="world"> 参照
+let mapBuilt = false;           // 初回描画かどうか
+let worldOffX = 0, worldOffY = 0; // buildWorldMap で計算した SVG 内オフセット
+
+let currentId = null;
+let visited = new Set();
+let history = [];          // たどった経路（パンくず）
+let showDetail = false;    // 現在の章の詳細表示状態
+let detailPaneOpen = false;
+let detailPaneFullscreen = false;
+let activeCodexTab = 'chapter';
+let networkMode = NETWORK_MODE.CHAPTER_GRAPH;
+let focusedSourceId = null;
+let codexFocusedSourceId = null;
+let isDragging = false;
+let currentTx = 0, currentTy = 0;
+let renderedNetworkMode = NETWORK_MODE.CHAPTER_GRAPH;
+let mapModeTransitionTimer = 0;
+let mapModeTransitionResetTimer = 0;
+let mapModeTransitionToken = 0;
+
+const statusEl = document.getElementById('status');
+const startScreen = document.getElementById('start-screen');
+const mainView = document.getElementById('main-view');
+const appEl = document.getElementById('app');
+const mapPane = document.getElementById('map-pane');
+const mapContainer = document.getElementById('map-container');
+const readingPane = document.getElementById('reading-pane');
+const readingContent = document.getElementById('reading-content');
+const startPreview = document.getElementById('start-preview');
+const questPanelBody = document.getElementById('quest-panel-body');
+const discoveryPanelBody = document.getElementById('discovery-panel-body');
+const journeyRail = document.getElementById('journey-rail');
+const journeyRailBody = document.getElementById('journey-rail-body');
+const codexTitle = document.getElementById('codex-title');
+const toggleDetailModeBtn = document.getElementById('toggleDetailModeBtn');
+const hudProgressText = document.getElementById('hud-progress-text');
+const paneTabs = Array.from(document.querySelectorAll('.pane-tab'));
+const homeBtn = document.getElementById('homeBtn');
+
+function setStatus(msg, kind) {
+  statusEl.hidden = !msg;
+  if (!msg) {
+    statusEl.textContent = '';
+    statusEl.className = 'ok';
+    return;
+  }
+  statusEl.textContent = msg;
+  statusEl.className = kind || 'ok';
+}
+
+function excerptText(text, maxChars) {
+  const clean = String(text || '').replace(/\\n/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!clean) return '';
+  if (clean.length <= maxChars) return clean;
+  return clean.slice(0, Math.max(0, maxChars - 1)) + '…';
+}
+
+function createParagraphBlock(className, text, emptyText = '') {
+  const block = document.createElement('div');
+  block.className = className;
+
+  const normalized = typeof text === 'string'
+    ? text.replace(/\\n/g, '\n').trim()
+    : '';
+  const paragraphs = normalized
+    ? normalized.split(/\n\s*\n+/).map((paragraph) => paragraph.trim()).filter(Boolean)
+    : [];
+
+  if (paragraphs.length === 0 && emptyText) {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = emptyText;
+    block.appendChild(paragraph);
+    return block;
+  }
+
+  for (const paragraphText of paragraphs) {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = paragraphText;
+    block.appendChild(paragraph);
+  }
+
+  return block;
+}
+
+function getChapterSourceIds(ch) {
+  return (Array.isArray(ch && ch.sources) ? ch.sources : [])
+    .filter((sid) => typeof sid === 'string' && allSourcesMap.has(sid));
+}
+
+function getSourceChapterIds(sourceId) {
+  return [...(sourceChapterMap.get(sourceId) || [])]
+    .filter((chapterId) => chapterMap.has(chapterId))
+    .sort();
+}
+
+function getOrderedChapterSourceIds(ch) {
+  const sourceIds = getChapterSourceIds(ch);
+  if (!codexFocusedSourceId || !sourceIds.includes(codexFocusedSourceId)) {
+    return sourceIds;
+  }
+  return [
+    codexFocusedSourceId,
+    ...sourceIds.filter((sourceId) => sourceId !== codexFocusedSourceId)
+  ];
+}
+
+function syncNetworkModeClass() {
+  appEl.classList.remove(
+    'mode-chapter-graph',
+    'mode-chapter-sources',
+    'mode-source-chapters'
+  );
+
+  const className = {
+    [NETWORK_MODE.CHAPTER_GRAPH]: 'mode-chapter-graph',
+    [NETWORK_MODE.CHAPTER_SOURCES]: 'mode-chapter-sources',
+    [NETWORK_MODE.SOURCE_CHAPTERS]: 'mode-source-chapters'
+  }[networkMode] || 'mode-chapter-graph';
+
+  appEl.classList.add(className);
+}
+
+function setNetworkMode(mode, options = {}) {
+  networkMode = mode;
+
+  if (Object.prototype.hasOwnProperty.call(options, 'focusedSourceId')) {
+    focusedSourceId = options.focusedSourceId || null;
+  } else if (mode === NETWORK_MODE.CHAPTER_GRAPH) {
+    focusedSourceId = null;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(options, 'codexFocusedSourceId')) {
+    codexFocusedSourceId = options.codexFocusedSourceId || null;
+  } else if (mode === NETWORK_MODE.CHAPTER_GRAPH) {
+    codexFocusedSourceId = null;
+  }
+
+  syncNetworkModeClass();
+}
+
+function getModeTransitionKey(mode) {
+  switch (mode) {
+    case NETWORK_MODE.CHAPTER_SOURCES:
+      return 'chapter-sources';
+    case NETWORK_MODE.SOURCE_CHAPTERS:
+      return 'source-chapters';
+    case NETWORK_MODE.CHAPTER_GRAPH:
+    default:
+      return 'chapter-graph';
+  }
+}
+
+function clearMapTransitionTimers() {
+  if (mapModeTransitionTimer) {
+    window.clearTimeout(mapModeTransitionTimer);
+    mapModeTransitionTimer = 0;
+  }
+  if (mapModeTransitionResetTimer) {
+    window.clearTimeout(mapModeTransitionResetTimer);
+    mapModeTransitionResetTimer = 0;
+  }
+}
+
+function clearMapTransitionClasses() {
+  mapPane.classList.remove(
+    'mode-transitioning',
+    'mode-transition-out',
+    'mode-transition-in',
+    'transition-from-chapter-graph',
+    'transition-from-chapter-sources',
+    'transition-from-source-chapters',
+    'transition-to-chapter-graph',
+    'transition-to-chapter-sources',
+    'transition-to-source-chapters'
+  );
+
+  const activeScene = mapContainer.querySelector('svg.map-scene');
+  if (activeScene) {
+    activeScene.classList.remove('scene-enter', 'scene-enter-active', 'scene-leave', 'scene-leave-active');
+  }
+}
+
+function cancelMapModeTransition(syncMode = false) {
+  clearMapTransitionTimers();
+  clearMapTransitionClasses();
+  mapModeTransitionToken += 1;
+  if (syncMode) renderedNetworkMode = networkMode;
+}
+
+function prepareMapScene(svg, sceneClass) {
+  if (!svg) return;
+  svg.classList.add('map-scene', sceneClass);
+  svg.dataset.networkMode = networkMode;
+}
+
+function shouldAnimateModeTransition(skipTransition) {
+  if (skipTransition || mainView.hidden) return false;
+  if (renderedNetworkMode === networkMode) return false;
+  return !!mapContainer.querySelector('svg.map-scene');
+}
+
+function runModeTransition() {
+  const currentScene = mapContainer.querySelector('svg.map-scene');
+  if (!currentScene) {
+    cancelMapModeTransition(true);
+    renderMap();
+    renderedNetworkMode = networkMode;
+    return;
+  }
+
+  const fromClass = `transition-from-${getModeTransitionKey(renderedNetworkMode)}`;
+  const toClass = `transition-to-${getModeTransitionKey(networkMode)}`;
+
+  cancelMapModeTransition();
+  const token = mapModeTransitionToken;
+
+  mapPane.classList.add('mode-transitioning', 'mode-transition-out', fromClass, toClass);
+  currentScene.classList.add('scene-leave');
+
+  window.requestAnimationFrame(() => {
+    if (token !== mapModeTransitionToken) return;
+    currentScene.classList.add('scene-leave-active');
+  });
+
+  mapModeTransitionTimer = window.setTimeout(() => {
+    if (token !== mapModeTransitionToken) return;
+
+    renderMap();
+    renderedNetworkMode = networkMode;
+
+    const nextScene = mapContainer.querySelector('svg.map-scene');
+    mapPane.classList.remove('mode-transition-out');
+    mapPane.classList.add('mode-transition-in');
+
+    if (nextScene) {
+      nextScene.classList.add('scene-enter');
+      void nextScene.getBoundingClientRect();
+      window.requestAnimationFrame(() => {
+        if (token !== mapModeTransitionToken) return;
+        nextScene.classList.add('scene-enter-active');
+      });
+    }
+
+    mapModeTransitionResetTimer = window.setTimeout(() => {
+      if (token !== mapModeTransitionToken) return;
+      clearMapTransitionTimers();
+      clearMapTransitionClasses();
+    }, MAP_MODE_SETTLE_MS);
+  }, MAP_MODE_TRANSITION_MS);
+}
+
+function buildSourceChapterMap() {
+  const nextMap = new Map();
+  for (const chapter of allChapters) {
+    if (!chapter || !chapter.id) continue;
+    for (const sourceId of getChapterSourceIds(chapter)) {
+      if (!nextMap.has(sourceId)) nextMap.set(sourceId, new Set());
+      nextMap.get(sourceId).add(chapter.id);
+    }
+  }
+  sourceChapterMap = nextMap;
+}
+
+function getRelatedChapterIds(ch) {
+  if (!ch) return { outgoing: [], incomingOnly: [], all: [] };
+  const outgoing = (Array.isArray(ch.links) ? ch.links : []).filter((id) => chapterMap.has(id));
+  const outgoingSet = new Set(outgoing);
+  const incomingOnly = [];
+  for (const id of (adjacency.get(ch.id) || [])) {
+    if (!outgoingSet.has(id)) incomingOnly.push(id);
+  }
+  return { outgoing, incomingOnly, all: [...outgoing, ...incomingOnly] };
+}
+
+function collectVisitedSourceIds() {
+  const ids = new Set();
+  for (const chapterId of visited) {
+    const ch = chapterMap.get(chapterId);
+    if (!ch) continue;
+    for (const sid of getChapterSourceIds(ch)) ids.add(sid);
+  }
+  return [...ids];
+}
+
+function appendMetaChips(parent, items) {
+  const row = document.createElement('div');
+  row.className = 'meta-chip-row';
+  for (const item of items) {
+    const chip = document.createElement('div');
+    chip.className = 'meta-chip';
+    const label = document.createElement('span');
+    label.className = 'meta-chip-label';
+    label.textContent = item.label;
+    const value = document.createElement('span');
+    value.className = 'meta-chip-value';
+    value.textContent = item.value;
+    chip.appendChild(label);
+    chip.appendChild(value);
+    row.appendChild(chip);
+  }
+  parent.appendChild(row);
+}
+
+function syncPaneTabs() {
+  paneTabs.forEach((tab) => {
+    const active = tab.dataset.tab === activeCodexTab;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+}
+
+function setCodexTab(tab) {
+  activeCodexTab = tab;
+  syncPaneTabs();
+  if (detailPaneOpen) renderReading();
+}
+
+function syncDetailPaneMode() {
+  const fullscreenActive = detailPaneFullscreen && detailPaneOpen;
+  readingPane.classList.toggle('fullscreen', detailPaneFullscreen);
+  appEl.classList.toggle('codex-fullscreen', fullscreenActive);
+  toggleDetailModeBtn.textContent = detailPaneFullscreen ? '通常表示' : '全画面';
+  toggleDetailModeBtn.setAttribute('aria-pressed', detailPaneFullscreen ? 'true' : 'false');
+  toggleDetailModeBtn.setAttribute('aria-label', detailPaneFullscreen ? '通常表示に戻す' : '全画面表示に切り替え');
+}
+
+function toggleDetailPaneMode() {
+  detailPaneFullscreen = !detailPaneFullscreen;
+  syncDetailPaneMode();
+  if (currentId && worldGroup) panCameraTo(currentId, false);
+}
+
+function renderStartPreview() {
+  startPreview.innerHTML = '';
+  if (!selectedChapterId || !allChaptersMap.has(selectedChapterId)) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-note';
+    empty.textContent = '章を選ぶと、ここに探検の見取り図が表示されます。';
+    startPreview.appendChild(empty);
+    return;
+  }
+
+  const ch = allChaptersMap.get(selectedChapterId);
+  const related = getRelatedChapterIds(ch).all;
+  const sources = getChapterSourceIds(ch);
+  const neighborhood = Math.max(0, localNeighborhood(ch.id).size - 1);
+
+  const kicker = document.createElement('div');
+  kicker.className = 'preview-kicker';
+  kicker.textContent = 'Selected Expedition';
+  startPreview.appendChild(kicker);
+
+  const title = document.createElement('h3');
+  title.className = 'preview-title';
+  title.textContent = ch.ja || ch.id;
+  startPreview.appendChild(title);
+
+  const summary = document.createElement('p');
+  summary.className = 'preview-summary';
+  summary.textContent = excerptText(ch.narrative_ja || ch.desc_ja || '', 180) || '導入文はまだありません。';
+  startPreview.appendChild(summary);
+
+  const facts = document.createElement('div');
+  facts.className = 'preview-facts';
+  [
+    // { label: '年代', value: ch.date || '未詳' },
+    { label: '分岐', value: `${related.length}章` },
+    { label: '史料', value: `${sources.length}件` },
+    { label: '周辺視界', value: `${neighborhood}章` }
+  ].forEach((item) => {
+    const box = document.createElement('div');
+    box.className = 'preview-fact';
+    const label = document.createElement('span');
+    label.className = 'preview-fact-label';
+    label.textContent = item.label;
+    const value = document.createElement('span');
+    value.className = 'preview-fact-value';
+    value.textContent = item.value;
+    box.appendChild(label);
+    box.appendChild(value);
+    facts.appendChild(box);
+  });
+  startPreview.appendChild(facts);
+
+  const listTitle = document.createElement('p');
+  listTitle.className = 'preview-list-title';
+  listTitle.textContent = '最初に見えている論点';
+  startPreview.appendChild(listTitle);
+
+  if (related.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-note';
+    empty.textContent = 'この章にはまだ接続先がありません。';
+    startPreview.appendChild(empty);
+    return;
+  }
+
+  const list = document.createElement('ul');
+  list.className = 'preview-list';
+  related.slice(0, 4).forEach((id) => {
+    const li = document.createElement('li');
+    const target = allChaptersMap.get(id);
+    li.textContent = target ? (target.ja || id) : id;
+    list.appendChild(li);
+  });
+  startPreview.appendChild(list);
+}
+
+function renderQuestPanel() {
+  questPanelBody.innerHTML = '';
+  if (!currentId || !chapterMap.has(currentId)) return;
+  const ch = chapterMap.get(currentId);
+  const related = getRelatedChapterIds(ch);
+  const sourceIds = sortSourceIdsByLabel(getChapterSourceIds(ch));
+  const currentSource = focusedSourceId ? allSourcesMap.get(focusedSourceId) : null;
+  const sourceRelatedChapterIds = currentSource ? sortChapterIdsByLabel(getSourceChapterIds(currentSource.id)) : [];
+
+  const title = document.createElement('h2');
+  title.className = 'quest-title';
+
+  const summary = document.createElement('p');
+  summary.className = 'quest-summary';
+
+  const stats = document.createElement('div');
+  stats.className = 'quest-stats';
+  const actions = document.createElement('div');
+  actions.className = 'hud-actions';
+  const hint = document.createElement('p');
+  hint.className = 'section-hint';
+  const list = document.createElement('div');
+  list.className = 'choice-list';
+
+  const statItems = [];
+  const appendStats = (items) => {
+    items.forEach((item) => {
+      const box = document.createElement('div');
+      box.className = 'quest-stat';
+      const label = document.createElement('span');
+      label.className = 'quest-stat-label';
+      label.textContent = item.label;
+      const value = document.createElement('span');
+      value.className = 'quest-stat-value';
+      value.textContent = item.value;
+      box.appendChild(label);
+      box.appendChild(value);
+      stats.appendChild(box);
+    });
+  };
+
+  if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && currentSource) {
+    title.textContent = currentSource.title_ja || currentSource.id;
+    summary.textContent = excerptText(currentSource.ja || currentSource.ref || '', 160)
+      || 'この史料に関連する章をたどれます。';
+    statItems.push(
+      { label: 'モード', value: '史料中心' },
+      { label: '関連章', value: `${sourceRelatedChapterIds.length}章` },
+      { label: '発見史料', value: `${collectVisitedSourceIds().length}` }
+    );
+    appendStats(statItems);
+
+    const backBtn = document.createElement('button');
+    backBtn.className = 'hud-action';
+    backBtn.textContent = '章へ戻る';
+    backBtn.addEventListener('click', () => showChapterSources(currentId));
+    actions.appendChild(backBtn);
+
+    const codexBtn = document.createElement('button');
+    codexBtn.className = 'hud-action';
+    codexBtn.textContent = '史料本文を開く';
+    codexBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
+    actions.appendChild(codexBtn);
+
+    hint.textContent = sourceRelatedChapterIds.length > 0
+      ? 'この史料と結びつく章'
+      : 'この史料に関連づく章はありません。';
+    sourceRelatedChapterIds.forEach((chapterId) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = chapterMap.get(chapterId)?.ja || chapterId;
+      btn.addEventListener('click', () => navigateToChapterSources(chapterId));
+      list.appendChild(btn);
+    });
+  } else if (networkMode === NETWORK_MODE.CHAPTER_SOURCES) {
+    title.textContent = ch.ja || ch.id;
+    summary.textContent = excerptText(ch.narrative_ja || '', 160) || 'この章の導入は未記載です。';
+    statItems.push(
+      { label: 'モード', value: '章→史料' },
+      { label: '史料', value: `${sourceIds.length}件` },
+      { label: '旅程', value: `${history.length}章目` }
+    );
+    appendStats(statItems);
+
+    const graphBtn = document.createElement('button');
+    graphBtn.className = 'hud-action';
+    graphBtn.textContent = '章ネットワークへ戻る';
+    graphBtn.addEventListener('click', showChapterGraphForCurrentChapter);
+    actions.appendChild(graphBtn);
+
+    const codexBtn = document.createElement('button');
+    codexBtn.className = 'hud-action';
+    codexBtn.textContent = '史料一覧を開く';
+    codexBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
+    actions.appendChild(codexBtn);
+
+    hint.textContent = sourceIds.length > 0
+      ? 'この章に紐づく史料'
+      : 'この章に紐づく史料はまだありません。';
+    sourceIds.forEach((sourceId) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = allSourcesMap.get(sourceId)?.title_ja || sourceId;
+      btn.addEventListener('click', () => showSourceChapters(sourceId));
+      list.appendChild(btn);
+    });
+  } else {
+    title.textContent = ch.ja || ch.id;
+    summary.textContent = excerptText(ch.narrative_ja || '', 160) || 'この章の導入は未記載です。';
+    statItems.push(
+      { label: '現在地', value: `${history.length}章目` },
+      { label: '選択肢', value: `${related.all.length}件` },
+      { label: '史料', value: `${sourceIds.length}件` }
+    );
+    appendStats(statItems);
+
+    const codexBtn = document.createElement('button');
+    codexBtn.className = 'hud-action';
+    codexBtn.textContent = '記録を開く';
+    codexBtn.addEventListener('click', () => { setCodexTab('chapter'); openDetailPane(); renderReading(); });
+    actions.appendChild(codexBtn);
+
+    if (sourceIds.length > 0) {
+      const srcBtn = document.createElement('button');
+      srcBtn.className = 'hud-action';
+      srcBtn.textContent = '史料庫を見る';
+      srcBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
+      actions.appendChild(srcBtn);
+    }
+
+    hint.textContent = related.all.length > 0
+      ? '次に踏み込める章'
+      : 'この章は今のところ行き止まりです。';
+    related.all.slice(0, 4).forEach((id) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = chapterMap.get(id)?.ja || id;
+      btn.addEventListener('click', () => navigateTo(id));
+      list.appendChild(btn);
+    });
+  }
+
+  questPanelBody.appendChild(title);
+  questPanelBody.appendChild(summary);
+  questPanelBody.appendChild(stats);
+  questPanelBody.appendChild(actions);
+  questPanelBody.appendChild(hint);
+  if (list.childElementCount > 0) {
+    questPanelBody.appendChild(list);
+  }
+}
+
+function renderDiscoveryPanel() {
+  discoveryPanelBody.innerHTML = '';
+  if (!currentId || !chapterMap.has(currentId)) return;
+
+  const discoveredSources = collectVisitedSourceIds();
+  const recentHistory = history.slice(-3).reverse();
+  const currentChapter = chapterMap.get(currentId);
+  const currentSource = focusedSourceId ? allSourcesMap.get(focusedSourceId) : null;
+  const stats = document.createElement('div');
+  stats.className = 'discovery-stats';
+
+  const statItems = networkMode === NETWORK_MODE.SOURCE_CHAPTERS && currentSource
+    ? [
+        { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
+        { label: '関連章', value: `${getSourceChapterIds(currentSource.id).length}` },
+        { label: '旅程', value: `${history.length}` }
+      ]
+    : networkMode === NETWORK_MODE.CHAPTER_SOURCES && currentChapter
+      ? [
+          { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
+          { label: '表示史料', value: `${getChapterSourceIds(currentChapter).length}` },
+          { label: '旅程', value: `${history.length}` }
+        ]
+      : [
+          { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
+          { label: '史料発見', value: `${discoveredSources.length}` },
+          { label: '旅程', value: `${history.length}` }
+        ];
+
+  statItems.forEach((item) => {
+    const box = document.createElement('div');
+    box.className = 'quest-stat';
+    const label = document.createElement('span');
+    label.className = 'quest-stat-label';
+    label.textContent = item.label;
+    const value = document.createElement('span');
+    value.className = 'quest-stat-value';
+    value.textContent = item.value;
+    box.appendChild(label);
+    box.appendChild(value);
+    stats.appendChild(box);
+  });
+  discoveryPanelBody.appendChild(stats);
+
+  const hint = document.createElement('p');
+  hint.className = 'section-hint';
+  hint.textContent = currentSource ? '現在フォーカス中の史料' : '最近たどった章';
+  discoveryPanelBody.appendChild(hint);
+
+  const list = document.createElement('div');
+  list.className = 'discovery-list';
+  if (currentSource) {
+    const item = document.createElement('div');
+    item.className = 'discovery-item';
+    const strong = document.createElement('strong');
+    strong.textContent = currentSource.title_ja || currentSource.id;
+    const span = document.createElement('span');
+    span.textContent = '史料中心ネットワークを表示中';
+    item.appendChild(strong);
+    item.appendChild(span);
+    list.appendChild(item);
+  }
+  recentHistory.forEach((id) => {
+    const ch = chapterMap.get(id);
+    const item = document.createElement('div');
+    item.className = 'discovery-item';
+    const strong = document.createElement('strong');
+    strong.textContent = ch ? (ch.ja || id) : id;
+    const span = document.createElement('span');
+    // span.textContent = ch && ch.date ? ch.date : '日付未詳';
+    item.appendChild(strong);
+    item.appendChild(span);
+    list.appendChild(item);
+  });
+  discoveryPanelBody.appendChild(list);
+}
+
+function renderJourneyRail() {
+  journeyRailBody.innerHTML = '';
+  if (!currentId || history.length === 0) return;
+  const track = document.createElement('div');
+  track.className = 'journey-track';
+  history.forEach((id, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'journey-node' + (index === history.length - 1 ? ' current' : '');
+    btn.textContent = chapterMap.get(id)?.ja || id;
+    if (index !== history.length - 1) {
+      btn.addEventListener('click', () => jumpToHistory(index));
+    }
+    track.appendChild(btn);
+  });
+  journeyRailBody.appendChild(track);
+
+  const relatedCount = getRelatedChapterIds(chapterMap.get(currentId)).all.length;
+  const note = document.createElement('div');
+  note.className = 'journey-note';
+  if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && focusedSourceId) {
+    note.textContent = `この史料に ${getSourceChapterIds(focusedSourceId).length} 章が関連しています。`;
+  } else if (networkMode === NETWORK_MODE.CHAPTER_SOURCES && chapterMap.has(currentId)) {
+    note.textContent = `この章に ${getChapterSourceIds(chapterMap.get(currentId)).length} 件の史料が紐づいています。`;
+  } else {
+    note.textContent = `現在地点から ${relatedCount} 件の分岐が見えています。`;
+  }
+  journeyRailBody.appendChild(note);
+}
+
+function renderHud() {
+  if (validationErrors.length) {
+    hudProgressText.textContent = '要修正';
+  } else if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && focusedSourceId && allSourcesMap.has(focusedSourceId)) {
+    const source = allSourcesMap.get(focusedSourceId);
+    hudProgressText.textContent = `史料: ${source.title_ja || source.id}`;
+  } else if (networkMode === NETWORK_MODE.CHAPTER_SOURCES && currentId && chapterMap.has(currentId)) {
+    const currentChapter = chapterMap.get(currentId);
+    hudProgressText.textContent = `章と史料: ${currentChapter.ja || currentChapter.id}`;
+  } else if (currentId && chapterMap.has(currentId)) {
+    const currentChapter = chapterMap.get(currentId);
+    hudProgressText.textContent = currentChapter.ja || currentChapter.id;
+  } else if (selectedChapterId && allChaptersMap.has(selectedChapterId)) {
+    const selectedChapter = allChaptersMap.get(selectedChapterId);
+    hudProgressText.textContent = selectedChapter.ja || selectedChapter.id;
+  } else {
+    hudProgressText.textContent = '開始章を選択中';
+  }
+  if (mainView.hidden) return;
+  renderQuestPanel();
+  renderDiscoveryPanel();
+  renderJourneyRail();
+}
+
+/* ============================================================
+   4. グラフ構築・検証
+   ============================================================ */
+
+function buildGraph() {
+  chapters = allChapters.slice();
+  chapterMap = allChaptersMap;
+  adjacency = new Map();
+  for (const c of chapters) {
+    if (c && c.id) adjacency.set(c.id, new Set());
+  }
+  for (const c of chapters) {
+    if (!c || !c.id) continue;
+    const links = Array.isArray(c.links) ? c.links : [];
+    for (const tid of links) {
+      if (typeof tid !== 'string' || !chapterMap.has(tid)) continue;
+      adjacency.get(c.id).add(tid);
+      adjacency.get(tid).add(c.id);
+    }
+  }
+  computeGlobalLayout();
+}
+
+/* ============================================================
+   4.5. グローバル力学レイアウト (シード固定、決定論的)
+   ============================================================ */
+
+function mulberry32(seed) {
+  return function() {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function computeGlobalLayout() {
+  const rng = mulberry32(0xC0FFEE);
+  const ids = chapters.filter(c => c && c.id).map(c => c.id);
+  const n = ids.length;
+  globalPos = new Map();
+  if (n === 0) return;
+
+  // 初期配置: 単位円上にランダムに散らばす
+  const pos = new Map();
+  const initR = Math.max(220, 60 * Math.sqrt(n));
+  for (const id of ids) {
+    const a = rng() * Math.PI * 2;
+    const r = initR * (0.4 + rng() * 0.6);
+    pos.set(id, { x: Math.cos(a) * r, y: Math.sin(a) * r });
+  }
+
+  const EDGE_LEN = 280;
+  const K_SPRING = 0.04;
+  const K_REPEL = 22000;
+  const K_GRAVITY = 0.012;
+  const K_TEMPORAL = 0.025;
+  const ITER = 320;
+
+  // 日付 → 目標Y座標マップを構築 (上=古, 下=新)
+  const dateMs = new Map();
+  for (const id of ids) {
+    const c = chapterMap.get(id);
+    if (!c || !c.date) continue;
+    const r = parseDateRange(String(c.date));
+    const lo = r.lo !== null ? r.lo : r.hi;
+    const hi = r.hi !== null ? r.hi : r.lo;
+    if (lo !== null) dateMs.set(id, (lo + hi) / 2);
+  }
+  const dateVals = [...dateMs.values()];
+  const minDate = dateVals.length ? Math.min(...dateVals) : 0;
+  const maxDate = dateVals.length ? Math.max(...dateVals) : 1;
+  const dateSpan = maxDate - minDate || 1;
+  const TEMPORAL_SPAN = Math.max(n * EDGE_LEN * 0.45, 600);
+
+  // 無向エッジ列を作成
+  const edgeList = [];
+  for (const [u, set] of adjacency) {
+    for (const v of set) if (u < v) edgeList.push([u, v]);
+  }
+
+  for (let step = 0; step < ITER; step++) {
+    const cool = 1 - step / ITER;
+    const force = new Map(ids.map(id => [id, { fx: 0, fy: 0 }]));
+
+    // 反発力 (O(n^2))
+    for (let i = 0; i < n; i++) {
+      const a = pos.get(ids[i]);
+      for (let j = i + 1; j < n; j++) {
+        const b = pos.get(ids[j]);
+        let dx = a.x - b.x, dy = a.y - b.y;
+        let d2 = dx * dx + dy * dy + 0.01;
+        const f = K_REPEL / d2;
+        const d = Math.sqrt(d2);
+        const fx = (dx / d) * f, fy = (dy / d) * f;
+        force.get(ids[i]).fx += fx; force.get(ids[i]).fy += fy;
+        force.get(ids[j]).fx -= fx; force.get(ids[j]).fy -= fy;
+      }
+    }
+    // バネ (エッジ)
+    for (const [u, v] of edgeList) {
+      const a = pos.get(u), b = pos.get(v);
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) + 0.01;
+      const f = K_SPRING * (d - EDGE_LEN);
+      const fx = (dx / d) * f, fy = (dy / d) * f;
+      force.get(u).fx += fx; force.get(u).fy += fy;
+      force.get(v).fx -= fx; force.get(v).fy -= fy;
+    }
+    // 中心重力
+    for (const id of ids) {
+      const p = pos.get(id);
+      force.get(id).fx -= p.x * K_GRAVITY;
+      force.get(id).fy -= p.y * K_GRAVITY;
+    }
+    // 時間軸引力 (Y軸: 上=古い時代, 下=新しい時代)
+    for (const id of ids) {
+      if (!dateMs.has(id)) continue;
+      const t = (dateMs.get(id) - minDate) / dateSpan;
+      const targetY = (t - 0.5) * TEMPORAL_SPAN;
+      force.get(id).fy += (targetY - pos.get(id).y) * K_TEMPORAL;
+    }
+    // 位置更新 (冷却 + 速度キャップ)
+    const stepSize = 0.85 * cool + 0.15;
+    for (const id of ids) {
+      const p = pos.get(id), f = force.get(id);
+      const fmag = Math.sqrt(f.fx * f.fx + f.fy * f.fy);
+      const cap = Math.min(1, 40 / (fmag + 0.01));
+      p.x += f.fx * stepSize * cap;
+      p.y += f.fy * stepSize * cap;
+    }
+  }
+  // dateMs を buildWorldMap でグラデーション生成に再利用するため公開
+  computeGlobalLayout._dateMs = dateMs;
+  globalPos = pos;
+}
+
+function localNeighborhood(centerId) {
+  const dist = new Map();
+  if (!chapterMap.has(centerId)) return dist;
+  dist.set(centerId, 0);
+  const queue = [centerId];
+  while (queue.length) {
+    const u = queue.shift();
+    if (dist.get(u) >= 2) continue;
+    for (const v of (adjacency.get(u) || [])) {
+      if (!dist.has(v)) {
+        dist.set(v, dist.get(u) + 1);
+        queue.push(v);
+      }
+    }
+  }
+  return dist;
+}
+
+function validateChapters() {
+  const errs = [];
+  const seen = new Set();
+  for (const c of allChapters) {
+    if (!c || typeof c !== 'object') { errs.push('chapters 内に不正な要素があります'); continue; }
+    if (!c.id) { errs.push('id の無い章があります'); continue; }
+    if (seen.has(c.id)) errs.push(`chapter id が重複しています: ${c.id}`);
+    seen.add(c.id);
+  }
+  for (const c of allChapters) {
+    if (!c || !c.id || !c.date) continue;
+    const r = parseDateRange(String(c.date));
+    if (r.lo === null && r.hi === null) {
+      errs.push(`章 "${c.ja || c.id}" の date "${c.date}" を解釈できませんでした`);
+    }
+  }
+  for (const c of allChapters) {
+    if (!c || !c.id || c.sources == null) continue;
+    if (!Array.isArray(c.sources)) {
+      errs.push(`章 "${c.ja || c.id}" の sources が配列ではありません`);
+      continue;
+    }
+    for (const sid of c.sources) {
+      if (typeof sid !== 'string' || !sid.trim()) {
+        errs.push(`章 "${c.ja || c.id}" の sources に不正な値があります`);
+        continue;
+      }
+      if (!allSourcesMap.has(sid)) {
+        errs.push(`章 "${c.ja || c.id}" の sources に未定義の source id があります: "${sid}"`);
+      }
+    }
+  }
+  for (const c of allChapters) {
+    if (!c || !c.id || c.links == null) continue;
+    if (!Array.isArray(c.links)) {
+      errs.push(`章 "${c.ja || c.id}" の links が配列ではありません`);
+      continue;
+    }
+    for (const tid of c.links) {
+      if (typeof tid !== 'string' || !tid.trim()) {
+        errs.push(`章 "${c.ja || c.id}" の links に不正な値があります`);
+        continue;
+      }
+      if (!allChaptersMap.has(tid)) {
+        errs.push(`章 "${c.ja || c.id}" の links に未定義の chapter id があります: "${tid}"`);
+      }
+    }
+  }
+  return errs;
+}
+
+function validateSources() {
+  const errs = [];
+  const seen = new Set();
+  for (const s of allSources) {
+    if (!s || typeof s !== 'object') { errs.push('sources 内に不正な要素があります'); continue; }
+    if (!s.id) { errs.push('id の無い source があります'); continue; }
+    if (seen.has(s.id)) errs.push(`source id が重複しています: ${s.id}`);
+    seen.add(s.id);
+    const hasTitle = typeof s.title_ja === 'string' && s.title_ja.trim();
+    const hasBody = typeof s.ja === 'string' && s.ja.trim();
+    if (!hasTitle && !hasBody) {
+      errs.push(`source "${s.id}" に title_ja も ja も無く、表示すべき内容がありません`);
+    }
+  }
+  return errs;
+}
+
+/* ============================================================
+   5. レイアウトユーティリティ
+   ============================================================ */
+
+function wrapText(str, maxChars, maxLines) {
+  str = String(str || '');
+  const lines = [];
+  let s = str;
+  while (s.length > 0 && lines.length < maxLines) {
+    if (s.length <= maxChars) { lines.push(s); s = ''; }
+    else { lines.push(s.slice(0, maxChars)); s = s.slice(maxChars); }
+  }
+  if (s.length > 0 && lines.length > 0) {
+    lines[lines.length - 1] = lines[lines.length - 1].slice(0, Math.max(0, maxChars - 1)) + '…';
+  }
+  return lines;
+}
+
+/* ============================================================
+   5.5. 日付解析 (検証用)
+   ============================================================ */
+
+function parseDateRange(str) {
+  if (!str || typeof str !== 'string') return { lo: null, hi: null };
+  const s = str.trim();
+  function utcMs(y, m, d) { return Date.UTC(y, m - 1, d); }
+  function monthEnd(y, m) { return Date.UTC(y, m, 0); }
+  let m;
+  if ((m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/))) {
+    const t = utcMs(+m[1], +m[2], +m[3]); return { lo: t, hi: t };
+  }
+  if ((m = s.match(/^(\d{4})-(\d{2})$/))) {
+    return { lo: utcMs(+m[1], +m[2], 1), hi: monthEnd(+m[1], +m[2]) };
+  }
+  if ((m = s.match(/^(\d{4})-?$/))) {
+    const y = +m[1]; return { lo: utcMs(y, 1, 1), hi: utcMs(y, 12, 31) };
+  }
+  if ((m = s.match(/^(?:bf\.|bef\.|before)\s+(.+)$/i))) {
+    const inner = parseDateRange(m[1]);
+    return { lo: null, hi: inner.lo !== null ? inner.lo - 86400000 : inner.hi };
+  }
+  if ((m = s.match(/^(?:aft\.|after)\s+(.+)$/i))) {
+    const inner = parseDateRange(m[1]);
+    return { lo: inner.hi !== null ? inner.hi + 86400000 : inner.lo, hi: null };
+  }
+  if ((m = s.match(/^(?:c\.|circa)\s+(\d{4})$/i))) {
+    const y = +m[1]; return { lo: utcMs(y, 1, 1), hi: utcMs(y, 12, 31) };
+  }
+  if ((m = s.match(/^early\s+(\d{4})$/i))) {
+    const y = +m[1]; return { lo: utcMs(y, 1, 1), hi: utcMs(y, 4, 30) };
+  }
+  if ((m = s.match(/^mid\s+(\d{4})$/i))) {
+    const y = +m[1]; return { lo: utcMs(y, 5, 1), hi: utcMs(y, 8, 31) };
+  }
+  if ((m = s.match(/^late\s+(\d{4})$/i))) {
+    const y = +m[1]; return { lo: utcMs(y, 9, 1), hi: utcMs(y, 12, 31) };
+  }
+  if ((m = s.match(/^(.+?)\s*[×x]\s*(.+)$/i))) {
+    const a = parseDateRange(m[1].trim()), b = parseDateRange(m[2].trim());
+    return { lo: a.lo, hi: b.hi };
+  }
+  return { lo: null, hi: null };
+}
+
+/* ============================================================
+   6. マップ描画 (ローカルグラフ・放射状配置)
+   ============================================================ */
+
+function getMapFocusPoint() {
+  const paneW = mapPane.clientWidth || window.innerWidth;
+  const paneH = mapPane.clientHeight || window.innerHeight;
+  const paneOpen = readingPane.classList.contains('open');
+  const codexH = paneOpen ? readingPane.getBoundingClientRect().height : 0;
+  const focusY = paneOpen ? Math.max(150, (paneH - codexH) / 2) : paneH / 2;
+  return {
+    paneW,
+    paneH,
+    paneOpen,
+    cx: paneW / 2,
+    cy: focusY
+  };
+}
+
+function sortChapterIdsByLabel(ids) {
+  return [...ids].sort((leftId, rightId) => {
+    const left = chapterMap.get(leftId)?.ja || leftId;
+    const right = chapterMap.get(rightId)?.ja || rightId;
+    return left.localeCompare(right, 'ja');
+  });
+}
+
+function sortSourceIdsByLabel(ids) {
+  return [...ids].sort((leftId, rightId) => {
+    const left = allSourcesMap.get(leftId)?.title_ja || leftId;
+    const right = allSourcesMap.get(rightId)?.title_ja || rightId;
+    return left.localeCompare(right, 'ja');
+  });
+}
+
+function buildFocusRingPositions(count, centerX, centerY, paneW, paneH, paneOpen) {
+  if (count === 0) return [];
+
+  const positions = [];
+  const baseRadius = Math.max(
+    120,
+    Math.min(Math.min(paneW, paneH) * (paneOpen ? 0.18 : 0.24), 220)
+  );
+  const ringStep = 110;
+  let placed = 0;
+  let ring = 0;
+
+  while (placed < count) {
+    const capacity = ring === 0 ? 7 : 10 + ring * 2;
+    const ringCount = Math.min(capacity, count - placed);
+    const radius = baseRadius + ring * ringStep;
+    const offset = -Math.PI / 2 + (ring % 2 ? Math.PI / ringCount : 0);
+
+    for (let i = 0; i < ringCount; i++) {
+      const theta = offset + (2 * Math.PI * i) / ringCount;
+      positions.push({
+        x: centerX + radius * Math.cos(theta),
+        y: centerY + radius * Math.sin(theta),
+        ring,
+        ringIndex: i
+      });
+    }
+
+    placed += ringCount;
+    ring += 1;
+  }
+
+  return positions;
+}
+
+function appendFocusNodeLabel(group, label, x, y, isCenter) {
+  const lines = wrapText(label, 8, 2);
+  lines.forEach((line, index) => {
+    const text = svgEl('text', {
+      x,
+      y: y + index * 12,
+      'text-anchor': 'middle',
+      class: `focus-node-label${isCenter ? ' center-label' : ''}`
+    });
+    text.textContent = line;
+    group.appendChild(text);
+  });
+}
+
+function createFocusNode(node, x, y) {
+  const classNames = ['focus-node', `${node.type}-focus-node`];
+  if (node.isCenter) classNames.push('center-node');
+  if (node.isOrigin) classNames.push('origin-node');
+  if (typeof node.onClick === 'function') classNames.push('interactive-node');
+
+  const group = svgEl('g', { class: classNames.join(' ') });
+  group.dataset.id = node.id;
+  group.dataset.kind = node.type;
+  group.style.setProperty('--node-delay', `${node.animationDelay || 0}ms`);
+  group.style.setProperty('--node-lift', `${node.animationLift || 0}px`);
+
+  let labelY = y + NODE_LABEL_GAP + 28;
+
+  if (node.type === 'chapter') {
+    const radius = node.isCenter ? NODE_R : LOCAL_CHAPTER_NODE_R;
+    const shape = svgEl('circle', {
+      cx: x,
+      cy: y,
+      r: radius,
+      class: 'chapter-node-shape'
+    });
+    group.appendChild(shape);
+    labelY = y + radius + NODE_LABEL_GAP + 11;
+  } else {
+    const radius = node.isCenter ? SOURCE_NODE_R + 3 : SOURCE_NODE_R;
+    const points = [
+      `${x},${y - radius}`,
+      `${x + radius},${y}`,
+      `${x},${y + radius}`,
+      `${x - radius},${y}`
+    ].join(' ');
+    const shape = svgEl('polygon', {
+      points,
+      class: 'source-node-shape'
+    });
+    group.appendChild(shape);
+    labelY = y + radius + NODE_LABEL_GAP + 11;
+  }
+
+  appendFocusNodeLabel(group, node.label, x, labelY, !!node.isCenter);
+
+  if (typeof node.onClick === 'function') {
+    group.addEventListener('click', () => {
+      if (!isDragging) node.onClick(node.id);
+    });
+  }
+
+  return group;
+}
+
+function buildFocusedNetworkSpec() {
+  if (!currentId || !chapterMap.has(currentId)) return null;
+
+  if (networkMode === NETWORK_MODE.CHAPTER_SOURCES) {
+    const chapter = chapterMap.get(currentId);
+    return {
+      center: {
+        id: chapter.id,
+        type: 'chapter',
+        label: chapter.ja || chapter.id,
+        isCenter: true,
+        onClick: showChapterGraphForCurrentChapter
+      },
+      neighbors: sortSourceIdsByLabel(getChapterSourceIds(chapter)).map((sourceId) => {
+        const source = allSourcesMap.get(sourceId);
+        return {
+          id: sourceId,
+          type: 'source',
+          label: source?.title_ja || sourceId,
+          onClick: showSourceChapters
+        };
+      })
+    };
+  }
+
+  if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && focusedSourceId && allSourcesMap.has(focusedSourceId)) {
+    const source = allSourcesMap.get(focusedSourceId);
+    return {
+      center: {
+        id: focusedSourceId,
+        type: 'source',
+        label: source.title_ja || source.id,
+        isCenter: true,
+        onClick: null
+      },
+      neighbors: sortChapterIdsByLabel(getSourceChapterIds(focusedSourceId)).map((chapterId) => {
+        const chapter = chapterMap.get(chapterId);
+        return {
+          id: chapterId,
+          type: 'chapter',
+          label: chapter?.ja || chapterId,
+          isOrigin: chapterId === currentId,
+          onClick: navigateToChapterSources
+        };
+      })
+    };
+  }
+
+  return null;
+}
+
+const CENTER_RADIUS_INNER = 240;
+const CENTER_RADIUS_OUTER = 420;
+const OUTER_SCALE = 0.82;
+
+function radialLayout(centerId) {
+  const dist = localNeighborhood(centerId);
+  const inner = [];
+  const outer = [];
+  for (const [id, d] of dist) {
+    if (d === 1) inner.push(id);
+    else if (d === 2) outer.push(id);
+  }
+  inner.sort();
+  outer.sort();
+
+  const maxR = CENTER_RADIUS_OUTER + NODE_W * OUTER_SCALE;
+  const cx = maxR + PADDING + NODE_W / 2;
+  const cy = maxR + PADDING + NODE_H / 2;
+
+  const pos = new Map();
+  const sizes = new Map();
+
+  pos.set(centerId, { x: cx - NODE_W / 2, y: cy - NODE_H / 2 });
+  sizes.set(centerId, { w: NODE_W, h: NODE_H });
+
+  function placeRing(ids, radius, scale) {
+    const w = NODE_W * scale;
+    const h = NODE_H * scale;
+    const n = ids.length;
+    if (n === 0) return;
+    const offset = -Math.PI / 2;
+    for (let i = 0; i < n; i++) {
+      const theta = offset + (2 * Math.PI * i) / n;
+      const ix = cx + radius * Math.cos(theta);
+      const iy = cy + radius * Math.sin(theta);
+      pos.set(ids[i], { x: ix - w / 2, y: iy - h / 2 });
+      sizes.set(ids[i], { w, h });
+    }
+  }
+  placeRing(inner, CENTER_RADIUS_INNER, 1);
+  placeRing(outer, CENTER_RADIUS_OUTER, OUTER_SCALE);
+
+  const totalSize = (maxR + PADDING) * 2;
+  return { pos, sizes, dist, width: totalSize, height: totalSize, cx, cy };
+}
+
+const VIEWPORT_PAD = 200;
+
+function renderMap() {
+  if (networkMode === NETWORK_MODE.CHAPTER_GRAPH) {
+    renderChapterGraphMap();
+    return;
+  }
+  renderFocusedNetworkMap();
+}
+
+function renderFocusedNetworkMap() {
+  if (!currentId || !chapterMap.has(currentId)) {
+    mapContainer.innerHTML = '';
+    worldGroup = null;
+    mapBuilt = false;
+    return;
+  }
+
+  const spec = buildFocusedNetworkSpec();
+  if (!spec) {
+    setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+      focusedSourceId: null,
+      codexFocusedSourceId: null
+    });
+    renderChapterGraphMap();
+    return;
+  }
+
+  mapBuilt = false;
+  worldGroup = null;
+  currentTx = 0;
+  currentTy = 0;
+  mapContainer.innerHTML = '';
+
+  const { paneW, paneH, cx, cy, paneOpen } = getMapFocusPoint();
+  const svg = svgEl('svg', {
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: paneW,
+    height: paneH,
+    viewBox: `0 0 ${paneW} ${paneH}`
+  });
+  prepareMapScene(svg, 'scene-focused');
+  const edgeLayer = svgEl('g', {});
+  const nodeLayer = svgEl('g', {});
+  const positions = buildFocusRingPositions(spec.neighbors.length, cx, cy, paneW, paneH, paneOpen);
+
+  spec.neighbors.forEach((node, index) => {
+    const position = positions[index];
+    if (!position) return;
+
+    const edge = svgEl('line', {
+      x1: cx,
+      y1: cy,
+      x2: position.x,
+      y2: position.y,
+      class: 'focus-edge-line'
+    });
+    edge.style.setProperty('--focus-edge-len', String(Math.ceil(Math.hypot(position.x - cx, position.y - cy))));
+    edge.style.setProperty('--edge-delay', `${80 + index * 28}ms`);
+    edgeLayer.appendChild(edge);
+    nodeLayer.appendChild(createFocusNode({
+      ...node,
+      animationDelay: 120 + index * 30,
+      animationLift: 10 + position.ring * 4
+    }, position.x, position.y));
+  });
+
+  nodeLayer.appendChild(createFocusNode({
+    ...spec.center,
+    animationDelay: 40,
+    animationLift: 0
+  }, cx, cy));
+  svg.appendChild(edgeLayer);
+  svg.appendChild(nodeLayer);
+  mapContainer.appendChild(svg);
+  void svg.getBoundingClientRect();
+}
+
+function renderChapterGraphMap() {
+  if (!currentId || !chapterMap.has(currentId)) {
+    mapContainer.innerHTML = '';
+    worldGroup = null;
+    mapBuilt = false;
+    return;
+  }
+
+  const firstBuild = !mapBuilt;
+  if (!mapBuilt) {
+    buildWorldMap();
+    mapBuilt = true;
+  }
+  updateMapState();
+  updateVisibility();
+  panCameraTo(currentId, firstBuild);
+}
+
+function buildWorldMap() {
+  mapContainer.innerHTML = '';
+
+  // バウンディングボックス
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const { x, y } of globalPos.values()) {
+    if (x < minX) minX = x;
+    if (y < minY) minY = y;
+    if (x > maxX) maxX = x;
+    if (y > maxY) maxY = y;
+  }
+  if (!isFinite(minX)) { minX = 0; minY = 0; maxX = 0; maxY = 0; }
+
+  const worldW = (maxX - minX) + NODE_W + VIEWPORT_PAD * 2;
+  const worldH = (maxY - minY) + NODE_H + VIEWPORT_PAD * 2;
+  worldOffX = -minX + VIEWPORT_PAD;
+  worldOffY = -minY + VIEWPORT_PAD;
+
+  const svg = svgEl('svg', {
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: worldW,
+    height: worldH,
+    viewBox: `0 0 ${worldW} ${worldH}`
+  });
+  prepareMapScene(svg, 'scene-chapter-graph');
+
+  // グラデーション定義 (エッジの時間的方向を色で示す)
+  const svgDefs = svgEl('defs', {});
+  const dateMs = computeGlobalLayout._dateMs || new Map();
+  svg.appendChild(svgDefs);
+
+  worldGroup = svgEl('g', { class: 'world' });
+  svg.appendChild(worldGroup);
+
+  // エッジ (無向、重複排除)
+  const drawn = new Set();
+  for (const [fromId, set] of adjacency) {
+    for (const toId of set) {
+      const key = fromId < toId ? fromId + '|' + toId : toId + '|' + fromId;
+      if (drawn.has(key)) continue;
+      drawn.add(key);
+      const a = globalPos.get(fromId);
+      const b = globalPos.get(toId);
+      if (!a || !b) continue;
+      const x1 = a.x + worldOffX + NODE_W / 2;
+      const y1 = a.y + worldOffY + NODE_H / 2;
+      const x2 = b.x + worldOffX + NODE_W / 2;
+      const y2 = b.y + worldOffY + NODE_H / 2;
+
+      // 時間的方向を判定してグラデーションを生成
+      const dA = dateMs.get(fromId), dB = dateMs.get(toId);
+      let strokeVal = null;
+      if (dA !== undefined && dB !== undefined && dA !== dB) {
+        // 古い方→新しい方の向きで紫→琥珀グラデーション
+        const older = dA < dB ? { x: x1, y: y1 } : { x: x2, y: y2 };
+        const newer = dA < dB ? { x: x2, y: y2 } : { x: x1, y: y1 };
+        const gradId = `eg-${fromId}-${toId}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+        const grad = svgEl('linearGradient', {
+          id: gradId, gradientUnits: 'userSpaceOnUse',
+          x1: older.x, y1: older.y, x2: newer.x, y2: newer.y
+        });
+        const stop0 = svgEl('stop', { offset: '0%' });
+        stop0.style.stopColor = '#5840a0';
+        const stop1 = svgEl('stop', { offset: '100%' });
+        stop1.style.stopColor = '#8b5e20';
+        grad.appendChild(stop0);
+        grad.appendChild(stop1);
+        svgDefs.appendChild(grad);
+        strokeVal = `url(#${gradId})`;
+      }
+
+      const line = svgEl('line', { x1, y1, x2, y2, class: 'edge-line' });
+      if (strokeVal) line.style.stroke = strokeVal;
+      line.dataset.from = fromId;
+      line.dataset.to = toId;
+      const len = Math.ceil(Math.hypot(x2 - x1, y2 - y1));
+      line.style.setProperty('--edge-len', String(len));
+      worldGroup.appendChild(line);
+    }
+  }
+
+  // ノード
+  for (const [id, p] of globalPos) {
+    const c = chapterMap.get(id);
+    if (!c) continue;
+    const g = svgEl('g', { class: 'node-g' });
+    g.dataset.id = id;
+    const nodeCx = p.x + worldOffX + NODE_R;
+    const nodeCy = p.y + worldOffY + NODE_R;
+    const circle = svgEl('circle', {
+      cx: nodeCx,
+      cy: nodeCy,
+      r: NODE_R,
+      class: 'node-box'
+    });
+    g.appendChild(circle);
+
+    const label = (wrapText(c.ja || c.id, 7, 1)[0] || '');
+    const t = svgEl('text', {
+      x: nodeCx,
+      y: nodeCy + NODE_R + NODE_LABEL_GAP + 11,
+      'text-anchor': 'middle',
+      class: 'node-text'
+    });
+    t.textContent = label;
+    g.appendChild(t);
+
+    g.addEventListener('click', () => { if (!isDragging) navigateTo(id); });
+    worldGroup.appendChild(g);
+  }
+
+  mapContainer.appendChild(svg);
+  // 強制 reflow してから後続の transform を適用 (transition が走るように)
+  void svg.getBoundingClientRect();
+}
+
+function updateMapState() {
+  if (!worldGroup) return;
+  for (const g of worldGroup.querySelectorAll('.node-g')) {
+    const id = g.dataset.id;
+    const isCurrent = id === currentId;
+    g.classList.toggle('current-node', isCurrent);
+    const box = g.querySelector('.node-box');
+    if (box) box.classList.toggle('current', isCurrent);
+    for (const t of g.querySelectorAll('.node-text')) {
+      t.classList.toggle('current', isCurrent);
+    }
+  }
+}
+
+function updateVisibility() {
+  if (!worldGroup) return;
+  const nearDist = localNeighborhood(currentId);
+
+  for (const g of worldGroup.querySelectorAll('.node-g')) {
+    const id = g.dataset.id;
+    g.classList.remove('tier-current', 'tier-near', 'tier-far', 'tier-visited', 'tier-hidden');
+
+    const d = nearDist.has(id) ? nearDist.get(id) : Infinity;
+
+    if (id === currentId) {
+      g.classList.add('tier-current');
+    } else if (visited.has(id)) {
+      g.classList.add('tier-visited');   // 訪問済みは即オレンジ（距離問わず）
+    } else if (d === 1) {
+      g.classList.add('tier-near');      // 未訪問1hop: 青紫・クリック可
+    } else if (d === 2) {
+      g.classList.add('tier-far');       // 未訪問2hop: 薄表示・クリック不可
+    } else {
+      g.classList.add('tier-hidden');
+    }
+  }
+
+  const tierOf = (id) => {
+    if (id === currentId) return 'current';
+    if (visited.has(id)) return 'visited';
+    const d = nearDist.has(id) ? nearDist.get(id) : Infinity;
+    if (d === 1) return 'visible';
+    if (d === 2) return 'far';
+    return 'hidden';
+  };
+
+  for (const line of worldGroup.querySelectorAll('.edge-line')) {
+    const tFrom = tierOf(line.dataset.from);
+    const tTo   = tierOf(line.dataset.to);
+    line.classList.remove('tier-active', 'tier-dim', 'tier-hidden');
+
+    if (tFrom === 'hidden' || tTo === 'hidden' ||
+        (tFrom === 'far' && tTo === 'far')) {
+      line.classList.add('tier-hidden');
+    } else if (tFrom === 'current' || tTo === 'current') {
+      line.classList.add('tier-active');
+    } else {
+      line.classList.add('tier-dim');
+    }
+  }
+}
+
+function panCameraTo(centerId, instant) {
+  if (!worldGroup) return;
+  const p = globalPos.get(centerId);
+  if (!p) return;
+  const { paneW, paneH, cy: focusY } = getMapFocusPoint();
+  // SVG 内のノード中心座標 (絶対位置)
+  const nodeCx = p.x + worldOffX + NODE_W / 2;
+  const nodeCy = p.y + worldOffY + NODE_H / 2;
+  // worldGroup を平行移動して、 nodeCx/Cy が可視領域の中央に来るようにする
+  const tx = paneW / 2 - nodeCx;
+  const ty = focusY - nodeCy;
+  currentTx = tx;
+  currentTy = ty;
+  const value = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px)`;
+  if (instant) {
+    // 初回はトランジションを抑止して即座にセンタリング
+    worldGroup.style.transition = 'none';
+    worldGroup.style.transform = value;
+    void worldGroup.getBoundingClientRect();
+    worldGroup.style.transition = '';
+  } else {
+    worldGroup.style.transform = value;
+  }
+}
+
+/* ============================================================
+   7. 読書パネル描画
+   ============================================================ */
+
+function renderReading() {
+  const ch = chapterMap.get(currentId);
+  readingContent.innerHTML = '';
+  if (!ch) {
+    const p = document.createElement('p');
+    p.textContent = '章が見つかりません。';
+    readingContent.appendChild(p);
+    return;
+  }
+  const focusedSource = codexFocusedSourceId ? allSourcesMap.get(codexFocusedSourceId) : null;
+  codexTitle.textContent = (activeCodexTab === 'sources' && focusedSource)
+    ? (focusedSource.title_ja || focusedSource.id)
+    : (ch.ja || ch.id);
+  syncPaneTabs();
+
+  const sourceIds = getOrderedChapterSourceIds(ch);
+  const related = getRelatedChapterIds(ch);
+
+  if (activeCodexTab === 'sources') {
+    const focusedSourceChapterIds = focusedSource
+      ? sortChapterIdsByLabel(getSourceChapterIds(focusedSource.id))
+      : [];
+
+    if (focusedSource) {
+      appendMetaChips(readingContent, [
+        { label: '現在の焦点', value: focusedSource.title_ja || focusedSource.id },
+        { label: '関連章', value: `${focusedSourceChapterIds.length}章` },
+        { label: '表示', value: networkMode === NETWORK_MODE.SOURCE_CHAPTERS ? '史料中心' : '章と史料' }
+      ]);
+    }
+
+    const srcLabel = document.createElement('div');
+    srcLabel.className = 'section-label';
+    srcLabel.textContent = '発見した史料';
+    readingContent.appendChild(srcLabel);
+
+    if (sourceIds.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'empty-note';
+      empty.textContent = 'この章に紐づく史料はまだ登録されていません。';
+      readingContent.appendChild(empty);
+      readingContent.scrollTop = 0;
+      return;
+    }
+
+    const list = document.createElement('div');
+    list.className = 'source-list';
+    for (const sid of sourceIds) {
+      const src = allSourcesMap.get(sid);
+      const details = document.createElement('details');
+      details.className = 'source-item';
+      details.open = sid === codexFocusedSourceId;
+
+      const summary = document.createElement('summary');
+      summary.textContent = src.title_ja || src.id;
+      details.appendChild(summary);
+
+      const body = document.createElement('div');
+      body.className = 'source-body';
+      if (typeof src.ja === 'string' && src.ja.length > 0) {
+        const txt = createParagraphBlock('source-text', src.ja);
+        body.appendChild(txt);
+      }
+      if (typeof src.ref === 'string' && src.ref.trim().length > 0) {
+        const ref = document.createElement('div');
+        ref.className = 'source-ref';
+        ref.textContent = src.ref;
+        body.appendChild(ref);
+      }
+      details.appendChild(body);
+      list.appendChild(details);
+    }
+    readingContent.appendChild(list);
+    readingContent.scrollTop = 0;
+    return;
+  }
+
+  if (activeCodexTab === 'trail') {
+    appendMetaChips(readingContent, [
+      { label: '旅程', value: `${history.length}章目` },
+      { label: '分岐', value: `${related.all.length}件` }
+    ]);
+
+    const bc = document.createElement('div');
+    bc.className = 'breadcrumb';
+    history.forEach((id, i) => {
+      const c = chapterMap.get(id);
+      const span = document.createElement('span');
+      const isCur = i === history.length - 1;
+      span.className = isCur ? 'crumb current' : 'crumb';
+      span.textContent = c ? (c.ja || id) : id;
+      if (!isCur) span.addEventListener('click', () => jumpToHistory(i));
+      bc.appendChild(span);
+      if (i < history.length - 1) {
+        const sep = document.createElement('span');
+        sep.className = 'sep';
+        sep.textContent = '›';
+        bc.appendChild(sep);
+      }
+    });
+    readingContent.appendChild(bc);
+
+    const nextLabel = document.createElement('div');
+    nextLabel.className = 'section-label';
+    nextLabel.textContent = '次に踏み込める章';
+    readingContent.appendChild(nextLabel);
+
+    if (related.all.length === 0) {
+      const end = document.createElement('div');
+      end.className = 'empty-note';
+      end.textContent = '現在地点から進める章はありません。';
+      readingContent.appendChild(end);
+      readingContent.scrollTop = 0;
+      return;
+    }
+
+    const list = document.createElement('div');
+    list.className = 'next-list';
+    for (const id of related.all) {
+      const target = chapterMap.get(id);
+      const btn = document.createElement('button');
+      btn.className = 'next-btn';
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      arrow.textContent = '→';
+      btn.appendChild(arrow);
+      btn.appendChild(document.createTextNode(target?.ja || id));
+      btn.addEventListener('click', () => navigateTo(id));
+      list.appendChild(btn);
+    }
+    readingContent.appendChild(list);
+    readingContent.scrollTop = 0;
+    return;
+  }
+
+  // appendMetaChips(readingContent, [
+  //   { label: '史料', value: `${sourceIds.length}件` }
+  // ]);
+
+  // 概要
+  const sumLabel = document.createElement('div');
+  sumLabel.className = 'section-label';
+  sumLabel.textContent = '概要';
+  readingContent.appendChild(sumLabel);
+  const sum = createParagraphBlock(
+    'summary-text',
+    typeof ch.narrative_ja === 'string' ? ch.narrative_ja : '',
+    '（概要は未記載です）'
+  );
+  readingContent.appendChild(sum);
+
+  // 詳細（desc_ja があるときのみトグル表示）
+  const hasDesc = typeof ch.desc_ja === 'string' && ch.desc_ja.trim().length > 0;
+  if (hasDesc) {
+    if (showDetail) {
+      const descLabel = document.createElement('div');
+      descLabel.className = 'section-label';
+      descLabel.textContent = '詳細';
+      readingContent.appendChild(descLabel);
+      const desc = createParagraphBlock('desc-text', ch.desc_ja);
+      readingContent.appendChild(desc);
+    }
+    const toggle = document.createElement('button');
+    toggle.className = 'detail-toggle';
+    toggle.textContent = showDetail ? '詳細を閉じる' : '詳しく読む';
+    toggle.addEventListener('click', () => { showDetail = !showDetail; renderReading(); });
+    readingContent.appendChild(toggle);
+  }
+
+  readingContent.scrollTop = 0;
+}
+
+/* ============================================================
+   8. ナビゲーション
+   ============================================================ */
+
+function openDetailPane() {
+  detailPaneOpen = true;
+  readingPane.classList.add('open');
+  mainView.classList.add('codex-open');
+  journeyRail.setAttribute('aria-hidden', 'true');
+  syncDetailPaneMode();
+  if (currentId && worldGroup) panCameraTo(currentId, false);
+}
+
+function closeDetailPane() {
+  detailPaneOpen = false;
+  readingPane.classList.remove('open');
+  mainView.classList.remove('codex-open');
+  journeyRail.removeAttribute('aria-hidden');
+  syncDetailPaneMode();
+  if (currentId && worldGroup) panCameraTo(currentId, false);
+}
+
+function updateChapterTrail(id) {
+  if (!chapterMap.has(id)) return false;
+  const existing = history.indexOf(id);
+  if (existing !== -1) {
+    history = history.slice(0, existing + 1);
+  } else {
+    history.push(id);
+  }
+  currentId = id;
+  visited.add(id);
+  showDetail = false;
+  return true;
+}
+
+function showChapterGraphForCurrentChapter() {
+  audio.click();
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  openDetailPane();
+  refresh();
+}
+
+function showChapterSources(id = currentId) {
+  if (!chapterMap.has(id)) return;
+  audio.click();
+  if (id !== currentId && !updateChapterTrail(id)) return;
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_SOURCES, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  openDetailPane();
+  refresh();
+}
+
+function showSourceChapters(sourceId) {
+  if (!allSourcesMap.has(sourceId)) return;
+  audio.click();
+  activeCodexTab = 'sources';
+  setNetworkMode(NETWORK_MODE.SOURCE_CHAPTERS, {
+    focusedSourceId: sourceId,
+    codexFocusedSourceId: sourceId
+  });
+  openDetailPane();
+  refresh();
+}
+
+function navigateToChapterSources(id) {
+  if (!chapterMap.has(id)) return;
+  audio.click();
+  if (!updateChapterTrail(id)) return;
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_SOURCES, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  openDetailPane();
+  refresh();
+}
+
+function navigateTo(id) {
+  if (!chapterMap.has(id)) return;
+  if (networkMode === NETWORK_MODE.CHAPTER_GRAPH && id === currentId) {
+    showChapterSources(id);
+    return;
+  }
+  audio.click();
+  if (!updateChapterTrail(id)) return;
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  openDetailPane();
+  refresh();
+}
+
+function jumpToHistory(i) {
+  history = history.slice(0, i + 1);
+  currentId = history[history.length - 1];
+  showDetail = false;
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  openDetailPane();
+  refresh();
+}
+
+function refresh(skipTransition = false) {
+  if (!skipTransition) audio.transition();
+  if (shouldAnimateModeTransition(skipTransition)) {
+    runModeTransition();
+  } else {
+    cancelMapModeTransition(true);
+    renderMap();
+    renderedNetworkMode = networkMode;
+  }
+  if (detailPaneOpen) renderReading();
+  updateStatus();
+  renderHud();
+}
+
+function updateStatus() {
+  if (validationErrors.length) {
+    setStatus('データの問題: ' + validationErrors.join(' / '), 'error');
+    return;
+  }
+  setStatus('', 'ok');
+}
+
+/* ============================================================
+   9. 開始画面 / 初期化
+   ============================================================ */
+
+function showStartScreen() {
+  cancelMapModeTransition(true);
+  startScreen.hidden = false;
+  mainView.hidden = true;
+  homeBtn.hidden = true;
+  if (currentId && chapterMap.has(currentId)) selectedChapterId = currentId;
+  detailPaneFullscreen = false;
+  setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  syncDetailPaneMode();
+  closeDetailPane();
+  // マップ状態をリセット (グローバル座標は不変、SVG だけ捨てる)
+  mapContainer.innerHTML = '';
+  worldGroup = null;
+  mapBuilt = false;
+  renderChapterPicker();
+  renderHud();
+}
+
+let selectedChapterId = null;
+
+function renderChapterPicker() {
+  const picker = document.getElementById('theme-picker');
+  picker.innerHTML = '';
+  if (!allChapters.length) {
+    const msg = document.createElement('div');
+    msg.style.color = 'var(--muted)';
+    msg.style.fontSize = '13px';
+    msg.textContent = '章が定義されていません (Data/data_sample.js を確認してください)。';
+    picker.appendChild(msg);
+    selectedChapterId = null;
+    renderStartPreview();
+    return;
+  }
+  if (!selectedChapterId || !allChaptersMap.has(selectedChapterId)) {
+    selectedChapterId = allChapters[0].id;
+  }
+  for (const c of allChapters) {
+    if (!c || !c.id) continue;
+    const btn = document.createElement('button');
+    btn.className = 'theme-option' + (c.id === selectedChapterId ? ' selected' : '');
+    btn.dataset.chapterId = c.id;
+    const title = document.createElement('span');
+    title.className = 'theme-option-title';
+    title.textContent = c.ja || c.id;
+    btn.appendChild(title);
+    if (typeof c.date === 'string' && c.date.trim()) {
+      const dt = document.createElement('span');
+      dt.className = 'theme-option-intro';
+      // dt.textContent = c.date;
+      btn.appendChild(dt);
+    }
+    btn.addEventListener('click', () => {
+      selectedChapterId = c.id;
+      renderChapterPicker();
+    });
+    picker.appendChild(btn);
+  }
+  renderStartPreview();
+}
+
+function enterApp() {
+  if (!selectedChapterId || !chapterMap.has(selectedChapterId)) {
+    setStatus('開始する章を選択してください。', 'error');
+    return;
+  }
+  audio.begin();
+  startScreen.hidden = true;
+  mainView.hidden = false;
+  homeBtn.hidden = false;
+  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1294';
+  currentId = selectedChapterId;
+  visited = new Set([currentId]);
+  history = [currentId];
+  showDetail = false;
+  activeCodexTab = 'chapter';
+  setNetworkMode(NETWORK_MODE.CHAPTER_GRAPH, {
+    focusedSourceId: null,
+    codexFocusedSourceId: null
+  });
+  closeDetailPane();
+  refresh(true);
+}
+
+function init() {
+  if (typeof window.HISTORY_CHAPTERS !== 'string') {
+    setStatus('データ (Data/data_sample.js) を読み込めませんでした。', 'error');
+    return;
+  }
+  if (typeof window.HISTORY_SOURCES !== 'string') {
+    setStatus('データ (Data/sources.js) を読み込めませんでした。', 'error');
+    return;
+  }
+
+  let chaptersData, sourcesData;
+  try {
+    chaptersData = parseYAML(window.HISTORY_CHAPTERS);
+  } catch (e) {
+    setStatus('data_sample.js のYAML解析エラー: ' + e.message, 'error');
+    return;
+  }
+  try {
+    sourcesData = parseYAML(window.HISTORY_SOURCES);
+  } catch (e) {
+    setStatus('sources.js のYAML解析エラー: ' + e.message, 'error');
+    return;
+  }
+
+  allChapters = Array.isArray(chaptersData && chaptersData.chapters) ? chaptersData.chapters : [];
+  allChaptersMap = new Map();
+  for (const c of allChapters) if (c && c.id) allChaptersMap.set(c.id, c);
+
+  allSources = Array.isArray(sourcesData && sourcesData.sources) ? sourcesData.sources : [];
+  allSourcesMap = new Map();
+  for (const s of allSources) if (s && s.id) allSourcesMap.set(s.id, s);
+
+  buildSourceChapterMap();
+
+  validationErrors = [...validateSources(), ...validateChapters()];
+
+  buildGraph();
+
+  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1294';
+  document.getElementById('start-title').textContent = 'Histographia: Scottish Experience 1286-1294';
+  const introEl = document.getElementById('start-intro');
+  introEl.textContent = '最初の章を選び、出来事と史料の関連を辿りながら、歴史の海を探求していきます。';
+
+  renderChapterPicker();
+  syncPaneTabs();
+
+  if (validationErrors.length) {
+    setStatus('データの問題: ' + validationErrors.join(' / '), 'error');
+  } else if (allChapters.length === 0) {
+    setStatus('章が定義されていません。', 'error');
+  } else {
+    setStatus(`準備完了 ／ 全${allChapters.length}章`, 'ok');
+  }
+
+  document.getElementById('startBtn').addEventListener('click', enterApp);
+  homeBtn.addEventListener('click', () => { showStartScreen(); updateStatus(); });
+  document.getElementById('closeDetailBtn').addEventListener('click', closeDetailPane);
+  toggleDetailModeBtn.addEventListener('click', toggleDetailPaneMode);
+  paneTabs.forEach((tab) => {
+    tab.addEventListener('click', () => setCodexTab(tab.dataset.tab));
+  });
+
+  // ドラッグによる手動パン
+  mapPane.addEventListener('mousedown', (e) => {
+    if (e.button !== 0 || !worldGroup) return;
+    const startX = e.clientX, startY = e.clientY;
+    const startTx = currentTx, startTy = currentTy;
+    let moved = false;
+
+    function onMouseMove(e) {
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (!moved && Math.hypot(dx, dy) > 5) {
+        moved = true;
+        isDragging = true;
+        worldGroup.style.transition = 'none';
+        mapPane.classList.add('is-dragging');
+      }
+      if (moved) {
+        currentTx = startTx + dx;
+        currentTy = startTy + dy;
+        worldGroup.style.transform = `translate(${currentTx.toFixed(1)}px, ${currentTy.toFixed(1)}px)`;
+      }
+    }
+
+    function onMouseUp() {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+      if (moved) {
+        worldGroup.style.transition = '';
+        mapPane.classList.remove('is-dragging');
+      }
+      setTimeout(() => { isDragging = false; }, 0);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+
+  // ブラウザのズーム変更時に自動再センタリング
+  new ResizeObserver(() => {
+    if (!currentId) return;
+    if (networkMode === NETWORK_MODE.CHAPTER_GRAPH && worldGroup) {
+      panCameraTo(currentId, true);
+      return;
+    }
+    refresh(true);
+  }).observe(mapPane);
+
+  audio.init();
+  const audioBtn = document.getElementById('audioBtn');
+  function refreshAudioBtn() {
+    audioBtn.textContent = audio.isMuted() ? '🔇' : '🔊';
+    audioBtn.classList.toggle('muted', audio.isMuted());
+  }
+  audioBtn.addEventListener('click', () => { audio.toggle(); refreshAudioBtn(); });
+  refreshAudioBtn();
+  syncDetailPaneMode();
+  syncNetworkModeClass();
+
+  showStartScreen();
+}
+
+init();
+</script>
+</body>
+</html>
