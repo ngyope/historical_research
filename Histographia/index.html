@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Histographia: Scottish Experience 1286-1294</title>
+<title>Histographia: Scottish Experience 1286-1296</title>
 <style>
   :root {
     --bg: #191b24;
@@ -674,17 +674,73 @@
 
   .chapter-title { font-size: 20px; margin: 0 0 18px; line-height: 1.5; }
   .section-label { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 4px; margin: 24px 0 12px; }
-  .summary-text, .desc-text, .source-text { white-space: pre-wrap; max-width: 80em; }
+  .summary-text, .desc-text, .source-text { max-width: 80em; overflow-wrap: break-word; }
   .summary-text, .desc-text {
     font-size: 14.5px;
     line-height: 2.0;
   }
   .desc-text { color: var(--text); }
-  .summary-text p, .desc-text p, .source-text p {
+  .rich-text > :first-child {
+    margin-top: 0;
+  }
+  .rich-text > :last-child {
+    margin-bottom: 0;
+  }
+  .rich-text p, .rich-text ul, .rich-text ol, .rich-text blockquote, .rich-text pre {
     margin: 0 0 1.15em;
   }
-  .summary-text p:last-child, .desc-text p:last-child, .source-text p:last-child {
-    margin-bottom: 0;
+  .rich-text h1, .rich-text h2, .rich-text h3,
+  .rich-text h4, .rich-text h5, .rich-text h6 {
+    margin: 1.4em 0 0.55em;
+    line-height: 1.4;
+    color: var(--accent-glow);
+  }
+  .rich-text h1 { font-size: 1.55em; }
+  .rich-text h2 { font-size: 1.35em; }
+  .rich-text h3 { font-size: 1.18em; }
+  .rich-text h4, .rich-text h5, .rich-text h6 { font-size: 1.05em; }
+  .rich-text ul, .rich-text ol {
+    padding-left: 1.5em;
+  }
+  .rich-text li + li {
+    margin-top: 0.35em;
+  }
+  .rich-text blockquote {
+    margin-left: 0;
+    padding: 0.9em 1em;
+    border-left: 3px solid var(--accent);
+    background: rgba(18, 21, 29, 0.42);
+    color: var(--text);
+  }
+  .rich-text code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.92em;
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+    background: rgba(18, 21, 29, 0.6);
+  }
+  .rich-text pre {
+    padding: 0.9em 1em;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(18, 21, 29, 0.68);
+    overflow-x: auto;
+  }
+  .rich-text pre code {
+    display: block;
+    padding: 0;
+    background: transparent;
+  }
+  .rich-text a {
+    color: var(--accent-glow);
+  }
+  .rich-text em,
+  .rich-text i {
+    font-style: italic;
+    color: #d7dcef;
+  }
+  .rich-text strong {
+    color: #f5f7ff;
   }
 
   .detail-toggle {
@@ -731,7 +787,6 @@
   .source-text {
     font-size: 14px;
     line-height: 1.9;
-    white-space: pre-wrap;
     color: var(--text);
   }
   .source-ref {
@@ -743,12 +798,21 @@
 
   .next-list { margin-top: 8px; display: flex; flex-direction: column; gap: 10px; }
   .next-btn {
+    display: flex;
+    align-items: center;
     font-family: inherit; font-size: 14px; text-align: left;
     padding: 12px 16px; background: rgba(59, 47, 94, 0.5); color: var(--text);
     border: 1px solid var(--border); border-radius: 14px; cursor: pointer; line-height: 1.6;
   }
   .next-btn:hover { border-color: var(--accent); }
-  .next-btn .arrow { color: var(--accent); margin-right: 8px; }
+  .next-btn .arrow {
+    flex: 0 0 auto;
+    color: var(--accent);
+    margin-right: 8px;
+    font-size: 15px;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
   .next-end { font-size: 13px; color: var(--muted); padding: 10px 0; }
 
   #status {
@@ -1048,7 +1112,7 @@
   <header>
     <div class="brand-stack">
       <div class="brand-kicker">Quest Atlas</div>
-      <h1 id="theme-title">Histographia: Scottish Experience 1286-1294</h1>
+      <h1 id="theme-title">Histographia: Scottish Experience 1286-1296</h1>
     </div>
     <div class="header-progress">
       <span class="header-progress-label">現在地</span>
@@ -1118,40 +1182,33 @@
 </div>
 
 <script src="Assets/lib/howler.min.js"></script>
+<script src="Assets/lib/marked.umd.js"></script>
+<script src="Assets/lib/purify.min.js"></script>
 <script src="Data/data_sample.js"></script>
 <script src="Data/sources.js"></script>
 <script>
 "use strict";
 
 /* ============================================================
-   1. Mini YAML Parser  (Tools/genealogy/index.html より流用)
-   この限定スキーマ専用。# は常にコメント、最初の半角 : をキー区切り
-   として扱うため、値に : や # を含める場合はクォートで囲むこと。
+   1. Mini YAML Parser
+   既存データ互換を保ちつつ、値中の Markdown 見出しを壊さないようにする。
    ============================================================ */
-
 function parseYAML(text) {
-  const rawLines = text.split('\n');
+  const rawLines = String(text || '').split('\n');
   const lines = [];
   for (let i = 0; i < rawLines.length; i++) {
-    const stripped = stripComment(rawLines[i]);
-    if (stripped.trim().length === 0) continue;
-    lines.push({ raw: stripped, lineNo: i + 1, indent: getIndent(stripped) });
+    const normalizedLine = rawLines[i].replace(/\s+$/, '');
+    const trimmed = normalizedLine.trim();
+    if (trimmed.length === 0 || trimmed.startsWith('#')) continue;
+    lines.push({ raw: normalizedLine, lineNo: i + 1, indent: getIndent(normalizedLine) });
   }
   let idx = 0;
 
-  function stripComment(line) {
-    let q = null;
-    for (let i = 0; i < line.length; i++) {
-      const c = line[i];
-      if (q) { if (c === q && line[i-1] !== '\\') q = null; }
-      else {
-        if (c === '"' || c === "'") q = c;
-        else if (c === '#') return line.substring(0, i).replace(/\s+$/, '');
-      }
-    }
-    return line.replace(/\s+$/, '');
+  function getIndent(line) {
+    let i = 0;
+    while (i < line.length && line[i] === ' ') i++;
+    return i;
   }
-  function getIndent(line) { let i = 0; while (i < line.length && line[i] === ' ') i++; return i; }
 
   function parseBlock(baseIndent) {
     if (idx >= lines.length || lines[idx].indent < baseIndent) return null;
@@ -1175,23 +1232,23 @@ function parseYAML(text) {
       }
       if (looksLikeKeyValue(content)) {
         const item = {};
-        const [k, v] = parseKeyValue(content);
-        if (v === '') {
-          item[k] = parseBlock(baseIndent + 4);
+        const [key, value] = parseKeyValue(content);
+        if (value === '') {
+          item[key] = parseBlock(baseIndent + 4);
         } else {
-          item[k] = v;
+          item[key] = value;
         }
         const itemIndent = baseIndent + 2;
         while (idx < lines.length && lines[idx].indent === itemIndent && !lines[idx].raw.trim().startsWith('-')) {
           const sub = lines[idx];
-          const subC = sub.raw.trim();
-          if (!looksLikeKeyValue(subC)) break;
-          const [sk, sv] = parseKeyValue(subC);
+          const subContent = sub.raw.trim();
+          if (!looksLikeKeyValue(subContent)) break;
+          const [subKey, subValue] = parseKeyValue(subContent);
           idx++;
-          if (sv === '') {
-            item[sk] = parseBlock(itemIndent + 2);
+          if (subValue === '') {
+            item[subKey] = parseBlock(itemIndent + 2);
           } else {
-            item[sk] = sv;
+            item[subKey] = subValue;
           }
         }
         result.push(item);
@@ -1211,55 +1268,73 @@ function parseYAML(text) {
       if (!looksLikeKeyValue(content)) {
         throw new Error(`L${line.lineNo}: 解釈不能な行: "${content}"`);
       }
-      const [k, v] = parseKeyValue(content);
+      const [key, value] = parseKeyValue(content);
       idx++;
-      if (v === '') {
-        result[k] = parseBlock(baseIndent + 2);
+      if (value === '') {
+        result[key] = parseBlock(baseIndent + 2);
       } else {
-        result[k] = v;
+        result[key] = value;
       }
     }
     return result;
   }
 
-  function looksLikeKeyValue(s) {
-    let q = null, depth = 0;
-    for (let i = 0; i < s.length; i++) {
-      const c = s[i];
-      if (q) { if (c === q) q = null; continue; }
-      if (c === '"' || c === "'") { q = c; continue; }
-      if (c === '[' || c === '{') depth++;
-      else if (c === ']' || c === '}') depth--;
-      else if (c === ':' && depth === 0) return true;
+  function looksLikeKeyValue(content) {
+    let quote = null;
+    let depth = 0;
+    for (let i = 0; i < content.length; i++) {
+      const char = content[i];
+      if (quote) {
+        if (char === quote) quote = null;
+        continue;
+      }
+      if (char === '"' || char === "'") {
+        quote = char;
+        continue;
+      }
+      if (char === '[' || char === '{') depth++;
+      else if (char === ']' || char === '}') depth--;
+      else if (char === ':' && depth === 0) return true;
     }
     return false;
   }
 
   function parseKeyValue(content) {
-    let q = null, depth = 0, colonIdx = -1;
+    let quote = null;
+    let depth = 0;
+    let colonIndex = -1;
     for (let i = 0; i < content.length; i++) {
-      const c = content[i];
-      if (q) { if (c === q) q = null; continue; }
-      if (c === '"' || c === "'") { q = c; continue; }
-      if (c === '[' || c === '{') depth++;
-      else if (c === ']' || c === '}') depth--;
-      else if (c === ':' && depth === 0) { colonIdx = i; break; }
+      const char = content[i];
+      if (quote) {
+        if (char === quote) quote = null;
+        continue;
+      }
+      if (char === '"' || char === "'") {
+        quote = char;
+        continue;
+      }
+      if (char === '[' || char === '{') depth++;
+      else if (char === ']' || char === '}') depth--;
+      else if (char === ':' && depth === 0) {
+        colonIndex = i;
+        break;
+      }
     }
-    if (colonIdx === -1) return [content, ''];
-    const key = content.substring(0, colonIdx).trim();
-    const valStr = content.substring(colonIdx + 1).trim();
-    return [unquote(key), valStr === '' ? '' : parseScalar(valStr)];
+    if (colonIndex === -1) return [content, ''];
+    const key = content.substring(0, colonIndex).trim();
+    const valueText = content.substring(colonIndex + 1).trim();
+    return [unquote(key), valueText === '' ? '' : parseScalar(valueText)];
   }
 
-  function unquote(s) {
-    if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
-      return s.substring(1, s.length - 1);
+  function unquote(value) {
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      return value.substring(1, value.length - 1);
     }
-    return s;
+    return value;
   }
 
-  function parseScalar(text) {
-    text = text.trim();
+  function parseScalar(value) {
+    const text = value.trim();
     if (text.startsWith('[') && text.endsWith(']')) {
       const inner = text.substring(1, text.length - 1);
       return splitFlowArray(inner).map(parseScalar);
@@ -1273,21 +1348,47 @@ function parseYAML(text) {
 
   function splitFlowArray(inner) {
     const items = [];
-    let q = null, depth = 0, buf = '';
+    let quote = null;
+    let depth = 0;
+    let buffer = '';
     for (let i = 0; i < inner.length; i++) {
-      const c = inner[i];
-      if (q) { buf += c; if (c === q) q = null; continue; }
-      if (c === '"' || c === "'") { q = c; buf += c; continue; }
-      if (c === '[' || c === '{') { depth++; buf += c; continue; }
-      if (c === ']' || c === '}') { depth--; buf += c; continue; }
-      if (c === ',' && depth === 0) { if (buf.trim()) items.push(buf.trim()); buf = ''; continue; }
-      buf += c;
+      const char = inner[i];
+      if (quote) {
+        buffer += char;
+        if (char === quote) quote = null;
+        continue;
+      }
+      if (char === '"' || char === "'") {
+        quote = char;
+        buffer += char;
+        continue;
+      }
+      if (char === '[' || char === '{') {
+        depth++;
+        buffer += char;
+        continue;
+      }
+      if (char === ']' || char === '}') {
+        depth--;
+        buffer += char;
+        continue;
+      }
+      if (char === ',' && depth === 0) {
+        if (buffer.trim()) items.push(buffer.trim());
+        buffer = '';
+        continue;
+      }
+      buffer += char;
     }
-    if (buf.trim()) items.push(buf.trim());
+    if (buffer.trim()) items.push(buffer.trim());
     return items;
   }
 
   return parseBlock(0) || {};
+}
+
+if (typeof marked !== 'undefined' && typeof marked.setOptions === 'function') {
+  marked.setOptions({ gfm: true, breaks: true });
 }
 
 /* ============================================================
@@ -1430,30 +1531,37 @@ function excerptText(text, maxChars) {
   return clean.slice(0, Math.max(0, maxChars - 1)) + '…';
 }
 
-function createParagraphBlock(className, text, emptyText = '') {
-  const block = document.createElement('div');
-  block.className = className;
-
-  const normalized = typeof text === 'string'
-    ? text.replace(/\\n/g, '\n').trim()
+function normalizeRichText(text) {
+  return typeof text === 'string'
+    ? text.replace(/\r\n?/g, '\n').replace(/\\n/g, '\n').trim()
     : '';
-  const paragraphs = normalized
-    ? normalized.split(/\n\s*\n+/).map((paragraph) => paragraph.trim()).filter(Boolean)
-    : [];
+}
 
-  if (paragraphs.length === 0 && emptyText) {
+function createMarkdownBlock(className, text, emptyText = '') {
+  const block = document.createElement('div');
+  block.className = `${className} rich-text`;
+
+  const normalized = normalizeRichText(text);
+  if (!normalized) {
+    if (emptyText) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = emptyText;
+      block.appendChild(paragraph);
+    }
+    return block;
+  }
+
+  if (typeof marked === 'undefined' || typeof marked.parse !== 'function') {
     const paragraph = document.createElement('p');
-    paragraph.textContent = emptyText;
+    paragraph.textContent = normalized;
     block.appendChild(paragraph);
     return block;
   }
 
-  for (const paragraphText of paragraphs) {
-    const paragraph = document.createElement('p');
-    paragraph.textContent = paragraphText;
-    block.appendChild(paragraph);
-  }
-
+  const rendered = marked.parse(normalized, { gfm: true, breaks: true });
+  block.innerHTML = (typeof DOMPurify !== 'undefined' && typeof DOMPurify.sanitize === 'function')
+    ? DOMPurify.sanitize(rendered, { USE_PROFILES: { html: true } })
+    : rendered;
   return block;
 }
 
@@ -2945,7 +3053,7 @@ function renderReading() {
       const body = document.createElement('div');
       body.className = 'source-body';
       if (typeof src.ja === 'string' && src.ja.length > 0) {
-        const txt = createParagraphBlock('source-text', src.ja);
+        const txt = createMarkdownBlock('source-text', src.ja);
         body.appendChild(txt);
       }
       if (typeof src.ref === 'string' && src.ref.trim().length > 0) {
@@ -3029,7 +3137,7 @@ function renderReading() {
   sumLabel.className = 'section-label';
   sumLabel.textContent = '概要';
   readingContent.appendChild(sumLabel);
-  const sum = createParagraphBlock(
+  const sum = createMarkdownBlock(
     'summary-text',
     typeof ch.narrative_ja === 'string' ? ch.narrative_ja : '',
     '（概要は未記載です）'
@@ -3044,7 +3152,7 @@ function renderReading() {
       descLabel.className = 'section-label';
       descLabel.textContent = '詳細';
       readingContent.appendChild(descLabel);
-      const desc = createParagraphBlock('desc-text', ch.desc_ja);
+      const desc = createMarkdownBlock('desc-text', ch.desc_ja);
       readingContent.appendChild(desc);
     }
     const toggle = document.createElement('button');
@@ -3270,7 +3378,7 @@ function enterApp() {
   startScreen.hidden = true;
   mainView.hidden = false;
   homeBtn.hidden = false;
-  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1294';
+  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1296';
   currentId = selectedChapterId;
   visited = new Set([currentId]);
   history = [currentId];
@@ -3322,8 +3430,8 @@ function init() {
 
   buildGraph();
 
-  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1294';
-  document.getElementById('start-title').textContent = 'Histographia: Scottish Experience 1286-1294';
+  document.getElementById('theme-title').textContent = 'Histographia: Scottish Experience 1286-1296';
+  document.getElementById('start-title').textContent = 'Histographia: Scottish Experience 1286-1296';
   const introEl = document.getElementById('start-intro');
   introEl.textContent = '最初の章を選び、出来事と史料の関連を辿りながら、歴史の海を探求していきます。';
 
