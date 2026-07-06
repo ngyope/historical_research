@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Histographia: Scottish Experience 1286-1296</title>
 <style>
   :root {
@@ -24,6 +25,7 @@
     --accent-warm-glow: #fcd34d;
     --shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
     --codex-height: min(46vh, 380px);
+    --codex-width: min(520px, 48vw);
     --mode-background:
       radial-gradient(circle at top, rgba(88, 64, 160, 0.22), transparent 42%),
       radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08), transparent 28%),
@@ -378,194 +380,104 @@
     transform: translate3d(var(--scene-leave-x), var(--scene-leave-y), 0) scale(var(--scene-leave-scale));
   }
 
-  .hud-panel {
+  /* === マップ操作バー (モード復帰・ズーム) === */
+  #map-mode-bar {
     position: absolute;
+    top: 112px;
+    left: 24px;
     z-index: 14;
-    padding: 18px;
-    border-radius: 22px;
-    border: 1px solid var(--border);
-    background: var(--panel-glass);
-    backdrop-filter: blur(16px);
-    box-shadow: var(--shadow);
-    pointer-events: auto;
-  }
-  .hud-panel-label {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  #quest-panel {
-    top: 112px;
-    left: 24px;
-    width: min(420px, calc(100vw - 48px));
-    max-height: calc(100vh - 220px);
-    overflow-y: auto;
-  }
-  #discovery-panel {
-    top: 112px;
-    right: 24px;
-    width: min(300px, calc(100vw - 48px));
-  }
-  #journey-rail {
-    left: 24px;
-    right: 24px;
-    bottom: 24px;
-    transition: opacity 220ms ease, transform 220ms ease;
-  }
-  #main-view.codex-open #journey-rail {
-    opacity: 0;
-    transform: translateY(12px);
-    pointer-events: none;
-  }
-  .quest-title {
-    font-size: 24px;
-    line-height: 1.35;
-    margin: 0 0 10px;
-  }
-  .quest-summary {
-    font-size: 14px;
-    line-height: 1.85;
-    color: var(--muted);
-    margin: 0 0 16px;
-  }
-  .quest-stats,
-  .discovery-stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .quest-stat {
-    padding: 12px 12px 10px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    background: rgba(18, 21, 29, 0.54);
-  }
-  .quest-stat-label {
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-  .quest-stat-value {
-    font-size: 16px;
-    color: var(--accent-glow);
-  }
-  .hud-actions,
-  .choice-list,
-  .discovery-list {
     display: flex;
+    gap: 8px;
     flex-wrap: wrap;
-    gap: 10px;
   }
-  .hud-action,
-  .choice-btn,
-  .journey-node {
+  .map-bar-btn {
     font-family: inherit;
-    font-size: 13px;
-    line-height: 1.55;
+    font-size: 12px;
+    padding: 8px 14px;
     color: var(--text);
-    background: rgba(18, 21, 29, 0.7);
+    background: rgba(21, 24, 32, 0.86);
     border: 1px solid var(--border);
     border-radius: 999px;
-    padding: 10px 14px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
   }
-  .hud-action:hover,
-  .choice-btn:hover,
-  .journey-node:hover {
-    border-color: var(--border-strong);
-    background: rgba(59, 47, 94, 0.5);
+  .map-bar-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+  /* === ノードツールチップ === */
+  #node-tip {
+    position: absolute;
+    z-index: 30;
+    max-width: 300px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border-strong);
+    background: rgba(21, 24, 32, 0.95);
+    box-shadow: var(--shadow);
+    pointer-events: none;
+    font-size: 12px;
+    line-height: 1.7;
   }
+  #node-tip .tip-title { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
+  #node-tip .tip-date { display: block; margin-top: 2px; font-size: 11px; color: var(--accent-warm-glow); }
+  #node-tip .tip-excerpt { display: block; margin-top: 6px; color: var(--muted); }
+  #node-tip .tip-state { display: block; margin-top: 6px; font-size: 11px; color: var(--accent-glow); }
   .section-hint {
     font-size: 12px;
     color: var(--muted);
     margin: 0 0 10px;
   }
-  .discovery-list {
-    flex-direction: column;
-  }
-  .discovery-item {
-    padding: 12px 14px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: rgba(18, 21, 29, 0.58);
-  }
-  .discovery-item strong {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 3px;
-  }
-  .discovery-item span {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .journey-track {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
-  }
-  .journey-node.current {
-    border-color: var(--border-strong);
-    color: var(--accent-glow);
-    background: rgba(59, 47, 94, 0.6);
-  }
-  .journey-note {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 12px;
-  }
 
   #reading-pane {
     position: absolute;
-    left: 20px;
+    top: 92px;
     right: 20px;
     bottom: 20px;
-    height: var(--codex-height);
-    transform: translateY(calc(100% + 24px));
-    transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1), top 220ms ease, border-radius 220ms ease;
+    left: auto;
+    width: var(--codex-width);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(calc(100% + 28px));
+    transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1), width 220ms ease, left 220ms ease, top 220ms ease, border-radius 220ms ease;
     z-index: 20;
-    background: var(--panel);
+    background: rgba(34, 37, 50, 0.55);
     border: 1px solid var(--border);
     border-radius: 24px;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(8px);
     overflow: hidden;
   }
-  #reading-pane.open { transform: translateY(0); }
+  #reading-pane.open { transform: none; }
   #reading-pane.fullscreen {
     top: 20px;
-    bottom: 20px;
-    height: auto;
+    left: 20px;
+    width: auto;
     z-index: 40;
     border-radius: 20px;
   }
   #app.codex-fullscreen header,
   #app.codex-fullscreen #status,
-  #app.codex-fullscreen #quest-panel,
-  #app.codex-fullscreen #discovery-panel,
-  #app.codex-fullscreen #journey-rail {
+  #app.codex-fullscreen #map-mode-bar {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
   #reading-content {
-    height: calc(100% - 118px);
-    padding: 18px 300px 24px;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 18px max(24px, calc((100% - 760px) / 2)) 24px;
     max-width: 100%;
     overflow-y: auto;
   }
 
   .pane-header {
+    flex: 0 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 16px;
-    padding: 18px 22px 10px 300px;
+    padding: 18px 22px 10px max(24px, calc((100% - 760px) / 2));
     background: linear-gradient(180deg, rgba(39, 42, 57, 0.95), rgba(39, 42, 57, 0.75));
     border-bottom: 1px solid var(--border);
   }
@@ -573,11 +485,13 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
   }
   .pane-actions {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
   }
   .pane-kicker {
     font-size: 10px;
@@ -595,6 +509,7 @@
     font-size: 16px;
     padding: 8px 12px;
     line-height: 1;
+    white-space: nowrap;
     background: rgba(18, 21, 29, 0.58);
     color: var(--muted);
     border: 1px solid var(--border);
@@ -606,6 +521,7 @@
     font-size: 12px;
     padding: 8px 14px;
     line-height: 1.2;
+    white-space: nowrap;
     background: rgba(18, 21, 29, 0.58);
     color: var(--muted);
     border: 1px solid var(--border);
@@ -615,9 +531,10 @@
   .pane-mode-btn:hover,
   .pane-close-btn:hover { color: var(--text); background: var(--accent-soft); }
   .pane-tabs {
+    flex: 0 0 auto;
     display: flex;
     gap: 10px;
-    padding: 12px 22px 12px 300px;
+    padding: 12px 22px 12px max(24px, calc((100% - 760px) / 2));
     border-bottom: 1px solid var(--border);
   }
   .pane-tab {
@@ -814,6 +731,10 @@
     transform: translateY(-1px);
   }
   .next-end { font-size: 13px; color: var(--muted); padding: 10px 0; }
+  .next-btn.visited { opacity: 0.66; }
+  .next-btn.visited .arrow { color: var(--accent-warm); }
+  .next-btn .visit-note { margin-left: 8px; font-size: 12px; color: var(--muted); }
+  .codex-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
   #status {
     position: absolute;
@@ -868,6 +789,11 @@
   .node-g:hover .node-box { stroke: var(--accent); }
   .node-text { font-size: 10px; fill: var(--text); }
   .node-text.current { font-weight: 600; fill: var(--accent-glow); }
+  .node-date { font-size: 9px; fill: var(--muted); }
+  .node-date.current { fill: var(--accent-warm-glow); }
+  .src-badge { pointer-events: none; }
+  .src-badge circle { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+  .src-badge text { font-size: 10px; fill: var(--accent-glow); }
   .edge-line { stroke: var(--edge); stroke-width: 1.3; fill: none; }
   .edge-line.outer { stroke: var(--edge-outer); stroke-width: 1.0; }
   .focus-edge-line {
@@ -996,7 +922,9 @@
 
   /* === 可視性 tier (霧マスク + 既訪残光) === */
   .node-g { transition: opacity 350ms ease; }
-  .node-g.tier-hidden { opacity: 0; pointer-events: none; }
+  .node-g.tier-hidden { opacity: 0.1; pointer-events: none; }
+  .node-g.tier-hidden .node-text,
+  .node-g.tier-hidden .node-date { opacity: 0; }
   .node-g.tier-far { opacity: 0.35; pointer-events: none; }
   .node-g.tier-visited { opacity: 0.55; }
   .node-g.tier-near { opacity: 1; }
@@ -1032,15 +960,6 @@
       grid-template-columns: 1fr;
       padding-top: 160px;
     }
-    #quest-panel {
-      width: min(380px, calc(100vw - 48px));
-    }
-    #discovery-panel {
-      top: auto;
-      bottom: 112px;
-      width: min(320px, calc(100vw - 48px));
-    }
-    #journey-rail { right: 360px; }
   }
 
   @media (max-width: 780px) {
@@ -1071,36 +990,26 @@
       padding: 22px;
     }
     .start-card h2 { font-size: 32px; }
-    #quest-panel,
-    #discovery-panel,
-    #journey-rail {
+    #map-mode-bar {
+      top: 140px;
       left: 12px;
       right: 12px;
-      width: auto;
-    }
-    #quest-panel {
-      top: 148px;
-      max-height: 34vh;
-    }
-    #discovery-panel {
-      top: auto;
-      bottom: 98px;
-    }
-    #journey-rail {
-      bottom: 12px;
     }
     #reading-pane {
+      top: auto;
       left: 12px;
       right: 12px;
       bottom: 12px;
+      width: auto;
       height: min(58vh, 420px);
+      transform: translateY(calc(100% + 24px));
     }
+    #reading-pane.open { transform: none; }
     #reading-pane.fullscreen {
       top: 12px;
       bottom: 12px;
+      height: auto;
     }
-    .quest-stats,
-    .discovery-stats,
     .preview-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1145,19 +1054,9 @@
     <div id="map-pane">
       <div id="map-container"></div>
       <div id="fog-overlay" aria-hidden="true"></div>
+      <div id="map-mode-bar" hidden></div>
+      <div id="node-tip" hidden></div>
     </div>
-    <section id="quest-panel" class="hud-panel">
-      <div class="hud-panel-label">Current Quest</div>
-      <div id="quest-panel-body"></div>
-    </section>
-    <section id="discovery-panel" class="hud-panel">
-      <div class="hud-panel-label">Discoveries</div>
-      <div id="discovery-panel-body"></div>
-    </section>
-    <section id="journey-rail" class="hud-panel">
-      <div class="hud-panel-label">Journey</div>
-      <div id="journey-rail-body"></div>
-    </section>
     <div id="reading-pane">
       <div class="pane-header">
         <div class="pane-headline">
@@ -1489,6 +1388,7 @@ let focusedSourceId = null;
 let codexFocusedSourceId = null;
 let isDragging = false;
 let currentTx = 0, currentTy = 0;
+let currentScale = 1;      // 章グラフのズーム倍率
 let renderedNetworkMode = NETWORK_MODE.CHAPTER_GRAPH;
 let mapModeTransitionTimer = 0;
 let mapModeTransitionResetTimer = 0;
@@ -1503,10 +1403,8 @@ const mapContainer = document.getElementById('map-container');
 const readingPane = document.getElementById('reading-pane');
 const readingContent = document.getElementById('reading-content');
 const startPreview = document.getElementById('start-preview');
-const questPanelBody = document.getElementById('quest-panel-body');
-const discoveryPanelBody = document.getElementById('discovery-panel-body');
-const journeyRail = document.getElementById('journey-rail');
-const journeyRailBody = document.getElementById('journey-rail-body');
+const mapModeBar = document.getElementById('map-mode-bar');
+const nodeTip = document.getElementById('node-tip');
 const codexTitle = document.getElementById('codex-title');
 const toggleDetailModeBtn = document.getElementById('toggleDetailModeBtn');
 const hudProgressText = document.getElementById('hud-progress-text');
@@ -1889,262 +1787,160 @@ function renderStartPreview() {
   startPreview.appendChild(list);
 }
 
-function renderQuestPanel() {
-  questPanelBody.innerHTML = '';
-  if (!currentId || !chapterMap.has(currentId)) return;
-  const ch = chapterMap.get(currentId);
-  const related = getRelatedChapterIds(ch);
-  const sourceIds = sortSourceIdsByLabel(getChapterSourceIds(ch));
-  const currentSource = focusedSourceId ? allSourcesMap.get(focusedSourceId) : null;
-  const sourceRelatedChapterIds = currentSource ? sortChapterIdsByLabel(getSourceChapterIds(currentSource.id)) : [];
+function renderMapModeBar() {
+  if (!mapModeBar) return;
+  mapModeBar.innerHTML = '';
+  const hidden = mainView.hidden || !currentId || !chapterMap.has(currentId);
+  mapModeBar.hidden = hidden;
+  if (hidden) return;
 
-  const title = document.createElement('h2');
-  title.className = 'quest-title';
-
-  const summary = document.createElement('p');
-  summary.className = 'quest-summary';
-
-  const stats = document.createElement('div');
-  stats.className = 'quest-stats';
-  const actions = document.createElement('div');
-  actions.className = 'hud-actions';
-  const hint = document.createElement('p');
-  hint.className = 'section-hint';
-  const list = document.createElement('div');
-  list.className = 'choice-list';
-
-  const statItems = [];
-  const appendStats = (items) => {
-    items.forEach((item) => {
-      const box = document.createElement('div');
-      box.className = 'quest-stat';
-      const label = document.createElement('span');
-      label.className = 'quest-stat-label';
-      label.textContent = item.label;
-      const value = document.createElement('span');
-      value.className = 'quest-stat-value';
-      value.textContent = item.value;
-      box.appendChild(label);
-      box.appendChild(value);
-      stats.appendChild(box);
-    });
+  const addBtn = (label, handler) => {
+    const btn = document.createElement('button');
+    btn.className = 'map-bar-btn';
+    btn.textContent = label;
+    btn.addEventListener('click', handler);
+    mapModeBar.appendChild(btn);
   };
 
-  if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && currentSource) {
-    title.textContent = currentSource.title_ja || currentSource.id;
-    summary.textContent = excerptText(currentSource.ja || currentSource.ref || '', 160)
-      || 'この史料に関連する章をたどれます。';
-    statItems.push(
-      { label: 'モード', value: '史料中心' },
-      { label: '関連章', value: `${sourceRelatedChapterIds.length}章` },
-      { label: '発見史料', value: `${collectVisitedSourceIds().length}` }
-    );
-    appendStats(statItems);
-
-    const backBtn = document.createElement('button');
-    backBtn.className = 'hud-action';
-    backBtn.textContent = '章へ戻る';
-    backBtn.addEventListener('click', () => showChapterSources(currentId));
-    actions.appendChild(backBtn);
-
-    const codexBtn = document.createElement('button');
-    codexBtn.className = 'hud-action';
-    codexBtn.textContent = '史料本文を開く';
-    codexBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
-    actions.appendChild(codexBtn);
-
-    hint.textContent = sourceRelatedChapterIds.length > 0
-      ? 'この史料と結びつく章'
-      : 'この史料に関連づく章はありません。';
-    sourceRelatedChapterIds.forEach((chapterId) => {
-      const btn = document.createElement('button');
-      btn.className = 'choice-btn';
-      btn.textContent = chapterMap.get(chapterId)?.ja || chapterId;
-      btn.addEventListener('click', () => navigateToChapterSources(chapterId));
-      list.appendChild(btn);
-    });
-  } else if (networkMode === NETWORK_MODE.CHAPTER_SOURCES) {
-    title.textContent = ch.ja || ch.id;
-    summary.textContent = excerptText(ch.narrative_ja || '', 160) || 'この章の導入は未記載です。';
-    statItems.push(
-      { label: 'モード', value: '章→史料' },
-      { label: '史料', value: `${sourceIds.length}件` },
-      { label: '旅程', value: `${history.length}章目` }
-    );
-    appendStats(statItems);
-
-    const graphBtn = document.createElement('button');
-    graphBtn.className = 'hud-action';
-    graphBtn.textContent = '章ネットワークへ戻る';
-    graphBtn.addEventListener('click', showChapterGraphForCurrentChapter);
-    actions.appendChild(graphBtn);
-
-    const codexBtn = document.createElement('button');
-    codexBtn.className = 'hud-action';
-    codexBtn.textContent = '史料一覧を開く';
-    codexBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
-    actions.appendChild(codexBtn);
-
-    hint.textContent = sourceIds.length > 0
-      ? 'この章に紐づく史料'
-      : 'この章に紐づく史料はまだありません。';
-    sourceIds.forEach((sourceId) => {
-      const btn = document.createElement('button');
-      btn.className = 'choice-btn';
-      btn.textContent = allSourcesMap.get(sourceId)?.title_ja || sourceId;
-      btn.addEventListener('click', () => showSourceChapters(sourceId));
-      list.appendChild(btn);
-    });
+  if (networkMode === NETWORK_MODE.CHAPTER_SOURCES) {
+    addBtn('章ネットワークへ戻る', showChapterGraphForCurrentChapter);
+  } else if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS) {
+    addBtn('章へ戻る', () => showChapterSources(currentId));
+    addBtn('章ネットワークへ', showChapterGraphForCurrentChapter);
   } else {
-    title.textContent = ch.ja || ch.id;
-    summary.textContent = excerptText(ch.narrative_ja || '', 160) || 'この章の導入は未記載です。';
-    statItems.push(
-      { label: '現在地', value: `${history.length}章目` },
-      { label: '選択肢', value: `${related.all.length}件` },
-      { label: '史料', value: `${sourceIds.length}件` }
-    );
-    appendStats(statItems);
-
-    const codexBtn = document.createElement('button');
-    codexBtn.className = 'hud-action';
-    codexBtn.textContent = '記録を開く';
-    codexBtn.addEventListener('click', () => { setCodexTab('chapter'); openDetailPane(); renderReading(); });
-    actions.appendChild(codexBtn);
-
-    if (sourceIds.length > 0) {
-      const srcBtn = document.createElement('button');
-      srcBtn.className = 'hud-action';
-      srcBtn.textContent = '史料庫を見る';
-      srcBtn.addEventListener('click', () => { setCodexTab('sources'); openDetailPane(); renderReading(); });
-      actions.appendChild(srcBtn);
-    }
-
-    hint.textContent = related.all.length > 0
-      ? '次に踏み込める章'
-      : 'この章は今のところ行き止まりです。';
-    related.all.slice(0, 4).forEach((id) => {
-      const btn = document.createElement('button');
-      btn.className = 'choice-btn';
-      btn.textContent = chapterMap.get(id)?.ja || id;
-      btn.addEventListener('click', () => navigateTo(id));
-      list.appendChild(btn);
-    });
-  }
-
-  questPanelBody.appendChild(title);
-  questPanelBody.appendChild(summary);
-  questPanelBody.appendChild(stats);
-  questPanelBody.appendChild(actions);
-  questPanelBody.appendChild(hint);
-  if (list.childElementCount > 0) {
-    questPanelBody.appendChild(list);
+    addBtn('旅の全体を見る', fitJourneyView);
+    addBtn('現在地へ', () => { if (worldGroup) panCameraTo(currentId, false); });
   }
 }
 
-function renderDiscoveryPanel() {
-  discoveryPanelBody.innerHTML = '';
-  if (!currentId || !chapterMap.has(currentId)) return;
+/* --- 章グラフのズーム・フィット --- */
 
-  const discoveredSources = collectVisitedSourceIds();
-  const recentHistory = history.slice(-3).reverse();
-  const currentChapter = chapterMap.get(currentId);
-  const currentSource = focusedSourceId ? allSourcesMap.get(focusedSourceId) : null;
-  const stats = document.createElement('div');
-  stats.className = 'discovery-stats';
-
-  const statItems = networkMode === NETWORK_MODE.SOURCE_CHAPTERS && currentSource
-    ? [
-        { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
-        { label: '関連章', value: `${getSourceChapterIds(currentSource.id).length}` },
-        { label: '旅程', value: `${history.length}` }
-      ]
-    : networkMode === NETWORK_MODE.CHAPTER_SOURCES && currentChapter
-      ? [
-          { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
-          { label: '表示史料', value: `${getChapterSourceIds(currentChapter).length}` },
-          { label: '旅程', value: `${history.length}` }
-        ]
-      : [
-          { label: '踏査', value: `${visited.size}/${chapterMap.size}` },
-          { label: '史料発見', value: `${discoveredSources.length}` },
-          { label: '旅程', value: `${history.length}` }
-        ];
-
-  statItems.forEach((item) => {
-    const box = document.createElement('div');
-    box.className = 'quest-stat';
-    const label = document.createElement('span');
-    label.className = 'quest-stat-label';
-    label.textContent = item.label;
-    const value = document.createElement('span');
-    value.className = 'quest-stat-value';
-    value.textContent = item.value;
-    box.appendChild(label);
-    box.appendChild(value);
-    stats.appendChild(box);
-  });
-  discoveryPanelBody.appendChild(stats);
-
-  const hint = document.createElement('p');
-  hint.className = 'section-hint';
-  hint.textContent = currentSource ? '現在フォーカス中の史料' : '最近たどった章';
-  discoveryPanelBody.appendChild(hint);
-
-  const list = document.createElement('div');
-  list.className = 'discovery-list';
-  if (currentSource) {
-    const item = document.createElement('div');
-    item.className = 'discovery-item';
-    const strong = document.createElement('strong');
-    strong.textContent = currentSource.title_ja || currentSource.id;
-    const span = document.createElement('span');
-    span.textContent = '史料中心ネットワークを表示中';
-    item.appendChild(strong);
-    item.appendChild(span);
-    list.appendChild(item);
+function applyWorldTransform(instant) {
+  if (!worldGroup) return;
+  const value = `translate(${currentTx.toFixed(1)}px, ${currentTy.toFixed(1)}px) scale(${currentScale.toFixed(3)})`;
+  if (instant) {
+    worldGroup.style.transition = 'none';
+    worldGroup.style.transform = value;
+    void worldGroup.getBoundingClientRect();
+    worldGroup.style.transition = '';
+  } else {
+    worldGroup.style.transform = value;
   }
-  recentHistory.forEach((id) => {
-    const ch = chapterMap.get(id);
-    const item = document.createElement('div');
-    item.className = 'discovery-item';
-    const strong = document.createElement('strong');
-    strong.textContent = ch ? (ch.ja || id) : id;
-    const span = document.createElement('span');
-    // span.textContent = ch && ch.date ? ch.date : '日付未詳';
-    item.appendChild(strong);
-    item.appendChild(span);
-    list.appendChild(item);
-  });
-  discoveryPanelBody.appendChild(list);
 }
 
-function renderJourneyRail() {
-  journeyRailBody.innerHTML = '';
-  if (!currentId || history.length === 0) return;
-  const track = document.createElement('div');
-  track.className = 'journey-track';
-  history.forEach((id, index) => {
-    const btn = document.createElement('button');
-    btn.className = 'journey-node' + (index === history.length - 1 ? ' current' : '');
-    btn.textContent = chapterMap.get(id)?.ja || id;
-    if (index !== history.length - 1) {
-      btn.addEventListener('click', () => jumpToHistory(index));
-    }
-    track.appendChild(btn);
-  });
-  journeyRailBody.appendChild(track);
-
-  const relatedCount = getRelatedChapterIds(chapterMap.get(currentId)).all.length;
-  const note = document.createElement('div');
-  note.className = 'journey-note';
-  if (networkMode === NETWORK_MODE.SOURCE_CHAPTERS && focusedSourceId) {
-    note.textContent = `この史料に ${getSourceChapterIds(focusedSourceId).length} 章が関連しています。`;
-  } else if (networkMode === NETWORK_MODE.CHAPTER_SOURCES && chapterMap.has(currentId)) {
-    note.textContent = `この章に ${getChapterSourceIds(chapterMap.get(currentId)).length} 件の史料が紐づいています。`;
-  } else {
-    note.textContent = `現在地点から ${relatedCount} 件の分岐が見えています。`;
+function fitJourneyView() {
+  if (!worldGroup || networkMode !== NETWORK_MODE.CHAPTER_GRAPH) return;
+  const nearDist = localNeighborhood(currentId);
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const [id, p] of globalPos) {
+    const d = nearDist.has(id) ? nearDist.get(id) : Infinity;
+    if (!(id === currentId || visited.has(id) || d <= 2)) continue;
+    const cx = p.x + worldOffX + NODE_R;
+    const cy = p.y + worldOffY + NODE_R;
+    if (cx < minX) minX = cx;
+    if (cy < minY) minY = cy;
+    if (cx > maxX) maxX = cx;
+    if (cy > maxY) maxY = cy;
   }
-  journeyRailBody.appendChild(note);
+  if (!isFinite(minX)) return;
+  const { availW, availH, cx: focusX, cy: focusY } = getMapFocusPoint();
+  const pad = 110;
+  const w = Math.max(maxX - minX, 1);
+  const h = Math.max(maxY - minY, 1);
+  currentScale = Math.max(0.35, Math.min(1.2, (availW - pad * 2) / w, (availH - pad * 2) / h));
+  currentTx = focusX - (minX + w / 2) * currentScale;
+  currentTy = focusY - (minY + h / 2) * currentScale;
+  applyWorldTransform(false);
+}
+
+/* --- ノードツールチップ --- */
+
+function hideNodeTip() {
+  if (nodeTip) nodeTip.hidden = true;
+}
+
+function extractTitleParts(chapter) {
+  const full = chapter.ja || chapter.id;
+  const m = full.match(/^(.*?)\s*[(（]([^)）]*)[)）]\s*$/);
+  return {
+    name: m ? m[1] : full,
+    date: m ? m[2] : (typeof chapter.date === 'string' ? chapter.date : '')
+  };
+}
+
+function buildChapterTipContent(chapter, tier) {
+  const parts = extractTitleParts(chapter);
+  const fragments = [{ cls: 'tip-title', text: parts.name }];
+  if (parts.date) fragments.push({ cls: 'tip-date', text: parts.date });
+  if (tier !== 'far') {
+    const excerpt = excerptText(chapter.narrative_ja || chapter.desc_ja || '', 80);
+    if (excerpt) fragments.push({ cls: 'tip-excerpt', text: excerpt });
+  }
+  let state = '';
+  if (tier === 'current') {
+    const n = getChapterSourceIds(chapter).length;
+    state = n > 0 ? `現在地 ── もう一度クリックで史料 (${n}件)` : '現在地';
+  } else if (tier === 'visited') {
+    state = '訪問済み ── クリックで戻る';
+  } else if (tier === 'near') {
+    state = '未踏 ── クリックで移動';
+  } else if (tier === 'far') {
+    state = 'まだ遠い ── 隣の章を経由して近づく';
+  }
+  if (state) fragments.push({ cls: 'tip-state', text: state });
+  return fragments;
+}
+
+function showNodeTip(g, event) {
+  if (!nodeTip || isDragging) return;
+  const id = g.dataset.id;
+  let fragments = null;
+
+  if (g.classList.contains('node-g')) {
+    const chapter = chapterMap.get(id);
+    if (!chapter || g.classList.contains('tier-hidden')) { hideNodeTip(); return; }
+    const tier = g.classList.contains('tier-current') ? 'current'
+      : g.classList.contains('tier-visited') ? 'visited'
+      : g.classList.contains('tier-near') ? 'near'
+      : 'far';
+    fragments = buildChapterTipContent(chapter, tier);
+  } else if (g.dataset.kind === 'source') {
+    const source = allSourcesMap.get(id);
+    if (!source) { hideNodeTip(); return; }
+    fragments = [
+      { cls: 'tip-title', text: source.title_ja || source.id },
+      { cls: 'tip-state', text: `関連章 ${getSourceChapterIds(id).length}件` }
+    ];
+  } else if (g.dataset.kind === 'chapter') {
+    const chapter = chapterMap.get(id);
+    if (!chapter) { hideNodeTip(); return; }
+    const tier = id === currentId ? 'current' : (visited.has(id) ? 'visited' : 'near');
+    fragments = buildChapterTipContent(chapter, tier);
+  }
+
+  if (!fragments) { hideNodeTip(); return; }
+  nodeTip.innerHTML = '';
+  for (const f of fragments) {
+    const span = document.createElement('span');
+    span.className = f.cls;
+    span.textContent = f.text;
+    nodeTip.appendChild(span);
+  }
+  nodeTip.hidden = false;
+  positionNodeTip(event);
+}
+
+function positionNodeTip(event) {
+  if (!nodeTip || nodeTip.hidden) return;
+  const rect = mapPane.getBoundingClientRect();
+  const tipW = nodeTip.offsetWidth;
+  const tipH = nodeTip.offsetHeight;
+  let x = event.clientX - rect.left + 18;
+  let y = event.clientY - rect.top + 18;
+  if (x + tipW > rect.width - 12) x = event.clientX - rect.left - tipW - 18;
+  if (y + tipH > rect.height - 12) y = event.clientY - rect.top - tipH - 18;
+  nodeTip.style.left = `${Math.max(12, x)}px`;
+  nodeTip.style.top = `${Math.max(12, y)}px`;
 }
 
 function renderHud() {
@@ -2165,10 +1961,7 @@ function renderHud() {
   } else {
     hudProgressText.textContent = '開始章を選択中';
   }
-  if (mainView.hidden) return;
-  renderQuestPanel();
-  renderDiscoveryPanel();
-  renderJourneyRail();
+  renderMapModeBar();
 }
 
 /* ============================================================
@@ -2462,17 +2255,41 @@ function parseDateRange(str) {
    6. マップ描画 (ローカルグラフ・放射状配置)
    ============================================================ */
 
+// 780px 以下ではボトムシート、それ以上では右ドッキングのサイドドロワー
+const sideDrawerMedia = window.matchMedia('(min-width: 781px)');
+function isSideDrawerLayout() { return sideDrawerMedia.matches; }
+
 function getMapFocusPoint() {
   const paneW = mapPane.clientWidth || window.innerWidth;
   const paneH = mapPane.clientHeight || window.innerHeight;
   const paneOpen = readingPane.classList.contains('open');
-  const codexH = paneOpen ? readingPane.getBoundingClientRect().height : 0;
-  const focusY = paneOpen ? Math.max(150, (paneH - codexH) / 2) : paneH / 2;
+  const fullscreen = readingPane.classList.contains('fullscreen');
+  // 可視領域 (ドロワー/シートに覆われない範囲) の中心と実効サイズ
+  let focusX = paneW / 2;
+  let focusY = paneH / 2;
+  let availW = paneW;
+  let availH = paneH;
+  if (paneOpen && !fullscreen) {
+    if (isSideDrawerLayout()) {
+      // 右ドロワー: 幅は transform (スライド) で変わらないので rect.width は安定
+      const drawerW = readingPane.getBoundingClientRect().width;
+      const RIGHT_MARGIN = 20; // CSS の right:20px に一致
+      availW = Math.max(200, paneW - drawerW - RIGHT_MARGIN);
+      focusX = availW / 2;
+    } else {
+      // ボトムシート: 高さ分だけ縦の可視領域が縮む
+      const codexH = readingPane.getBoundingClientRect().height;
+      availH = Math.max(200, paneH - codexH);
+      focusY = Math.max(150, availH / 2);
+    }
+  }
   return {
     paneW,
     paneH,
     paneOpen,
-    cx: paneW / 2,
+    availW,
+    availH,
+    cx: focusX,
     cy: focusY
   };
 }
@@ -2724,7 +2541,7 @@ function renderFocusedNetworkMap() {
   currentTy = 0;
   mapContainer.innerHTML = '';
 
-  const { paneW, paneH, cx, cy, paneOpen } = getMapFocusPoint();
+  const { paneW, paneH, availW, availH, cx, cy, paneOpen } = getMapFocusPoint();
   const svg = svgEl('svg', {
     xmlns: 'http://www.w3.org/2000/svg',
     width: paneW,
@@ -2734,7 +2551,7 @@ function renderFocusedNetworkMap() {
   prepareMapScene(svg, 'scene-focused');
   const edgeLayer = svgEl('g', {});
   const nodeLayer = svgEl('g', {});
-  const positions = buildFocusRingPositions(spec.neighbors.length, cx, cy, paneW, paneH, paneOpen);
+  const positions = buildFocusRingPositions(spec.neighbors.length, cx, cy, availW, availH, paneOpen);
 
   spec.neighbors.forEach((node, index) => {
     const position = positions[index];
@@ -2883,15 +2700,29 @@ function buildWorldMap() {
     });
     g.appendChild(circle);
 
-    const label = (wrapText(c.ja || c.id, 7, 1)[0] || '');
-    const t = svgEl('text', {
-      x: nodeCx,
-      y: nodeCy + NODE_R + NODE_LABEL_GAP + 11,
-      'text-anchor': 'middle',
-      class: 'node-text'
+    const parts = extractTitleParts(c);
+    const labelLines = wrapText(parts.name, 8, 2);
+    const labelBaseY = nodeCy + NODE_R + NODE_LABEL_GAP + 11;
+    labelLines.forEach((line, lineIndex) => {
+      const t = svgEl('text', {
+        x: nodeCx,
+        y: labelBaseY + lineIndex * 13,
+        'text-anchor': 'middle',
+        class: 'node-text'
+      });
+      t.textContent = line;
+      g.appendChild(t);
     });
-    t.textContent = label;
-    g.appendChild(t);
+    if (parts.date) {
+      const d = svgEl('text', {
+        x: nodeCx,
+        y: labelBaseY + labelLines.length * 13,
+        'text-anchor': 'middle',
+        class: 'node-date'
+      });
+      d.textContent = parts.date;
+      g.appendChild(d);
+    }
 
     g.addEventListener('click', () => { if (!isDragging) navigateTo(id); });
     worldGroup.appendChild(g);
@@ -2910,8 +2741,28 @@ function updateMapState() {
     g.classList.toggle('current-node', isCurrent);
     const box = g.querySelector('.node-box');
     if (box) box.classList.toggle('current', isCurrent);
-    for (const t of g.querySelectorAll('.node-text')) {
+    for (const t of g.querySelectorAll('.node-text, .node-date')) {
       t.classList.toggle('current', isCurrent);
+    }
+    const oldBadge = g.querySelector('.src-badge');
+    if (oldBadge) oldBadge.remove();
+    if (isCurrent && box) {
+      const ch = chapterMap.get(id);
+      const sourceCount = ch ? getChapterSourceIds(ch).length : 0;
+      if (sourceCount > 0) {
+        const bx = parseFloat(box.getAttribute('cx')) + NODE_R * 0.82;
+        const by = parseFloat(box.getAttribute('cy')) - NODE_R * 0.82;
+        const badge = svgEl('g', { class: 'src-badge' });
+        badge.appendChild(svgEl('circle', { cx: bx, cy: by, r: 10 }));
+        const bt = svgEl('text', {
+          x: bx,
+          y: by + 3.5,
+          'text-anchor': 'middle'
+        });
+        bt.textContent = String(sourceCount);
+        badge.appendChild(bt);
+        g.appendChild(badge);
+      }
     }
   }
 }
@@ -2968,30 +2819,59 @@ function panCameraTo(centerId, instant) {
   if (!worldGroup) return;
   const p = globalPos.get(centerId);
   if (!p) return;
-  const { paneW, paneH, cy: focusY } = getMapFocusPoint();
+  const { cx: focusX, cy: focusY } = getMapFocusPoint();
   // SVG 内のノード中心座標 (絶対位置)
   const nodeCx = p.x + worldOffX + NODE_W / 2;
   const nodeCy = p.y + worldOffY + NODE_H / 2;
-  // worldGroup を平行移動して、 nodeCx/Cy が可視領域の中央に来るようにする
-  const tx = paneW / 2 - nodeCx;
-  const ty = focusY - nodeCy;
-  currentTx = tx;
-  currentTy = ty;
-  const value = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px)`;
-  if (instant) {
-    // 初回はトランジションを抑止して即座にセンタリング
-    worldGroup.style.transition = 'none';
-    worldGroup.style.transform = value;
-    void worldGroup.getBoundingClientRect();
-    worldGroup.style.transition = '';
-  } else {
-    worldGroup.style.transform = value;
-  }
+  // worldGroup を平行移動して、 nodeCx/Cy (スケール適用後) が可視領域の中央に来るようにする
+  currentTx = focusX - nodeCx * currentScale;
+  currentTy = focusY - nodeCy * currentScale;
+  applyWorldTransform(!!instant);
 }
 
 /* ============================================================
    7. 読書パネル描画
    ============================================================ */
+
+function renderNextChapterList(container, related) {
+  const nextLabel = document.createElement('div');
+  nextLabel.className = 'section-label';
+  nextLabel.textContent = '次に踏み込める章';
+  container.appendChild(nextLabel);
+
+  if (related.all.length === 0) {
+    const end = document.createElement('div');
+    end.className = 'empty-note';
+    end.textContent = 'この章から先への分岐はありません。旅路タブから前の章へ戻るか、マップ上の訪問済みの章をクリックして戻れます。';
+    container.appendChild(end);
+    return;
+  }
+
+  const allVisited = related.all.every((id) => visited.has(id));
+  if (allVisited) {
+    const hint = document.createElement('p');
+    hint.className = 'section-hint';
+    hint.textContent = '未踏の分岐はここにはありません（✓ は訪問済みの章）。';
+    container.appendChild(hint);
+  }
+
+  const list = document.createElement('div');
+  list.className = 'next-list';
+  for (const id of related.all) {
+    const target = chapterMap.get(id);
+    const isVisited = visited.has(id);
+    const btn = document.createElement('button');
+    btn.className = 'next-btn' + (isVisited ? ' visited' : '');
+    const arrow = document.createElement('span');
+    arrow.className = 'arrow';
+    arrow.textContent = isVisited ? '✓' : '→';
+    btn.appendChild(arrow);
+    btn.appendChild(document.createTextNode(target?.ja || id));
+    btn.addEventListener('click', () => navigateTo(id));
+    list.appendChild(btn);
+  }
+  container.appendChild(list);
+}
 
 function renderReading() {
   const ch = chapterMap.get(currentId);
@@ -3073,7 +2953,9 @@ function renderReading() {
   if (activeCodexTab === 'trail') {
     appendMetaChips(readingContent, [
       { label: '旅程', value: `${history.length}章目` },
-      { label: '分岐', value: `${related.all.length}件` }
+      { label: '分岐', value: `${related.all.length}件` },
+      { label: '踏査', value: `${visited.size}/${chapterMap.size}章` },
+      { label: '発見史料', value: `${collectVisitedSourceIds().length}件` }
     ]);
 
     const bc = document.createElement('div');
@@ -3095,35 +2977,7 @@ function renderReading() {
     });
     readingContent.appendChild(bc);
 
-    const nextLabel = document.createElement('div');
-    nextLabel.className = 'section-label';
-    nextLabel.textContent = '次に踏み込める章';
-    readingContent.appendChild(nextLabel);
-
-    if (related.all.length === 0) {
-      const end = document.createElement('div');
-      end.className = 'empty-note';
-      end.textContent = '現在地点から進める章はありません。';
-      readingContent.appendChild(end);
-      readingContent.scrollTop = 0;
-      return;
-    }
-
-    const list = document.createElement('div');
-    list.className = 'next-list';
-    for (const id of related.all) {
-      const target = chapterMap.get(id);
-      const btn = document.createElement('button');
-      btn.className = 'next-btn';
-      const arrow = document.createElement('span');
-      arrow.className = 'arrow';
-      arrow.textContent = '→';
-      btn.appendChild(arrow);
-      btn.appendChild(document.createTextNode(target?.ja || id));
-      btn.addEventListener('click', () => navigateTo(id));
-      list.appendChild(btn);
-    }
-    readingContent.appendChild(list);
+    renderNextChapterList(readingContent, related);
     readingContent.scrollTop = 0;
     return;
   }
@@ -3146,6 +3000,8 @@ function renderReading() {
 
   // 詳細（desc_ja があるときのみトグル表示）
   const hasDesc = typeof ch.desc_ja === 'string' && ch.desc_ja.trim().length > 0;
+  const chapterActions = document.createElement('div');
+  chapterActions.className = 'codex-actions';
   if (hasDesc) {
     if (showDetail) {
       const descLabel = document.createElement('div');
@@ -3159,8 +3015,23 @@ function renderReading() {
     toggle.className = 'detail-toggle';
     toggle.textContent = showDetail ? '詳細を閉じる' : '詳しく読む';
     toggle.addEventListener('click', () => { showDetail = !showDetail; renderReading(); });
-    readingContent.appendChild(toggle);
+    chapterActions.appendChild(toggle);
   }
+
+  // 史料への動線
+  if (sourceIds.length > 0) {
+    const srcBtn = document.createElement('button');
+    srcBtn.className = 'detail-toggle';
+    srcBtn.textContent = `史料を読む（${sourceIds.length}件）`;
+    srcBtn.addEventListener('click', () => setCodexTab('sources'));
+    chapterActions.appendChild(srcBtn);
+  }
+  if (chapterActions.childElementCount > 0) {
+    readingContent.appendChild(chapterActions);
+  }
+
+  // 分岐 (旧 Current Quest パネルの選択肢を統合)
+  renderNextChapterList(readingContent, related);
 
   readingContent.scrollTop = 0;
 }
@@ -3173,7 +3044,6 @@ function openDetailPane() {
   detailPaneOpen = true;
   readingPane.classList.add('open');
   mainView.classList.add('codex-open');
-  journeyRail.setAttribute('aria-hidden', 'true');
   syncDetailPaneMode();
   if (currentId && worldGroup) panCameraTo(currentId, false);
 }
@@ -3182,7 +3052,6 @@ function closeDetailPane() {
   detailPaneOpen = false;
   readingPane.classList.remove('open');
   mainView.classList.remove('codex-open');
-  journeyRail.removeAttribute('aria-hidden');
   syncDetailPaneMode();
   if (currentId && worldGroup) panCameraTo(currentId, false);
 }
@@ -3253,7 +3122,15 @@ function navigateToChapterSources(id) {
 function navigateTo(id) {
   if (!chapterMap.has(id)) return;
   if (networkMode === NETWORK_MODE.CHAPTER_GRAPH && id === currentId) {
-    showChapterSources(id);
+    const ch = chapterMap.get(id);
+    if (ch && getChapterSourceIds(ch).length > 0) {
+      showChapterSources(id);
+    } else {
+      // 史料の無い章では空の史料盤面に落とさず、Codex を開くだけにする
+      activeCodexTab = 'chapter';
+      openDetailPane();
+      renderReading();
+    }
     return;
   }
   audio.click();
@@ -3281,6 +3158,7 @@ function jumpToHistory(i) {
 }
 
 function refresh(skipTransition = false) {
+  hideNodeTip();
   if (!skipTransition) audio.transition();
   if (shouldAnimateModeTransition(skipTransition)) {
     runModeTransition();
@@ -3388,7 +3266,7 @@ function enterApp() {
     focusedSourceId: null,
     codexFocusedSourceId: null
   });
-  closeDetailPane();
+  openDetailPane();
   refresh(true);
 }
 
@@ -3466,13 +3344,14 @@ function init() {
       if (!moved && Math.hypot(dx, dy) > 5) {
         moved = true;
         isDragging = true;
+        hideNodeTip();
         worldGroup.style.transition = 'none';
         mapPane.classList.add('is-dragging');
       }
       if (moved) {
         currentTx = startTx + dx;
         currentTy = startTy + dy;
-        worldGroup.style.transform = `translate(${currentTx.toFixed(1)}px, ${currentTy.toFixed(1)}px)`;
+        worldGroup.style.transform = `translate(${currentTx.toFixed(1)}px, ${currentTy.toFixed(1)}px) scale(${currentScale.toFixed(3)})`;
       }
     }
 
@@ -3489,6 +3368,45 @@ function init() {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  // ホイールで章グラフをズーム (カーソル位置を不動点にする)
+  mapPane.addEventListener('wheel', (e) => {
+    if (networkMode !== NETWORK_MODE.CHAPTER_GRAPH || !worldGroup) return;
+    e.preventDefault();
+    const svg = mapContainer.querySelector('svg.map-scene');
+    if (!svg) return;
+    const srect = svg.getBoundingClientRect();
+    const px = e.clientX - srect.left;
+    const py = e.clientY - srect.top;
+    const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+    const next = Math.min(2, Math.max(0.35, currentScale * factor));
+    if (next === currentScale) return;
+    const wx = (px - currentTx) / currentScale;
+    const wy = (py - currentTy) / currentScale;
+    currentScale = next;
+    currentTx = px - wx * currentScale;
+    currentTy = py - wy * currentScale;
+    applyWorldTransform(true);
+  }, { passive: false });
+
+  // ノードツールチップ (世界図・フォーカス図の両方に委譲)
+  mapContainer.addEventListener('mouseover', (e) => {
+    const g = e.target.closest('g[data-id]');
+    if (!g) return;
+    showNodeTip(g, e);
+  });
+  mapContainer.addEventListener('mousemove', (e) => {
+    if (nodeTip.hidden) return;
+    if (!e.target.closest('g[data-id]')) { hideNodeTip(); return; }
+    positionNodeTip(e);
+  });
+  mapContainer.addEventListener('mouseout', (e) => {
+    const g = e.target.closest('g[data-id]');
+    if (!g) return;
+    const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest('g[data-id]') : null;
+    if (next !== g) hideNodeTip();
+  });
+  mapContainer.addEventListener('click', hideNodeTip);
 
   // ブラウザのズーム変更時に自動再センタリング
   new ResizeObserver(() => {
