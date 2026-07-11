@@ -1,0 +1,44 @@
+chapters:
+
+  - id: death_of_david_son_of_alexander_iii
+    ja: 王子デイヴィッドの死（1281年6月）
+    date: 1281-06
+    narrative_ja: 1281年の6月末、アレグザンダー3世の王子デイヴィッドがスターリング城でこの世を去った。その遺体はダンファームリン修道院に埋葬された。
+    sources:
+      - gesta_annalia_ch_63
+      - chron_bower_x_37
+    links:
+      - death_of_alexander_iii
+
+  - id: marriage_of_eric_ii_and_margaret
+    ja: ロクスバラ協定（1281年7月25日）
+    date: 1281-07-25
+    narrative_ja: 1281年7月25日、ノルウェー王エイリーク2世とスコットランド王アレグザンダー3世の娘マーガレットの婚姻がロクスバラで合意された。その後8月に両者の結婚式がノルウェーにて執り行われた。
+    desc_ja: 年代記『ゲスタ・アナリア』はマルグレーテの夫をノルウェー王ホーコンとするものの、これは後代の年代記作家による誤認である。バウワーの『スコティクロニコン』はホーコンまたはエイリークとし、『ゲスタ・アナリア』の記述を引き継ぎつつも、修正案を別説として提示している。
+    sources:
+      - gesta_annalia_ch_64
+      - chron_bower_x_37
+    links:
+      - death_of_margaret_queen_of_norway
+
+  - id: death_of_margaret_queen_of_norway
+    ja: ノルウェー王妃マーガレットの死（1283年4月5日）
+    date: 1283-04-05
+    narrative_ja: 1283年4月5日、ノルウェー王妃マーガレットがこの世を去った。彼女と夫のエイリーク2世の間にはマルグレーテと呼ばれる娘がいた。
+    sources:
+      - gesta_annalia_ch_64
+      - chron_bower_x_37
+    links:
+      - margaret_or_norway_and_king_of_norway
+
+  - id: death_of_prince_alexander_son_of_alexander_iii
+    ja: 王太子アレグザンダーの死（1284年1月）
+    date: 1284-01
+    narrative_ja: 1284年1月、スコットランドの王太子アレグザンダーは20歳でこの世を去り、ダンファームリン修道院に埋葬された。
+    sources:
+      - gesta_annalia_ch_63
+      - chron_bower_x_37
+    links:
+      - death_of_alexander_iii
+
+
