@@ -1,0 +1,11 @@
+{
+  "title": "Gesta Annalia",
+  "titleJa": "ゲスタ・アナリア",
+  "chapters": [
+    { "id": "app3-1", "group": "Appendix III", "label": "ch. 1", "file": "gesta_annalia_appendix_iii_chapter_1.xml" },
+    { "id": "app3-2", "group": "Appendix III", "label": "ch. 2", "file": "gesta_annalia_appendix_iii_chapter_2.xml" },
+    { "id": "app3-3", "group": "Appendix III", "label": "ch. 3", "file": "gesta_annalia_appendix_iii_chapter_3.xml" },
+    { "id": "app3-4", "group": "Appendix III", "label": "ch. 4", "file": "gesta_annalia_appendix_iii_chapter_4.xml" },
+    { "id": "app3-5", "group": "Appendix III", "label": "ch. 5", "file": "gesta_annalia_appendix_iii_chapter_5.xml" }
+  ]
+}

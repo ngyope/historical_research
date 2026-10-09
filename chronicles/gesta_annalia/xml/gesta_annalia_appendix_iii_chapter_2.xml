@@ -4,7 +4,7 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Gesta Annalia chapter 2</title>
+                <title>Gesta Annalia Appendix III, chapter 2 in Skene's Edition</title>
                 <editor>Yuki Nakagawa</editor>
             </titleStmt>
             <publicationStmt>
@@ -32,7 +32,7 @@
     <text>
         <body>
             <div type="textpart" xml:lang="la">
-                <head>Narratio genealogia Alfredi, filii Ethelwolf.</head>
+                <head>Narratio genealogiae Alfredi, filii Ethelwolf.</head>
                 <p>HUJUS filius fuit illud Anglorum decus, regum gemma, virtutum exemplar, Alferedus nomine, ceteris fratribus suis aetate minor, sed annosior virtute. Cum vero, post mortem fratrem suorum, cum quibus aliquo tempore regnabat, ad eum totum regnum devenisset, ut videretur omnium hominum moribus ac naturae congruere, omnibus utilis ac necessarius esse satagebat. Et, quod nunc raro invenitur in terris, illam maxime regis credidit dignitatem, <app>
                     <lem>nullam</lem>
                     <rdg wit="#ms-fc">ullam</rdg>
@@ -42,8 +42,8 @@
                 </app> et mensibus sex, de regno terreno ad regnum coeleste transcendit, Edwardum filium suum regni morumque suorum relinquens heredem. Erat enim iste Edwardus in scientia litterarum patre minor, sanctitate vero non multum inferior, sed regia potestate valde superior. Vixit autem in regno XXIIII annis. Et genuit filios et filias, scilicet, ex nobilissima femina Edwina filium suum primogenitum Ethelstanum; ex Editha vero regina Edwinum, Edmundum, Ethredum. Dormivit igitur rex Edwardus cum patribus suis, et regnavit primogenitus ejus Ethelstanus pro eo, ambulans in viis patrum suorum omni virtute repletus. Cum eum vero reliquiae Dacorum more suo nefandum erigunt caput, sed contriti sunt sub pedibus ejus. Cum autem vixisset in regno suo XVI annis mortuus est. Et regnavit frater ejus Edmundus pro eo. Erat autem patris sui Edwardi iste Edmundus in omnibus imitator, homo simplex, et rectus, et timens Deum, et usque ad finem manens in innocentia sua. Qua impii abutentes pagani, quia religione Christianae, quam excolebat rex Deo dilectus, et illi se subdere contradicentes, mortis ejus qualicunque modo insidias moliuntur. Ille autem, quem illorum minime potuit latere abominabile propositum, nimis aegre ferens, eorum cultura ydolorum regni sui foedari decorem, quinque nobilissimas civitates, quas tunc incolebant, scilicet, Lindecolniam, Laicestriam, Stanfordiam, Snotingham, Dereby, de eorum manibus et incolatu potenter extorsit, omnique infidelitate abrasa Christianae fidei lumine illustravit. Cum igitur sub tanto patre magis quam rege tota Anglia pace magna floreret, immatura ejus morte, quam exactis in regno annis quinque et septem mensibus incurrens, subito dolore et passione inopinata emarcuit. <hi rend="italic">Tu autem Domine</hi>.</p>
             </div>
             <div type="translation" xml:lang="ja">
-                <p>
-                    彼の子はイングランド人の栄光、王たちの宝石、美徳の模範であったアルフレッドという名で、他の兄弟たちよりも年齢は若かったが徳においては彼らより勝っていた。兄弟たちの死後、しばらくの間彼らと共に統治していた王国全体が彼のものとなったとき、彼はすべての人々の慣習と気風に調和しているように見えたので、万人にとって有用かつ必要であろうと努めた。そして、今日では地上ではめったに見られないことだが、彼は王の最大の尊厳とはキリストの諸教会において権力を持たないことであると信じていた。二九年と六ヶ月統治した後、彼は地上の王国から天上の王国へと移り、息子のエドワードを王国と彼の生き方の相続人として残した。このエドワードは父よりも学識は劣っていたが敬虔さにおいてはそれほど劣っておらず、王権においては大いに優っていた。彼は王国で二四年間生きた。そして、最も高貴な女性エドウィナによって長男アゼルスタンを、エディス王妃によってエドウィン、エドマンド、エスレッドという息子たちと娘たちをもうけた。こうしてエドワード王は父祖たちと共に眠りにつき、長男アゼルスタンが彼に代わって統治し、父祖たちの道を歩み、あらゆる美徳に満ちていた。デーン人の残党が彼らの邪悪な流儀で彼に対して反旗を翻したとき、彼らはその足元で打ち砕かれた。王国を十六年間治めた後、彼は亡くなった。そして、彼の弟エドマンドが彼に代わって統治した。このエドマンドはあらゆる点で父エドワードの模倣者であり、素朴で正直な人物で神を畏れ、最後までその潔白さを保っていた。邪悪な異教徒たちはこの王の敬虔さを利用し、神に愛された王が熱心に信仰するキリスト教の宗教に服することを拒み、何らかの方法で彼の死を画策した。しかし、彼らの忌まわしい計画を察知していた彼は自国の美しさが偶像崇拝によって汚されることを非常に遺憾に思い、当時彼らが住んでいた五つの最も高貴な都市、すなわちリンカーン、レスター、スタンフォード、ノッティンガム、ダービーを彼らの手から力ずくで奪い取り、あらゆる不信仰を根絶してキリスト教信仰の光で照らした。かくして王というよりは偉大な父と呼ぶべき彼の治世の下で全イングランドが大いなる平和に栄えていた時、彼の早すぎる死によってそれは突然の悲しみと予期せぬ苦悩のうちに萎んでしまった。彼は王として五年と七ヶ月を治めた後にその死を迎えたのである。しかるに主よ。</p>
+                <head>エゼルウルフの子アルフレッド（Alfred son of Æthelwulf）の系譜の物語</head>
+                <p>その子が、イングランド人の誉れ、王たちの宝玉、諸徳の鑑たる、アルフレッドという名の者である。彼はほかの兄弟たちより年は若かったが、徳においては年長であった。兄弟たちとはしばらくのあいだ共に統治していたが、彼らの死後に王国のすべてが彼に帰すると、彼はあらゆる人々の習俗と性質にかなうと見えるよう、万人にとって有益で欠かせない者であろうと努めた。そして、いまや地上ではまれにしか見られないことだが、キリストの諸教会においていかなる権力ももたないことこそ王の最大の尊厳であると信じた。29年と6か月統治したのち、彼は地上の王国から天上の王国へ移り、子エドワード（Edward）を王国と自らの徳行の相続人として残した。このエドワードは学識では父に劣り、聖性ではさほど劣らなかったが、王権においてははるかに勝っていた。彼は王位にあって24年生きた。そして息子たちと娘たちをもうけた。すなわち、いとも高貴な女性エドウィナ（Edwina）から長子アゼルスタン（Æthelstan）を、王妃イーディス（Edith）からエドウィン（Edwin）、エドマンド（Edmund）、エアドレッド（Eadred）をもうけた。こうしてエドワード王は父祖とともに眠り、長子アゼルスタンが代わって王となった。彼はあらゆる徳に満ち、父祖の道を歩んだ。デーン人（Danes / Daci）の残党はいつもの流儀で彼に対して邪悪な頭をもたげたが、彼の足下に踏み砕かれた。彼は王位にあって16年生きたのち死んだ。そして弟エドマンドが代わって王となった。このエドマンドはあらゆる点で父エドワードに倣う者であり、純朴で正しく神を畏れる人で、最後まで無垢のうちにとどまった。不敬な異教徒たちはその無垢につけ込み、神に愛された王が篤く奉じるキリスト教に服することを拒んで、いかなる手段によってでも彼を死に至らせようと謀った。しかし彼らの忌まわしい企ては王に隠しおおせるものではなかった。王は、自らの王国の美観が彼らの偶像崇拝によって汚されるのを甚だ憤った。そして当時彼らが住んでいた五つのいとも高貴な都市、すなわちリンカーン（Lincoln）、レスター（Leicester）、スタンフォード（Stamford）、ノッティンガム（Nottingham）、ダービー（Derby）を、彼らの手と居住から力ずくでもぎ取り、あらゆる不信仰を拭い去ってキリスト教信仰の光で照らした。こうして、王というよりむしろ父と呼ぶべきこれほどの人のもとで、イングランド全土は大いなる平和のうちに栄えていた。しかし王が在位5年7か月で早すぎる死に見舞われると、イングランドはにわかの悲しみと思いがけない苦難のうちに萎れた。されど主よ、御身は。</p>
             </div>
         </body>
     </text>
