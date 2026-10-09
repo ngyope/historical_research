@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 1 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Quod de nobili prosapia regum genealogiam duxit beata Margareta, nobilissima Scotorum regina.</head>
+                <p>SICUT in antiquissimis et veracissimis historiis vel chronicis reperitur, ab Adam, patre cunctorum mortalium, lineam hujus sanctae reginae descendisse ostendemus. Igitur a Seth, filio Adae, qui ei natus est pro Abel, ducitur genealogia hujus sanctae generationis usque ad Enoch, qui vivus a Deo translatus cum sancto Helya Antichristi praestolatur adventum. Inde venitur ad Noyë, qui solus cum filiis et uxoribus meruit, mundo pereunte, salvari: Cujus primogenitus Sem a patre meruit benedici.<note type="editorial" xml:lang="en">Skene: "This sentence is taken from Ailred, but is omitted in B. v." (i.e. Book V of the Chronica).</note> A Sem vero ducitur genealogia usque ad Woden, qui tantae fuit auctoritatis apud suos, ut feriam quartam, quam Romani gentiles diem Mercurii appellabant, ejus nomini consecrarent: quae consuetudo usque hodie servatur ab Anglis. Vocant enim eundem diem Wodenisday, id est, diem Woden. Porro a Woden tenditur linea usque ad Getam, quod ipse tantae sapientiae et virtutis habitus est, ut a paganis pro Deo coleretur. Inde proceditur ad Christianissimos reges Angliae, scilicet, Yngels et Yne: quorum Yne cum potentissimus regum Angliae esset, relicto regno, peregre profectus est Romam; ibique feliciter peregrinans, tandem ad coelestem mansionem felicius ascendit. Ab Yngels vero linea cognationis tenditur usque ad Egbrith, qui tantae fuit probitatis, ut universam Angliam ex australi parte Humbriae, quae pluribus regibus eatenus divisa subjacuerat, suo subjugaret imperio, et ita primus omnium monarcha Angliae diceretur. Hujus filius Ethelwolf, futuri generis sui splendidissimum caput, et de qua sanctissimi fructus orirentur radix preciosa. Hic in regno terreno semper meditabatur coeleste. Et ideo in senectute bona collectus est ad patres suos, regnum mutans non amittens, temporale deserens et aeternum adipiscens. <hi rend="italic">Tu autem Domine</hi>.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>祝福されたマーガレット（Margaret）、スコット人のいとも高貴な王妃（queen of the Scots / Scotorum regina）が、王たちの高貴な家系から系譜を引いていることについて</head>
+                <p>最も古く最も真実な歴史書や年代記に見出されるとおり、この聖なる王妃の血統が万人の父アダム（Adam）から下ってきたことを示そう。すなわち、アベル（Abel）の代わりにアダムに生まれた子セト（Seth）から、この聖なる一族の系譜はエノク（Enoch）まで引かれる。エノクは生きたまま神に移され、聖エリヤ（Elijah）とともに反キリストの到来を待っている。そこからノア（Noah）に至る。世界が滅びるとき、息子たちと妻たちとともに救われるに値したのはノアひとりであった。その長子セム（Shem）は父から祝福されるに値した。セムからは系譜がウォーデン（Woden）まで引かれる。ウォーデンは自らの民のあいだできわめて大きな権威をもったので、民は、異教のローマ人がメルクリウスの日と呼んだ週の第四日を彼の名に捧げた。この慣習は今日までイングランド人によって守られている。彼らはその日を Wodenisday、すなわちウォーデンの日と呼ぶからである。さらにウォーデンから系統はゲタ（Geat）まで延びる。ゲタはきわめて大きな知恵と力をもつ者と見なされたので、異教徒に神として崇められた。そこからイングランドのいともキリスト教的な王たち、すなわちインギルド（Ingild）とイネ（Ine）へと進む。両者のうちイネは、イングランドの王たちのなかで最も強大であったが、王国を捨てて巡礼に出てローマ（Rome）へ赴いた。そこで幸いにも巡礼の生を送り、ついにはさらに幸いにも天の住まいへ昇った。インギルドからは血縁の系統がエグバート（Egbert）まで延びる。エグバートはきわめて武勇に優れ、それまで多くの王のもとに分かれていたハンバー川（Humber）以南のイングランド全土を自らの支配に服させた。こうして彼は誰よりも先にイングランドの君主（monarch / monarcha）と呼ばれた。その子エゼルウルフ（Æthelwulf）は、来たるべき自らの一族のいとも輝かしい頭であり、いとも聖なる果実がそこから生じる貴い根であった。彼は地上の王国にあって常に天上の王国を思っていた。それゆえ良き老年に至って父祖のもとに集められ、王国を失うのではなく取り替え、一時のものを捨てて永遠のものを得た。されど主よ、御身は。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

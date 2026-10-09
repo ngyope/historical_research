@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 3 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>SUCCESSIT illi in regnum frater <app>
+                    <lem>ejus</lem>
+                    <rdg wit="#ms-fc">suus</rdg>
+                </app> Ethredus, et ambulavit in viis patris sui Edwardi, et fratrum suorum, in omnibus beati Dunstani consiliis acquiescens atque mandatis. Hujus vero laudabilem vitam mors preciosa conclusit. Post quem regnavit Edwinus, filius Edmundi regis, nec ambulavit in viis patrum suorum, sed in tota illa sancta progenie novus quidem Herodes emersit, atque cum Sancto Dunstano regnasset in fata <app>
+                    <lem>incendio</lem>
+                    <rdg wit="#ms-fc">cedendo</rdg>
+                </app> mortuus est. Quo defuncto, frater ejus Edgarus successit in regnum. Iste Edgarus <app>
+                    <lem>erat</lem>
+                    <rdg wit="#ms-fc">fuit</rdg>
+                </app> primus filius Edmundi nobilissimi regis, qui fuit Edwardi senioris Christianissimi principis, qui fuit Alferdi victoriosissimi ducis. Erat etiam Anglis non minus memorabilis, quam Cirus Persis, Carolus Francis, Romulus Romanis. Iste Edgarus per Angliam quadraginta construxit monasteria. Praeparavit autem naves robustissimas numero tria milia trecentas, in quibus redeunte aestate omnem insulam ad terrorem extraneorum, et ad excercitationem suorum, cum maximo apparatu navigare consueverat. Quo non multo post ad coelestia regna translatus, successit in regnum filius ejus Edwardus, qui cum <space/> annis regnaverat, injuste <app>
+                    <lem>ab</lem>
+                    <rdg wit="#ms-fc">cum</rdg>
+                </app> impiis interfectus est: tum ob vitae sanctitatem, tum ob necis acerbitatem, sancti nomen et meritum accepit. Cui frater <app>
+                    <lem>ejus</lem>
+                    <rdg wit="#ms-fc">suus</rdg>
+                </app> Ethelredus successit, et a Sancto Dunstano archiepiscopo inungitur et consecratur: qui a beato Dunstano tale fertur oraculum accepisse: "Quoniam Angli in sanguine fratris tui conspiraverunt, non deficiet ab eis gladius, donec supervenient populus ignotae linguae, eos in exterminium, et in ultimam redigat servitutem. Novissime tamen visitabit eos Dominus."</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>彼の弟エアドレッド（Eadred）が王位を継いだ。彼は父エドワードと兄たちの道を歩み、あらゆることにおいて聖ダンスタン（Dunstan）の助言と命令に従った。その称えるべき生涯は尊い死によって閉じられた。その後、エドマンド王の子エドウィ（Eadwig）が王となったが、彼は父祖の道を歩まず、あの聖なる一族全体のなかで、まさしく新たなヘロデとして現れた。そして聖ダンスタンとともに統治したのち、火によって最期を迎えて死んだ。彼が死ぬと、弟エドガー（Edgar）が王位を継いだ。このエドガーはいとも高貴な王エドマンドの第一子であり、エドマンドはいともキリスト教的な君主エドワード長兄王（Edward the Elder / Edwardus senior）の子、エドワードはいとも勝利に輝く将アルフレッドの子であった。またエドガーは、キュロス（Cyrus）がペルシア人に、カール（Charlemagne / Carolus）がフランク人に、ロムルス（Romulus）がローマ人にとってそうであるのに劣らず、イングランド人にとって記憶されるべき人であった。このエドガーはイングランド各地に40の修道院を建てた。また、きわめて堅固な船を3300隻用意し、夏が巡ってくるたびに、それらの船で大いに装備を整えて島全体を周航するのを常とした。異国の者を威圧し、自国の者を鍛えるためである。ほどなく彼が天の王国へ移されると、子エドワード（Edward）が王位を継いだ。エドワードは（　）年統治したのち、不敬な者たちに不当に殺された。生涯の聖性のゆえにも、死の惨さのゆえにも、彼は聖人の名と功徳を得た。その後を弟エゼルレッド（Æthelred）が継ぎ、大司教（archbishop / archiepiscopus）聖ダンスタンによって塗油され聖別された。彼は聖ダンスタンから次のような予言を受けたと伝えられる。「イングランド人は汝の兄弟の血において共謀したのであるから、剣は彼らから離れないであろう。未知の言葉の民が到来し、彼らを滅亡と最後の隷属へ追いやるまでは。しかし最後には主が彼らを顧みるであろう。」</p>
+            </div>
+        </body>
+    </text>
+</TEI>

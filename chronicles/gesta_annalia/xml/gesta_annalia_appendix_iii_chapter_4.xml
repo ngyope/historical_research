@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 4 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>
+                    REGNANTE praedicto rege Ethelredo, Daci supervenientes magnam partem terrae igne ferroque vastaverunt. Tunc rex, anno Domini M secundo, missis in Normanniam nunciis, Emmam, filiam Ricardi ducis Normannorum, sibi in uxorem dari petiit et accepit, cum jam de filia Thoreti, nobilissimi comitis, filium habuisset Edmundum: deinde ex Emma, duos suscepit filios, scilicet Alveredum et Edwardum, de quibus postea dicemus. Tunc rex solito fortior factus, omnes per Angliam Dacos una die sabbati, eadem hora, scilicet, die sancti Bricii praedicto anno, missis epistolis jussit interfici. Quod et ita factum est. Quod Daci transmarini audientes, in furorem versi, anno sequenti, duce Swano, cum innumerabili exercitu Angliam intrantes, non ordini, non sexui, nec aetati parcentes, nec ab ecclesiarum vel monasteriorum incendiis manus sacrileges continentes. Quibus cum strenuissimus Ethelredus saepius restitisset, tandem proditione suorum factus inferior, reginam cum puerulis filiis suis misit in Normanniam; quos ipse postmodum exutus regno secutus est. Sed Swanus Dacus, subita morte praeventus, <space/> cum apud inferos crudelitatis suae stipendia recepisset, revocasset ab Anglis Ethelredus, regni infulis reinduitur, et iterum contra Dacos virtute potens erigitur. Contra quem Cnuth, filius Swani, rex Dacorum paternum odium exercere non desiit. Ethelredus, cum laboriosissime regnasset triginta annis et septem, Londoniis obiit, Edmundum filium suum primogenitum laboris et regni relinquens heredem. Sed, morte regis nondum <app>
+                        <lem>propalata</lem>
+                        <rdg wit="#ms-fc">provulgata</rdg>
+                    </app>, fertur a quibusdam, reginam Emmam, ut erat mulier summae calliditatis, pepigisse foedus clam cum ipso Cnuth, ut ei regem et regnum traderet, si eam cum liberis et suis libere abire et repatriare permitteret. Quo facto, et hinc inde praestita <app>
+                        <lem>omni</lem>
+                        <rdg wit="#ms-fc">cum</rdg>
+                    </app> securitate, rem regina retulit, et regem mortuum detexit. Sic plerumque solet ars arte deludi.
+                </p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>前述のエゼルレッド王の治世に、デーン人が襲来し、国土の大部分を火と剣で荒らした。そこで王は主の年1002年、ノルマンディー（Normandy）に使者を送り、ノルマン人の公（duke / dux）リシャール（Richard）の娘エマ（Emma）を妻として求め、迎えた。王はすでに、いとも高貴な伯（earl / comes）ソーレド（Thored）の娘とのあいだに息子エドマンドをもうけていた。その後エマから二人の息子、すなわちアルフレッド（Alfred）とエドワード（Edward）を得た。彼らについては後で述べる。そのとき王は常にも増して強気になり、書状を送って、イングランド中のデーン人を同じ土曜日の同じ時刻に、すなわち前述の年の聖ブリス（Brice）の日（11月13日）に殺すよう命じた。<note type="translator" xml:lang="ja">1002年11月13日はユリウス暦で金曜日にあたり、本文の「土曜日」と合わない。</note>そしてそのとおりに行われた。海の向こうのデーン人はこれを聞いて激昂し、翌年、スヴェン（Swein）を率い手として数えきれない軍勢でイングランドに入った。彼らは身分も性別も年齢も容赦せず、教会や修道院を焼くことからも冒瀆の手を控えなかった。いとも勇猛なエゼルレッドはたびたび彼らに抵抗したが、ついに臣下の裏切りによって劣勢となり、王妃を幼い息子たちとともにノルマンディーへ送った。そしてのちに自らも王国を奪われ、彼らの後を追った。しかしデーン人スヴェンは急死に見舞われ、（　）冥府でその残虐の報いを受けた。するとエゼルレッドはイングランド人に呼び戻され、ふたたび王国の標章を身にまとい、力強くデーン人に対して再び立ち上がった。これに対し、スヴェンの子でデーン人の王であるクヌート（Cnut）は、父の憎しみを向けることをやめなかった。エゼルレッドはきわめて労苦の多い治世を37年送ったのち、ロンドン（London）で死に、長子エドマンドを労苦と王国の相続人として残した。しかしある人々によれば、王の死がまだ公にされないうちに、王妃エマは、きわめて狡猾な女であったので、クヌートその人とひそかに盟約を結んだという。彼女が子らと従者たちとともに自由に立ち去り、故国へ帰ることを許すならば、王と王国を彼に引き渡すというものである。盟約が成り、双方からあらゆる保証が与えられると、王妃は事の次第を告げ、王が死んでいることを明かした。このように、策略はしばしば策略によって欺かれるものである。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

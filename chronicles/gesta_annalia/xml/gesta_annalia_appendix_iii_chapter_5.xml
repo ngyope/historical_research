@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 5 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Quomodo regnabit in Anglia Edmundus Irneside.</head>
+                <p>REGINA vero cum omnibus ad se pertinentibus in Normanniam transvecta, regnum et regni protectio in Edmundum accidit; sed et ipsum belli pondus insedit. De cujus mirabili fortitudine quicquid dicerem, minus esset. Unde, ob invincibile robur corporis, Irnside, id est, ferrei lateris, nomen accepit. Sagitta ejus nunquam <app>
+                    <lem>abiit</lem>
+                    <rdg wit="#ms-fc">adiit</rdg>
+                </app> retrorsum, et gladius ejus non est aversus inanis. Porro Dani, et, qui rege defecerant, Angli Cnuthum in regem elegerunt. Sed strenuissimus rex Edmundus, cum exercitu suo sicut leo rugiens terram circuiens universam, regiones plurimas, quas Cnuth occupaverat in dominationem, in deditionem voluntariam, nullo resistente, recepit. Verum quotiens cum eo pugnam inierit, quotiens illius exercitum effugaverit, quotiens, vocatam a transmarinis partibus, manum validam cum paucis, ymmo pene solus, prosternit, quotiens illam gentem nefandam exterminasset, et ad nihilum redegisset, nisi quidam patriae proditores obstitissent, nimium esse mihi videtur huic opusculo <space/><app>
+                    <lem/>
+                    <rdg wit="#ms-fc">quiescere</rdg>
+                </app>. Anglicus tandem exercitus cum suo Edmundo ab exercitu Dacio et illorum rege Cnutho, nulla vi sed voluntate in partes tum proximas, <supplied reason="omitted">tum voluntarias</supplied> se divertit; pars vero adversa, scilicet, Dacia, tum fortuna, <app>
+                    <lem>non</lem>
+                    <rdg wit="#ms-fc">tum</rdg>
+                </app> manu multa in se confisa, vel mortis vel sortis praestolatur adventum, quamvis incertum. Tandem utriusque partis proceres ad colloquium tractaturi convenientes dixerunt: Insensati quotidie pugnamus, nec vincimus sed nec vincimur quidem. Quae est igitur ista insolentia, ymmo violentia, sed potius insania? Anglia quondam multis subjecta regibus et gloria floruit aeque, divitiis abundavit. Quare ergo ad praesens duobus non sufficit, quod quinque, aut eo pluribus olim satis fuit? Quod si tanta inest in eis dominandi libido, ut Edmundus parem habere dedignetur, et Cnuth nullum velit habere se superiorem, pugnent soli qui soli cupiunt dominari. Quid igitur? delatam ad ipsos sententiam procerum reges probant.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>エドマンド・アイアンサイド（Edmund Ironside）はいかにしてイングランドを治めたか</head>
+                <p>王妃が自らに属するすべてのものとともにノルマンディー（Normandy）へ渡ると、王国と王国の保護はエドマンドの手に帰し、戦いの重荷そのものも彼にのしかかった。彼の驚くべき剛勇については、私が何を語ろうとも言い足りないであろう。それゆえ彼は、その体の不屈の強さのゆえに、アイアンサイドすなわち「鉄の脇腹」の名を得た。彼の矢は決して退かず、彼の剣はむなしく返ることがなかった。一方、デーン人と、王から離反していたイングランド人はクヌート（Cnut）を王に選んだ。しかし、いとも勇猛な王エドマンドは、軍勢とともに吼える獅子のごとく全土を巡り、クヌートが支配下に置いていた数多くの地方を、誰の抵抗も受けずに、自発的な降伏によって取り戻した。だが、彼が幾度クヌートと戦いを交え、幾度その軍を敗走させたか。海の彼方から呼び寄せられた強力な軍勢を、幾度わずかな手勢で、いやほとんど独りで打ち倒したか。祖国の裏切り者たちが妨げさえしなければ、幾度あの忌まわしい民を滅ぼし、無に帰せしめていたであろうか。これらをこの小著に（　）のは、私には過ぎたことと思われる。ついにイングランド軍は、自らのエドマンドとともに、デーン人の軍とその王クヌートから離れ、力に強いられてではなく自らの意志で、近くの、また望む地方へと退いた。他方、敵方すなわちデーン人の側は、その時は運を頼みとし、自らの多勢には頼らずに、死であれ運命であれ、不確かながらその到来を待ち受けた。ついに両陣営の有力者たち（magnates / proceres）が、協議のために会談に集まり、こう言った。「我らは愚かにも日々戦い、勝ちもせず、かといって負けもしない。いったいこの傲慢、いや暴虐、いやむしろ狂気は何なのか。かつてイングランドは多くの王に服しながら、等しく栄光に栄え、富に満ちていた。それなのに、かつて五人あるいはそれ以上の王に足りた国が、なぜいま二人には足りないのか。もし彼らのうちにこれほどの支配欲があり、エドマンドは同等の者をもつことを潔しとせず、クヌートは自らより上の者を誰ひとりもとうとしないのなら、独りで支配することを望む者たちが、自分たちだけで戦えばよい。」さて、どうなったか。王たちは、自分たちに伝えられた有力者たちの意見を是とした。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

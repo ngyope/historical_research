@@ -1,386 +1,1039 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gesta Annalia Viewer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Noto Serif JP', serif;
-        }
-        .variant {
-            color: #2563eb; /* blue-600 */
-            cursor: pointer;
-            border-bottom: 2px dotted #93c5fd; /* blue-300 */
-            position: relative;
-            font-weight: 500;
-        }
-        .tooltip {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            background-color: #1f2937; /* gray-800 */
-            color: #ffffff;
-            text-align: left;
-            padding: 8px 12px;
-            border-radius: 6px;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: opacity 0.2s, visibility 0.2s;
-            white-space: normal;
-            width: 250px;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            pointer-events: none; /* Prevent tooltip from interfering with mouse events */
-        }
-        .tooltip::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #1f2937 transparent transparent transparent;
-        }
-        /* This rule is removed from JS control to allow dynamic positioning */
-        /* .variant:hover .tooltip { ... } */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gesta Annalia Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #f4f1ea;
+  --surface: #fffdf8;
+  --surface-2: #f9f6ef;
+  --line: #e2dbcc;
+  --ink: #2a2521;
+  --muted: #6e655a;
+  --rubric: #9a3412;
+  --rubric-soft: #fbe9df;
+  --note: #2b5c8a;
+  --note-soft: #e3eef8;
+  --tnote: #5b6b2a;
+  --tnote-soft: #edf1dc;
+  --focus: #c2410c;
+  --shadow: 0 1px 2px rgba(40, 30, 20, .06), 0 6px 20px rgba(40, 30, 20, .06);
+  --pop-bg: #2a2521;
+  --pop-ink: #f5efe6;
+  --fs: 1.0625rem;
+  --header-h: 56px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171513;
+    --surface: #211e1b;
+    --surface-2: #1c1a17;
+    --line: #36312b;
+    --ink: #e9e3d9;
+    --muted: #a2988b;
+    --rubric: #f08a5d;
+    --rubric-soft: #3a2419;
+    --note: #8db8e0;
+    --note-soft: #1d2c3b;
+    --tnote: #b9c97e;
+    --tnote-soft: #2a3119;
+    --focus: #f08a5d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .25);
+    --pop-bg: #ece5da;
+    --pop-ink: #1f1b18;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171513;
+  --surface: #211e1b;
+  --surface-2: #1c1a17;
+  --line: #36312b;
+  --ink: #e9e3d9;
+  --muted: #a2988b;
+  --rubric: #f08a5d;
+  --rubric-soft: #3a2419;
+  --note: #8db8e0;
+  --note-soft: #1d2c3b;
+  --tnote: #b9c97e;
+  --tnote-soft: #2a3119;
+  --focus: #f08a5d;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .25);
+  --pop-bg: #ece5da;
+  --pop-ink: #1f1b18;
+  color-scheme: dark;
+}
+:root[data-fs="s"] { --fs: 0.9375rem; }
+:root[data-fs="l"] { --fs: 1.25rem; }
 
-        .footnote-ref {
-            color: #1d4ed8; /* blue-700 */
-            font-weight: 600;
-            vertical-align: super;
-            font-size: 0.75em;
-            line-height: 1;
-        }
-        .footnote-ref.variant {
-            border-bottom: none;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-underline-offset: 2px;
-        }
-        /* Toolbar Styles */
-        #toc a.active {
-            background-color: #e0e7ff; /* indigo-100 */
-            color: #3730a3; /* indigo-800 */
-            font-weight: 600;
-        }
-    </style>
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: hidden;
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* EB Garamond's Latin locl turns u into v under lang="la"; keep the edition's spelling. */
+.la { font-family: "EB Garamond", Georgia, serif; font-feature-settings: "locl" 0; }
+.ja { font-family: "Noto Serif JP", serif; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---------- Header ---------- */
+.app-header {
+  height: var(--header-h);
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: relative; z-index: 30;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; flex: 1; }
+.brand h1 { margin: 0; font-family: "Noto Serif JP", serif; font-size: 1.15rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.brand .sub { color: var(--muted); font-size: .85rem; font-style: italic; font-family: "EB Garamond", serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.toolbar { display: flex; align-items: center; gap: 6px; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 34px; min-width: 34px; padding: 0 8px;
+  border: 1px solid transparent; border-radius: 8px; background: transparent; cursor: pointer;
+  color: var(--muted);
+}
+.icon-btn:hover { background: var(--surface-2); border-color: var(--line); color: var(--ink); }
+.icon-btn[aria-pressed="true"] { background: var(--rubric-soft); color: var(--rubric); border-color: transparent; }
+.icon-btn:disabled { opacity: .35; cursor: default; background: transparent; border-color: transparent; }
+.icon-btn svg { width: 18px; height: 18px; flex: none; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; padding: 2px; background: var(--surface-2); }
+.seg button { border: 0; background: transparent; padding: 4px 10px; border-radius: 7px; cursor: pointer; color: var(--muted); font-size: .82rem; white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.divider { width: 1px; height: 22px; background: var(--line); margin: 0 4px; }
+#menu-btn { display: none; }
+
+/* settings popover */
+.settings { position: relative; }
+.settings-menu {
+  position: absolute; right: 0; top: 42px; width: 240px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  padding: 12px; display: none;
+}
+.settings-menu.open { display: block; }
+.settings-menu .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 6px 0; }
+.settings-menu .row > span { font-size: .85rem; color: var(--muted); }
+.settings-menu .hint { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: .78rem; color: var(--muted); line-height: 1.7; }
+kbd { font-family: ui-monospace, monospace; font-size: .75rem; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--surface-2); }
+
+/* ---------- Layout ---------- */
+.layout {
+  height: calc(100% - var(--header-h));
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 340px;
+}
+.layout.panel-closed { grid-template-columns: 260px minmax(0, 1fr) 0; }
+.toc, .panel { background: var(--surface); overflow-y: auto; }
+.toc { border-right: 1px solid var(--line); padding: 16px 10px; }
+.panel { border-left: 1px solid var(--line); }
+.layout.panel-closed .panel { display: none; }
+main { overflow-y: auto; scroll-behavior: smooth; }
+
+/* ---------- TOC ---------- */
+.toc h2, .panel h2 { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 4px 8px 8px; font-weight: 600; }
+.toc .group { margin: 14px 8px 4px; font-family: "EB Garamond", serif; font-size: .95rem; color: var(--rubric); font-weight: 600; }
+.toc a {
+  display: block; padding: 7px 10px; margin: 1px 0; border-radius: 8px;
+  color: var(--ink); text-decoration: none; border-left: 3px solid transparent;
+}
+.toc a:hover { background: var(--surface-2); }
+.toc a.active { background: var(--rubric-soft); border-left-color: var(--rubric); }
+.toc a .lbl { font-family: "EB Garamond", serif; font-size: 1rem; font-weight: 500; }
+.toc a .ttl { display: block; font-size: .78rem; color: var(--muted); line-height: 1.45; margin-top: 1px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---------- Reader ---------- */
+.reader-wrap { max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px; }
+.reader-wrap.single { max-width: 760px; }
+.chapter-head { margin-bottom: 22px; }
+.chapter-head .crumb { font-family: "EB Garamond", serif; color: var(--rubric); font-size: 1.05rem; font-weight: 600; letter-spacing: .02em; }
+.chapter-head .meta { color: var(--muted); font-size: .8rem; margin-top: 4px; }
+.chapter-head .meta i { font-family: "EB Garamond", serif; font-size: .9rem; }.tabs { display: none; margin-bottom: 14px; }
+.reader {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.reader .cell { padding: 0 28px; min-width: 0; }
+.reader .cell.col-ja { background: var(--surface-2); border-left: 1px solid var(--line); }
+.reader .cell.colhead { padding-top: 22px; padding-bottom: 6px; }
+.reader .cell.last { padding-bottom: 28px; border-bottom-left-radius: 14px; }
+.reader .cell.col-ja.last { border-bottom-right-radius: 14px; border-bottom-left-radius: 0; }
+.reader .cell.col-ja.colhead { border-top-right-radius: 14px; }
+.colhead .lang { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.reader[data-mode="la"], .reader[data-mode="ja"] { grid-template-columns: 1fr; }
+.reader[data-mode="la"] .col-ja, .reader[data-mode="ja"] .col-la { display: none; }
+.reader[data-mode="ja"] .col-ja { border-left: 0; background: var(--surface); }
+.reader[data-mode="ja"] .cell.col-ja.colhead { border-top-left-radius: 14px; }
+.reader[data-mode="ja"] .cell.col-ja.last { border-bottom-left-radius: 14px; }
+.reader[data-mode="la"] .cell.col-la.colhead, .reader[data-mode="la"] .cell.col-la.last { border-radius: 14px 14px 0 0; }
+.reader[data-mode="la"] .cell.col-la.last { border-radius: 0 0 14px 14px; }
+
+.t-head { margin: 10px 0 14px; font-weight: 600; line-height: 1.55; }
+.col-la .t-head { font-family: "EB Garamond", serif; font-style: italic; color: var(--rubric); font-size: calc(var(--fs) * 1.08); }
+.col-ja .t-head { font-family: "Noto Serif JP", serif; font-size: calc(var(--fs) * .98); }
+.t-p { margin: 0 0 1em; text-align: justify; }
+.col-la .t-p { font-family: "EB Garamond", serif; font-size: calc(var(--fs) * 1.12); line-height: 1.75; hyphens: auto; }
+.col-ja .t-p { font-family: "Noto Serif JP", serif; font-size: var(--fs); line-height: 2; text-align: justify; }
+.t-p.empty { color: var(--muted); font-style: italic; }
+
+/* critical signs */
+.lem { background: linear-gradient(transparent 62%, var(--rubric-soft) 62%); border-radius: 2px; }
+.lem.flash, .mk.flash { animation: flash 1.4s ease-out; }
+@keyframes flash { 0%, 30% { background: var(--rubric); color: var(--surface); } 100% { } }
+.caret { color: var(--rubric); font-family: "EB Garamond", serif; }
+.mk {
+  display: inline-block; vertical-align: super; line-height: 1;
+  font-family: "Noto Sans JP", sans-serif; font-size: .62em; font-weight: 700;
+  padding: 1px 3px; margin: 0 1px; border: 0; border-radius: 4px; cursor: pointer; background: transparent;
+}
+.mk-app { color: var(--rubric); font-style: italic; font-family: "EB Garamond", serif; font-size: .8em; }
+.mk-ed { color: var(--note); }
+.mk-tr { color: var(--tnote); }
+.mk:hover, .mk.active { background: var(--rubric-soft); }
+.mk-ed:hover, .mk-ed.active { background: var(--note-soft); }
+.mk-tr:hover, .mk-tr.active { background: var(--tnote-soft); }
+.gap { color: var(--muted); font-family: "EB Garamond", serif; letter-spacing: .1em; cursor: help; border-bottom: 1px dotted var(--muted); }
+.supplied { cursor: help; }
+.supplied .br { color: var(--rubric); }
+
+/* nav at foot of chapter */
+.chap-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; }
+.chap-nav a {
+  flex: 1; max-width: 48%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface); text-decoration: none; color: var(--ink);
+}
+.chap-nav a:hover { border-color: var(--rubric); }
+.chap-nav a.next { text-align: right; margin-left: auto; }
+.chap-nav small { display: block; color: var(--muted); font-size: .75rem; }
+.chap-nav span { font-family: "EB Garamond", serif; font-size: 1rem; }
+footer { text-align: center; color: var(--muted); font-size: .75rem; margin-top: 36px; line-height: 1.8; }
+
+.status { padding: 40px 28px; color: var(--muted); }
+.status.error { color: var(--rubric); }
+.status code { font-size: .85rem; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
+
+/* ---------- Apparatus panel ---------- */
+.panel-head { position: sticky; top: 0; background: var(--surface); padding: 14px 14px 10px; border-bottom: 1px solid var(--line); z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+.panel-head h2 { margin: 0; }
+.counts { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: .72rem; padding: 1px 8px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+.panel section { padding: 12px 14px 4px; }
+.panel h3 { font-size: .8rem; margin: 0 0 8px; color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.panel h3 .dot { width: 8px; height: 8px; border-radius: 50%; }
+.panel ol { list-style: none; margin: 0; padding: 0; }
+.entry {
+  display: grid; grid-template-columns: 26px 1fr; gap: 6px; align-items: start;
+  padding: 8px 8px; margin: 0 -8px 2px; border-radius: 8px; cursor: pointer;
+}
+.entry:hover { background: var(--surface-2); }
+.entry.active { background: var(--rubric-soft); }
+.entry .sig { font-weight: 700; font-size: .8rem; text-align: center; padding-top: 2px; }
+.entry.app .sig { color: var(--rubric); font-family: "EB Garamond", serif; font-style: italic; font-size: 1rem; padding-top: 0; }
+.entry.ed .sig { color: var(--note); }
+.entry.ed.active { background: var(--note-soft); }
+.entry.tr .sig { color: var(--tnote); }
+.entry.tr.active { background: var(--tnote-soft); }
+.entry .body { font-size: .88rem; line-height: 1.6; min-width: 0; }
+.app-line { font-family: "EB Garamond", serif; font-size: 1.02rem; }
+.app-line .bracket { color: var(--muted); margin: 0 4px; }
+.wit { font-family: "Noto Sans JP", sans-serif; font-size: .72rem; font-weight: 700; color: var(--rubric); background: var(--rubric-soft); padding: 0 5px; border-radius: 4px; margin-left: 4px; cursor: help; white-space: nowrap; }
+.ctx { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; font-family: "EB Garamond", serif; }
+.empty-sec { color: var(--muted); font-size: .82rem; padding: 2px 0 8px; }
+.witlist { margin: 0; padding: 0; list-style: none; }
+.witlist li { display: grid; grid-template-columns: 44px 1fr; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); font-size: .8rem; line-height: 1.55; }
+.witlist li:first-child { border-top: 0; }
+.witlist b { color: var(--rubric); }
+.witlist .sk { color: var(--muted); display: block; font-size: .72rem; }
+details summary { cursor: pointer; font-size: .8rem; color: var(--muted); font-weight: 600; padding: 4px 0 8px; }
+
+/* ---------- Popover ---------- */
+#pop {
+  position: fixed; z-index: 60; max-width: min(340px, calc(100vw - 24px));
+  background: var(--pop-bg); color: var(--pop-ink);
+  padding: 9px 12px; border-radius: 10px; font-size: .86rem; line-height: 1.6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25); pointer-events: none;
+  opacity: 0; transform: translateY(4px); transition: opacity .12s, transform .12s;
+}
+#pop.show { opacity: 1; transform: none; }
+#pop .k { font-size: .7rem; opacity: .7; letter-spacing: .05em; display: block; margin-bottom: 2px; }
+#pop .wit { background: rgba(255, 255, 255, .15); color: inherit; }
+:root[data-theme="dark"] #pop .wit { background: rgba(0, 0, 0, .1); }
+
+/* ---------- Mobile ---------- */
+.scrim { display: none; }
+@media (max-width: 1100px) {
+  .layout, .layout.panel-closed { grid-template-columns: 240px minmax(0, 1fr); }
+  .panel {
+    position: fixed; right: 0; top: var(--header-h); bottom: 0; width: min(360px, 92vw);
+    transform: translateX(100%); transition: transform .2s; z-index: 40; box-shadow: var(--shadow);
+    display: block !important;
+  }
+  .layout:not(.panel-closed) .panel { transform: none; }
+  .layout:not(.panel-closed) .scrim.for-panel { display: block; }
+}
+@media (max-width: 767px) {
+  .brand .sub, .mode-seg, .divider { display: none; }
+  .app-header { padding: 0 8px; gap: 4px; }
+  .brand h1 { font-size: 1rem; }
+  .toolbar { gap: 2px; flex: none; }
+  #menu-btn { display: inline-flex; }
+  .layout, .layout.panel-closed { grid-template-columns: minmax(0, 1fr); }
+  .toc {
+    position: fixed; left: 0; top: var(--header-h); bottom: 0; width: min(300px, 86vw);
+    transform: translateX(-100%); transition: transform .2s; z-index: 40; box-shadow: var(--shadow);
+  }
+  body.toc-open .toc { transform: none; }
+  body.toc-open .scrim.for-toc { display: block; }
+  .reader-wrap { padding: 16px 16px 32px; }
+  .reader-wrap.single { max-width: none; }
+  .tabs { display: flex; }
+  .reader[data-mode="parallel"] { grid-template-columns: 1fr; }
+  .reader[data-mode="parallel"][data-tab="la"] .col-ja,
+  .reader[data-mode="parallel"][data-tab="ja"] .col-la { display: none; }
+  .reader .cell { padding: 0 18px; }
+  .reader .cell.col-ja { border-left: 0; }
+  .reader .cell.colhead { border-radius: 14px 14px 0 0 !important; }
+  .reader .cell.last { border-radius: 0 0 14px 14px !important; }
+  .reader[data-mode="parallel"][data-tab="ja"] .col-ja { background: var(--surface); }
+  .chap-nav a { max-width: none; }
+}
+.scrim { position: fixed; inset: var(--header-h) 0 0 0; background: rgba(0, 0, 0, .3); z-index: 35; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
 </head>
-<body class="bg-gray-100 text-gray-800 flex flex-col h-screen">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md p-4 z-10 flex-shrink-0">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 text-left">『ゲスタ・アナリア』(<i>Gesta Annalia</i>)</h1>
-    </header>
-
-    <div class="flex flex-1 overflow-hidden">
-        <!-- Sidebar / Toolbar -->
-        <nav class="w-96 bg-white shadow-md flex-shrink-0 overflow-y-auto">
-            <div class="p-4 border-b">
-                <h2 class="text-xl font-bold text-gray-800">目次 (Table of Contents)</h2>
-            </div>
-            <div id="toc" class="p-2 space-y-1">
-                <!-- Table of Contents will be generated here by JavaScript -->
-            </div>
-        </nav>
-
-        <!-- Main Content Area -->
-        <main class="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-            <!-- FIX: Removed 'overflow-hidden' from the content card to allow tooltips to display correctly without being clipped. -->
-            <div id="content-container" class="bg-white rounded-xl shadow-lg max-w-4xl mx-auto">
-                <div class="p-6 sm:p-8">
-                    <h2 id="main-subtitle" class="text-xl md:text-2xl font-bold text-gray-700">章を選択してください</h2>
-                </div>
-
-                <div id="original-text-container" class="p-6 sm:p-8 border-t border-gray-200">
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">原文 (Latin)</h3>
-                    <div id="original-text" class="text-lg leading-relaxed space-y-4 text-justify">
-                        <!-- ラテン語のテキストがここに挿入されます -->
-                    </div>
-                </div>
-
-                <div id="translation-text-container" class="p-6 sm:p-8 bg-gray-50 border-t border-gray-200">
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">日本語訳 (Modern Japanese Translation)</h3>
-                    <div id="japanese-translation" class="text-base leading-loose space-y-4 text-justify">
-                         <!-- 日本語訳がここに挿入されます -->
-                    </div>
-                </div>
-            </div>
-             <footer class="text-center text-sm text-gray-500 mt-6 pb-4">
-                 <p>&copy; 2025- Yuki Nakagawa. All Rights Reserved.</p>
-                 <p>&copy; Version 0.1.2. (Last Update: 24 August 2025).</p>
-             </footer>
-        </main>
+<header class="app-header">
+  <button id="menu-btn" class="icon-btn" aria-label="目次を開く">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div class="brand">
+    <h1>『ゲスタ・アナリア』</h1>
+    <span class="sub" id="brand-sub"><i>Gesta Annalia</i></span>
+  </div>
+  <div class="toolbar">
+    <button class="icon-btn" id="prev-btn" title="前の章 (←)" aria-label="前の章">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="icon-btn" id="next-btn" title="次の章 (→)" aria-label="次の章">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <span class="divider d-mode"></span>
+    <div class="seg mode-seg" role="group" aria-label="表示モード">
+      <button data-mode="parallel" title="対訳 (1)">対訳</button>
+      <button data-mode="la" title="原文のみ (2)">原文</button>
+      <button data-mode="ja" title="訳のみ (3)">訳</button>
     </div>
+    <span class="divider"></span>
+    <button class="icon-btn" id="panel-btn" title="校異・注パネル (P)" aria-label="校異・注パネル">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg>
+    </button>
+    <div class="settings">
+      <button class="icon-btn" id="settings-btn" aria-haspopup="true" aria-expanded="false" title="表示設定" aria-label="表示設定">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+      <div class="settings-menu" id="settings-menu" role="dialog" aria-label="表示設定">
+        <div class="row"><span>テーマ</span>
+          <div class="seg" data-setting="theme">
+            <button data-v="auto">自動</button><button data-v="light">明</button><button data-v="dark">暗</button>
+          </div>
+        </div>
+        <div class="row"><span>文字サイズ</span>
+          <div class="seg" data-setting="fs">
+            <button data-v="s">小</button><button data-v="m">中</button><button data-v="l">大</button>
+          </div>
+        </div>
+        <div class="hint">
+          <kbd>←</kbd> <kbd>→</kbd> 前後の章　<kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 表示モード<br>
+          <kbd>P</kbd> 校異・注パネル　<kbd>Esc</kbd> 閉じる
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Configuration ---
-            const chapters = [
-                { title: "Gesta Annalia, Chapter 1", file: "gesta_annalia_chapter_1.xml" },
-                { title: "Gesta Annalia, Chapter 2", file: "gesta_annalia_chapter_2.xml" },
-                { title: "Gesta Annalia, Chapter 3", file: "gesta_annalia_chapter_3.xml" },
-                { title: "Gesta Annalia, Chapter 4", file: "gesta_annalia_chapter_4.xml" },
-            ];
-            const xmlFolderPath = 'xml/';
+<div class="layout panel-closed" id="layout">
+  <nav class="toc" id="toc" aria-label="目次">
+    <h2>目次</h2>
+    <div id="toc-list"></div>
+  </nav>
 
-            const tocContainer = document.getElementById('toc');
-            const mainSubtitle = document.getElementById('main-subtitle');
-            const originalContainer = document.getElementById('original-text');
-            const translationContainer = document.getElementById('japanese-translation');
+  <main id="main">
+    <div class="reader-wrap" id="reader-wrap">
+      <div class="chapter-head">
+        <div class="crumb" id="crumb"></div>
+        <div class="meta" id="meta"></div>      </div>
+      <div class="tabs seg" role="tablist" id="tabs">
+        <button data-tab="la" role="tab">原文 (Latin)</button>
+        <button data-tab="ja" role="tab">日本語訳</button>
+      </div>
+      <div id="reader-host"><div class="status">読み込み中…</div></div>
+      <div class="chap-nav" id="chap-nav"></div>
+      <footer>
+        日本語訳は AI による下訳を人間が確認した草稿です。<br>
+        &copy; 2025– Yuki Nakagawa. All Rights Reserved.<br>
+        Version 0.2.0 (Last update: 10 October 2026)
+      </footer>
+    </div>
+  </main>
 
-            /**
-             * XMLファイルを読み込み、内容を画面に描画する
-             */
-            async function loadAndProcessXML(filePath, chapterTitle) {
-                originalContainer.innerHTML = '<p>読み込み中...</p>';
-                translationContainer.innerHTML = '';
-                mainSubtitle.textContent = chapterTitle;
+  <aside class="panel" id="panel" aria-label="校異・注">
+    <div class="panel-head">
+      <h2>校異・注</h2>
+      <div class="counts" id="counts"></div>
+    </div>
+    <div id="panel-body"></div>
+  </aside>
+  <div class="scrim for-toc" id="scrim-toc"></div>
+  <div class="scrim for-panel" id="scrim-panel"></div>
+</div>
 
-                try {
-                    const response = await fetch(filePath);
-                    if (!response.ok) {
-                        throw new Error(`ファイルが見つかりません: ${response.statusText}`);
-                    }
-                    const xmlString = await response.text();
-                    
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(xmlString, "application/xml");
-                    
-                    const parserError = xmlDoc.querySelector("parsererror");
-                    if (parserError) {
-                        throw new Error("XMLの解析に失敗しました。");
-                    }
+<div id="pop" role="tooltip"></div>
 
-                    renderContent(xmlDoc);
+<script>
+(() => {
+  'use strict';
+  const TEI = 'http://www.tei-c.org/ns/1.0';
+  const XML_DIR = 'xml/';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  };
 
-                } catch (error) {
-                    console.error("Error loading or parsing XML:", error);
-                    const errorMessage = `<p class='text-red-600'>エラー: ${error.message}</p>`;
-                    originalContainer.innerHTML = errorMessage;
-                    translationContainer.innerHTML = '';
-                }
-            }
-            
-            /**
-             * パースされたXMLドキュメントから内容を抽出し、HTMLに変換して描画する
-             */
-            function renderContent(xmlDoc) {
-                originalContainer.innerHTML = '';
-                translationContainer.innerHTML = '';
+  // ---------- Settings (localStorage is optional) ----------
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('ga-viewer:' + k); return v == null ? d : v; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem('ga-viewer:' + k, v); } catch (e) { /* ignore */ } }
+  };
+  const state = {
+    manifest: null,
+    index: -1,
+    mode: store.get('mode', 'parallel'),
+    tab: store.get('tab', 'la'),
+    // The panel is an overlay on narrow screens, so it always starts closed there.
+    panelOpen: window.innerWidth > 1100 && store.get('panel', '1') === '1',
+    theme: store.get('theme', 'auto'),
+    fs: store.get('fs', 'm'),
+    cache: new Map(),
+    entries: new Map(),
+    loadToken: 0
+  };
 
-                const teiNS = "http://www.tei-c.org/ns/1.0";
-                let originalDiv = null;
-                let translationDiv = null;
+  function applyTheme() {
+    const root = document.documentElement;
+    if (state.theme === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', state.theme);
+    root.setAttribute('data-fs', state.fs);
+    $$('.seg[data-setting="theme"] button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.theme)));
+    $$('.seg[data-setting="fs"] button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.fs)));
+  }
+  function applyMode() {
+    const r = $('.reader');
+    if (r) { r.dataset.mode = state.mode; r.dataset.tab = state.tab; }
+    $('#reader-wrap').classList.toggle('single', state.mode !== 'parallel');
+    $$('.mode-seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === state.mode)));
+    $$('#tabs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === state.tab)));
+    $('#tabs').style.visibility = state.mode === 'parallel' ? '' : 'hidden';
+    if (state.mode !== 'parallel') $('#tabs').style.display = 'none'; else $('#tabs').style.display = '';
+  }
+  function setMode(m) { state.mode = m; store.set('mode', m); applyMode(); }
+  function setTab(t) { state.tab = t; store.set('tab', t); applyMode(); }
+  function setPanel(open) {
+    state.panelOpen = open;
+    if (window.innerWidth > 1100) store.set('panel', open ? '1' : '0');
+    $('#layout').classList.toggle('panel-closed', !open);
+    $('#panel-btn').setAttribute('aria-pressed', String(open));
+  }
 
-                const allDivs = xmlDoc.getElementsByTagNameNS(teiNS, 'div');
-                for (let i = 0; i < allDivs.length; i++) {
-                    const div = allDivs[i];
-                    const type = div.getAttribute('type');
-                    if (type === 'textpart') {
-                        originalDiv = div;
-                    } else if (type === 'translation') {
-                        translationDiv = div;
-                    }
-                }
+  // ---------- Witnesses ----------
+  function readWitnesses(doc) {
+    const map = new Map();
+    for (const w of doc.getElementsByTagNameNS(TEI, 'witness')) {
+      const id = w.getAttribute('xml:id') || w.getAttributeNS('http://www.w3.org/XML/1998/namespace', 'id');
+      if (!id) continue;
+      const desc = w.textContent.trim().replace(/\s+/g, ' ');
+      const sk = desc.match(/Skene's ([A-Z])/);
+      map.set(id, { id, siglum: id.replace(/^ms-/, '').toUpperCase(), skene: sk ? sk[1] : null, desc });
+    }
+    return map;
+  }
+  function witNodes(witAttr, wits) {
+    const frag = document.createDocumentFragment();
+    (witAttr || '').split(/\s+/).filter(Boolean).forEach(ref => {
+      const id = ref.replace(/^#/, '');
+      const w = wits.get(id);
+      const s = el('span', 'wit', w ? w.siglum : id);
+      s.title = w ? w.desc : id;
+      frag.appendChild(s);
+    });
+    return frag;
+  }
 
-                if (originalDiv) {
-                    processTextPart(originalDiv, originalContainer, teiNS);
-                } else {
-                    originalContainer.innerHTML = "<p>[原文セクションが見つかりませんでした。]</p>";
-                }
+  // ---------- TEI → HTML ----------
+  const warned = new Set();
+  const LETTERS = 'abcdefghijklmnopqrstuvwxyz';
+  const siglumFor = n => n < 26 ? LETTERS[n] : LETTERS[Math.floor(n / 26) - 1] + LETTERS[n % 26];
 
-                if (translationDiv) {
-                    processTranslationPart(translationDiv, translationContainer, teiNS);
-                } else {
-                    translationContainer.innerHTML = "<p>[日本語訳セクションが見つかりませんでした。]</p>";
-                }
-            }
-            
-            /**
-             * ツールチップの位置を画面内に収まるように調整する
-             */
-            function adjustTooltipPosition(tooltip) {
-                const rect = tooltip.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
+  function makeCtx(wits) {
+    return { wits, app: [], ed: [], tr: [] };
+  }
 
-                // Reset styles before calculation
-                tooltip.style.left = '50%';
-                tooltip.style.transform = 'translateX(-50%)';
-                tooltip.style.right = 'auto';
+  // Render inline content of a TEI node into a fragment (notes become markers).
+  function renderInline(node, ctx, opts = {}) {
+    const frag = document.createDocumentFragment();
+    node.childNodes.forEach(ch => {
+      if (ch.nodeType === Node.TEXT_NODE) {
+        frag.appendChild(document.createTextNode(ch.textContent.replace(/\s+/g, ' ')));
+      } else if (ch.nodeType === Node.ELEMENT_NODE) {
+        frag.appendChild(renderEl(ch, ctx, opts));
+      }
+    });
+    return frag;
+  }
 
-                const newRect = tooltip.getBoundingClientRect();
+  function renderEl(n, ctx, opts) {
+    switch (n.localName) {
+      case 'hi': {
+        const rend = n.getAttribute('rend') || '';
+        const tag = /bold/.test(rend) ? 'b' : /sup/.test(rend) ? 'sup' : 'i';
+        const e = el(tag);
+        e.appendChild(renderInline(n, ctx, opts));
+        return e;
+      }
+      case 'space': {
+        const g = el('span', 'gap', '[ ]');
+        g.title = '刊本の空白';
+        return g;
+      }
+      case 'supplied': {
+        const s = el('span', 'supplied');
+        const reason = n.getAttribute('reason');
+        s.title = '編者による補い' + (reason ? '（reason: ' + reason + '）' : '');
+        s.appendChild(el('span', 'br', '⟨'));
+        s.appendChild(renderInline(n, ctx, opts));
+        s.appendChild(el('span', 'br', '⟩'));
+        return s;
+      }
+      case 'app': return renderApp(n, ctx, opts);
+      case 'note': return renderNote(n, ctx, opts);
+      case 'lb': return el('br');
+      default: {
+        if (!warned.has(n.localName)) {
+          warned.add(n.localName);
+          console.warn('[Gesta Annalia Viewer] 未対応の要素 <' + n.localName + '> を中身だけで表示しました');
+        }
+        const s = el('span');
+        s.dataset.tei = n.localName;
+        s.appendChild(renderInline(n, ctx, opts));
+        return s;
+      }
+    }
+  }
 
-                if (newRect.left < 10) { // 10px margin from left edge
-                    tooltip.style.left = '10px';
-                    tooltip.style.transform = 'translateX(0)';
-                } else if (newRect.right > viewportWidth - 10) { // 10px margin from right edge
-                    tooltip.style.left = 'auto';
-                    tooltip.style.right = '10px';
-                    tooltip.style.transform = 'translateX(0)';
-                }
-            }
+  function renderApp(n, ctx, opts) {
+    const lem = n.getElementsByTagNameNS(TEI, 'lem')[0] || null;
+    const rdgs = Array.from(n.getElementsByTagNameNS(TEI, 'rdg'));
+    const idx = ctx.app.length;
+    const sig = siglumFor(idx);
+    const key = 'app-' + sig;
+    const lemEmpty = !lem || lem.textContent.trim() === '';
+    const entry = { key, kind: 'app', sig, lemEmpty, lemFrag: null, readings: [] };
+    ctx.app.push(entry);
 
-            /**
-             * ツールチップを持つ要素にイベントリスナーを追加する
-             */
-            function addTooltipEvents(element) {
-                element.addEventListener('mouseover', (event) => {
-                    const tooltip = event.currentTarget.querySelector('.tooltip');
-                    if (!tooltip) return;
-                    
-                    tooltip.style.visibility = 'visible';
-                    tooltip.style.opacity = '1';
-                    adjustTooltipPosition(tooltip);
-                });
+    const wrap = document.createDocumentFragment();
+    const span = el('span', 'lem');
+    span.id = 'lem-' + key;
+    if (lemEmpty) {
+      span.className = 'lem caret';
+      span.textContent = '‸';
+      span.title = '底本はここに語を持たない';
+    } else {
+      span.appendChild(renderInline(lem, ctx, opts));
+      entry.lemFrag = renderInline(lem, makeCtx(ctx.wits));
+    }
+    wrap.appendChild(span);
+    rdgs.forEach(r => entry.readings.push({ text: r.textContent.trim().replace(/\s+/g, ' '), wit: r.getAttribute('wit') }));
+    wrap.appendChild(marker(key, 'mk mk-app', sig, (rdgs.length ? '異読 ' : '校異 ') + sig));
+    return wrap;
+  }
 
-                element.addEventListener('mouseout', (event) => {
-                    const tooltip = event.currentTarget.querySelector('.tooltip');
-                    if (!tooltip) return;
+  function renderNote(n, ctx, opts) {
+    const type = n.getAttribute('type') || 'editorial';
+    const isTr = type === 'translator';
+    const list = isTr ? ctx.tr : ctx.ed;
+    const num = list.length + 1;
+    const key = (isTr ? 'tr-' : 'ed-') + num;
+    const content = el('span');
+    content.appendChild(renderInline(n, makeCtx(ctx.wits)));
+    list.push({ key, kind: isTr ? 'tr' : 'ed', sig: isTr ? '†' + num : String(num), node: content, lang: n.getAttribute('xml:lang') });
+    return marker(key, 'mk ' + (isTr ? 'mk-tr' : 'mk-ed'), isTr ? '†' + num : String(num), (isTr ? '訳者注 ' : '編者注 ') + num);
+  }
 
-                    tooltip.style.visibility = 'hidden';
-                    tooltip.style.opacity = '0';
-                });
-            }
+  function marker(key, cls, label, aria) {
+    const b = el('button', cls, label);
+    b.type = 'button';
+    b.id = 'mk-' + key;
+    b.dataset.key = key;
+    b.setAttribute('aria-label', aria);
+    return b;
+  }
 
-            /**
-             * 原文パートを処理して描画する
-             */
-            function processTextPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const p = div.getElementsByTagNameNS(ns, 'p')[0];
+  // Extract a block (head + paragraphs) from a <div>.
+  function renderDiv(div, ctx) {
+    const out = { head: null, paras: [] };
+    if (!div) return out;
+    for (const ch of div.children) {
+      if (ch.localName === 'head') {
+        const h = el('h3', 't-head');
+        h.appendChild(renderInline(ch, ctx));
+        out.head = h;
+      } else if (ch.localName === 'p') {
+        const p = el('p', 't-p');
+        p.appendChild(renderInline(ch, ctx));
+        out.paras.push(p);
+      } else if (ch.localName === 'ab' || ch.localName === 'div') {
+        const p = el('p', 't-p');
+        p.appendChild(renderInline(ch, ctx));
+        out.paras.push(p);
+      }
+    }
+    return out;
+  }
 
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-lg font-semibold italic text-gray-600 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                const pElement = document.createElement('p');
-                container.appendChild(pElement);
+  function findDiv(doc, type) {
+    return Array.from(doc.getElementsByTagNameNS(TEI, 'div')).find(d => d.getAttribute('type') === type) || null;
+  }
 
-                if (p) {
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'app') {
-                            const lem = node.getElementsByTagNameNS(ns, 'lem')[0];
-                            const rdgs = node.getElementsByTagNameNS(ns, 'rdg');
-                            const span = document.createElement('span');
-                            span.className = 'variant';
-                            span.textContent = lem && lem.textContent ? lem.textContent : '[om.]';
-                            const tooltip = document.createElement('div');
-                            tooltip.className = 'tooltip';
-                            if (rdgs.length > 0) {
-                                let tooltipContent = '';
-                                for (let i = 0; i < rdgs.length; i++) {
-                                    const rdg = rdgs[i];
-                                    const wit = rdg.getAttribute('wit').replace(/#/g, '').replace(/\s/g, ', ');
-                                    const text = rdg.textContent || '[om.]';
-                                    tooltipContent += `<div class="mb-1 last:mb-0"><span class="font-bold text-blue-300">${wit}:</span> ${text}</div>`;
-                                }
-                                tooltip.innerHTML = tooltipContent;
-                            } else {
-                                tooltip.innerHTML = '<span>異読なし</span>';
-                            }
-                            span.appendChild(tooltip);
-                            pElement.appendChild(span);
-                            addTooltipEvents(span); // Add event listeners
-                        }
-                    });
-                }
-            }
+  function buildChapter(doc) {
+    const wits = readWitnesses(doc);
+    const ctx = makeCtx(wits);
+    const la = renderDiv(findDiv(doc, 'textpart'), ctx);
+    const ja = renderDiv(findDiv(doc, 'translation'), ctx);
 
-            /**
-             * 日本語訳パートを処理して描画する
-             */
-            function processTranslationPart(div, container, ns) {
-                const head = div.getElementsByTagNameNS(ns, 'head')[0];
-                const p = div.getElementsByTagNameNS(ns, 'p')[0];
+    const reader = el('div', 'reader');
+    const cell = (cls, child) => { const c = el('div', 'cell ' + cls); if (child) c.appendChild(child); return c; };
+    const langLabel = t => el('div', 'lang', t);
+    const hLa = cell('col-la la colhead', langLabel('Latin · Skene ed.'));
+    const hJa = cell('col-ja ja colhead', langLabel('日本語訳'));
+    if (la.head) hLa.appendChild(la.head);
+    if (ja.head) hJa.appendChild(ja.head);
+    hLa.lang = 'la'; hJa.lang = 'ja';
+    reader.append(hLa, hJa);
 
-                if (head) {
-                    const headElement = document.createElement('h4');
-                    headElement.className = 'text-md font-semibold text-gray-700 mb-4';
-                    headElement.textContent = head.textContent;
-                    container.appendChild(headElement);
-                }
-                
-                if (p) {
-                    const pElement = document.createElement('p');
-                    const footnotes = [];
-                    
-                    p.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            pElement.appendChild(document.createTextNode(node.textContent));
-                        } else if (node.nodeType === Node.ELEMENT_NODE && node.localName === 'note') {
-                            const noteText = node.textContent;
-                            footnotes.push(noteText);
-                            const footnoteIndex = footnotes.length;
-                            const noteRefSpan = document.createElement('span');
-                            noteRefSpan.className = 'variant footnote-ref';
-                            noteRefSpan.textContent = `[${footnoteIndex}]`;
-                            const tooltip = document.createElement('div');
-                            tooltip.className = 'tooltip';
-                            tooltip.textContent = noteText;
-                            noteRefSpan.appendChild(tooltip);
-                            pElement.appendChild(noteRefSpan);
-                            addTooltipEvents(noteRefSpan); // Add event listeners
-                        }
-                    });
-                    container.appendChild(pElement);
+    const rows = Math.max(la.paras.length, ja.paras.length, 1);
+    for (let i = 0; i < rows; i++) {
+      const pl = la.paras[i] || el('p', 't-p empty', i === 0 ? '［原文がありません］' : '');
+      const pj = ja.paras[i] || el('p', 't-p empty', i === 0 ? '［訳がありません］' : '');
+      const cl = cell('col-la la', pl), cj = cell('col-ja ja', pj);
+      cl.lang = 'la'; cj.lang = 'ja';
+      if (i === rows - 1) { cl.classList.add('last'); cj.classList.add('last'); }
+      reader.append(cl, cj);
+    }
 
-                    if (footnotes.length > 0) {
-                        const footnotesContainer = document.createElement('div');
-                        footnotesContainer.className = 'mt-8 pt-4 border-t border-gray-300';
-                        const footnotesHeader = document.createElement('h4');
-                        footnotesHeader.className = 'font-semibold text-gray-700 mb-2';
-                        footnotesHeader.textContent = '編集者注';
-                        footnotesContainer.appendChild(footnotesHeader);
-                        const list = document.createElement('ol');
-                        list.className = 'list-decimal list-inside text-sm text-gray-600 space-y-1';
-                        footnotes.forEach((noteText, index) => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = noteText;
-                            list.appendChild(listItem);
-                        });
-                        footnotesContainer.appendChild(list);
-                        container.appendChild(footnotesContainer);
-                    }
-                }
-            }
+    const titleEl = doc.getElementsByTagNameNS(TEI, 'title')[0];
+    const editorEl = doc.getElementsByTagNameNS(TEI, 'editor')[0];
+    const srcP = doc.getElementsByTagNameNS(TEI, 'sourceDesc')[0];
+    const srcPara = srcP ? srcP.getElementsByTagNameNS(TEI, 'p')[0] : null;
+    const jaHeadText = ja.head ? ja.head.textContent : '';
+    const laHeadText = la.head ? la.head.textContent : '';
+    return {
+      reader, ctx, wits,
+      title: titleEl ? titleEl.textContent.trim() : '',
+      editor: editorEl ? editorEl.textContent.trim() : '',
+      source: srcPara ? renderInline(srcPara, makeCtx(wits)) : null,
+      headJa: jaHeadText, headLa: laHeadText
+    };
+  }
 
-            // --- Initialization ---
-            chapters.forEach(chapter => {
-                const link = document.createElement('a');
-                link.href = '#';
-                link.textContent = chapter.title;
-                link.className = 'block p-2 rounded-md hover:bg-gray-100 transition-colors';
-                link.dataset.file = chapter.file;
+  // ---------- Loading ----------
+  async function fetchDoc(file) {
+    if (state.cache.has(file)) return state.cache.get(file);
+    const p = (async () => {
+      const res = await fetch(XML_DIR + file, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('ファイルを読めません（' + res.status + ' ' + res.statusText + '）: ' + file);
+      const doc = new DOMParser().parseFromString(await res.text(), 'application/xml');
+      const err = doc.getElementsByTagName('parsererror')[0];
+      if (err) throw new Error('XML の解析に失敗しました: ' + file + '\n' + err.textContent.trim().slice(0, 300));
+      return doc;
+    })();
+    state.cache.set(file, p);
+    p.catch(() => state.cache.delete(file));
+    return p;
+  }
 
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('#toc a').forEach(a => a.classList.remove('active'));
-                    link.classList.add('active');
-                    const filePath = xmlFolderPath + link.dataset.file;
-                    loadAndProcessXML(filePath, chapter.title);
-                });
-                tocContainer.appendChild(link);
-            });
+  function fileProtocolHint() {
+    return location.protocol === 'file:'
+      ? '<br><br>file:// で開くとブラウザは XML を読み込めません。このフォルダでローカルサーバを起動して開いてください：<br><code>python -m http.server</code> → <code>http://localhost:8000/gesta_annalia_viewer.html</code>'
+      : '';
+  }
 
-            if (chapters.length > 0) {
-                const firstLink = tocContainer.querySelector('a');
-                firstLink.click();
-            }
+  async function loadChapter(i, { focusTop = true } = {}) {
+    const chapters = state.manifest.chapters;
+    if (i < 0 || i >= chapters.length) return;
+    const token = ++state.loadToken;
+    state.index = i;
+    const ch = chapters[i];
+    hidePop();
+    $$('#toc-list a').forEach((a, j) => { a.classList.toggle('active', j === i); if (j === i) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $('#crumb').textContent = (ch.group ? ch.group + ', ' : '') + ch.label;
+    $('#meta').textContent = '';
+    $('#prev-btn').disabled = i === 0;
+    $('#next-btn').disabled = i === chapters.length - 1;
+    document.title = ch.label + ' — Gesta Annalia Viewer';
+    renderChapNav(i);
+
+    let doc;
+    try {
+      doc = await fetchDoc(ch.file);
+    } catch (e) {
+      if (token !== state.loadToken) return;
+      console.error(e);
+      const s = el('div', 'status error');
+      s.innerHTML = 'エラー: ' + escapeHtml(e.message) + fileProtocolHint();
+      $('#reader-host').replaceChildren(s);
+      $('#panel-body').replaceChildren();
+      $('#counts').replaceChildren();
+      return;
+    }
+    if (token !== state.loadToken) return;
+    const built = buildChapter(doc);
+
+    const meta = $('#meta');
+    meta.replaceChildren();
+    if (built.source) meta.appendChild(built.source);
+    if (built.editor) meta.appendChild(document.createTextNode(' — 編者: ' + built.editor));
+
+    $('#reader-host').replaceChildren(built.reader);
+    applyMode();
+    renderPanel(built);
+    updateTocTitle(i, built);
+    if (focusTop) $('#main').scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+
+  function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+  // ---------- Panel ----------
+  function renderPanel(built) {
+    const { ctx, wits } = built;
+    state.entries = new Map();
+    const body = $('#panel-body');
+    body.replaceChildren();
+
+    const counts = $('#counts');
+    counts.replaceChildren(
+      el('span', 'chip', '校異 ' + ctx.app.length),
+      el('span', 'chip', '注 ' + (ctx.ed.length + ctx.tr.length))
+    );
+
+    body.appendChild(section('校異', 'var(--rubric)', ctx.app, e => {
+      const line = el('div', 'app-line la');
+      if (e.lemEmpty) {
+        e.readings.forEach((r, k) => {
+          if (k) line.appendChild(document.createTextNode('; '));
+          line.appendChild(document.createTextNode(r.text + ' '));
+          line.appendChild(el('i', null, 'add.'));
+          line.appendChild(witNodes(r.wit, wits));
         });
-    </script>
+        line.appendChild(el('span', 'ctx', '底本に無い語を写本が持つ'));
+      } else {
+        const l = el('span'); l.appendChild(e.lemFrag); line.appendChild(l);
+        line.appendChild(el('span', 'bracket', ']'));
+        if (!e.readings.length) line.appendChild(el('i', null, '異読の記載なし'));
+        e.readings.forEach((r, k) => {
+          if (k) line.appendChild(document.createTextNode('; '));
+          if (r.text) line.appendChild(document.createTextNode(r.text)); else line.appendChild(el('i', null, 'om.'));
+          line.appendChild(witNodes(r.wit, wits));
+        });
+      }
+      return line;
+    }));
+    body.appendChild(section('編者注', 'var(--note)', ctx.ed, e => e.node));
+    body.appendChild(section('訳者注', 'var(--tnote)', ctx.tr, e => e.node));
+
+    // Witness legend
+    const sec = el('section');
+    const det = el('details');
+    det.open = store.get('witopen', '0') === '1';
+    det.addEventListener('toggle', () => store.set('witopen', det.open ? '1' : '0'));
+    det.appendChild(el('summary', null, '写本凡例（' + wits.size + '）'));
+    const ul = el('ul', 'witlist');
+    wits.forEach(w => {
+      const li = el('li');
+      const b = el('div'); b.appendChild(el('b', null, w.siglum));
+      if (w.skene) b.appendChild(el('span', 'sk', 'Skene ' + w.skene));
+      li.append(b, el('div', null, w.desc));
+      ul.appendChild(li);
+    });
+    det.appendChild(ul);
+    sec.appendChild(det);
+    body.appendChild(sec);
+  }
+
+  function section(title, color, list, renderBody) {
+    const s = el('section');
+    const h = el('h3');
+    const dot = el('span', 'dot'); dot.style.background = color;
+    h.append(dot, document.createTextNode(title + '（' + list.length + '）'));
+    s.appendChild(h);
+    if (!list.length) { s.appendChild(el('div', 'empty-sec', 'この章にはありません')); return s; }
+    const ol = el('ol');
+    list.forEach(e => {
+      const li = el('li', 'entry ' + e.kind);
+      li.id = 'ent-' + e.key;
+      li.tabIndex = 0;
+      li.dataset.key = e.key;
+      const b = el('div', 'body');
+      b.appendChild(renderBody(e));
+      li.append(el('span', 'sig', e.sig), b);
+      ol.appendChild(li);
+      state.entries.set(e.key, { entry: e, li });
+    });
+    s.appendChild(ol);
+    return s;
+  }
+
+  // ---------- Cross-linking ----------
+  function clearActive() { $$('.mk.active, .entry.active').forEach(x => x.classList.remove('active')); }
+  function flash(node) {
+    if (!node) return;
+    node.classList.remove('flash'); void node.offsetWidth; node.classList.add('flash');
+  }
+  function gotoEntry(key) {
+    const rec = state.entries.get(key);
+    if (!rec) return;
+    if (!state.panelOpen) setPanel(true);
+    clearActive();
+    rec.li.classList.add('active');
+    const mk = document.getElementById('mk-' + key);
+    if (mk) mk.classList.add('active');
+    requestAnimationFrame(() => rec.li.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+  }
+  function gotoMarker(key) {
+    const mk = document.getElementById('mk-' + key);
+    if (!mk) return;
+    // ensure the marker's column is visible
+    const inJa = !!mk.closest('.col-ja');
+    if (state.mode !== 'parallel' && state.mode !== (inJa ? 'ja' : 'la')) setMode('parallel');
+    if (state.mode === 'parallel' && window.innerWidth < 768) setTab(inJa ? 'ja' : 'la');
+    clearActive();
+    mk.classList.add('active');
+    const rec = state.entries.get(key);
+    if (rec) rec.li.classList.add('active');
+    if (window.innerWidth <= 1100) setPanel(false);
+    mk.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    flash(document.getElementById('lem-' + key) || mk);
+  }
+
+  // ---------- Popover ----------
+  const pop = $('#pop');
+  let popFor = null;
+  function showPop(mk) {
+    const rec = state.entries.get(mk.dataset.key);
+    if (!rec) return;
+    const e = rec.entry;
+    pop.replaceChildren();
+    const kind = e.kind === 'app' ? '異読 ' + e.sig : e.kind === 'ed' ? '編者注 ' + e.sig : '訳者注 ' + e.sig.replace('†', '');
+    pop.appendChild(el('span', 'k', kind));
+    const content = rec.li.querySelector('.body').cloneNode(true);
+    content.querySelectorAll('.ctx').forEach(x => x.remove());
+    pop.appendChild(content);
+    pop.classList.add('show');
+    const r = mk.getBoundingClientRect();
+    const pw = pop.offsetWidth, ph = pop.offsetHeight;
+    let left = r.left + r.width / 2 - pw / 2;
+    left = Math.max(12, Math.min(left, window.innerWidth - pw - 12));
+    let top = r.top - ph - 8;
+    if (top < 64) top = r.bottom + 8;
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
+    popFor = mk;
+  }
+  function hidePop() { pop.classList.remove('show'); popFor = null; }
+
+  const host = $('#reader-host');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  host.addEventListener('mouseover', ev => {
+    const mk = ev.target.closest('.mk');
+    if (mk && finePointer.matches) showPop(mk);
+  });
+  host.addEventListener('mouseout', ev => {
+    const mk = ev.target.closest('.mk');
+    if (mk && !mk.contains(ev.relatedTarget)) hidePop();
+  });
+  // Keyboard focus only: a tap also focuses the button and would skip the first-tap popover.
+  host.addEventListener('focusin', ev => { const mk = ev.target.closest('.mk'); if (mk && mk.matches(':focus-visible')) showPop(mk); });
+  host.addEventListener('focusout', ev => { if (ev.target.closest('.mk')) hidePop(); });
+  host.addEventListener('click', ev => {
+    const mk = ev.target.closest('.mk');
+    if (!mk) return;
+    if (!finePointer.matches) {
+      if (popFor === mk) { hidePop(); gotoEntry(mk.dataset.key); } else showPop(mk);
+      return;
+    }
+    gotoEntry(mk.dataset.key);
+  });
+  $('#main').addEventListener('scroll', () => { if (popFor) hidePop(); }, { passive: true });
+
+  $('#panel-body').addEventListener('click', ev => {
+    const li = ev.target.closest('.entry');
+    if (li && !ev.target.closest('.wit')) gotoMarker(li.dataset.key);
+  });
+  $('#panel-body').addEventListener('keydown', ev => {
+    const li = ev.target.closest('.entry');
+    if (li && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); gotoMarker(li.dataset.key); }
+  });
+
+  // ---------- TOC ----------
+  function buildToc() {
+    const list = $('#toc-list');
+    list.replaceChildren();
+    let group = null;
+    state.manifest.chapters.forEach((ch, i) => {
+      if (ch.group && ch.group !== group) {
+        group = ch.group;
+        list.appendChild(el('div', 'group', group));
+      }
+      const a = el('a');
+      a.href = '#' + ch.id;
+      a.appendChild(el('span', 'lbl', ch.label));
+      const t = el('span', 'ttl', '');
+      a.appendChild(t);
+      a.addEventListener('click', () => document.body.classList.remove('toc-open'));
+      list.appendChild(a);
+      // Fill subtitles lazily from the XML heads.
+      fetchDoc(ch.file).then(doc => {
+        const div = findDiv(doc, 'translation');
+        const head = div && Array.from(div.children).find(c => c.localName === 'head');
+        if (head) t.textContent = head.textContent.trim();
+        else {
+          const p = div && Array.from(div.children).find(c => c.localName === 'p');
+          if (p) t.textContent = p.textContent.trim().slice(0, 40) + '…';
+        }
+      }).catch(() => { t.textContent = '（読み込めません）'; });
+    });
+  }
+  function updateTocTitle() { /* subtitles are filled by buildToc */ }
+
+  function renderChapNav(i) {
+    const nav = $('#chap-nav');
+    nav.replaceChildren();
+    const chs = state.manifest.chapters;
+    const mk = (ch, cls, lab) => {
+      const a = el('a', cls);
+      a.href = '#' + ch.id;
+      a.append(el('small', null, lab), el('span', null, (ch.group ? ch.group + ', ' : '') + ch.label));
+      return a;
+    };
+    if (i > 0) nav.appendChild(mk(chs[i - 1], 'prev', '← 前の章'));
+    if (i < chs.length - 1) nav.appendChild(mk(chs[i + 1], 'next', '次の章 →'));
+  }
+
+  // ---------- Routing ----------
+  function indexFromHash() {
+    const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+    const i = state.manifest.chapters.findIndex(c => c.id === id);
+    return i;
+  }
+  function go(i) {
+    const chs = state.manifest.chapters;
+    if (i < 0 || i >= chs.length) return;
+    location.hash = chs[i].id;
+  }
+  window.addEventListener('hashchange', () => {
+    const i = indexFromHash();
+    if (i >= 0 && i !== state.index) loadChapter(i);
+  });
+
+  // ---------- Controls ----------
+  $('#prev-btn').addEventListener('click', () => go(state.index - 1));
+  $('#next-btn').addEventListener('click', () => go(state.index + 1));
+  $$('.mode-seg button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  $$('#tabs button').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+  $('#panel-btn').addEventListener('click', () => setPanel(!state.panelOpen));
+  $('#scrim-panel').addEventListener('click', () => setPanel(false));
+  $('#menu-btn').addEventListener('click', () => document.body.classList.toggle('toc-open'));
+  $('#scrim-toc').addEventListener('click', () => document.body.classList.remove('toc-open'));
+
+  const sBtn = $('#settings-btn'), sMenu = $('#settings-menu');
+  const closeSettings = () => { sMenu.classList.remove('open'); sBtn.setAttribute('aria-expanded', 'false'); };
+  sBtn.addEventListener('click', ev => {
+    ev.stopPropagation();
+    const open = !sMenu.classList.contains('open');
+    sMenu.classList.toggle('open', open);
+    sBtn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', ev => { if (!ev.target.closest('.settings')) closeSettings(); });
+  $$('.seg[data-setting] button').forEach(b => b.addEventListener('click', () => {
+    const k = b.parentElement.dataset.setting;
+    state[k] = b.dataset.v;
+    store.set(k, b.dataset.v);
+    applyTheme();
+  }));
+
+  document.addEventListener('keydown', ev => {
+    if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    const t = ev.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    switch (ev.key) {
+      case 'ArrowLeft': go(state.index - 1); break;
+      case 'ArrowRight': go(state.index + 1); break;
+      case '1': setMode('parallel'); break;
+      case '2': setMode('la'); break;
+      case '3': setMode('ja'); break;
+      case 'p': case 'P': setPanel(!state.panelOpen); break;
+      case 'Escape':
+        hidePop(); closeSettings(); clearActive();
+        document.body.classList.remove('toc-open');
+        if (window.innerWidth <= 1100) setPanel(false);
+        break;
+      default: return;
+    }
+  });
+
+  // ---------- Init ----------
+  async function init() {
+    applyTheme();
+    setPanel(state.panelOpen);
+    applyMode();
+    try {
+      const res = await fetch(XML_DIR + 'manifest.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error('manifest.json を読めません（' + res.status + '）');
+      state.manifest = await res.json();
+      if (!state.manifest.chapters || !state.manifest.chapters.length) throw new Error('manifest.json に章がありません');
+    } catch (e) {
+      console.error(e);
+      const s = el('div', 'status error');
+      s.innerHTML = 'エラー: ' + escapeHtml(e.message) + fileProtocolHint();
+      $('#reader-host').replaceChildren(s);
+      return;
+    }
+    buildToc();
+    const i = indexFromHash();
+    if (i >= 0) loadChapter(i);
+    else history.replaceState(null, '', '#' + state.manifest.chapters[0].id), loadChapter(0);
+  }
+  init();
+})();
+</script>
 </body>
 </html>
