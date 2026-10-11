@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 6 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>De Duello inter Edmundum et Cnuth.</head>
+                <p>CONVENIENTIBUS itaque utrisque partibus super ripam Sabrinae fluminis, Edmundus cum suis in occidentali plaga, Cnuth vero in orientali consedit. Est autem insula medio ipsius fluminis, quae Oleneye ab illis gentibus appellatur, in quam reges transvecti, armis protecti splendidissimis, utroque spectante populo, certamen ineunt singulare. At ubi hastarum robur, tam virtute impingentium, quam fortissimorum objectu clipeorum, deperiit, extractis gladiis sese cominus impetunt. Pugnatum est acriter, dum Edmundum virtus virium adjuvaret, et Cnuthum faveret fortuna. Circa galeata capita gladii tinniunt, collisione metallorum scintillae prorumpunt. Ubi robustissimum illud pectus Edmundi, ex ipso, ut assolet, bellandi motu, ita incanduit, sanguine incalescente factus robustior, dexteram elevat, vibrat ensem, ac tanta vehementia caput obstantis ictus iterat, ut spectantibus non tam percutere quam fulminare videretur. Sciens autem Cnuth, breviori halitu sibi vires deficere, cogitat de pace juvenem convenire: sed, ut erat hastutus, sibi praecavens, timuit, ne, si defectus suus juveni innotesceret, pacis verbum non audiret. Quare totum in se spiritum colligens, quicquid virium habuit, omni conatu intendens virtute mirabili, uno impetu irruit in Edmundum et flectere eum fecit. Sed mox se paululum retrahens, rogat juvenem subsistere modicum, et sibi, dicere volenti, praestare auditum. Ille autem, ut erat suavis animi, demissa ad terram parte scuti inferiori, leviter procubuit in superiori, ac, supinato in dextera gladio, ad verba loquentis <app>
+                    <lem>intendit</lem>
+                    <rdg wit="#ms-fc">attendit</rdg>
+                </app>. Tunc Cnuth ait, hactenus regni tui extiti cupidus: sed nunc, o virorum fortissime, tui certe ipsius cupidior sum, quem non dico regno Anglorum, sed universo utique orbi video praeferendum, Mihi Dacia cessit, mihi Norwagia succubuit, mihi Suavorum rex manus dedit, et mei conatus impetum, quem nullum mortalium sustinere credebam, tua mirabilis virtus jam plus semel eludendo illusit. Quocirca licet me circumquaque et ubicunque me diverto me victorem futurum fortuna promittens animosum fecerit, ita tamen tuae juventutis probata probitas illexit ad gratiam, ut supra modum te amicum cupiam, et regni consortem exoptem. Utinam et tu de me idem cupias, ut ego tecum in Anglia regnem, tu mecum in Dacia conregnare. Quid plura? Annuit Edmundus, ut vir benignae mentis, et Cnutho de regni participio consentit. Depositis itaque armis, in oscula ruunt, utroque exercitu exultante, clero etiam canticum laudis et gratiarum clara voce personante. Deinde in signum foederis et fraternitatis vestem mutant et arma, reversique ad suos modum et mentem pacis suae et amicitiae declarant, et sic cum gaudio inopinato ad propria unusquisque regreditur.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>エドマンドとクヌートの一騎討ちについて</head>
+                <p>こうして両陣営がセヴァーン川（Severn）の岸に集まり、エドマンドは手勢とともに西側に、クヌートは東側に陣を構えた。その川の中ほどに島があり、その地の人々からオールニー（Oleneye）と呼ばれている。王たちはその島へ渡り、きわめて輝かしい武具に身を固め、両方の民が見守るなかで一騎討ちを始めた。槍の力が、突きかかる者たちの力によっても、きわめて堅固な盾の防ぎによっても尽きると、彼らは剣を抜いて間近から打ちかかった。エドマンドには体力に支えられた武勇が加勢し、クヌートには運が味方して、戦いは激しく交わされた。兜をかぶった頭の周りで剣が鳴り、金属のぶつかり合いから火花が飛び散った。そのとき、エドマンドのあのきわめて屈強な胸は、常のごとく戦いの動きそのものによって熱を帯び、血が燃え立つにつれていっそう強さを増した。彼は右手を振り上げ、剣を振るい、相手の頭にすさまじい勢いで打撃を重ねたので、見る者には打っているというより雷を落としているように見えた。一方クヌートは、息が短くなって力が尽きかけているのを知り、若者に和平を持ちかけようと考えた。しかし狡猾な男で、自らの身を守るべく用心し、もし自分の衰えが若者に知れれば、和平の言葉に耳を貸さないのではないかと恐れた。そこで彼は全身の気力を奮い起こし、持てる力のかぎりを尽くし、驚くべき武勇をもって一気にエドマンドへ突進し、エドマンドの身を屈ませた。しかしすぐに少し身を引き、若者に、しばし動きを止めるよう、また話をしようとする自分に耳を貸してくれるよう求めた。エドマンドは穏やかな気性の人で、盾の下端を地に下ろして、その上端に軽く身をもたせかけ、右手の剣を上向きに返して、語る者の言葉に耳を傾けた。そこでクヌートは言った。「これまで私はおまえの王国を欲してきた。だが今や、勇者のなかの勇者よ、確かに、それ以上におまえ自身をこそ欲している。私の見るところ、おまえはイングランド人の王国にとどまらず、全世界にさえまさる者だ。私にはデンマーク（Dacia）が屈し、ノルウェー（Norwagia）が服し、スウェーデン人（Suavi）の王が降った。いかなる人間も耐えられまいと思っていた私の猛攻を、おまえの驚くべき武勇はすでに一度ならずかわして空しくさせた。それゆえ、四方どこへ向かおうとも運命が私に勝利を約し、私を勇み立たせてきた。それでも、試された若き高潔さが私を好意へと誘い、私はおまえを友として度外れに望み、王国をともに治める者として切に願う。おまえもまた私について同じことを望んでくれればよい。私がイングランドでおまえとともに治め、おまえがデンマークで私とともに治めるように。」これ以上何を言うことがあろう。心やさしい人エドマンドはこれにうなずき、クヌートと王国を分かち合うことに同意した。かくて彼らは武器を置き、駆け寄って口づけを交わした。両軍は歓喜し、聖職者たちも賛美と感謝の歌を高らかに歌い上げた。続いて彼らは同盟と兄弟の契りのしるしとして衣服と武具を取り替え、それぞれの部下のもとに戻って、和平と友誼の取り決めとその意図を示した。こうして各々は思いがけない喜びとともに自らの地へ帰った。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
