@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 7 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>HIIS itaque gestis, et cum maximo amore et honore regibus sese praevenientibus, quidam proditor, volens se gratissimum ex ingrato regi Cnutho reddere, regi Edmundo mortis molitur insidias. Nec opportunum, quo regem occideret, casum sive locum inveniens, nefandissimum, sed turpissimum insidiarum mortalium genus excogitat. Haec Baldredus. Cum autem rex Edmundus vix annum in regno perfecerat, ecce filius Edrici proditoris, gratum se volens praestare regi Cnuth, proth! pudor, sub purgatoria domo apud Oxinford se occultans, regem Edmundum, ad requisita naturae nudatum, inter celanda cultello bis acuto percussit, et inter viscera ferrum figens reliquit. Edricus igitur, ad regem Cnuth veniens, salutavit eum, dicens: Ave rex. Solus Cnuth vero ex hujusmodi salutatione insueta admirante, rei nefariae seriem miseram reus enarravit. Qui cum rei gestae omnia denudasset, respondit rex, Unusquisque secundum suum laborem mercedem accipiet. Et quia te mihi tali obsequio prae cunctis gratiorem exhibuisti, et proinde memetipsum tibi et tuis consiliis acquiescentem credidisti, ecce sustollam caput tuum supra omnes proceres Angliae et Daciae, sed in ultione talis facinoris perennis memoriae decus, et in cautione proditorum omnium perpetuum dedecus. Hiis dictis, jussit rex sub omni festinatione caput ejus abscidi, et in superiori porta Londoniarum, ad ostentationem debitae mercedis, suspendi sive palo superaffigi. Sicque periit Edmundus, regum strenuissimus et fortissimus, cum uno anno regnasset, et sepultus est in Glascenberch juxta Edgarum avum suum.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>こうした事が行われ、王たちはこのうえない愛情と敬意をもって互いに先を争って遇し合っていた。そのころ、ある裏切り者が、恩知らずの身から一転してクヌート王にこのうえなく気に入られる者となろうとして、エドマンド王に死の罠をたくらんだ。王を殺す好機も場所も見いだせずにいた彼は、死をもたらす罠のなかでも最も邪悪な、いや最も卑劣な手口を考え出した。以上はバルドレドゥス（Baldredus）の伝えるところである。さて、エドマンド王が王位について1年にも満たないうちに、見よ、裏切り者エドリック（Edricus）の息子が、クヌート王に取り入ろうとして、ああ恥ずべきことに、オックスフォード（Oxinford）の厠の下に身を潜めた。そして、用を足すために衣を脱いだエドマンド王の陰部を両刃の小刀で刺し、刃を臓腑に突き立てたまま残した。そこでエドリックはクヌート王のもとに来て、「王よ、ごきげんよう」と挨拶した。クヌートだけがこの聞き慣れない挨拶をいぶかると、罪人は忌まわしい事の痛ましい次第を語った。彼が事の一部始終を明かすと、王は答えた。「各人は自らの労に応じて報いを受けるであろう。おまえはこのような奉仕によって誰にもまして私の気に入る者となったと示し、それゆえ私がおまえとおまえの献策に従うと信じたからには、見よ、私はおまえの首をイングランドとデンマーク（Dacia）のすべての有力者たちの上に掲げよう。それはこのような悪行への報復としては永く記憶される誉れとなり、すべての裏切り者への戒めとして、永遠の恥辱となる。」こう言うと、王は大急ぎで彼の首をはねさせ、当然の報いを見せしめるため、その首をロンドンの上の門に吊るすか杭に打ち付けるよう命じた。こうして、王たちのなかで最も勇猛かつ剛毅なエドマンドは、1年統治したのちに死に、グラストンベリー（Glascenberch）に祖父エドガーのかたわらに葬られた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
