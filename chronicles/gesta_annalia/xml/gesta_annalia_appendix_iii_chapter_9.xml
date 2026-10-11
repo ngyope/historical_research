@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 9 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>INTEREA mortuo Cnuth, et filiis ejus Haroldo et Hardcnuth, cum per XXVI annos in Anglia regnaverant, accersitur ad regnum Anglorum Edwardus, frater Edmundi Irnside, filius Ethelredi qui in Normannia exulabat et in regem apud Wintonia die sanctae Paschae inungitur. Nam frater ejus Alveredus, proditione Godwini, in Anglia, dum matrem suam Emmam, quam Cnuth in uxorem duxerat, visitaret, crudeli morti interierat. Non tamen impune. Nam sequenti tempore, cum idem rex Edwardus quadam die, quae populo celebris habebatur, praesente eodem comite Godwino proditore, cujus filiam ipse duxerat in uxorem, cum virgine tamen permanens virgo, mensis regalibus assideret, inter prandendum idem Godwinus, malae mentis conscius, ita regi alloquitur, dicens: Scio utique, scio, o rex, quod adhuc de morte fratris tui tuus me apud te animus accusat, nec eis adhuc aestimas discredendum, qui vel ejus vel tuum me mentiuntur proditorem. Sed, secretorum omnium conscius, Deus et inde [rem] veram judicet, et concedat, ut hoc frustulum panis ne mihi guttur pertranseat, si unquam te prodere vel cogitavi, aut de fratris tui interitu mihi conscius existo. Quid plura? Deus verax et justus mox proditoris vocem audivit, et de eodem pane strangulatus mortem gustavit aeternam. Rex vero Edwardus, cum pacem tam a suis quam ab extraneis optinuisset, et vicinis regibus gratus et amabilis extitisset, eo quod magis pace quam armis regnum suum protegeret, XIII regni sui anno et Christi MLVI dirigit nuncios ad imperatorem Romanum, rogans, ut nepotem suum, scilicet Edwardum, filium Edmundi ferreum latus, debiti sibi regni futurum heredem, mittere dignaretur.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>その間に、クヌートとその息子たちハロルド（Harold）とハーデクヌーズ（Harthacnut）が、26年にわたってイングランドを統治したのちに死んだ。そこで、エドマンド・アイアンサイドの兄弟でエセルレッド（Ethelred）の息子であり、ノルマンディーに亡命していたエドワードが、イングランド人の王国へ呼び戻され、聖なる復活祭の日にウィンチェスター（Winchester）で王として塗油された。というのも、彼の兄弟アルフレッドは、クヌートの妻となっていた母エマ（Emma）を訪ねていたさなかに、イングランドでゴドウィン（Godwine）の裏切りによって無残な死を遂げていたからである。しかしこの裏切りは罰を受けずには済まなかった。後のある日、民衆にとって祝祭とされていた日に、同じエドワード王が王の食卓についていた。そこには裏切り者のゴドウィン伯も居合わせていた。王はゴドウィンの娘を妻に迎えていたが、乙女である妻とともに自らも童貞を保っていた。食事のさなか、ゴドウィンは心にやましいところがあり、王にこう語りかけた。「王よ、私は確かに、確かに知っております。あなたの兄弟の死について、あなたの心はいまなおあなたの胸のうちで私を責めております。私をあなたの兄弟君の、あるいはあなたの裏切り者だと偽る者たちがいます。あなたはその者たちを信じずにおくべきだとは、いまなおお考えになりません。しかし、あらゆる秘密を知る神が、このことについても真実を裁かれますように。もし私がかつてあなたを裏切ろうと考えたことさえあるなら、あるいはあなたの兄弟の死について身に覚えがあるなら、このひとかけのパンが私の喉を通らぬようにしてくださいますように。」これ以上何を言うことがあろう。真実にして正しき神はただちに裏切り者の声を聞き入れた。ゴドウィンはそのパンに喉を詰まらせ、永遠の死を味わった。さてエドワード王は、自国の民からも他国の者からも平和を得て、近隣の王たちにも好まれ愛された。それは王が武力よりも平和によって自らの王国を守ったからである。王は治世第13年、主の1056年に、ローマ皇帝のもとへ使者を送った。そして自らの甥、すなわちエドマンド・アイアンサイドの息子エドワードを、当然彼のものとなるべき王国の将来の相続人として、送り届けてくださるよう求めた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
