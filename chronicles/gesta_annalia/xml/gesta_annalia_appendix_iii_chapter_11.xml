@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 11 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>AUDIENS autem haec Willelmus, comes Normannorum, cui cognomen Bastard, quod Haroldus consobrini sui Edwardi regnum usurpasset, tribus de causis stimulatus, in Angliam venit. Prima scilicet, quia Godwinus, ejusdem pater, et filii sui cognatum suum Alveredum cum pluribus Anglis et Normannis apud Hely proditorie perimerant. Secunda, quia Robertum archiepiscopum, et Odonem consulem, et omnes Francos idem Godwinus et filii ex Anglia exterminassent. Tertia, quod, filiam suam, in uxorem ductam, omittens, regnum, quod sibi, ut asseruit, jure cognationis debebatur, in perjurium prolapsus invasisset. Hiis igitur et aliis causis irritatus, viribus undequaque collectis in Angliam transfretavit, et eundem Haroldum levi bello et facili apud Hastingis II<hi rend="superscript">o</hi> Idus Octobris, anno Domini MLXVI regno simul et vita privavit. Et sic Haroldus regnum Angliae, quod infelici omine invaserat, infelicissimo fine, antequam unum annum compleverat, amisit. Quod ita factum est, ut vix aliquis princeps de progenie Anglorum in Anglia remaneret, sed omnes ad moerorem et servitutem ita redacti fuissent, quod Anglicum vocari esset obprobrium.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>さて、ノルマン人の伯で、バスタードの異名をもつウィリアム（William）はこれを聞いた。すなわち、ハロルド（Harold）がウィリアムの従兄弟エドワードの王国を簒奪したことである。ウィリアムは三つの理由に駆られて、イングランドへ来た。第一の理由は、ハロルドの父ゴドウィン（Godwine）とその息子たちが、ウィリアムの親族アルフレッド（Alfred）を、多くのイングランド人やノルマン人とともに、イーリー（Ely）で裏切りによって殺していたことである。第二の理由は、同じゴドウィンと息子たちが、大司教ロバート（Robert）と伯オド（Odo）、そしてすべてのフランク人をイングランドから追放していたことである。第三の理由は、ハロルドが妻に迎えたウィリアムの娘を退け、偽誓に陥って、ウィリアムが親族の権利によって自らに帰属すると主張していた王国を奪ったことである。これらの理由とその他の理由に怒りをかき立てられたウィリアムは、四方から軍勢を集めてイングランドへ渡った。そして主の1066年、10月のイドゥスの2日前（10月14日）に、ヘイスティングズ（Hastings）で、さしたる苦労もない容易な戦いによって、そのハロルドから王国と命をともに奪った。こうしてハロルドは、不吉な前兆のもとに奪ったイングランドの王国を、1年を満たさないうちに、このうえなく不幸な最期によって失った。その結果、イングランド人の血筋の有力者はイングランドにほとんど一人も残らず、それどころかすべての者が悲嘆と隷属に落とされ、イングランド人と呼ばれることが恥辱となるほどであった。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

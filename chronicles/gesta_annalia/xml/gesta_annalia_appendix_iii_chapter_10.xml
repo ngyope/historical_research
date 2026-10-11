@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 10 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>IMPERATOR autem regis nuncios gratanter excipiens, non parvo tempore summo cum honore detinuit. Tandem paratis navibus, et omnibus, quae navigaturis erant necessaria, illatis, Edwardum cum uxore sua Agatha, germani sui filia, cum liberis suis, scilicet, Edgaro Ethlinge, Margareta atque Cristina, cum magna gloria, ac multis divitiis, sicut rex petierat, ad Angliam mittit. Qui prospero cursu in Angliam veniens, tam regem quam populum suo laetificavit adventu. Quem rex maximo cum honore suscepit, atque secum, ut regni sui futurum heredem, honorifice detinuit. Sed juxta illud Salomonis, extrema gaudii luctus occupat, post modicum dierum tempus immaturate morti cedens, gaudium mutavit in luctum, et risum in lamentum. Nec multo post ipse rex, cum nobile monasterium, quod in occidentali parte Londoniarum in honore beati Petri fundaverat, maxima cum gloria diem, scilicet, sanctorum Innocentium, dedicari fecisset, peractis in regno non plene XXIIII annis, in vigilia Epiphaniae proxima sequenti felici morte vitam terminavit, totamque Angliam lachrimis ac dolore replevit. Quo in praedicto monasterio, ut totum virum decebat, tumulato, quidam Edgarum Ethlinge, filium Edwardi junioris, filii Edmundi Irnside, cui regnum hereditario jure debebatur, regem constituere moliuntur. Sed quia puer tanto oneri minus ydoneus videbatur, Haroldus comes, filius Godwini praedicti proditoris, vir callidus et hastutus, cujus erat et crumena foecundior et miles copiosior, intelligens, quia nocuit semper differre paratis, sinistro omine extortaque fide a majoribus regnum sibi indebitum obtinuit. Et die, scilicet, Epiphaniae, qua sepultus est rex Edwardus, dyadema regni capiti proprio imposuit.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>さて皇帝は王の使者たちを喜んで迎え、少なからぬ期間、最高の礼遇をもって引き留めた。ついに船が整えられ、航海する者たちに必要なものがすべて積み込まれた。エドワードの妻アガサ（Agatha）は皇帝の兄弟の娘であった。皇帝は、王が求めたとおり、エドワードを妻と子どもたち、すなわちエドガー・アシリング（Edgar Ætheling）、マーガレット（Margaret）、クリスティナ（Christina）とともに、大いなる栄誉と多くの富を添えてイングランドへ送り出した。エドワードは順調な航海でイングランドに着き、その到来によって王をも民をも喜ばせた。王は彼を最大の礼遇をもって迎え、自らの王国の将来の相続人として、丁重に手元にとどめた。しかしソロモン（Solomon）の「喜びの果ては悲しみが占める」という言葉のとおり、エドワードはわずかな日数ののち時ならぬ死に屈し、喜びを悲しみに、笑いを嘆きに変えた。ほどなく王自身は、ロンドンの西部に聖ペテロに献じて創建していた高貴な修道院を、聖なる幼子殉教者の日（12月28日）に盛大な栄光のうちに献堂させた。そののち王は在位24年に満たずして、その直後の公現祭の前日（1月5日）に幸いなる死によって生涯を終え、イングランド全土を涙と悲嘆で満たした。王が申し分のない人物にふさわしく前述の修道院に葬られると、ある人々はエドガー・アシリングを王に立てようと図った。エドガーはエドマンド・アイアンサイドの息子である年少のほうのエドワードの息子で、世襲の権利によって王国を受けるべき者であった。しかし少年はこれほどの重荷に耐えるには不向きと見えた。前述の裏切り者ゴドウィンの息子ハロルド（Harold）伯は狡猾で抜け目のない人物であり、財布はいっそう豊かで、兵もいっそう多かった。彼は、備えのある者にとって先延ばしは常に害となることを悟り、不吉な前兆のもと、有力者たちから忠誠を強いて取りつけ、本来は自らのものではない王国を手に入れた。そして王エドワードが葬られた日、すなわち公現祭の日（1月6日）に、自らの頭に王冠を戴いた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
