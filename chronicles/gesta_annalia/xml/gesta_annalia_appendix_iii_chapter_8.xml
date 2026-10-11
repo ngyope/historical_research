@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 8 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>VOLENS deinde Cnuth tam fratres Edmundi, qui in Normannia exulabant, quam filios ejus parvulos, scilicet Edmundum et Edwardum, spe regni penitus privare: jubet adesse summos regni proceres, quaeritque ab eis, quae fuerat inter illum et Edmundum in regni divisione conventio, quem etiam sibi designaverat heredem, quemque filiis suis adhuc infantibus custodem deputaverat, quid de fratribus suis Alveredo et Edwardo praescripserat? At illi, ut regi placerent, surrexerunt in innocentes testes iniqui, et mentita est iniquitas sibi. Itaque proprii sanguinis proditores dicunt, regem Edmundum Cnutho potius curam regni et filiorum suorum delegasse, et fratres suos heredes designasse. Quoniam igitur adulantes regi mentiti sunt in caput suum, gladius eorum intravit in corda eorum, et a Cnutho, quem alienigenam dominis suis naturalibus praeferebant, confractus est arcus eorum. Cum enim monarchiam insulae illis faventibus optinuisset, omnes, qui primi fuerunt in illo consensu consilii, exterminavit, et quotquot de regio semine remanserant vel regno expulit vel occidit. At filios Edmundi ferire prae pudore metuens, ad regem Swavorum socerum suum transmisit quasi alendos, sed potius occidendos. Rex autem Swavorum, nobilium puerorum miseratus injustam miseriam, convertit se ad misericordiam, et ad regem Hungariorum Salomonem destinavit fovendos, et in hiis, quae eos decebat, instruendos. Quos ipse benigne suscepit, benignius fovit, benignissime in filios adoptavit. In processu vero temporis cum adulti fuissent, Edmundo filiam suam dedit in uxorem. Et Edwardo filiam germani Henrici imperatoris in matrimonio copulavit. Sed paulo post Edmundus de temporalibus sine liberis ad aeterna transfertur, et Edwardus sospitate et prosperitate perfruitur.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>その後クヌートは、ノルマンディーに亡命していたエドマンドの兄弟たちも、エドマンドの幼い息子たち、すなわちエドマンドとエドワードも、王位への望みから完全に退けようとした。そこで王国の最上位の有力者たちを召し出した。そして、王国の分割にあたって自分とエドマンドとのあいだにいかなる取り決めがあったのかを問うた。さらに、エドマンドが誰を相続人に指名し、まだ幼い息子たちの後見人に誰を任じていたのか、エドマンドの兄弟であるアルフレッド（Alfred）とエドワードについて何を定めていたのかも問うた。すると有力者たちは王の意にかなおうとして、罪なき者たちに逆らう不正な証人として立ち、不義は自らを欺いた。こうして自らの血統を裏切る者たちは、エドマンド王はむしろクヌートに王国と自分の息子たちの後見を委ね、自分の兄弟たちを相続人に定めたと述べた。彼らは王にへつらって、自らの頭上に返る偽りを語った。それゆえ彼らの剣は彼ら自身の心を貫いた。そして、彼らが生来の主君たちよりも重んじた異邦人クヌートによって、その弓は折られた。というのもクヌートは、彼らの後押しによって島の単独支配を手に入れると、あの合意の評議で先に立った者たちをことごとく滅ぼし、王の血筋で残っていた者は誰であれ王国から追放するか殺したからである。しかしエドマンドの息子たちについては、恥じて手にかけることを恐れ、養育させるという名目で、実はむしろ殺させるために、自らの岳父であるスウェーデン人（Swedes）の王のもとへ送った。だがスウェーデン人の王は、高貴な少年たちのいわれなき不幸を哀れんで慈悲に傾き、彼らを養育させ、その身にふさわしい事柄を教え込ませるため、ハンガリー人の王サロモン（Solomon）のもとへ送った。サロモン王は彼らを親切に迎え入れ、さらに親切に養い、このうえなく親切に養子とした。やがて時が経ち彼らが成人すると、王はエドマンドに自らの娘を妻として与えた。またエドワードを、皇帝ハインリヒ（Henry）の兄弟の娘と結婚させた。しかしほどなくエドマンドは子のないまま現世から永遠の世へと移され、エドワードは無事と繁栄を享受した。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
