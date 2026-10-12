@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 15 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>DE quo rege magnanimo aliquid dignum duximus hic dicendum, ut cujus fuerit cordis, quantive animi, unum opus ejus hic exaratum legentibus declaret. Relatum est aliquando sibi, quendam de summis proceribus suis, de eo occidendo cum suis hostibus convenisse. Imperat rex haec nuncianti silentium. Siluit et ipse, proditoris, qui forte tunc aberat, expectans adventum. Qui cum ad curiam cum magno apparatu regi insidiaturus venisset, rex ei suisque vultum solitum atque jocundum praetendens, finxit se nihil audisse vel scivisse, quae mente cordetenus recolebat. Quid plura? Jubet ipse rex omnes venatores suos summo mane convenire cum canibus. Et jam noctem aurora abigerat, cum rex, vocatis ad se cunctis proceribus et militibus, in venando spaciatum ire festinat. Venit ad quandam planiciem latam, quam in modum coronae densissima silva cingebat, in cujus medio colliculus unus quasi turgescere videbatur, qui diversorum colorum floribus pulchra quadam varietate depictus, fatigatis quandoque militibus, ex venatu gratum praebebat accubitum. In quo cum rex ceteris superior constitisset, secundum legem venandi, quam vulgus tristram vocant, singulis cum canibus et sociis singula loca delegat, ut obsessa undique bestia, ubicunque eligeret exitum, inveniret exitium. Ipse vero rex, suum secum retinens proditorem, seorsum ab aliis solus cum solo abcessit. Ab omni vero aspectu et auditu remoti, rex subsistit, et vultu volvente pugnam in haec verba prorupit. Ecce, inquit, ego et tu mecum, solus cum solo, armis similibus protecti, equis similibus vecti; non est qui mihi, licet regi, assistat, nec tibi subveniat, nec est qui videat aut audiat. Nunc ergo, si vales, si audeas, si habes cor, imple quidem opere, quod corde concepisti, et redde hostibus meis quod promisisti. Si me occidendum putas, quando melius, quando securius, quando liberius, quando tandem virilius? An venenum parasti? Sed hoc muliercularum esse quis nesciat? An insidiaris lectulo? hoc possunt et adulterae. An ferrum, ut occulte ferias, occultasti? hoc sicharii, non militis esse, nemo qui dubitat. Age potius quod militis est, et non proditoris; age quod est viri, et non mulieris; atque solus cum solo congredere, ut saltem proditio tua turpitudine videatur carere, quae infidelitate carere non potuit. Hactenus vir ille iniquus vix haec sustinuit, et mox verbis ejus, quasi gravi percussus fulmine, de equo, cui insidebat, citissime descendit, projectisque armis, ad pedes regis corruit cum lachrimis, atque tremore cordis ita dixit: Domine mi rex, ignoscat mihi ad praesens hoc meum velle iniquum regia potestas tua, et si usque modo aliquid super hujuscemodi traditione tui corporis cor meum malignum conceperit, amodo delebitur, et in futurum contra omnes fidelissimum me tibi, Deo cum sua genetrice [teste], promitto. Cui rex ait, noli, amice, noli pavere: a me nihil, nec per me mali pro re ista sustinebis. Obsides tamen in pignore jubeo ut mihi nomines, atque adducas. Quibus nominatis et adductis, rex inquit, in regis verbo tibi dico, res ante promissa stabit. Ille vero ante proditor regis voluntati, in his quae praemisimus, oportuno tempore satisfaciens, et sic revertuntur ad socios, quae fecerant vel dixerant nemini loquentes.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>この度量の大きな王について、ふさわしいことをここで何か語っておくべきだと考えた。王がいかなる心の持ち主で、どれほどの気概を備えていたかを、ここに書き記す王のひとつの行いが読者に明らかにするであろう。あるとき王に、最上位の重臣のひとりが王の敵どもと王の殺害を申し合わせた、との知らせがもたらされた。王はこれを告げた者に沈黙を命じた。王自身も沈黙を守り、たまたまそのとき不在であった裏切り者の到来を待った。その者は王を待ち伏せて討とうと、盛大な仕度を整えて宮廷へやって来た。王はその者とその従者たちにいつもどおりの快活な顔を見せ、心の奥底で思い返していたことを何も聞いておらず、何も知らないかのように装った。多くを語る必要があろうか。王は自らの狩人たち全員に、早朝に犬を連れて集まるよう命じた。すでに曙が夜を追い払ったころ、王はすべての重臣と騎士たちを呼び寄せ、狩りに出かけようと急いだ。王はある広い平地に着いた。その平地を鬱蒼たる森が冠のように取り巻いていた。その中央には小さな丘がひとつ、盛り上がるように見えていた。丘はさまざまな色の花で美しく彩られ、狩りに疲れた騎士たちに、ときおり心地よい休み場を与えていた。王は他の者たちより高くその丘の上に立つと、俗にトリストラム（tristram）と呼ばれる狩りの定めに従い、各人に犬と仲間をつけてそれぞれの持ち場を割り当てた。四方を囲まれた獣が、どこに出口を選ぼうとも、そこに破滅を見いだすようにするためである。一方、王自身は自分の裏切り者を手もとにとどめ、他の者たちから離れて、一対一でその場を去った。あらゆる目と耳から遠ざかると、王は立ち止まり、闘いを思いめぐらす顔つきで、次のような言葉をほとばしらせた。「見よ、わたしと、わたしと共にいるおまえとは、一対一で、同じような武具に身を守られ、同じような馬に乗っている。わたしは王であるが、わたしを助ける者はおらず、おまえに加勢する者もいない。見る者も聞く者もいない。さあ、おまえに力があるなら、勇気があるなら、度胸があるなら、心に企てたことを行いで果たし、わたしの敵どもに約束したことを果たすがよい。わたしを殺すべきだと思うなら、いつ、これより好都合に、これより安全に、これより自由に、そしてつまるところ、これより男らしく、それを行えようか。毒を用意したのか。だがそれがか弱い女のすることだと知らぬ者があろうか。寝床で待ち伏せるのか。それは姦婦にもできる。ひそかに刺すために刃を隠し持ったのか。それが刺客のすることであって騎士のすることでないのを、疑う者はいない。むしろ騎士のすることを行え。裏切り者のすることではなく。男のすることを行え。女のすることではなく。そして一対一で渡り合え。そうすれば、おまえの裏切りは、不忠を免れることはできなかったにせよ、せめて恥辱は免れたと見えよう。」ここまで、あの邪な男はかろうじて耐えていた。だがまもなく、王の言葉によって重い雷に打たれたかのようになり、乗っていた馬から急ぎ降り、武具を投げ捨て、涙を流して王の足もとにひれ伏し、心をおののかせてこう言った。「わが主君なる王よ、王の御力をもって、いまこの場でわたしのこの邪な企てをお赦しください。もしこれまでに、わたしの邪な心がこのように御身を裏切ることを何か企てたとしても、今後それは消し去られるでしょう。そして以後、神とその御母を証人として、あらゆる者に対して御身にもっとも忠実であることを約束いたします。」王は彼に言った。「恐れるな、友よ、恐れるな。この件で、おまえはわたしから何の害も受けず、わたしの手で害を被ることもない。ただし、人質を担保としてわたしに名指し、連れて来るよう命じる。」人質が名指され、連れて来られると、王は言った。「王の言葉にかけておまえに言う。先に約束したことは守られよう。」かつて裏切り者であった男は、先に述べた事柄について、しかるべき時に王の意に添った。こうして二人は仲間たちのもとへ戻ったが、自分たちが何をし、何を語ったかは誰にも言わなかった。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

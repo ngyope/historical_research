@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 13 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>NUNCII autem illuc venientes, et navis magnitudinem praeter solitum videntes et admirantes, regi quae viderant quamtotius festinant indicare. Quibus auditis, rex plures et prudentiores prioribus de summis suis proceribus illac direxit. At illi, ut nuncii regiae majestatis suscepti, virorum proceritatem, mulierum venustatem, ac totius familiae industriam non sine admiratione diligentius considerantes, gratum apud semetipsos inde colloquium conferunt. Quid plura? Eventum rei, et rerum seriem, et causam nuncii ad hoc destinati dulci alloquio et eloquenti dulcedine investigant. Illi autem, ut novi hospites et advenae, causam et modum suorum applicatuum verbis plica carentibus eloquenter exponunt. Reversi autem nuncii, cum seniorum reverentiam, juvenum vero prudentiam, matronarum maturitatem, et juvencularum venustatem suo regi nunciassent, quidam subintulit, dicens: Vidimus ibi quandam, quam, ob formae incomparatam speciem, et eloquentiae facunditatem jocundam, tum ob ceterarum fecunditatem virtutum, judicio meo dominam illius familiae, suspicans tibi hoc annuncio; de cujus mirabili venustate et moralitate magis est admirandum quam narrandum. Nec mirum, si illam dominam crediderint, quam dominam non solum illius familiae, sed etiam totius regni Angliae et heredem, ymmo et regni sui participem, futuramque reginam divina praedestinavit providentia. Rex autem Malcolmus audiens illos Anglos et ibi adesse, in propria persona illos visitat et alloquitur, et unde venerunt, aut quo vadant plenius explorat. Anglicam enim linguam simul et Romanam aeque ut propriam plene didicerat, cum post patris sui mortem XVII annis mansisset in Anglia, ubi forte de cognatione hujus sanctae familiae aliquid audierat, quare cum eis nuncius ageret et benignius se haberet. <hi rend="italic">Tu autem</hi>.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>先に遣わされた者たちはそこへ来て、船が常ならず大きいのを目にして驚き、見たことを一刻も早く王に知らせようと急いだ。これを聞くと、王は自らの最上位の重臣のうちから、先の者たちより数多く、より思慮深い者たちをそこへ差し向けた。重臣たちは国王陛下の使者として迎えられた。彼らは男たちの背丈の高さ、女たちの麗しさ、一家全体の勤勉さを、驚嘆しつつ念入りに見て取り、それについて互いに好ましい語らいを交わした。多くを語る必要があろうか。この務めのために遣わされた重臣たちは、穏やかな語りかけと巧みな弁舌の快さをもって、事の顛末と次第と理由を尋ねた。一方あの人々は、新来の客人であり異邦人である者として、自らが着岸した理由と経緯を、裏表のない言葉で雄弁に説き明かした。さて重臣たちは戻り、年長者たちの威厳、若者たちの思慮、貴婦人たちの落ち着き、乙女たちの麗しさを自らの王に告げた。そのとき、ある者がこう付け加えた。「私どもはそこである女性を見ました。比類ない容姿の美しさ、心地よい弁舌の豊かさ、さらに他の諸徳の豊かさから、私はあの方を一家の女主人と推し量り、陛下にこのことを申し上げます。あの方の麗しさと徳性は、語るよりもむしろ驚嘆すべきものです。」あの人々が彼女を女主人と信じたのも不思議ではない。神の摂理は、彼女をあの一家だけでなく、イングランド王国全体の女主人かつ相続人と定めていた。それどころか、王の王国にあずかる者、未来の王妃とあらかじめ定めていたのである。マルコム（Malcolm）王は、それらのイングランド人がそこにいると聞くと、自ら彼らを訪ねて言葉を交わし、彼らがどこから来て、どこへ向かうのかをより詳しく探った。王は父の死後17年間イングランドにとどまり、イングランドの言葉とローマの言葉とを、自らの言葉と同じく十分に習得していたのである。王はおそらくイングランドで、この聖なる一家の血縁について何かを聞き及んでいた。それゆえ王は自ら使者の役を引き受けて彼らと話し、いっそう親切にふるまった。されど御身は。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

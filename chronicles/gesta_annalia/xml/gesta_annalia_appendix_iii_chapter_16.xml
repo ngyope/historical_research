@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 16 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>HUIC magnanimo viro regi Scociae Malcolmo ab incarnationis Dominicae anno MLXVII et suae regnationis XII, Margareta, ut praemissum est, matrimonio copulatur. Genuit quoque ex ea sex filios, scilicet, Edwardum, Edmundum, Ethelredum, Edgarum, Alexandrum, et omnium regum strenuissimum et urbanissimum David: et duas filias, scilicet, Matildam reginam Angliae cognomine bonam reginam, et Mariam comitissam Bononiae, de quibus singulis postea in loco suo dicetur. Qualis vero, vel quanti meriti fuerat illa beata regina Scociae Margareta apud Deum et homines, vitam ejus laudabilem, miracula et mortem preciosam liber inde confectus legentibus manifestat. Turgotus. Saepissime autem rex boreales Angliae provincias, a primo regnationis suae tempore, et maxime Willelmi Bastard post adventum, valida manu ingressus, omnia vastando circumquaque destruxit: animantia vero praedis et rapina hostiliter abstulit, cunctaque, <app>
+                    <lem>visui</lem>
+                    <rdg wit="#ms-fc">usui</rdg>
+                </app> humano placentia, flammis et ferro de superficie terrae crudeliter consumpsit. Et innumerabilium etiam catervas hominum captivatim abduxerit, ita quod in regno suo aedes ferme militantis nequaquam extiterat, quae virilis sexus seu feminei servum vel captivum non tenebat. Quorum autem enumerando quis explicare poterit, quot et quantos benedicta regina, regis conjunx, dato pretio libertati restituerit, quos de gente Anglorum abducens captivos violentia hostilis redigerat in servos? Continuis vero excidiis et depraedationibus, depopulando rex <app>
+                    <lem>Angliam</lem>
+                    <rdg wit="#ms-fc">ex Anglia</rdg>
+                </app> intrans Northumbriam, usque flumen These vastavit, et totam patriam, exceptis quibusdam, castris, Walcherio episcopo Dunelmensi <app>
+                    <lem>ac</lem>
+                    <rdg wit="#ms-fc">cum</rdg>
+                </app> pluribus nobilibus apud Gatishede occiso, in deditionem recepit. Comprovincialesque ad pacem suam et fidem redegit. Et licet paucis ante retroactis annis Malcolmus rex pro XII villis in Anglia existentibus, homo Willelmi Bastardi, tunc regis Angliae, devenit, provocatus tamen per quosdam Anglos, fines regni sui invadentes, hominium illud abjecit, et tales irruptiones pessimas, et strages Anglis importabiles merito cumulavit.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>この度量の大きな人物、スコットランド王マルコム（Malcolm）に、主の受肉の年1067年、その治世第12年に、先に述べたとおりマーガレット（Margaret）が婚姻によって結ばれた。王は彼女とのあいだに6人の息子をもうけた。すなわちエドワード（Edward）、エドマンド（Edmund）、エセルレッド（Ethelred）、エドガー（Edgar）、アレグザンダー（Alexander）、そしてあらゆる王のなかでもっとも勇武にすぐれ、もっとも洗練されたデイヴィッド（David）である。また2人の娘をもうけた。すなわち「善き王妃」の名で呼ばれたイングランド王妃マティルダ（Matilda）と、ブローニュ（Boulogne）伯妃メアリ（Mary）である。これらの一人ひとりについては、のちにしかるべき箇所で語られる。スコットランドのあの祝福された王妃マーガレットが、神と人々の前でいかなる人であり、どれほどの徳を備えていたかは、そのために編まれた書物が、彼女の称えるべき生涯、奇跡、尊い死を読者に明らかにしている。ターゴット（Turgot）。さて王は、治世の初めから、とりわけ「私生児」ウィリアム（William the Bastard）の到来の後に、たびたびイングランドの北方の諸地方へ強大な軍勢を率いて侵入し、四方一帯をことごとく荒らして破壊した。生き物は略奪によって敵のやり方で奪い去り、人の目を喜ばせるあらゆるものを、火と剣によって地上から無残に焼き尽くした。さらに数えきれない人々の群れを捕虜として連れ去った。そのため王の王国では、男であれ女であれ、奴隷か捕虜を抱えていない戦士の家は、ほとんどひとつもなかった。敵の暴力はイングランド人の民のなかから捕虜を連れ去り、奴隷の身に落としていた。王の妻である祝福された王妃が、そのうちどれほど多くの者に代価を払って自由を取り戻させたかを、誰が数え上げて説き明かすことができようか。王は絶え間ない破壊と略奪をもってイングランドを荒らしつつノーサンブリア（Northumbria）に入り、ティーズ（Tees）川に至るまで荒廃させた。ダラム（Durham）司教ウォルカー（Walcher）と多くの貴族がゲーツヘッド（Gateshead）で殺されたうえで、王はいくつかの城を除くその地方全体を降伏させた。王は同じ地方の住民たちを自らの平和と忠誠のもとに服させた。マルコム王は、その数年前にイングランドにある12の村（villa）のために、当時のイングランド王「私生児」ウィリアムの臣下（homo）となっていた。しかし王国の境を侵す幾人かのイングランド人に挑発されて、王はその臣従を捨てた。そしてイングランド人にとって耐えがたい、かくも凶悪な侵入と殺戮を、正当にも重ねた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 12 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>CERNENS itaque Edgarus Ethelinge, res Anglorum undique perturbari, ascensis navibus cum matre sua et sororibus reverti in patriam, in qua natus fuerat, conabatur. Et hoc consilio matris suae, quae cum liberis suis insidias adversariorum suorum sub protectione parentum studuit declinare. Sed summus imperator, qui imperat ventis et mari, commovit mare, et conturbavit illud; et in spiritu procellae exaltati sunt fluctus ejus. Desaeviente itaque tempestate, omnibus in desperatione vitae positis, sese Deo commendant, et puppim pelago committunt. Igitur post plurima pericula, et immanes labores, misertus est Dominus desolatae familiae suae, quia ubi humanum deest auxilium, necesse est subvenire divinum: quassati pelago, tandem in Scociam coacti sunt applicare. Applicuit itaque illa sancta familia in quodam loco, qui nunc sinus sanctae Margaretae reginae ab incolis appellatur. In hoc autem sinu ejusdem, ut credimus, matronae a periculo maris multi postea liberati sunt. Et merito, ut illa, quae tot et talia naufragia maris passa est, naufragantibus subvenire non desistat. Et ideo non hoc casu contigisse, sed summa Dei providentia illam ibidem credimus applicuisse. Igitur in praedicto littore praefata familia commorante, omnibus rei finem in timore Domini expectantibus, nunciatum est regi Scociae Malcolmo, filio Duncani, de eorum adventu, qui tunc ab eodem loco haut procul cum suis manebat. Qui directis nunciis rem veram sciscitabatur.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>そこでエドガー・アシリング（Edgar Ætheling）は、イングランド人の情勢が至るところで乱されているのを見て、船に乗り、母と姉妹たちとともに、自らが生まれた祖国へ帰ろうと試みた。これは母の勧めによるものであった。母は子どもたちとともに、親族の保護のもとで敵の謀略を避けようと努めたのである。しかし風と海に命じる至高の支配者は海を動かし、これをかき乱した。そして嵐の息吹のうちに、その波は高く盛り上がった。嵐が荒れ狂い、すべての者が命の望みを失ったので、彼らは自らを神に委ね、船を海に任せた。こうして数多くの危険と甚だしい労苦ののち、主は自らの寄る辺ない一家を憐れんだ。人の助けが尽きるところでは、神の助けが差し伸べられねばならないからである。海に打ちのめされた彼らは、ついにスコットランドに着岸することを余儀なくされた。こうしてその聖なる一家は、今では住民から聖なる王妃マーガレットの入江（St Margaret's Hope）と呼ばれる、ある場所に着いた。我々の信じるところでは、この同じ貴婦人の入江で、のちに多くの者が海の危難から救われた。あれほど多くの、あれほどの海難を耐えた彼女が、難破に遭う者たちを助けてやまないのは、まことにふさわしい。それゆえ我々は、彼女がその地に着いたのは偶然によってではなく、神の至高の摂理によると信じる。こうして先に述べた浜辺に一家がとどまり、皆が主を畏れつつ事の結末を待っていたとき、ダンカン（Duncan）の息子、スコットランド王マルコム（Malcolm）に、彼らの到来が告げられた。王はそのとき、その場所からさほど遠くないところに家臣たちとともに滞在していた。王は使者を遣わし、事の真相を尋ねさせた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
