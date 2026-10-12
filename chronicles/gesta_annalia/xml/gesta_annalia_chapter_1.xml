@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia, chapter 1 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <head>Coronatio regis Malcolmi minoris filii Henrici Principis, qui dicebatur virgo.</head>
+                <p>TOLLENS quoque omnis populus Malcolmum puerum tredecim annorum filium Henrici comitis Northumbriae et <app>
+                    <lem>Huntingdoniae</lem>
+                    <rdg wit="#ms-fh">Huntyndon</rdg>
+                </app>, filii ipsius regis David, et apud Sconam constituerunt regem pro David avo suo, de quo veraciter potest dici "Cum semine eorum permanent bona hereditas <app>
+                    <lem>sancta nepotes eorum."</lem>
+                    <rdg wit="#ms-fh">etc."</rdg>
+                    <rdg wit="#ms-fd">nepotes eorum etc."</rdg>
+                </app> Northumbriae vero comitatum possidebat frater ejus Willelmus, <app>
+                    <lem>et David fratri juniori comitatus Huntidoniae</lem>
+                    <rdg wit="#ms-fd">et fratri ejus seniori David comitatus de Huntyngton</rdg>
+                </app> subjectus fuit, ut infra patebit. Non immerito regi Scotorum David successit Malcolmus, major natu nepotum ejus. Qui eundem regem in multis bonis exequens, in quibusdam etiam gloriose superans, <app>
+                    <lem>in medio gentis suae</lem>
+                    <rdg wit="#ms-fd">in gente sua</rdg>
+                </app> tanquam sidus coeleste refulsit. Primo quoque anno sui regni, regulus Argadiae <app>
+                    <lem>Sumerledus</lem>
+                    <rdg wit="#ms-fd">Sumerledus nomine</rdg>
+                </app>, et sui nepotes, <app>
+                    <lem>filii, scilicet,</lem>
+                    <rdg wit="#ms-fd">filii filiae</rdg>
+                </app> Malcolmi Macheth,<note type="editorial" xml:lang="en">Skene: "<hi rend="italic">The name in</hi> D. <hi rend="italic">is</hi> Macbeth <hi rend="italic">throughout</hi>."</note> associatis sibi plurimis, insurrexerunt in regem suum Malcolmum, et Scociam magna parte perturbantes inquietaverunt. Erat enim ille Malcolmus filius Macheth, sed mentiendo dicebat, se esse filium Angusii, comitis Moraviae, qui, tempore felicis memoriae regis David, patriam <app>
+                    <lem>depraedando</lem>
+                    <rdg wit="#ms-fd">praedando</rdg>
+                </app> apud <app>
+                    <lem>Strucathroch</lem>
+                    <rdg wit="#ms-fh">Strucathrawych</rdg>
+                </app> a Scotis cum tota gente sua interfectus est. Quo mortuo, idem Malcolmus Macheth contra regem David, quasi filius mortem patris vindicaturus, assurgit, et regiones <app>
+                    <lem>Scociae</lem>
+                    <rdg wit="#ms-fh #ms-fd"/>
+                </app> <app>
+                    <lem>circumjacentes</lem>
+                    <rdg wit="#ms-fh #ms-fc #ms-fd">circumadjacentes</rdg>
+                </app> rapinis et praedis afficiens, tandem capitur, et ab eodem rege David in turre castri de Marchemond arta custodia trucidatur. Continuante itaque civilia bella Sumerledo, nepos ejus, unus filiorum Malcolmi Macheth, Dovenaldus nomine, per quosdam regis Malcolmi fideles apud <app>
+                    <lem>Withterne</lem>
+                    <rdg wit="#ms-fd">Qwhythyrne</rdg>
+                </app> comprehenditur, et in eadem turre de Marchmond cum patre suo incarceratur. Post cujus captionem, anno sequenti Malcolmus, pater ejus, cum rege pacificatus est, Sumerledo nequiter adhuc suam nequitiam in populo exercente.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <head>王子ヘンリ（Henry）の子で、乙女と呼ばれた若きマルコム（Malcolm）王の戴冠</head>
+                <p>また民はこぞって、デイヴィッド（David）王その人の子であるノーサンブリア（Northumbria）伯兼ハンティンドン（Huntingdon）伯ヘンリの子、13歳の少年マルコムを擁し、祖父デイヴィッドに代わる王としてスクーン（Scone）で立てた。この祖父については、まことに次のように言うことができる。「彼らの子孫とともに良きものはとどまり、その孫たちは聖なる遺産である」。一方、ノーサンブリア伯領はマルコムの弟ウィリアム（William）が保有し、ハンティンドン伯領は年下の弟デイヴィッドの支配下にあった。このことは後に明らかになる。マルコムが孫たちのうちの年長者としてスコット人の王デイヴィッドを継いだのは、故なきことではなかった。彼は多くの善き事においてかの王に倣い、いくつかの点ではこれを輝かしく凌ぎ、自らの民のただなかで天の星のように光り輝いた。その治世の第1年に、アーガイル（Argyll）の小王サマーレッド（Somerled）とその甥たち、すなわちマルコム・マクヘス（Malcolm MacHeth）の子らが、多くの者を味方に引き入れて自らの王マルコムに対して蜂起し、スコットランドの大部分をかき乱して騒がせた。というのも、かのマルコム・マクヘスはマクヘスの子であったが、偽って自分はマリ（Moray）伯アンガス（Angus）の子であると称していたからである。アンガスは、幸いなる記憶のデイヴィッド王の時代に国土を荒らしていたところを、ストラカスロ（Stracathro）でスコット人によってその民もろとも討たれた。アンガスが死ぬと、このマルコム・マクヘスは、あたかも息子として父の死の仇を討とうとするかのようにデイヴィッド王に対して立ち上がり、スコットランドの周辺の地方を略奪と強奪で苦しめた。しかしついに捕らえられ、同じデイヴィッド王によってマーチモント（Marchmont）城の塔で厳しい監禁のもとに責め苛まれた。こうしてサマーレッドが内戦を続けるなか、その甥で、マルコム・マクヘスの子の一人であるドナルド（Donald）という者が、マルコム王に忠実な者たちによってホイットホーン（Whithorn）で捕らえられ、同じマーチモントの塔に父とともに投獄された。この捕縛の翌年、その父マルコム・マクヘスは王と和解したが、サマーレッドはなおも民のあいだで邪に悪事を働きつづけていた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
