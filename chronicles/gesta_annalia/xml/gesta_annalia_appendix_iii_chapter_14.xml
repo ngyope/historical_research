@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 14 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>REX ergo ubicunque Margaretam viderat, eamque de regio semine simul et imperiali esse didicerat, ut eam in uxorem duceret petiit, et obtinuit, tradente eam Edgaro Ethelinge fratre suo, magis tamen suorum quam sua voluntate, ymmo Dei ordinatione. Nam sicut olim Hester Assuero regi pro salute concivium suorum divina providentia, ita et haec illustrissimo Malcolmo regi Scotorum, regis Duncani filio, in conjugium copulatur. Nec tamen quasi captiva, ymmo multis abundans divitiis, quas patri suo Edwardo, tanquam heredi suo, sanctus Edwardus rex Angliae suus patruus prius dederat, quasque etiam ipse Romanus imperator Henricus, sicut paulo ante praediximus, in minimis honoratum muneribus, in Angliam transmiserat, quarum partem permaximam haec sancta regina secum in Scocia transtulit. Attulit etiam plurimas sanctorum reliquias, omni auro et lapide preciosiores. Inter quas fuit illa sancta crux, quam nigram crucem nominant, omni genti Scotorum non minus terribilem quam amabilem, pro suae reverentia sanctitatis. Haec autem facta sunt, et nuptiae [haud] procul a mari magnifice celebratae, anno Domini MLXVII in loco qui dicitur Dunfermlyn, quem tunc temporis rex habebat pro oppido. Erat enim locus ille in se naturaliter munitissimus, densissima silva circumdatus, praeruptis rupibus praemunitus. In cujus medio erat venusta planicies, ita rupibus et rivulis circumdata, quod de ea dictum esse putaretur, non homini facilis, vix adeunda feris. <hi rend="italic">Tu autem Domine</hi>.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>こうして王は、マーガレット（Margaret）を見て、彼女が王の血筋と皇帝の血筋とを併せ引くと知り、彼女を妻に迎えたいと求め、それを得た。兄弟のエドガー・アシリング（Edgar Ætheling）が彼女を引き渡したのである。ただしそれは彼女自身の意思よりも身内の者たちの意思、いやむしろ神の定めによるものであった。かつてエステル（Esther）が同胞の救いのために神の摂理によってアハシュエロス（Ahasuerus）王と結ばれた。それと同じく彼女もまた、ダンカン（Duncan）王の息子、スコット人のいとも高名な王マルコム（Malcolm）と婚姻の契りを交わした。しかも彼女は捕虜のようにではなく、多くの富にあふれて嫁いだ。その富は、彼女の父エドワード（Edward）に、その父方の叔父であるイングランド王聖エドワード（Edward）が、相続人として以前に与えたものであった。また先に少し述べたように、ローマ皇帝ハインリヒ（Henry）自身も、父エドワードをささやかな贈り物をもって遇し、富をイングランドへ送り届けていた。この聖なる王妃は、それらの大部分を携えてスコットランドへ移った。彼女はまた、あらゆる金や宝石にもまさって貴い、聖人たちの数多くの聖遺物をもたらした。そのなかに、人々が黒十字（Black Rood）と呼ぶあの聖なる十字架があった。この十字架は、自らの聖性への畏敬ゆえに、スコット人の民全体にとって、愛すべきものであると同時に畏るべきものであった。これらのことが行われ、主の年1067年、海から遠からぬダンファームリン（Dunfermline）と呼ばれる地で、婚儀が盛大に挙げられた。王は当時そこを砦としていた。その地はそれ自体、天然のきわめて堅固な要害で、鬱蒼たる森に囲まれ、切り立った岩山に守られていた。その中央には麗しい平地があり、岩山と小川に囲まれていた。「人には近づきがたく、獣もかろうじて近づける」とは、この地について言われたものと思われるほどであった。されど主よ、御身は。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
