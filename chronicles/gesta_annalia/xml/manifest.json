@@ -12,6 +12,12 @@
     { "id": "app3-8", "group": "Appendix III", "label": "ch. 8", "file": "gesta_annalia_appendix_iii_chapter_8.xml" },
     { "id": "app3-9", "group": "Appendix III", "label": "ch. 9", "file": "gesta_annalia_appendix_iii_chapter_9.xml" },
     { "id": "app3-10", "group": "Appendix III", "label": "ch. 10", "file": "gesta_annalia_appendix_iii_chapter_10.xml" },
-    { "id": "app3-11", "group": "Appendix III", "label": "ch. 11", "file": "gesta_annalia_appendix_iii_chapter_11.xml" }
+    { "id": "app3-11", "group": "Appendix III", "label": "ch. 11", "file": "gesta_annalia_appendix_iii_chapter_11.xml" },
+    { "id": "app3-12", "group": "Appendix III", "label": "ch. 12", "file": "gesta_annalia_appendix_iii_chapter_12.xml" },
+    { "id": "app3-13", "group": "Appendix III", "label": "ch. 13", "file": "gesta_annalia_appendix_iii_chapter_13.xml" },
+    { "id": "app3-14", "group": "Appendix III", "label": "ch. 14", "file": "gesta_annalia_appendix_iii_chapter_14.xml" },
+    { "id": "app3-15", "group": "Appendix III", "label": "ch. 15", "file": "gesta_annalia_appendix_iii_chapter_15.xml" },
+    { "id": "app3-16", "group": "Appendix III", "label": "ch. 16", "file": "gesta_annalia_appendix_iii_chapter_16.xml" },
+    { "id": "ga-1", "group": "Gesta Annalia", "label": "ch. 1", "file": "gesta_annalia_chapter_1.xml" }
   ]
 }
