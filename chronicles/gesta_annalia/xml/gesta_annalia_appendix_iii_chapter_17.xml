@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 17 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>EO denique tempore Willelmus Bastard, invasor et rex Angliae, postquam regnum, omnibus ad velle dispositis, obtinuisset, in transmarinis partibus castrum de Dol obsedit; in cujus obsidione rex Francorum Philippus ipsum manu valida fugavit. Sed et Robertus dictus Curthose, filius ejus primogenitus, auxilio ejusdem regis Philippi patri suo bellum intulit, eo quod Normanniam, quam coram rege eodem sibi promiserat, dare noluit. Et patrem suum multis incommodis afflixit. Nam rex Willelmus et filius ejus ante castellum de Gerboreth ab eo vulnerati sunt, et in fugam versi: ideoque rex ex equo dejectus vix evasit. Paucis tamen postea diebus elapsis pace firmata cum filio concordatus est. Cumque eidem, in Normannia adhuc existenti, nunciatum extiterat, [quod] quidam finium suorum incolae, habitatores, scilicet, Northumbriae, ad regem Scotorum Malcolmum ab eo divertissent, adversus eos Odonem fratrem suum, Baiocensem episcopum, quem comitem Cantiae fecerat, cum magna militia recipiendos misit; atque Northumbri, datis regi prius obsidibus, Scotis firmiter adhaeserunt, et Odo patria vastata rediit. Recedentem igitur Odonem Malcolmus persecutus, copiis suis aliqualiter stragem dedit, et circa Humbre fluminis littora fuso exercito suo, incredibili caede circumquaque terras Anglorum Normannorumque destruens, cum praedis ac spoliis infinitis in patriam reversus est. Cujus assiduas seditiones irruptionesque Willelmus rex ferre non valens, Robertum filium suum, ut regi Malcolmo bellum inferret, in Scociam destinavit. At ille, nullo peracto negotio, revertens, Novum Castrum condidit super Tinam.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>さてそのころ、侵入者にしてイングランド王である「私生児」ウィリアム（William the Bastard）は、万事を意のままに整えて王国を手中に収めたのち、海の向こうの地でドル（Dol）の城を包囲した。この包囲のさなか、フランス人の王フィリップ（Philip）が強力な軍勢で彼を敗走させた。さらに、カーソーズ（Curthose）と呼ばれた彼の長子ロバート（Robert）も、同じフィリップ王の援助を得て父に戦いを挑んだ。父が、同じ王の前で彼に約束していたノルマンディー（Normandy）を与えようとしなかったためである。ロバートは父を多くの苦難で悩ませた。すなわちウィリアム王とその息子は、ジェルブロワ（Gerberoy）の城の前でロバートに傷を負わされ、敗走した。王は馬から投げ落とされ、かろうじて逃れた。しかし数日を経て和約が結ばれ、王は息子と和解した。まだノルマンディーにいた王のもとに、王の境域の住民の一部、すなわちノーサンブリア（Northumbria）の住人たちが、王から離れてスコット人の王マルコム（Malcolm）のもとへ寝返った、との知らせが届いた。王は、彼らを取り戻すために、自らの兄弟でバイユー（Bayeux）司教であり、王がケント（Kent）伯に任じていたオド（Odo）を、大軍とともに彼らに差し向けた。ノーサンブリア人は、先に王に人質を差し出していたにもかかわらず、スコット人に固く与した。オドはその地方を荒らして帰還した。マルコムは退くオドを追撃し、その軍勢にいくらかの殺戮を加えた。さらにハンバー（Humber）川の岸辺一帯に自らの軍を広げ、信じがたい殺戮をもって四方のイングランド人とノルマン人の土地を破壊し、限りない略奪品と戦利品を携えて自国へ帰った。ウィリアム王は、マルコムの絶え間ない反抗と侵入に耐えかね、マルコム王に戦いを挑ませるべく、息子ロバートをスコットランドへ差し向けた。しかしロバートは何事も果たさずに引き返し、タイン（Tyne）川のほとりに「新しい城」（Novum Castrum）を築いた。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
