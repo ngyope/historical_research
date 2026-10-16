@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://epidoc.stoa.org/schema/latest/tei-epidoc.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Gesta Annalia Appendix III, chapter 18 in Skene's Edition</title>
+                <editor>Yuki Nakagawa</editor>
+            </titleStmt>
+            <publicationStmt>
+                <p>Digital edition created for research purposes.</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Based on W. F. Skene (ed.), <hi rend="italic">John of Fordun's Chronicle of the Scottish Nation</hi>, 2 vols (Edinburgh, 1871-2).</p>
+                <listWit>
+                    <witness xml:id="ms-fa">Wolfenbüttel, Herzog August Bibliothek MS Helmstedt 538 (Skene's A).</witness>
+                    <witness xml:id="ms-fb">London, British Library MS Cotton Vitellius E XI (first element) (part of Skene's B), ff.3-23, 28-33, 35-37, 169, 38-51, 176, 173, 52-65, 170-171, 66-83, 175, 174.</witness>
+                    <witness xml:id="ms-fc">Cambridge, Trinity College MS O. 9. 9 (also known as MS 1421) (Skene's C).</witness>
+                    <witness xml:id="ms-fd">Dublin, Trinity College MS 498: second element (pp.223-398) (Skene's D).</witness>
+                    <witness xml:id="ms-fh">British Library MS Cotton Vitellius E XI ff.24-27, 84-95, 172, 96-115, and 116-166 (the same version of 1153-1363 as found in FD). (Skene treated the section covering 1153-1363 as part of his MS B.)</witness>
+                </listWit>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="la">Latin</language>
+                <language ident="ja">Japanese</language>
+                <language ident="en">English</language>
+            </langUsage>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div type="textpart" xml:lang="la">
+                <p>DE illius magnifici regis Malcolmi virtutum operibus et eleemosynarum largitione, ut testatur Turgotus in vita sanctae Margaretae reginae, ejus conjugis, aliqua hic breviter recitabo. Nam, sicut sanctus propheta David in psalmis cecinit, cum sancto sanctus eris, sic et ipse rex a regina sanctis operibus frui, et ab iniquis ejus hortatu animum didicit refrenare. Nimirum ipsam tam venerabilis vitae reginam, quoniam in ejus corde Christum habitare prospexerat, ille quoquo [modo] offendere formidabat, sed potius votis ejus et prudentibus consiliis celerius per omnia obedire properabat. Quae etiam ipsa respuerat, eadem et ipse respuere, et quae amaverat amoris illius amare consuevit. Didicit et ejus exemplo vigilias noctis frequenter orando producere, et cum gemitu cordis et lachrimis devotissime Deum orare. <app>
+                    <lem/>
+                    <rdg wit="#ms-fc">Ambo cultu pietatis insignes</rdg>
+                </app> Fateor, inquit Turgotus, fateor, [magnum] misericordiae Dei miraculum mirabar, cum viderem interdum tantam orandi regis intentionem, tantam inter orandum in pectore viri secularis compunctionem. In Quadragesimali tempore, et quadraginta diebus ante Dominicum natale, nisi major secularis occupatio impediret, peracto matutinali officio, et aurorae missarum solenniis celebratis, rediens in cameram rex pedes sex pauperum cum regina lavare, et aliquid quo paupertas consolaretur solebat erogare. Inter haec trecentos pauperes in regiam aulam consuetudo erat introduci: quibus per ordinem circumsedentibus, cum rex et regina ingrederentur, a ministris hostia claudebantur. Exceptis enim capellanis quibusdam religiosis et aliquibus ministris, illorum eleemosynarum operibus interesse nulli licuerat. Rex ex una, regina vero ex altera parte Christo in pauperibus servierunt, magnaque cum devotione cibos et potum, specialiter ad hoc praeparatos, optulerunt. Quo facto, rex pro temporalibus et regni sui negotiis [sese] sollicitus occupare, Regina ecclesiam solebat intrare, ibique prolixis precibus et lachrimarum singultibus semetipsum Deo sacrificium immolare. Haec Turgotus.</p>
+            </div>
+            <div type="translation" xml:lang="ja">
+                <p>あの壮麗な王マルコム（Malcolm）の徳の行いと施しの惜しみなさについて、ターゴット（Turgot）がその妃である聖マーガレット（Margaret）王妃の伝記で証言するところに従い、ここにいくつかを手短に述べよう。聖なる預言者ダビデ（David）が詩篇で「聖なる者とともに、あなたは聖なる者となる」と歌ったとおり、王もまた王妃から聖なる行いを喜ぶことを学び、王妃の勧めによって不正から心を抑えることを学んだ。まことに王は、かくも尊い生活を送る王妃の心にキリストが住まうのを見てとっていたので、いかなる仕方であれ王妃の気を損ねることを恐れた。むしろ王妃の願いと賢明な助言に、あらゆることにおいて速やかに従おうと急いだ。王妃が退けたものは王も退け、王妃が愛したものは王妃への愛ゆえに愛するのが常であった。王はまた王妃の手本に倣い、しばしば祈りのうちに夜の徹夜を長く続け、心の呻きと涙とともにきわめて敬虔に神に祈ることを学んだ。ターゴットは言う。「告白しよう、告白しよう。わたしは、ときに王の祈りのかくも深い専心を、祈るさなかの世俗の人の胸のかくも深い悔恨を目にして、神の慈悲の大いなる奇跡に驚嘆した。四旬節の期間と主の降誕祭前の40日間には、より大きな世俗の用務が妨げないかぎり、朝課の聖務を終え、夜明けにミサの盛儀が執り行われたのち、王は居室に戻り、王妃とともに6人の貧者の足を洗い、貧しさを慰める何がしかを施すのが常であった。そのあいだに、300人の貧者を王の広間に招き入れるのが慣わしであった。彼らが順に周りに座り、王と王妃が入ると、扉は従者たちによって閉ざされた。修道士である幾人かの礼拝堂付き司祭と幾人かの従者を除き、何者もこの施しの行いに立ち会うことを許されなかったからである。王は一方の側から、王妃は他方の側から、貧者のうちなるキリストに仕え、このために特に用意された食べ物と飲み物を、大いなる敬虔をもって差し出した。これが済むと、王は世俗の事柄と自らの王国の用務に心を砕いて携わり、王妃は教会に入り、そこで長い祈りと涙の嗚咽とともに、自らを神への犠牲として捧げるのが常であった。」以上ターゴット。</p>
+            </div>
+        </body>
+    </text>
+</TEI>
